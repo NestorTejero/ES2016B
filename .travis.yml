@@ -1,0 +1,6 @@
+os:
+- linux
+language: generic
+script:
+- echo "hello travis"
+
