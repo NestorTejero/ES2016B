@@ -1,0 +1,86 @@
+@startuml
+
+class GameController {
+    isEndGame() : bool
+}
+
+class Player {
+    credit : int
+}
+
+class Defender extends Player {
+}
+
+
+class Attacker extends Player {
+}
+
+GameController "1" -- "2" Player
+
+interface PlayerLogic {
+	void play()
+}
+
+class HumanAI implements PlayerLogic {
+}
+class EasyAI implements PlayerLogic {
+}
+class MediumAI implements PlayerLogic {
+}
+class HardAI implements PlayerLogic {
+}
+
+Player "1" -- "1" PlayerLogic
+
+class Unit {
+    health : int
+    defense : int
+    speed : int
+    creditAfterKill : int
+    
+}
+
+class UnitFactory {
+
+}
+
+Player "1" -- "1" UnitFactory
+UnitFactory "1" -- "*" Unit
+
+class Weapon {
+    power : int
+    criticalMultiplier : double
+    criticalChance : double
+    cooldown : int
+}
+
+Unit "1" -- "1" Weapon
+Tower "1" -- "1" Weapon
+
+class W1 extends Weapon {
+}
+class W2 extends Weapon {
+}
+class W3 extends Weapon {
+}
+
+class Building {
+    health : int
+    defense : int
+}
+
+Defender "1" -- "1" Building
+
+class Tower {
+
+}
+ 
+Building "1" -- "*" Tower
+
+class Wall {
+    health : int
+}
+
+Building "1" -- "*" Wall
+
+@enduml
