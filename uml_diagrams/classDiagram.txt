@@ -5,7 +5,7 @@ class GameController {
 }
 
 class Player {
-    credit : int
+    numCoins : int
 }
 
 class Defender extends Player {
@@ -18,7 +18,7 @@ class Attacker extends Player {
 GameController "1" -- "2" Player
 
 interface PlayerLogic {
-	void play()
+    play() : void
 }
 
 class HumanAI implements PlayerLogic {
@@ -32,26 +32,37 @@ class HardAI implements PlayerLogic {
 
 Player "1" -- "1" PlayerLogic
 
-class Unit {
+interface Upgradeable {
+    upgrade() : void
+}
+
+abstract class Unit {
     health : int
     defense : int
-    speed : int
-    creditAfterKill : int
+    speed : float
+    coinsAfterKill : int
     
+}
+
+class U1 extends Unit {
+}
+class U2 extends Unit {
+}
+class U3 extends Unit {
 }
 
 class UnitFactory {
 
 }
 
-Player "1" -- "1" UnitFactory
+Attacker "1" -- "1" UnitFactory
 UnitFactory "1" -- "*" Unit
 
 class Weapon {
     power : int
-    criticalMultiplier : double
-    criticalChance : double
-    cooldown : int
+    criticalMultiplier : float
+    criticalChance : float
+    cooldown : float
 }
 
 Unit "1" -- "1" Weapon
@@ -65,19 +76,16 @@ class W3 extends Weapon {
 }
 
 class Building {
-    health : int
-    defense : int
 }
 
 Defender "1" -- "1" Building
 
-class Tower {
-
+class Tower implements Upgradeable{
 }
  
 Building "1" -- "*" Tower
 
-class Wall {
+class Wall implements Upgradeable{
     health : int
 }
 
