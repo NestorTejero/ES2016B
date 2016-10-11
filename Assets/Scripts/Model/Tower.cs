@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Tower : MonoBehaviour, Upgradeable
+public class Tower : MonoBehaviour, Upgradeable, CanAttack
 {
 
 	// Use this for initialization
@@ -18,6 +18,12 @@ public class Tower : MonoBehaviour, Upgradeable
 
 	// To upgrade when there are enough coins
 	public void Upgrade ()
+	{
+
+	}
+
+	// To attack enemies
+	public void Attack ()
 	{
 
 	}

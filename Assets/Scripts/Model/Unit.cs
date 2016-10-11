@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Unit : MonoBehaviour
+public class Unit : MonoBehaviour, CanAttack
 {
 
 	// Use this for initialization
@@ -14,5 +14,11 @@ public class Unit : MonoBehaviour
 	void Update ()
 	{
 	
+	}
+
+	// To attack wall when near enough
+	public void Attack ()
+	{
+
 	}
 }
