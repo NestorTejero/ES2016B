@@ -68,13 +68,6 @@ class Weapon {
 Unit "1" -- "1" Weapon
 Tower "1" -- "1" Weapon
 
-class W1 extends Weapon {
-}
-class W2 extends Weapon {
-}
-class W3 extends Weapon {
-}
-
 class Building {
 }
 
