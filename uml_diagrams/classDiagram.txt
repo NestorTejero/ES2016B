@@ -26,6 +26,12 @@ interface PlayerLogic {
     Play() : void
 }
 
+interface DeathObserver {
+    Notify() : void
+}
+
+GameController "1" -- "4" DeathObserver
+
 class HumanAI implements PlayerLogic {
 }
 class EasyAI implements PlayerLogic {
@@ -71,7 +77,7 @@ class Tower implements Upgradeable, CanAttack{
  
 Building "1" -- "*" Tower
 
-class Wall implements Upgradeable{
+class Wall implements Upgradeable, DeathObserver{
     health : int
 }
 
