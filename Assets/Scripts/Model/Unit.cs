@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public abstract class Unit : MonoBehaviour
+public class Unit : MonoBehaviour
 {
 
 	// Use this for initialization

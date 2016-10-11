@@ -36,19 +36,12 @@ interface Upgradeable {
     upgrade() : void
 }
 
-abstract class Unit {
+class Unit {
     health : int
     defense : int
     speed : float
     coinsAfterKill : int
     
-}
-
-class U1 extends Unit {
-}
-class U2 extends Unit {
-}
-class U3 extends Unit {
 }
 
 class UnitFactory {
