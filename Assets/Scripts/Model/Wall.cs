@@ -4,10 +4,14 @@ using System;
 
 public class Wall : MonoBehaviour, Upgradeable, Reparaible
 {
+    public float health;
+    public float upgradeHealthFactor;
+    public float repairHealthQuantity;
+
     // Use this for initialization
     void Start ()
     {
-
+        
     }
 
     // Update is called once per frame
@@ -19,11 +23,11 @@ public class Wall : MonoBehaviour, Upgradeable, Reparaible
     // To upgrade when there are enough coins
     public void Upgrade ()
     {
-
+        this.health *= this.upgradeHealthFactor;
     }
 
     public void Repair ()
     {
-
+        this.health += this.repairHealthQuantity;
     }
 }

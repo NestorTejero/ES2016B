@@ -3,7 +3,7 @@ using System.Collections;
 
 public class Tower : MonoBehaviour, Upgradeable, CanAttack
 {
-
+    Weapon w;    
 	// Use this for initialization
 	void Start ()
 	{
@@ -19,8 +19,8 @@ public class Tower : MonoBehaviour, Upgradeable, CanAttack
 	// To upgrade when there are enough coins
 	public void Upgrade ()
 	{
-
-	}
+        this.w.Upgrade();
+    }
 
 	// To attack enemies
 	public void Attack ()
