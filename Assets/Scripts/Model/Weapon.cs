@@ -3,9 +3,9 @@ using System.Collections;
 
 public class Weapon : MonoBehaviour
 {
-	public int range = 3;
-	public int power = 1;
-	public int cooldown = 3;
+	public int range;
+	public int power;
+	public int cooldown;
 
 	//criticalMultiplier;
 	//criticalChance;
@@ -13,7 +13,11 @@ public class Weapon : MonoBehaviour
 	// Use this for initialization
 	void Start ()
 	{
+		range = 3;
+		power = 1;
+		cooldown = 3;
 
+		Debug.Log ("WEAPON");
 	}
 
 	// Update is called once per frame

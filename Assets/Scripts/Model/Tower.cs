@@ -22,9 +22,6 @@ public class Tower : MonoBehaviour, Upgradeable, CanAttack
 		// Collider of the tower
 		towerRange = tower.GetComponent<CapsuleCollider> ();
 
-		// Creates a new weapon
-		weapon = tower.AddComponent<Weapon>();
-
 		// Assignes the radius of the collider as the weapon attack range
 		towerRange.radius = weapon.range;
 
