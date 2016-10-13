@@ -3,14 +3,15 @@ using System.Collections;
 
 public class MouseSelect : MonoBehaviour {
 
-    static private Transform transformSelected = null;
-    private bool isSelected = false;
+    static private Transform transformSelected;
+    private bool isSelected;
 
 
     // Use this for initialization
     void Start()
     {
-
+        transformSelected = null;
+        isSelected = false;
     }
 
     // Update is called once per frame
