@@ -2,7 +2,7 @@
 using System.Collections;
 using System;
 
-public class Wall : MonoBehaviour, Upgradeable, Reparaible
+public class Wall : MonoBehaviour, Upgradeable, Repairable
 {
     public float health;
     public float upgradeHealthFactor;

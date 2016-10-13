@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public interface Reparaible
+public interface Repairable
 {
     void Repair();
 }
