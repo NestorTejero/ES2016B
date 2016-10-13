@@ -1,33 +1,28 @@
 ﻿using UnityEngine;
 using System.Collections;
-using System;
 
-public class Weapon : MonoBehaviour, Upgradeable
+public class Weapon : MonoBehaviour
 {
-    public float cooldown;
-    public float power;
-    public float range;
+	public int range;
+	public int power;
+	public int cooldown;
 
-    public float upgradeCooldownFactor;
-    public float upgradePowerFactor;
-    public float upgradeRangeFactor;
-
-    // Use this for initialization
-    void Start ()
+	//criticalMultiplier;
+	//criticalChance;
+	
+	// Use this for initialization
+	void Start ()
 	{
+		range = 3;
+		power = 1;
+		cooldown = 3;
 
-    }
+		Debug.Log ("WEAPON");
+	}
 
 	// Update is called once per frame
 	void Update ()
 	{
 
 	}
-
-    public void Upgrade()
-    {
-        this.cooldown *= upgradeCooldownFactor;
-        this.power *= upgradePowerFactor;
-        this.range *= upgradeRangeFactor;
-    }
 }
