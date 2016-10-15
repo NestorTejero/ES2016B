@@ -26,6 +26,7 @@ public class Wall : MonoBehaviour, Upgradeable, Repairable, Attackable
 	{
 		this.maxHealth *= this.upgradeHealthFactor;
 		this.health *= this.upgradeHealthFactor;
+		Debug.Log ("WALL UPGRADED");
 	}
 
 	public void Repair ()
@@ -34,6 +35,7 @@ public class Wall : MonoBehaviour, Upgradeable, Repairable, Attackable
 		if (this.health > this.maxHealth) {
 			this.health = this.maxHealth;
 		}
+		Debug.Log ("WALL REPAIRED");
 	}
 
 	public void ReceiveDamage (Weapon wep)
@@ -42,5 +44,6 @@ public class Wall : MonoBehaviour, Upgradeable, Repairable, Attackable
 		if (this.health <= 0.0) {
 			// TODO put winning / losing condition logic here
 		}
+		Debug.Log ("WALL DAMAGED");
 	}
 }

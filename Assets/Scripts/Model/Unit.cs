@@ -4,14 +4,16 @@ using System.Collections;
 public class Unit : MonoBehaviour, CanAttack, Attackable
 {
 	public GameObject enemy;
+	public float maxHealth;
 	public float health;
 
 	// Use this for initialization
 	void Start ()
 	{
-		health = 10.0f;
+		maxHealth = 10.0f;
+		health = maxHealth;
 		enemy = this.gameObject;
-		Debug.Log ("UNIT");
+		Debug.Log ("UNIT CREATED");
 	}
 	
 	// Update is called once per frame
@@ -33,5 +35,10 @@ public class Unit : MonoBehaviour, CanAttack, Attackable
 		// TODO implement death and stuff here
 		// Issue WeaponLogic to be fixed
 		// The logic that destroys the enemy shouldn't go inside tower
+		this.health -= wep.power;
+		if (this.health <= 0.0f) {
+			// TODO unit destruction logic (should get it out of Tower)
+		}
+		Debug.Log ("UNIT DAMAGED");
 	}
 }

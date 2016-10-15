@@ -35,7 +35,9 @@ public class Tower : MonoBehaviour, Upgradeable, CanAttack
 		// List of enemies when more than one enters the range
 		enemies = new List<Unit> ();
 
-		Debug.Log ("TOWER");
+		this.upgradeFactor = 1.1f;
+
+		Debug.Log ("TOWER CREATED");
 	}
 	
 	// Update is called once per frame
@@ -55,7 +57,7 @@ public class Tower : MonoBehaviour, Upgradeable, CanAttack
 	{
 		// Checks if there is an enemy in the range
 		if (enemy_in && enemy != null) {
-			if (enemy.health > 1.0) {
+			if (enemy.health > 1.0f) {
 				enemy.health = enemy.health - weapon.power;
 				Debug.Log ("Enemy's health: " + enemy.health);
 			} else {

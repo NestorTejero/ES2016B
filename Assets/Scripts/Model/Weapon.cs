@@ -18,6 +18,8 @@ public class Weapon : MonoBehaviour, Upgradeable
 		power = 1.0f;
 		cooldown = 3.0f;
 
+		this.upgradeFactor = 1.1f;
+
 		Debug.Log ("WEAPON");
 	}
 
