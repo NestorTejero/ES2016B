@@ -24,7 +24,7 @@ GameObject:
   - 23: {fileID: 23000011521492040}
   - 114: {fileID: 114000013481472084}
   m_Layer: 0
-  m_Name: Tower-left
+  m_Name: Tower
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
