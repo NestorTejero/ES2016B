@@ -39,7 +39,7 @@ public class Wall : MonoBehaviour, Upgradeable, Repairable, Attackable
 	public void ReceiveDamage (Weapon wep)
 	{
 		this.health -= wep.power;
-		if (this.health <= 0) {
+		if (this.health <= 0.0) {
 			// TODO put winning / losing condition logic here
 		}
 	}

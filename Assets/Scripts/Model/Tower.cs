@@ -55,7 +55,7 @@ public class Tower : MonoBehaviour, Upgradeable, CanAttack
 	{
 		// Checks if there is an enemy in the range
 		if (enemy_in && enemy != null) {
-			if (enemy.health > 1) {
+			if (enemy.health > 1.0) {
 				enemy.health = enemy.health - weapon.power;
 				Debug.Log ("Enemy's health: " + enemy.health);
 			} else {

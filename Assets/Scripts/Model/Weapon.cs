@@ -14,9 +14,9 @@ public class Weapon : MonoBehaviour, Upgradeable
 	// Use this for initialization
 	void Start ()
 	{
-		range = 3;
-		power = 1;
-		cooldown = 3;
+		range = 3.0f;
+		power = 1.0f;
+		cooldown = 3.0f;
 
 		Debug.Log ("WEAPON");
 	}

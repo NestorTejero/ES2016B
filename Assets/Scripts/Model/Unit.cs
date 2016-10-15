@@ -4,12 +4,12 @@ using System.Collections;
 public class Unit : MonoBehaviour, CanAttack, Attackable
 {
 	public GameObject enemy;
-	public int health;
+	public float health;
 
 	// Use this for initialization
 	void Start ()
 	{
-		health = 10;
+		health = 10.0f;
 		enemy = this.gameObject;
 		Debug.Log ("UNIT");
 	}
