@@ -35,10 +35,10 @@ public class MainMenu : MonoBehaviour {
 		if(isQuitButton)
 			Application.Quit();
 		else if(isHelpButton)
-			Application.LoadLevel(4); 
+			SceneManager.LoadScene(4); 
 		else if(isOptionsButton)
-			Application.LoadLevel(3); 
+			SceneManager.LoadScene(3); 
 		else
-			Application.LoadLevel(2); //Load the game (next scene)
+			SceneManager.LoadScene(2); //Load the game (next scene)
 	}
 }

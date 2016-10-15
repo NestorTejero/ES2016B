@@ -37,12 +37,12 @@ public class SubMenu : MonoBehaviour {
 		if(isEasyButton)
 			Application.Quit();
 		else if(isMediumButton)
-			Application.LoadLevel(1); 
+			SceneManager.LoadScene(1); 
 		else if(isHardButton)
-			Application.LoadLevel(1); 
+			SceneManager.LoadScene(1); 
 		else if(isReturnButton)
-			Application.LoadLevel(0); 
+			SceneManager.LoadScene(0); 
 		else
-			Application.LoadLevel(1); //Load the game (next scene)
+			SceneManager.LoadScene(1); //Load the game (next scene)
 	}
 }
