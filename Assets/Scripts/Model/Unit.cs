@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Unit : MonoBehaviour, CanAttack
+public class Unit : MonoBehaviour, CanAttack, Attackable
 {
 	public GameObject enemy;
 	public int health;
@@ -18,12 +18,20 @@ public class Unit : MonoBehaviour, CanAttack
 	void Update ()
 	{
 		// For testing
-		enemy.transform.position += Vector3.forward * Time.deltaTime*2;	
+		enemy.transform.position += Vector3.forward * Time.deltaTime * 2;	
 	}
 
 	// To attack wall when near enough
 	public void Attack ()
 	{
 
+	}
+
+	// To upgrade when there are enough coins
+	public void ReceiveDamage (Weapon wep)
+	{
+		// TODO implement death and stuff here
+		// Issue WeaponLogic to be fixed
+		// The logic that destroys the enemy shouldn't go inside tower
 	}
 }

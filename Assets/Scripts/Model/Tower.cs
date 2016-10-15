@@ -12,6 +12,7 @@ public class Tower : MonoBehaviour, Upgradeable, CanAttack
 	public bool enemy_in;
 	public List<Unit> enemies;
 
+	public float upgradeFactor;
 
 	// Use this for initialization
 	void Start ()
@@ -26,7 +27,7 @@ public class Tower : MonoBehaviour, Upgradeable, CanAttack
 		towerRange.radius = weapon.range;
 
 		// Fires every "cooldown of the weapon" seconds
-		InvokeRepeating("Attack", 0.0f, weapon.cooldown);
+		InvokeRepeating ("Attack", 0.0f, weapon.cooldown);
 
 		// No enemy inside the range at the beginning
 		enemy_in = false;
@@ -34,7 +35,7 @@ public class Tower : MonoBehaviour, Upgradeable, CanAttack
 		// List of enemies when more than one enters the range
 		enemies = new List<Unit> ();
 
-		Debug.Log("TOWER");
+		Debug.Log ("TOWER");
 	}
 	
 	// Update is called once per frame
@@ -46,21 +47,21 @@ public class Tower : MonoBehaviour, Upgradeable, CanAttack
 	// To upgrade when there are enough coins
 	public void Upgrade ()
 	{
-
+		this.weapon.power *= this.upgradeFactor;
 	}
 
 	// To attack enemies
 	public void Attack ()
 	{
-		// Cheks if there is an enemy in the range
-		if(enemy_in && enemy != null){
+		// Checks if there is an enemy in the range
+		if (enemy_in && enemy != null) {
 			if (enemy.health > 1) {
 				enemy.health = enemy.health - weapon.power;
-				Debug.Log("Enemy's health: "+enemy.health);
+				Debug.Log ("Enemy's health: " + enemy.health);
 			} else {
 				enemy_object = enemy.gameObject;
 				Destroy (enemy_object);
-				Debug.Log("Enemy dead");
+				Debug.Log ("Enemy dead");
 
 				if (enemies.Count > 0) {
 					Debug.Log ("Another enemy");
@@ -73,7 +74,8 @@ public class Tower : MonoBehaviour, Upgradeable, CanAttack
 		}
 	}
 
-	void OnTriggerEnter(Collider col){
+	void OnTriggerEnter (Collider col)
+	{
 		Debug.Log ("Collision");
 		if (!enemy_in) {
 			enemy_in = true;

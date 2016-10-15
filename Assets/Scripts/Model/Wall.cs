@@ -2,32 +2,45 @@
 using System.Collections;
 using System;
 
-public class Wall : MonoBehaviour, Upgradeable, Repairable
+public class Wall : MonoBehaviour, Upgradeable, Repairable, Attackable
 {
-    public float health;
-    public float upgradeHealthFactor;
-    public float repairHealthQuantity;
+	public float maxHealth;
+	public float health;
+	public float upgradeHealthFactor;
+	public float repairHealthQuantity;
 
-    // Use this for initialization
-    void Start ()
-    {
+	// Use this for initialization
+	void Start ()
+	{
         
-    }
+	}
 
-    // Update is called once per frame
-    void Update ()
-    {
+	// Update is called once per frame
+	void Update ()
+	{
 
-    }
+	}
 
-    // To upgrade when there are enough coins
-    public void Upgrade ()
-    {
-        this.health *= this.upgradeHealthFactor;
-    }
+	// To upgrade when there are enough coins
+	public void Upgrade ()
+	{
+		this.maxHealth *= this.upgradeHealthFactor;
+		this.health *= this.upgradeHealthFactor;
+	}
 
-    public void Repair ()
-    {
-        this.health += this.repairHealthQuantity;
-    }
+	public void Repair ()
+	{
+		this.health += this.repairHealthQuantity;
+		if (this.health > this.maxHealth) {
+			this.health = this.maxHealth;
+		}
+	}
+
+	public void ReceiveDamage (Weapon wep)
+	{
+		this.health -= wep.power;
+		if (this.health <= 0) {
+			// TODO put winning / losing condition logic here
+		}
+	}
 }

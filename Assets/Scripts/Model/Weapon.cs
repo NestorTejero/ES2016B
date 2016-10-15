@@ -1,11 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Weapon : MonoBehaviour
+public class Weapon : MonoBehaviour, Upgradeable
 {
-	public int range;
-	public int power;
-	public int cooldown;
+	public float range;
+	public float power;
+	public float cooldown;
+	public float upgradeFactor;
 
 	//criticalMultiplier;
 	//criticalChance;
@@ -24,5 +25,10 @@ public class Weapon : MonoBehaviour
 	void Update ()
 	{
 
+	}
+
+	public void Upgrade ()
+	{
+		this.power *= upgradeFactor;
 	}
 }
