@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class Tower : MonoBehaviour, Upgradeable, CanAttack
+public class Tower : MonoBehaviour, CanUpgrade, CanAttack
 {
 	public GameObject tower;
 	public CapsuleCollider towerRange;
@@ -11,8 +11,6 @@ public class Tower : MonoBehaviour, Upgradeable, CanAttack
 	public GameObject enemy_object;
 	public bool enemy_in;
 	public List<Unit> enemies;
-
-	public float upgradeFactor;
 
 	// Use this for initialization
 	void Start ()
@@ -35,8 +33,6 @@ public class Tower : MonoBehaviour, Upgradeable, CanAttack
 		// List of enemies when more than one enters the range
 		enemies = new List<Unit> ();
 
-		this.upgradeFactor = 1.1f;
-
 		Debug.Log ("TOWER CREATED");
 	}
 	
@@ -49,7 +45,8 @@ public class Tower : MonoBehaviour, Upgradeable, CanAttack
 	// To upgrade when there are enough coins
 	public void Upgrade ()
 	{
-		this.weapon.power *= this.upgradeFactor;
+		this.weapon.Upgrade();
+		Debug.Log ("TOWER UPGRADED, Power: " + this.weapon.power);
 	}
 
 	// To attack enemies

@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public interface Attackable
+public interface CanReceiveDamage
 {
 	void ReceiveDamage (Weapon wep);
 }

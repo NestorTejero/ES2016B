@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-interface Upgradeable
+public interface CanRepair
 {
-	void Upgrade ();
+	void Repair ();
 }

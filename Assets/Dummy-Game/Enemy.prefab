@@ -120,6 +120,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemy: {fileID: 0}
+  maxHealth: 0
   health: 0
 --- !u!193 &193000014147318488
 Tree:

@@ -2,17 +2,18 @@
 using System.Collections;
 using System;
 
-public class Wall : MonoBehaviour, Upgradeable, Repairable, Attackable
+public class Wall : MonoBehaviour, CanUpgrade, CanRepair, CanReceiveDamage
 {
 	public float maxHealth;
-	public float health;
+	private float health;
 	public float upgradeHealthFactor;
 	public float repairHealthQuantity;
 
 	// Use this for initialization
 	void Start ()
 	{
-        
+		this.health = this.maxHealth;
+		Debug.Log ("WALL CREATED with HP: " + this.maxHealth);
 	}
 
 	// Update is called once per frame
@@ -26,7 +27,7 @@ public class Wall : MonoBehaviour, Upgradeable, Repairable, Attackable
 	{
 		this.maxHealth *= this.upgradeHealthFactor;
 		this.health *= this.upgradeHealthFactor;
-		Debug.Log ("WALL UPGRADED");
+		Debug.Log ("WALL UPGRADED, now it has HP: " + this.maxHealth);
 	}
 
 	public void Repair ()
@@ -35,7 +36,7 @@ public class Wall : MonoBehaviour, Upgradeable, Repairable, Attackable
 		if (this.health > this.maxHealth) {
 			this.health = this.maxHealth;
 		}
-		Debug.Log ("WALL REPAIRED");
+		Debug.Log ("WALL REPAIRED, HP: " + this.health);
 	}
 
 	public void ReceiveDamage (Weapon wep)
@@ -44,6 +45,6 @@ public class Wall : MonoBehaviour, Upgradeable, Repairable, Attackable
 		if (this.health <= 0.0) {
 			// TODO put winning / losing condition logic here
 		}
-		Debug.Log ("WALL DAMAGED");
+		Debug.Log ("WALL DAMAGED by HP: " + wep.power);
 	}
 }
