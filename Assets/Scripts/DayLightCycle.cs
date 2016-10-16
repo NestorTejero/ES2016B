@@ -18,10 +18,6 @@ public class DayLightCycle : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		dayLength = 2.0f;
-		nightLength = 1.0f;
-		time = 2.0f;
-		hour = 0.0f;
 		starsOn = true;
 	}
 	
