@@ -22,9 +22,9 @@ GameObject:
   - 193: {fileID: 193000014147318488}
   - 33: {fileID: 33000012457187526}
   - 23: {fileID: 23000013073598352}
-  - 114: {fileID: 114000011491185856}
   - 54: {fileID: 54000013038673468}
   - 65: {fileID: 65000011873753570}
+  - 114: {fileID: 114000011491185856}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -38,10 +38,10 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000010645219252}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 283, y: 4, z: 81}
+  m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
+  m_LocalPosition: {x: -16.417389, y: -95.60847, z: 326.8791}
   m_LocalScale: {x: 23.957687, y: 12.970381, z: 18.722063}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -67,7 +67,7 @@ MeshRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
-  m_SelectedWireframeHidden: 0
+  m_SelectedWireframeHidden: 1
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
@@ -119,7 +119,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa348ffcf3bb1ac4abac940741f6f3f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemy: {fileID: 0}
+  maxHealth: 100
   health: 0
 --- !u!193 &193000014147318488
 Tree:

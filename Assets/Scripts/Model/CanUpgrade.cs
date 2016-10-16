@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-interface Upgradeable
+interface CanUpgrade
 {
 	void Upgrade ();
 }

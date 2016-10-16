@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public interface CanAttack
+public interface CanRepair
 {
-	void Attack ();
+	void Repair ();
 }
