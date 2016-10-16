@@ -1,3 +1,4 @@
+/[Bb]uildmenu.app/
 /[Bb]uild.app/
 /[Ll]ibrary/
 /[Tt]emp/
@@ -19,6 +20,9 @@ ExportedObj/
 *.booproj
 *.svd
 
+# Build Generated files
+*.exe
+/*_data/
 
 # Unity3D generated meta files
 *.pidb.meta
