@@ -8,6 +8,9 @@ public class UIManager : MonoBehaviour {
 	AudioSource audio;
 	
 	public Toggle audioToggle;
+	
+	//we need this boolean to know if game is paused
+	bool gamePaused;
 
 	
 	// Use this for initialization
@@ -16,6 +19,7 @@ public class UIManager : MonoBehaviour {
 		Time.timeScale = 1;
 		pauseObjects = GameObject.FindGameObjectsWithTag("ShowOnPause");
 		hidePaused();
+		gamePaused = false;
 	}
 
 	// Update is called once per frame
@@ -24,16 +28,18 @@ public class UIManager : MonoBehaviour {
 		//uses the p button to pause and unpause the game
 		if(Input.GetKeyDown(KeyCode.Escape))
 		{
-			if(Time.timeScale == 1)
+			if(!gamePaused)
 			{
 				Time.timeScale = 0;
 				showPaused();
-			} else if (Time.timeScale == 0){
+				gamePaused = !gamePaused;
+			} else if (gamePaused){
 				Debug.Log ("high");
 				Time.timeScale = 1;
 				hidePaused();
 			}
 		}
+
 	}
 
 
@@ -44,14 +50,8 @@ public class UIManager : MonoBehaviour {
 
 	//controls the pausing of the scene
 	public void pauseControl(){
-			if(Time.timeScale == 1)
-			{
-				Time.timeScale = 0;
-				showPaused();
-			} else if (Time.timeScale == 0){
-				Time.timeScale = 1;
-				hidePaused();
-			}
+		Time.timeScale = 1;
+		hidePaused();
 	}
 
 	//shows objects with ShowOnPause tag
@@ -66,6 +66,7 @@ public class UIManager : MonoBehaviour {
 		foreach(GameObject g in pauseObjects){
 			g.SetActive(false);
 		}
+		gamePaused = !gamePaused; // we need to change de boolean here
 	}
 
 	//loads inputted level
