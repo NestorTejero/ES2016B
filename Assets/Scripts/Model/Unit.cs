@@ -3,7 +3,7 @@ using System.Collections;
 
 public class Unit : MonoBehaviour, CanAttack, CanReceiveDamage
 {
-	public Transform goal;
+
 	public float maxHealth;
 	public float health; // TODO change to private
 
@@ -11,9 +11,6 @@ public class Unit : MonoBehaviour, CanAttack, CanReceiveDamage
 	void Start ()
 	{
 		health = maxHealth;
-		//NavMeshAgent agent = GetComponent<NavMeshAgent>();
-		//agent.destination = goal.position;
-
 		Debug.Log ("UNIT CREATED");
 	}
 	
