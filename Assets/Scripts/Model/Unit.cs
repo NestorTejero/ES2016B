@@ -3,7 +3,6 @@ using System.Collections;
 
 public class Unit : MonoBehaviour, CanAttack, CanReceiveDamage
 {
-
 	public float maxHealth;
 	public float health; // TODO change to private
 
@@ -19,7 +18,6 @@ public class Unit : MonoBehaviour, CanAttack, CanReceiveDamage
 	{
 		// For testing
 		this.gameObject.transform.position += Vector3.forward * Time.deltaTime * 2;	
-
 	}
 
 	// To attack wall when near enough
