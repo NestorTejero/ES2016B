@@ -214,7 +214,8 @@ Prefab:
       propertyPath: m_Name
       value: EnemyN
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 0}
   m_ParentPrefab: {fileID: 100100000, guid: ee4f70cfc01dbc54db6a673e3aca9eda, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &397868001
@@ -306,7 +307,6 @@ GameObject:
   - 54: {fileID: 445260879}
   - 114: {fileID: 445260878}
   - 195: {fileID: 445260880}
-  - 114: {fileID: 445260881}
   m_Layer: 0
   m_Name: EnemyS
   m_TagString: Untagged
@@ -431,20 +431,6 @@ NavMeshAgent:
   m_BaseOffset: 1
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &445260881
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 445260873}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa348ffcf3bb1ac4abac940741f6f3f5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  goal: {fileID: 0}
-  maxHealth: 10
-  health: 0
 --- !u!1 &509366981
 GameObject:
   m_ObjectHideFlags: 0
@@ -723,7 +709,6 @@ GameObject:
   - 54: {fileID: 839291744}
   - 114: {fileID: 839291743}
   - 195: {fileID: 839291748}
-  - 114: {fileID: 839291749}
   m_Layer: 0
   m_Name: EnemyW
   m_TagString: Untagged
@@ -848,20 +833,6 @@ NavMeshAgent:
   m_BaseOffset: 1
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &839291749
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 839291741}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa348ffcf3bb1ac4abac940741f6f3f5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  goal: {fileID: 0}
-  maxHealth: 10
-  health: 0
 --- !u!1001 &881296556
 Prefab:
   m_ObjectHideFlags: 0
@@ -1764,7 +1735,6 @@ GameObject:
   - 54: {fileID: 1521077307}
   - 114: {fileID: 1521077306}
   - 195: {fileID: 1521077311}
-  - 114: {fileID: 1521077312}
   m_Layer: 0
   m_Name: EnemyE
   m_TagString: Untagged
@@ -1889,20 +1859,6 @@ NavMeshAgent:
   m_BaseOffset: 1
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &1521077312
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1521077304}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa348ffcf3bb1ac4abac940741f6f3f5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  goal: {fileID: 0}
-  maxHealth: 10
-  health: 0
 --- !u!1001 &1538238165
 Prefab:
   m_ObjectHideFlags: 0
