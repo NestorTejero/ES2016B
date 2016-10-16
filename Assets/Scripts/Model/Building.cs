@@ -19,7 +19,7 @@ public class Building : MonoBehaviour, CanUpgrade, CanRepair, CanReceiveDamage
 	void Update ()
 	{
 
-	}
+    }
 
 	// To upgrade when there are enough coins
 	public void Upgrade ()
@@ -42,7 +42,7 @@ public class Building : MonoBehaviour, CanUpgrade, CanRepair, CanReceiveDamage
 	{
 		this.health -= wep.power;
 		if (this.health <= 0.0) {
-			// TODO put winning / losing condition logic here
+            Application.LoadLevel("MainMenu");
 		}
 		Debug.Log ("BUILDING DAMAGED by HP: " + wep.power);
 	}
