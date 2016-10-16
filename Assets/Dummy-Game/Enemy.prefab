@@ -119,11 +119,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa348ffcf3bb1ac4abac940741f6f3f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-<<<<<<< HEAD
-  enemy: {fileID: 0}
-=======
   maxHealth: 100
->>>>>>> origin/dev
   health: 0
 --- !u!193 &193000014147318488
 Tree:
