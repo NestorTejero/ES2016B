@@ -15,8 +15,6 @@ public class Tower : MonoBehaviour, CanUpgrade, CanAttack
 	// Use this for initialization
 	void Start ()
 	{
-		// gameObject attached to this script
-		tower = this.gameObject;
 
 		// Collider of the tower
 		towerRange = tower.GetComponent<CapsuleCollider> ();
