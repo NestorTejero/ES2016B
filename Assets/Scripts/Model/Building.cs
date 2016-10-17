@@ -4,7 +4,7 @@ using System.Collections;
 public class Building : MonoBehaviour, CanUpgrade, CanRepair, CanReceiveDamage
 {
 	public float maxHealth;
-	private float health;
+	public float health;
 	public float upgradeHealthFactor;
 	public float repairHealthQuantity;
     private float timeToWin;
