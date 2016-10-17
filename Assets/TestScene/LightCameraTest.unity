@@ -214,6 +214,16 @@ Prefab:
       propertyPath: m_Name
       value: EnemyN
       objectReference: {fileID: 0}
+    - target: {fileID: 114000010752669194, guid: ee4f70cfc01dbc54db6a673e3aca9eda,
+        type: 2}
+      propertyPath: target
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000010752669194, guid: ee4f70cfc01dbc54db6a673e3aca9eda,
+        type: 2}
+      propertyPath: objectTarget
+      value: 
+      objectReference: {fileID: 1042547445}
     m_RemovedComponents:
     - {fileID: 0}
   m_ParentPrefab: {fileID: 100100000, guid: ee4f70cfc01dbc54db6a673e3aca9eda, type: 2}
@@ -288,6 +298,11 @@ Prefab:
     - target: {fileID: 4000010464683014, guid: ca65d1d328b88224fab8722af68b3368, type: 2}
       propertyPath: m_RootOrder
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000011286663294, guid: ca65d1d328b88224fab8722af68b3368,
+        type: 2}
+      propertyPath: health
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ca65d1d328b88224fab8722af68b3368, type: 2}
@@ -395,6 +410,8 @@ MonoBehaviour:
   goal: {fileID: 2111126112}
   maxHealth: 100
   health: 0
+  weapon: {fileID: 0}
+  objectTarget: {fileID: 1042547445}
 --- !u!54 &445260879
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -745,6 +762,8 @@ MonoBehaviour:
   goal: {fileID: 2111126112}
   maxHealth: 100
   health: 0
+  weapon: {fileID: 0}
+  objectTarget: {fileID: 1042547445}
 --- !u!54 &839291744
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1018,6 +1037,11 @@ MeshFilter:
   m_PrefabInternal: {fileID: 1538238165}
   m_GameObject: {fileID: 971936053}
   m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1042547445 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1000010932454712, guid: ca65d1d328b88224fab8722af68b3368,
+    type: 2}
+  m_PrefabInternal: {fileID: 441987384}
 --- !u!1 &1049190248
 GameObject:
   m_ObjectHideFlags: 0
@@ -1359,6 +1383,16 @@ Prefab:
       propertyPath: goal
       value: 
       objectReference: {fileID: 2111126112}
+    - target: {fileID: 114000011564962812, guid: f5091fb7bf2c77d4db6237ecc591de93,
+        type: 2}
+      propertyPath: target
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000011564962812, guid: f5091fb7bf2c77d4db6237ecc591de93,
+        type: 2}
+      propertyPath: objectTarget
+      value: 
+      objectReference: {fileID: 1042547445}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f5091fb7bf2c77d4db6237ecc591de93, type: 2}
   m_IsPrefabParent: 0
@@ -1564,6 +1598,16 @@ Prefab:
       propertyPath: m_Name
       value: EnemyE
       objectReference: {fileID: 0}
+    - target: {fileID: 114000011564962812, guid: f5091fb7bf2c77d4db6237ecc591de93,
+        type: 2}
+      propertyPath: target
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000011564962812, guid: f5091fb7bf2c77d4db6237ecc591de93,
+        type: 2}
+      propertyPath: objectTarget
+      value: 
+      objectReference: {fileID: 1042547445}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f5091fb7bf2c77d4db6237ecc591de93, type: 2}
   m_IsPrefabParent: 0
@@ -1771,6 +1815,8 @@ MonoBehaviour:
   goal: {fileID: 2111126112}
   maxHealth: 100
   health: 0
+  weapon: {fileID: 0}
+  objectTarget: {fileID: 1042547445}
 --- !u!54 &1521077307
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1982,6 +2028,16 @@ Prefab:
       propertyPath: m_Name
       value: EnemyS
       objectReference: {fileID: 0}
+    - target: {fileID: 114000011564962812, guid: f5091fb7bf2c77d4db6237ecc591de93,
+        type: 2}
+      propertyPath: target
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000011564962812, guid: f5091fb7bf2c77d4db6237ecc591de93,
+        type: 2}
+      propertyPath: objectTarget
+      value: 
+      objectReference: {fileID: 1042547445}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f5091fb7bf2c77d4db6237ecc591de93, type: 2}
   m_IsPrefabParent: 0
