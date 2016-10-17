@@ -7,18 +7,24 @@ public class Building : MonoBehaviour, CanUpgrade, CanRepair, CanReceiveDamage
 	private float health;
 	public float upgradeHealthFactor;
 	public float repairHealthQuantity;
+    private float timeToWin;
 
 	// Use this for initialization
 	void Start ()
 	{
 		this.health = this.maxHealth;
+        this.timeToWin = 10.0f;
 		Debug.Log ("BUILDING CREATED with HP: " + this.maxHealth);
 	}
 
 	// Update is called once per frame
 	void Update ()
 	{
-
+        if (this.timeToWin <= 0.0f)
+        {
+            Application.LoadLevel("MainMenu");
+        }
+        this.timeToWin -= Time.deltaTime * 1;
     }
 
 	// To upgrade when there are enough coins
