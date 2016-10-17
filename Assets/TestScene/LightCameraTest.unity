@@ -214,7 +214,18 @@ Prefab:
       propertyPath: m_Name
       value: EnemyN
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 114000010752669194, guid: ee4f70cfc01dbc54db6a673e3aca9eda,
+        type: 2}
+      propertyPath: target
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000010752669194, guid: ee4f70cfc01dbc54db6a673e3aca9eda,
+        type: 2}
+      propertyPath: objectTarget
+      value: 
+      objectReference: {fileID: 1042547445}
+    m_RemovedComponents:
+    - {fileID: 0}
   m_ParentPrefab: {fileID: 100100000, guid: ee4f70cfc01dbc54db6a673e3aca9eda, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &397868001
@@ -288,6 +299,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 114000011286663294, guid: ca65d1d328b88224fab8722af68b3368,
+        type: 2}
+      propertyPath: health
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ca65d1d328b88224fab8722af68b3368, type: 2}
   m_IsPrefabParent: 0
@@ -306,7 +322,6 @@ GameObject:
   - 54: {fileID: 445260879}
   - 114: {fileID: 445260878}
   - 195: {fileID: 445260880}
-  - 114: {fileID: 445260881}
   m_Layer: 0
   m_Name: EnemyS
   m_TagString: Untagged
@@ -395,6 +410,8 @@ MonoBehaviour:
   goal: {fileID: 2111126112}
   maxHealth: 100
   health: 0
+  weapon: {fileID: 0}
+  objectTarget: {fileID: 1042547445}
 --- !u!54 &445260879
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -431,20 +448,6 @@ NavMeshAgent:
   m_BaseOffset: 1
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &445260881
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 445260873}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa348ffcf3bb1ac4abac940741f6f3f5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  goal: {fileID: 0}
-  maxHealth: 10
-  health: 0
 --- !u!1 &509366981
 GameObject:
   m_ObjectHideFlags: 0
@@ -723,7 +726,6 @@ GameObject:
   - 54: {fileID: 839291744}
   - 114: {fileID: 839291743}
   - 195: {fileID: 839291748}
-  - 114: {fileID: 839291749}
   m_Layer: 0
   m_Name: EnemyW
   m_TagString: Untagged
@@ -760,6 +762,8 @@ MonoBehaviour:
   goal: {fileID: 2111126112}
   maxHealth: 100
   health: 0
+  weapon: {fileID: 0}
+  objectTarget: {fileID: 1042547445}
 --- !u!54 &839291744
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -848,20 +852,6 @@ NavMeshAgent:
   m_BaseOffset: 1
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &839291749
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 839291741}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa348ffcf3bb1ac4abac940741f6f3f5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  goal: {fileID: 0}
-  maxHealth: 10
-  health: 0
 --- !u!1001 &881296556
 Prefab:
   m_ObjectHideFlags: 0
@@ -1047,6 +1037,11 @@ MeshFilter:
   m_PrefabInternal: {fileID: 1538238165}
   m_GameObject: {fileID: 971936053}
   m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1042547445 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1000010932454712, guid: ca65d1d328b88224fab8722af68b3368,
+    type: 2}
+  m_PrefabInternal: {fileID: 441987384}
 --- !u!1 &1049190248
 GameObject:
   m_ObjectHideFlags: 0
@@ -1388,6 +1383,16 @@ Prefab:
       propertyPath: goal
       value: 
       objectReference: {fileID: 2111126112}
+    - target: {fileID: 114000011564962812, guid: f5091fb7bf2c77d4db6237ecc591de93,
+        type: 2}
+      propertyPath: target
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000011564962812, guid: f5091fb7bf2c77d4db6237ecc591de93,
+        type: 2}
+      propertyPath: objectTarget
+      value: 
+      objectReference: {fileID: 1042547445}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f5091fb7bf2c77d4db6237ecc591de93, type: 2}
   m_IsPrefabParent: 0
@@ -1593,6 +1598,16 @@ Prefab:
       propertyPath: m_Name
       value: EnemyE
       objectReference: {fileID: 0}
+    - target: {fileID: 114000011564962812, guid: f5091fb7bf2c77d4db6237ecc591de93,
+        type: 2}
+      propertyPath: target
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000011564962812, guid: f5091fb7bf2c77d4db6237ecc591de93,
+        type: 2}
+      propertyPath: objectTarget
+      value: 
+      objectReference: {fileID: 1042547445}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f5091fb7bf2c77d4db6237ecc591de93, type: 2}
   m_IsPrefabParent: 0
@@ -1764,7 +1779,6 @@ GameObject:
   - 54: {fileID: 1521077307}
   - 114: {fileID: 1521077306}
   - 195: {fileID: 1521077311}
-  - 114: {fileID: 1521077312}
   m_Layer: 0
   m_Name: EnemyE
   m_TagString: Untagged
@@ -1801,6 +1815,8 @@ MonoBehaviour:
   goal: {fileID: 2111126112}
   maxHealth: 100
   health: 0
+  weapon: {fileID: 0}
+  objectTarget: {fileID: 1042547445}
 --- !u!54 &1521077307
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1889,20 +1905,6 @@ NavMeshAgent:
   m_BaseOffset: 1
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &1521077312
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1521077304}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa348ffcf3bb1ac4abac940741f6f3f5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  goal: {fileID: 0}
-  maxHealth: 10
-  health: 0
 --- !u!1001 &1538238165
 Prefab:
   m_ObjectHideFlags: 0
@@ -2026,6 +2028,16 @@ Prefab:
       propertyPath: m_Name
       value: EnemyS
       objectReference: {fileID: 0}
+    - target: {fileID: 114000011564962812, guid: f5091fb7bf2c77d4db6237ecc591de93,
+        type: 2}
+      propertyPath: target
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000011564962812, guid: f5091fb7bf2c77d4db6237ecc591de93,
+        type: 2}
+      propertyPath: objectTarget
+      value: 
+      objectReference: {fileID: 1042547445}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f5091fb7bf2c77d4db6237ecc591de93, type: 2}
   m_IsPrefabParent: 0

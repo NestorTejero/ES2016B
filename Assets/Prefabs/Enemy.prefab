@@ -25,7 +25,6 @@ GameObject:
   - 54: {fileID: 54000013082433032}
   - 114: {fileID: 114000010752669194}
   - 195: {fileID: 195000010872162116}
-  - 114: {fileID: 114000013409075452}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -110,20 +109,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   goal: {fileID: 0}
   maxHealth: 100
-  health: 0
---- !u!114 &114000013409075452
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000012890702758}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa348ffcf3bb1ac4abac940741f6f3f5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  goal: {fileID: 0}
-  maxHealth: 10
   health: 0
 --- !u!136 &136000012585273026
 CapsuleCollider:
