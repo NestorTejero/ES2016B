@@ -4,22 +4,28 @@ using System.Collections;
 public class Building : MonoBehaviour, CanUpgrade, CanRepair, CanReceiveDamage
 {
 	public float maxHealth;
-	private float health;
+	public float health;
 	public float upgradeHealthFactor;
 	public float repairHealthQuantity;
+    private float timeToWin;
 
 	// Use this for initialization
 	void Start ()
 	{
 		this.health = this.maxHealth;
+        this.timeToWin = 10.0f;
 		Debug.Log ("BUILDING CREATED with HP: " + this.maxHealth);
 	}
 
 	// Update is called once per frame
 	void Update ()
 	{
-
-	}
+        if (this.timeToWin <= 0.0f)
+        {
+            Application.LoadLevel("MainMenu");
+        }
+        this.timeToWin -= Time.deltaTime * 1;
+    }
 
 	// To upgrade when there are enough coins
 	public void Upgrade ()
@@ -42,7 +48,7 @@ public class Building : MonoBehaviour, CanUpgrade, CanRepair, CanReceiveDamage
 	{
 		this.health -= wep.power;
 		if (this.health <= 0.0) {
-			// TODO put winning / losing condition logic here
+            Application.LoadLevel("MainMenu");
 		}
 		Debug.Log ("BUILDING DAMAGED by HP: " + wep.power);
 	}

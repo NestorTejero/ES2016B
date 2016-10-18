@@ -36,7 +36,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000011541985524}
   - 108: {fileID: 108000011949886082}
-  - 114: {fileID: 114000011785900092}
   m_Layer: 0
   m_Name: Sun
   m_TagString: Untagged
@@ -52,6 +51,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 4000010627994270}
+  - 114: {fileID: 114000010594787974}
   m_Layer: 0
   m_Name: Sun_Moon_Stars
   m_TagString: Untagged
@@ -199,20 +199,20 @@ Light:
   m_BounceIntensity: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
---- !u!114 &114000011785900092
+--- !u!114 &114000010594787974
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000010785160382}
+  m_GameObject: {fileID: 1000010960794684}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: dabf35ee1cffbe34095cd5246fbea36c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dayLength: 0
+  dayLength: 1
   nightLength: 0
-  time: 0
+  time: 1
   hour: 0
   ubCenter: {fileID: 0}
   sun: {fileID: 108000011949886082}
@@ -268,7 +268,7 @@ ParticleSystem:
   moveWithTransform: 1
   autoRandomSeed: 1
   scalingMode: 1
-  randomSeed: -128730295
+  randomSeed: 1495142869
   InitialModule:
     serializedVersion: 2
     enabled: 1
