@@ -11,9 +11,10 @@ public class Tower : MonoBehaviour, CanUpgrade, CanAttack
 	public GameObject enemy_object;
 	public bool enemy_in;
 	public List<Unit> enemies;
-
-	// Use this for initialization
-	void Start ()
+    public AudioClip shootSound;
+    private AudioSource source;
+    // Use this for initialization
+    void Start ()
 	{
 
 		// Collider of the tower
@@ -33,9 +34,15 @@ public class Tower : MonoBehaviour, CanUpgrade, CanAttack
 
 		Debug.Log ("TOWER CREATED");
 	}
-	
-	// Update is called once per frame
-	void Update ()
+    //USeed for sounds
+    void Awake()
+    {
+
+        source = GetComponent<AudioSource>();
+
+    }
+    // Update is called once per frame
+    void Update ()
 	{
 		
 	}
@@ -55,7 +62,11 @@ public class Tower : MonoBehaviour, CanUpgrade, CanAttack
 			if (enemy.health > 1.0f) {
 				enemy.health = enemy.health - weapon.power;
 				Debug.Log ("Enemy's health: " + enemy.health);
-			} else {
+                Awake();
+                float vol = Random.Range(.5f, 1.0f);
+                source.PlayOneShot(shootSound, vol);
+
+            } else {
 				enemy_object = enemy.gameObject;
 				Destroy (enemy_object);
 				Debug.Log ("Enemy dead");
