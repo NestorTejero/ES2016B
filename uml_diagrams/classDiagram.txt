@@ -1,0 +1,80 @@
+@startuml
+
+class GameController {
+    isEndGame() : bool
+}
+
+class Player {
+    numCoins : int
+}
+
+class Defender extends Player {
+}
+
+
+class Attacker extends Player {
+}
+
+GameController "1" -- "2" Player
+
+
+interface CanAttack {
+    Attack() : void
+}
+
+interface PlayerLogic {
+    Play() : void
+}
+
+class HumanAI implements PlayerLogic {
+}
+class EasyAI implements PlayerLogic {
+}
+class MediumAI implements PlayerLogic {
+}
+class HardAI implements PlayerLogic {
+}
+
+Player "1" -- "1" PlayerLogic
+
+interface Upgradeable {
+    Upgrade() : void
+}
+
+class Unit implements CanAttack{
+    health : int
+    defense : int
+    speed : float
+    coinsAfterKill : int
+    
+}
+
+Attacker "1" -- "*" Unit
+
+class Weapon {
+    power : int
+    criticalMultiplier : float
+    criticalChance : float
+    cooldown : float
+}
+
+Unit "1" -- "1" Weapon
+Tower "1" -- "1" Weapon
+
+class Building {
+}
+
+Defender "1" -- "1" Building
+
+class Tower implements Upgradeable, CanAttack{
+}
+ 
+Building "1" -- "*" Tower
+
+class Wall implements Upgradeable{
+    health : int
+}
+
+Building "1" -- "*" Wall
+
+@enduml
