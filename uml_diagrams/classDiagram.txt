@@ -1,30 +1,32 @@
 @startuml
 
-class GameController {
-    isEndGame() : bool
+interface CanUpgrade {
+    +Upgrade() : void
 }
-
-class Player {
-    numCoins : int
+interface CanReceiveDamage {
+    +ReceiveDamage(Weapon wep) : void
 }
-
-class Defender extends Player {
-}
-
-
-class Attacker extends Player {
-}
-
-GameController "1" -- "2" Player
-
-
-interface CanAttack {
-    Attack() : void
+interface CanRepair {
+    +Repair() : void
 }
 
 interface PlayerLogic {
-    Play() : void
+    +Play() : void
 }
+
+class GameController {
+    +totalWaves : int
+    -currentWave : int
+    -minSoundVolume : float
+    -maxSoundVolume : float
+    -currentSoundVolume : float
+}
+
+class Player {
+    +numCoins : int
+}
+
+GameController "1" -- "2" Player
 
 class HumanAI implements PlayerLogic {
 }
@@ -37,44 +39,55 @@ class HardAI implements PlayerLogic {
 
 Player "1" -- "1" PlayerLogic
 
-interface Upgradeable {
-    Upgrade() : void
+class Unit implements CanReceiveDamage{
+    +baseHealth : float
+    -totalHealth : float
+    -currentHealth : float
+    +moveSpeed : float
+    +cost : int
+    +rewardCoins : int
 }
 
-class Unit implements CanAttack{
-    health : int
-    defense : int
-    speed : float
-    coinsAfterKill : int
-    
+Player "1" -- "*" Unit
+
+class Weapon implements CanUpgrade{
+    +baseDamage : float
+    +baseRange : float
+    +baseAttackSpeed : float
+    -currentDamage : float
+    -currentRange : float
+    -currentAttackSpeed : float
+    -upgradeFactor : float
+    +Attack() : void
 }
 
-Attacker "1" -- "*" Unit
-
-class Weapon {
-    power : int
-    criticalMultiplier : float
-    criticalChance : float
-    cooldown : float
+class Projectile {
+    -projectileSpeed : float
+    -target : CanReceiveDamage
 }
+
+Weapon "1" -- "*" Projectile
 
 Unit "1" -- "1" Weapon
 Tower "1" -- "1" Weapon
 
-class Building {
+class Building implements CanUpgrade, CanReceiveDamage, CanRepair {
+    -currentLevel : int
+    +baseHealth : float
+    -totalHealth : float
+    -currentHealth : float
+    +upgradeFactor : float
+    +upgradeCost : int
+    +repairQuantity : float
+    +repairCost : int
 }
 
-Defender "1" -- "1" Building
+Player "1" -- "1" Building
 
-class Tower implements Upgradeable, CanAttack{
-}
- 
-Building "1" -- "*" Tower
-
-class Wall implements Upgradeable{
-    health : int
+class Tower implements CanUpgrade {
+    -currentLevel : int
 }
 
-Building "1" -- "*" Wall
+Player "1" -- "*" Tower
 
 @enduml
