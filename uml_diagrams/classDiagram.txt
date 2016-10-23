@@ -17,10 +17,10 @@ interface PlayerLogic {
 class GameController {
     +totalWaves : int
     -currentWave : int
-    ....
     -minSoundVolume : float
     -maxSoundVolume : float
     -currentSoundVolume : float
+    -isGameFinished() : bool
 }
 
 class Player {
@@ -53,13 +53,11 @@ Player "1" -- "*" Unit
 
 class Weapon implements CanUpgrade{
     +baseDamage : float
-    +baseRadius : float
     +baseRange : float
-    +baseCooldown : float
+    +baseAttackSpeed : float
     -currentDamage : float
-    -currentRadius : float
     -currentRange : float
-    -currentCooldown : float
+    -currentAttackSpeed : float
     -upgradeFactor : float
     +Attack() : void
 }
