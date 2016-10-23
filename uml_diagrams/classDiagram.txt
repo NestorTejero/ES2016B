@@ -4,7 +4,7 @@ interface CanUpgrade {
     +Upgrade() : void
 }
 interface CanReceiveDamage {
-    +ReceiveDamage() : void
+    +ReceiveDamage(Weapon wep) : void
 }
 interface CanRepair {
     +Repair() : void
@@ -20,7 +20,6 @@ class GameController {
     -minSoundVolume : float
     -maxSoundVolume : float
     -currentSoundVolume : float
-    -isGameFinished() : bool
 }
 
 class Player {
