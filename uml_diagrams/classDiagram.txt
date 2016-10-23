@@ -10,7 +10,7 @@ interface CanRepair {
     +Repair() : void
 }
 
-abstract class PlayerLogic {
+interface PlayerLogic {
     +Play() : void
 }
 
@@ -29,23 +29,24 @@ class Player {
 
 GameController "1" -- "2" Player
 
-class HumanAI extends PlayerLogic {
+class HumanAI implements PlayerLogic {
 }
-class EasyAI extends PlayerLogic {
+class EasyAI implements PlayerLogic {
 }
-class MediumAI extends PlayerLogic {
+class MediumAI implements PlayerLogic {
 }
-class HardAI extends PlayerLogic {
+class HardAI implements PlayerLogic {
 }
 
 Player "1" -- "1" PlayerLogic
 
 class Unit implements CanReceiveDamage{
     +baseHealth : float
+    -totalHealth : float
     -currentHealth : float
     +moveSpeed : float
     +cost : int
-    +reward : int
+    +rewardCoins : int
 }
 
 Player "1" -- "*" Unit
@@ -74,17 +75,20 @@ Unit "1" -- "1" Weapon
 Tower "1" -- "1" Weapon
 
 class Building implements CanUpgrade, CanReceiveDamage, CanRepair {
-    -level : int
+    -currentLevel : int
     +baseHealth : float
     -totalHealth : float
     -currentHealth : float
-    -repairCost : float
+    +upgradeFactor : float
+    +upgradeCost : int
+    +repairQuantity : float
+    +repairCost : int
 }
 
 Player "1" -- "1" Building
 
 class Tower implements CanUpgrade {
-    -level : int
+    -currentLevel : int
 }
 
 Player "1" -- "*" Tower
