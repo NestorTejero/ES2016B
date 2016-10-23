@@ -3,18 +3,27 @@ using System.Collections;
 
 public class Weapon : MonoBehaviour, CanUpgrade
 {
-	public float range;
-	public float power;
-	public float cooldown;
-	public float upgradeFactor;
+    public float baseDamage;
+    public float baseRadius;
+    public float baseRange;
+    public float baseCooldown;
 
-	//criticalMultiplier;
-	//criticalChance;
-	
+    // TODO change all these to private
+    public float currentDamage; 
+    public float currentRadius;
+    public float currentRange;
+    public float currentCooldown;
+    //
+
+    public float upgradeFactor;
+
 	// Use this for initialization
 	void Start ()
 	{
-		
+	    this.currentDamage = this.baseDamage;
+	    this.currentRadius = this.baseRadius;
+	    this.currentRange = this.baseRange;
+	    this.currentCooldown = this.baseCooldown;
 	}
 
 	// Update is called once per frame
@@ -25,6 +34,11 @@ public class Weapon : MonoBehaviour, CanUpgrade
 
 	public void Upgrade ()
 	{
-		this.power *= upgradeFactor;
+		this.currentDamage *= upgradeFactor;
 	}
+
+    /*public float getDamage()
+    {
+        return this.currentDamage;
+    }*/
 }

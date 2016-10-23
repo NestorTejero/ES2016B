@@ -2,9 +2,12 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class Tower : MonoBehaviour, CanUpgrade, CanAttack
+public class Tower : MonoBehaviour, CanUpgrade
 {
-	public GameObject tower;
+    private int currentLevel;
+
+    // TODO REFACTOOOOOR PLEAAAASE
+    public GameObject tower;
 	public CapsuleCollider towerRange;
 	public Unit enemy;
 	public Weapon weapon;
@@ -13,18 +16,20 @@ public class Tower : MonoBehaviour, CanUpgrade, CanAttack
 	public List<Unit> enemies;
     public AudioClip shootSound;
     private AudioSource source;
+    
     // Use this for initialization
     void Start ()
-	{
+    {
+        this.currentLevel = 0;
 
 		// Collider of the tower
 		towerRange = tower.GetComponent<CapsuleCollider> ();
 
 		// Assignes the radius of the collider as the weapon attack range
-		towerRange.radius = weapon.range;
+		towerRange.radius = weapon.currentRange;
 
 		// Fires every "cooldown of the weapon" seconds
-		InvokeRepeating ("Attack", 0.0f, weapon.cooldown);
+		InvokeRepeating ("Attack", 0.0f, weapon.currentCooldown);
 
 		// No enemy inside the range at the beginning
 		enemy_in = false;
@@ -51,17 +56,19 @@ public class Tower : MonoBehaviour, CanUpgrade, CanAttack
 	public void Upgrade ()
 	{
 		this.weapon.Upgrade();
-		Debug.Log ("TOWER UPGRADED, Power: " + this.weapon.power);
+	    this.currentLevel++;
+		Debug.Log ("TOWER UPGRADED, Power: " + this.weapon.currentDamage);
 	}
 
 	// To attack enemies
 	public void Attack ()
 	{
 		// Checks if there is an enemy in the range
+        // TODO This should be done inside its weapon
 		if (enemy_in && enemy != null) {
-			if (enemy.health > 1.0f) {
-				enemy.health = enemy.health - weapon.power;
-				Debug.Log ("Enemy's health: " + enemy.health);
+			if (enemy.currentHealth > 1.0f) {
+				enemy.currentHealth = enemy.currentHealth - weapon.currentDamage;
+				Debug.Log ("Enemy's currentHealth: " + enemy.currentHealth);
                 Awake();
                 float vol = Random.Range(.5f, 1.0f);
                 source.PlayOneShot(shootSound, vol);
@@ -80,8 +87,10 @@ public class Tower : MonoBehaviour, CanUpgrade, CanAttack
 				}
 			}
 		}
+        //
 	}
 
+    // TODO should go inside Weapon
 	void OnTriggerEnter (Collider col)
 	{
 		Debug.Log ("Collision");
@@ -99,4 +108,5 @@ public class Tower : MonoBehaviour, CanUpgrade, CanAttack
 		}
 			
 	}
+    //
 }
