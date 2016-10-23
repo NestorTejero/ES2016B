@@ -3,53 +3,69 @@ using System.Collections;
 
 public class Building : MonoBehaviour, CanUpgrade, CanRepair, CanReceiveDamage
 {
-	public float maxHealth;
-	public float health;
-	public float upgradeHealthFactor;
-	public float repairHealthQuantity;
-    private float timeToWin;
+    private float currentLevel;
+    public float baseHealth;
+    private float totalHealth;
+    public float currentHealth; // TODO Change to private
+
+	public float upgradeFactor;
+    public float upgradeCost;
+	public float repairQuantity;
+    public float repairCost;
+
+    private float timeToWin; // TODO move this to Controller
 
 	// Use this for initialization
 	void Start ()
 	{
-		this.health = this.maxHealth;
-        this.timeToWin = 10.0f;
-		Debug.Log ("BUILDING CREATED with HP: " + this.maxHealth);
+	    this.currentLevel = 0;
+
+		this.currentHealth = this.baseHealth;
+	    this.totalHealth = this.baseHealth;
+
+        this.timeToWin = 10.0f; // TODO move this to controller
+
+        Debug.Log ("BUILDING CREATED with HP: " + this.baseHealth);
 	}
 
 	// Update is called once per frame
 	void Update ()
 	{
+        // TODO move this to controller
         if (this.timeToWin <= 0.0f)
         {
             Application.LoadLevel("MainMenu");
         }
         this.timeToWin -= Time.deltaTime * 1;
+        //
     }
 
 	// To upgrade when there are enough coins
 	public void Upgrade ()
 	{
-		this.maxHealth *= this.upgradeHealthFactor;
-		this.health *= this.upgradeHealthFactor;
-		Debug.Log ("BUILDING UPGRADED, now it has HP: " + this.maxHealth);
+		this.totalHealth *= this.upgradeFactor;
+		this.currentHealth *= this.upgradeFactor;
+	    this.currentLevel++;
+		Debug.Log ("BUILDING UPGRADED, now it has HP: " + this.totalHealth);
 	}
 
 	public void Repair ()
 	{
-		this.health += this.repairHealthQuantity;
-		if (this.health > this.maxHealth) {
-			this.health = this.maxHealth;
+		this.currentHealth += this.repairQuantity;
+		if (this.currentHealth > this.totalHealth) {
+			this.currentHealth = this.totalHealth;
 		}
-		Debug.Log ("BUILDING REPAIRED, HP: " + this.health);
+		Debug.Log ("BUILDING REPAIRED, HP: " + this.currentHealth);
 	}
 
 	public void ReceiveDamage (Weapon wep)
 	{
-		this.health -= wep.power;
-		if (this.health <= 0.0) {
+		this.currentHealth -= wep.currentDamage;
+        // TODO should be moved to Controller
+        if (this.currentHealth <= 0.0) {
             Application.LoadLevel("MainMenu");
 		}
-		Debug.Log ("BUILDING DAMAGED by HP: " + wep.power);
+		Debug.Log ("BUILDING DAMAGED by HP: " + wep.currentDamage);
+        //
 	}
 }
