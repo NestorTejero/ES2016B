@@ -1,17 +1,21 @@
 fileFormatVersion: 2
-guid: 768466c84601a4046bc1c2120bc1da0e
-timeCreated: 1476646872
+guid: d1b982e1b27998f4d9045a0ea98c2b2f
+timeCreated: 1477507279
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
   fileIDToRecycleName:
     100000: //RootNode
+    100002: Camera
+    100004: Cube
+    100006: Lamp
     400000: //RootNode
-    2300000: //RootNode
-    3300000: //RootNode
+    400002: Camera
+    400004: Cube
+    400006: Lamp
+    2300000: Cube
+    3300000: Cube
     4300000: Cube
-    7400000: Default Take
-    9500000: //RootNode
   materials:
     importMaterials: 1
     materialName: 0
@@ -70,7 +74,7 @@ ModelImporter:
     rootMotionBoneName: 
     hasTranslationDoF: 0
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 2
+  animationType: 0
   humanoidOversampling: 1
   additionalBone: 0
   userData: 
