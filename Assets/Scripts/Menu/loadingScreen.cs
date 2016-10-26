@@ -4,8 +4,8 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class loadingScreen : MonoBehaviour {
-	public float sayi;
-	public Text sayiyazi,ipucuyari;
+	public float time;
+	public Text percent;
 	public Image bar;
 
 	void Start () {
@@ -17,23 +17,23 @@ public class loadingScreen : MonoBehaviour {
 
 	void Update () {
 
-		if (sayi == 100) {
+		if (time == 100) {
 			SceneManager.LoadScene(1); 
 		}
 
 
-		if (sayi < 100) {
+		if (time < 100) {
 
-			sayi += Time.deltaTime * 7;
+			time += Time.deltaTime * 7;
 
 		}
 
-		if (sayi >= 100) {
-			sayi = 100;
+		if (time >= 100) {
+			time = 100;
 		}
 
-		sayiyazi.text=""+(int)sayi+"%";
-		bar.transform.localScale = new Vector3 (sayi/100, 1, 1);
+		percent.text=""+(int)time+"%";
+		bar.transform.localScale = new Vector3 (time/100, 1, 1);
 
 
 	}
