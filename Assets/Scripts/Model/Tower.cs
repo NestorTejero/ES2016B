@@ -4,7 +4,6 @@ using System.Collections;
 public class Tower : MonoBehaviour, CanUpgrade
 {
 	public Weapon weapon;
-
 	private int currentLevel;
 
     

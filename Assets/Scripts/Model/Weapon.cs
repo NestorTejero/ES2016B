@@ -40,7 +40,7 @@ public class Weapon : MonoBehaviour, CanUpgrade
 		target_in = false;
 
 		// List of targets when more than one enters the range
-		targets = new List<CanReceiveDamage> ();
+		//targets = new List<CanReceiveDamage> ();
 
 		// Collider of the tower attached to this script set to the weapon attack zone
 		attackZone = this.gameObject.GetComponent<CapsuleCollider> ();
@@ -48,6 +48,8 @@ public class Weapon : MonoBehaviour, CanUpgrade
 		//////////////////////////////////////////////////////////
 
 		InvokeRepeating("Attack", 0.0f, this.currentCooldown);
+
+		Debug.Log ("WEAPON CREATED");
 	}
 
 	// Update is called once per frame
@@ -80,12 +82,8 @@ public class Weapon : MonoBehaviour, CanUpgrade
 	}
 
 	// Setters
-	public void setTarget(CanReceiveDamage tar){
-		this.target = tar;
-	}
-
-	public void setAttackZone(CapsuleCollider coll){
-		this.attackZone = coll;
+	public void setTarget(List<CanReceiveDamage> tar){
+		this.targets = tar;
 	}
 		
 	// Called to attack a target
@@ -93,14 +91,13 @@ public class Weapon : MonoBehaviour, CanUpgrade
 	{
 		// Checks if there is a target in the range
 		if (target_in && target != null) {
-			Awake ();
-			//projectile = new Projectile (1.0f, target);
+			//Awake ();
 			projectile = this.gameObject.AddComponent<Projectile>();
 			projectile.initialize (1.0f, target);
 			target.ReceiveDamage (this);
 
-			float vol = Random.Range (.5f, 1.0f);
-			source.PlayOneShot (shootSound, vol);
+			//float vol = Random.Range (.5f, 1.0f);
+			//source.PlayOneShot (shootSound, vol);
 
 			if (targets.Count > 0) {
 				Debug.Log ("Another enemy");

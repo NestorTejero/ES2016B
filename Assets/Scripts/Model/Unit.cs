@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class Unit : MonoBehaviour, CanReceiveDamage
 {
@@ -13,7 +14,8 @@ public class Unit : MonoBehaviour, CanReceiveDamage
 
     public Transform goal;
     public Weapon weapon;
-    private Building target;
+    private List<CanReceiveDamage> targets;
+	private CanReceiveDamage target;
 
 	// Use this for initialization
 	void Start ()
@@ -23,9 +25,12 @@ public class Unit : MonoBehaviour, CanReceiveDamage
 
         NavMeshAgent agent = GetComponent<NavMeshAgent>();
 		agent.destination = goal.position;
-        target = gameObject.GetComponent<Building>();
 
-		weapon.setTarget(target);
+		// List of targets assigned to the unit weapon
+		target = gameObject.GetComponent<Building>();
+		targets = new List<CanReceiveDamage>();
+		targets.Add(target);
+		weapon.setTarget(targets);
 
         Debug.Log ("UNIT CREATED");
 	}
