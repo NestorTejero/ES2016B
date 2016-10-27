@@ -853,6 +853,7 @@ GameObject:
   - 195: {fileID: 195000013315834896}
   - 114: {fileID: 114000010730977824}
   - 136: {fileID: 136000014170989696}
+  - 114: {fileID: 114000013844298356}
   m_Layer: 0
   m_Name: Freshman_student
   m_TagString: Untagged
@@ -1138,7 +1139,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000013888679622}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 140, y: 0, z: 50}
+  m_LocalPosition: {x: 75, y: 0, z: 10}
   m_LocalScale: {x: 0.1257565, y: 0.12575653, z: 0.12575653}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
@@ -1773,11 +1774,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa348ffcf3bb1ac4abac940741f6f3f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  baseHealth: 10
+  moveSpeed: 1
+  costCoins: 10
+  rewardCoins: 10
   goal: {fileID: 0}
-  maxHealth: 100
-  health: 0
-  weapon: {fileID: 0}
-  objectTarget: {fileID: 0}
+  weapon: {fileID: 114000013844298356}
+--- !u!114 &114000013844298356
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000013888679622}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ec943e3d8fc87f4d8786ea1ea07361d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  baseDamage: 1
+  baseRange: 4
+  baseCooldown: 1
+  upgradeFactor: 1.1
+  shootSound: {fileID: 0}
 --- !u!136 &136000014170989696
 CapsuleCollider:
   m_ObjectHideFlags: 1
@@ -1787,10 +1805,10 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 1
+  m_Radius: 3.5541089
+  m_Height: 17
   m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: 8.5, z: 0}
 --- !u!137 &137000010007691160
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1

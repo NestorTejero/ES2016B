@@ -10,12 +10,12 @@ public class Projectile : MonoBehaviour
     private CanReceiveDamage target;
 
 	// Use this for initialization
-    public Projectile(float projSpeed, CanReceiveDamage target)
+    /*public Projectile(float projSpeed, CanReceiveDamage target)
     {
         this.projectileSpeed = projSpeed;
         this.target = target;
     }
-
+	*/
 	void Start () {
 	
 	}
@@ -23,5 +23,10 @@ public class Projectile : MonoBehaviour
 	// Update is called once per frame
 	void Update () {
 	
+	}
+
+	public void initialize(float projSpeed, CanReceiveDamage target){
+		this.projectileSpeed = projSpeed;
+		this.target = target;
 	}
 }

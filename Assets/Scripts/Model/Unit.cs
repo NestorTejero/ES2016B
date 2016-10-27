@@ -25,8 +25,7 @@ public class Unit : MonoBehaviour, CanReceiveDamage
 		agent.destination = goal.position;
         target = gameObject.GetComponent<Building>();
 
-		/////////////////////////
-		//weapon.setTarget(target);
+		weapon.setTarget(target);
 
         Debug.Log ("UNIT CREATED");
 	}

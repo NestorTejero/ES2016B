@@ -12,10 +12,6 @@ public class Tower : MonoBehaviour, CanUpgrade
     void Start ()
     {
         this.currentLevel = 0;
-
-		// Collider of the tower attached to this script set to the weapon attack zone
-		weapon.setAttackZone (this.gameObject.GetComponent<CapsuleCollider> ());
-
 		Debug.Log ("TOWER CREATED");
 	}
 		
