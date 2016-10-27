@@ -23,7 +23,7 @@ public class Building : MonoBehaviour, CanUpgrade, CanRepair, CanReceiveDamage
 		this.currentHealth = this.baseHealth;
 	    this.totalHealth = this.baseHealth;
 
-        this.timeToWin = 10.0f; // TODO move this to controller
+        this.timeToWin = 1000.0f; // TODO move this to controller
 
         Debug.Log ("BUILDING CREATED with HP: " + this.baseHealth);
 	}
@@ -60,12 +60,12 @@ public class Building : MonoBehaviour, CanUpgrade, CanRepair, CanReceiveDamage
 
 	public void ReceiveDamage (Weapon wep)
 	{
-		this.currentHealth -= wep.currentDamage;
+		this.currentHealth -= wep.getCurrentDamage();
         // TODO should be moved to Controller
         if (this.currentHealth <= 0.0) {
             Application.LoadLevel("MainMenu");
 		}
-		Debug.Log ("BUILDING DAMAGED by HP: " + wep.currentDamage);
+		Debug.Log ("BUILDING DAMAGED by HP: " + wep.getCurrentDamage());
         //
 	}
 }

@@ -8,6 +8,7 @@ public class Projectile : MonoBehaviour
 {
     private float projectileSpeed;
     private CanReceiveDamage target;
+
 	// Use this for initialization
     public Projectile(float projSpeed, CanReceiveDamage target)
     {
