@@ -26,6 +26,9 @@ public class Weapon : MonoBehaviour, CanUpgrade
 		// Collider of the tower attached to this script
 		this.gameObject.GetComponent<CapsuleCollider> ().radius = this.currentRange;
 
+		// List of targets assigned to the weapon
+		this.targets = new List<CanReceiveDamage>();
+
 		InvokeRepeating("Attack", 0.0f, this.currentCooldown);
 
 		Debug.Log ("WEAPON CREATED");
@@ -55,23 +58,18 @@ public class Weapon : MonoBehaviour, CanUpgrade
         return this.currentDamage;
     }
 
-	public float getCurrentCooldown()
-	{
-		return this.currentCooldown;
+	public void addTarget(CanReceiveDamage target){
+		this.targets.Add (target);
+		Debug.Log ("Target in queue");
 	}
 
-	// Setters
-	public void setTarget(List<CanReceiveDamage> tar){
-		this.targets = tar;
-	}
-		
 	// Called to attack a target
 	public void Attack()
 	{
 		// Checks if there is a target in the range
 		if (this.targets.Count > 0) {
 			Awake ();
-			Debug.Log ("targets num :" + targets.Count);
+			//Debug.Log ("targets num :" + targets.Count);
 			CanReceiveDamage target = targets [0];
 			Projectile projectile = this.gameObject.AddComponent<Projectile>();
 			projectile.initialize (1.0f, target);
@@ -81,18 +79,6 @@ public class Weapon : MonoBehaviour, CanUpgrade
 			}
 			float vol = Random.Range (.5f, 1.0f);
 			this.source.PlayOneShot (this.shootSound, vol);
-		}
-	}
-		
-	void OnTriggerEnter (Collider col)
-	{
-		if ((this.gameObject.GetComponent<Unit>() && col.gameObject.GetComponent<Building> ()) ||
-			(this.gameObject.GetComponent<Tower>() && col.gameObject.GetComponent<Unit> ())) {
-			Debug.Log ("Collision");
-
-			// Adds enemy to attack to the queue
-			this.targets.Add (col.gameObject.GetComponent<CanReceiveDamage> ());
-			Debug.Log ("Target in queue");
 		}
 	}
 }

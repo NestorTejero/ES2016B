@@ -6,14 +6,11 @@ public class Tower : MonoBehaviour, CanUpgrade
 {
 	public Weapon weapon;
 	private int currentLevel;
-	private List<CanReceiveDamage> targets;
     
     // Use this for initialization
     void Start ()
     {
         this.currentLevel = 0;
-		this.targets = new List<CanReceiveDamage>();
-		this.weapon.setTarget (targets);
 		Debug.Log ("TOWER CREATED");
 	}
 		
@@ -29,5 +26,15 @@ public class Tower : MonoBehaviour, CanUpgrade
 		this.weapon.Upgrade();
 	    this.currentLevel++;
 		Debug.Log ("TOWER UPGRADED, Power: " + this.weapon.getCurrentDamage());
+	}
+
+	void OnTriggerEnter (Collider col)
+	{
+		if (col.gameObject.GetComponent<Unit> ()) {
+			Debug.Log ("Tower Collision with Unit");
+
+			// Adds enemy to attack to the queue
+			this.weapon.addTarget (col.gameObject.GetComponent<CanReceiveDamage> ());
+		}
 	}
 }

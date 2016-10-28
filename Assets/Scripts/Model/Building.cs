@@ -6,7 +6,7 @@ public class Building : MonoBehaviour, CanUpgrade, CanRepair, CanReceiveDamage
     private float currentLevel;
     public float baseHealth;
     private float totalHealth;
-    public float currentHealth; // TODO Change to private
+    private float currentHealth;
 
 	public float upgradeFactor;
     public float upgradeCost;
@@ -23,7 +23,7 @@ public class Building : MonoBehaviour, CanUpgrade, CanRepair, CanReceiveDamage
 		this.currentHealth = this.baseHealth;
 	    this.totalHealth = this.baseHealth;
 
-        this.timeToWin = 1000.0f; // TODO move this to controller
+        this.timeToWin = 30.0f; // TODO move this to controller
 
         Debug.Log ("BUILDING CREATED with HP: " + this.baseHealth);
 	}
@@ -61,7 +61,7 @@ public class Building : MonoBehaviour, CanUpgrade, CanRepair, CanReceiveDamage
 	public bool ReceiveDamage (Weapon wep)
 	{
 		this.currentHealth -= wep.getCurrentDamage();
-		//Debug.Log ("Building's currentHealth: " + this.currentHealth);
+		Debug.Log ("Building's currentHealth: " + this.currentHealth);
 		//Debug.Log ("BUILDING DAMAGED by HP: " + wep.getCurrentDamage());
 
 		// TODO should be moved to Controller
@@ -69,8 +69,8 @@ public class Building : MonoBehaviour, CanUpgrade, CanRepair, CanReceiveDamage
 			Application.LoadLevel ("MainMenu");
 			return true;
 		} else {
-			//
 			return false;
 		}
+		//
 	}
 }
