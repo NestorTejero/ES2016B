@@ -8,14 +8,12 @@ public class Unit : MonoBehaviour, CanReceiveDamage
     public float moveSpeed;
     public int costCoins;
     public int rewardCoins;
+	public Transform goal;
+	public Weapon weapon;
 
 	private float totalHealth;
 	private float currentHealth;
-
-    public Transform goal;
-    public Weapon weapon;
     private List<CanReceiveDamage> targets;
-	private CanReceiveDamage target;
 
 	// Use this for initialization
 	void Start ()
@@ -24,13 +22,11 @@ public class Unit : MonoBehaviour, CanReceiveDamage
         this.totalHealth = this.baseHealth;
 
         NavMeshAgent agent = GetComponent<NavMeshAgent>();
-		agent.destination = goal.position;
+		agent.destination = this.goal.position;
 
 		// List of targets assigned to the unit weapon
-		target = gameObject.GetComponent<Building>();
-		targets = new List<CanReceiveDamage>();
-		targets.Add(target);
-		weapon.setTarget(targets);
+		this.targets = new List<CanReceiveDamage>();
+		this.weapon.setTarget (targets);
 
         Debug.Log ("UNIT CREATED");
 	}
@@ -41,17 +37,17 @@ public class Unit : MonoBehaviour, CanReceiveDamage
 
 	}
 
-	public void ReceiveDamage (Weapon wep)
+	public bool ReceiveDamage (Weapon wep)
 	{
 		this.currentHealth -= wep.getCurrentDamage();
-		Debug.Log ("Target's currentHealth: " + this.currentHealth);
+		Debug.Log ("Unit " + this.name +" currentHealth: " + this.currentHealth);
+		Debug.Log("UNIT DAMAGED by HP: " + wep.getCurrentDamage());
 
 		if (this.currentHealth <= 0.0f) {
 			Destroy (this.gameObject);
-			Debug.Log ("Enemy is dead");
+			Debug.Log ("Unit " + this.name + " is dead");
+			return true;
 		}
-
-		Debug.Log("UNIT DAMAGED by HP: " + wep.getCurrentDamage());
+		return false;
 	}
-
 }

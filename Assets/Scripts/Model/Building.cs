@@ -58,14 +58,19 @@ public class Building : MonoBehaviour, CanUpgrade, CanRepair, CanReceiveDamage
 		Debug.Log ("BUILDING REPAIRED, HP: " + this.currentHealth);
 	}
 
-	public void ReceiveDamage (Weapon wep)
+	public bool ReceiveDamage (Weapon wep)
 	{
 		this.currentHealth -= wep.getCurrentDamage();
-        // TODO should be moved to Controller
-        if (this.currentHealth <= 0.0) {
-            Application.LoadLevel("MainMenu");
+		//Debug.Log ("Building's currentHealth: " + this.currentHealth);
+		//Debug.Log ("BUILDING DAMAGED by HP: " + wep.getCurrentDamage());
+
+		// TODO should be moved to Controller
+		if (this.currentHealth <= 0.0) {
+			Application.LoadLevel ("MainMenu");
+			return true;
+		} else {
+			//
+			return false;
 		}
-		Debug.Log ("BUILDING DAMAGED by HP: " + wep.getCurrentDamage());
-        //
 	}
 }
