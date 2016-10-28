@@ -302,7 +302,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isEasyButton: 0
   isMediumButton: 0
-  isHardButton: 0
+  isHardButton: 1
   isReturnButton: 0
 --- !u!65 &225545266
 BoxCollider:
@@ -564,7 +564,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isEasyButton: 0
-  isMediumButton: 0
+  isMediumButton: 1
   isHardButton: 0
   isReturnButton: 0
 --- !u!102 &620994262
@@ -660,7 +660,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb8efa7baca364a569eb291e219ae382, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isEasyButton: 0
+  isEasyButton: 1
   isMediumButton: 0
   isHardButton: 0
   isReturnButton: 0
