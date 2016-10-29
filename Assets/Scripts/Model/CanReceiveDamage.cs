@@ -3,5 +3,5 @@ using System.Collections;
 
 public interface CanReceiveDamage
 {
-	bool ReceiveDamage (Weapon wep);
+	bool ReceiveDamage (Projectile proj);
 }

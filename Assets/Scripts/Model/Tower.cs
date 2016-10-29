@@ -28,13 +28,24 @@ public class Tower : MonoBehaviour, CanUpgrade
 		Debug.Log ("TOWER UPGRADED, Power: " + this.weapon.getCurrentDamage());
 	}
 
+	// If enemy enters the range of attack
 	void OnTriggerEnter (Collider col)
 	{
 		if (col.gameObject.GetComponent<Unit> ()) {
-			Debug.Log ("Tower Collision with Unit");
+			Debug.Log ("Tower " + this.name + " Collision with Unit");
 
 			// Adds enemy to attack to the queue
 			this.weapon.addTarget (col.gameObject.GetComponent<CanReceiveDamage> ());
+		}
+	}
+
+
+	// If enemy exits the range of attack
+	void OnTriggerExit (Collider col){
+		if (col.gameObject.GetComponent<Unit> ()) {
+
+			// Removes enemy to attack from the queue
+			this.weapon.removeTarget (col.gameObject.GetComponent<CanReceiveDamage> ());
 		}
 	}
 }

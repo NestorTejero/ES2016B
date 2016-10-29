@@ -8,14 +8,8 @@ public class Projectile : MonoBehaviour
 {
     private float projectileSpeed;
     private CanReceiveDamage target;
+	private float damage;
 
-	// Use this for initialization
-    /*public Projectile(float projSpeed, CanReceiveDamage target)
-    {
-        this.projectileSpeed = projSpeed;
-        this.target = target;
-    }
-	*/
 	void Start () {
 	
 	}
@@ -25,8 +19,20 @@ public class Projectile : MonoBehaviour
 	
 	}
 
-	public void initialize(float projSpeed, CanReceiveDamage target){
+	// Create the projectile with its properties
+	public void create(float projSpeed, CanReceiveDamage target, float damage){
 		this.projectileSpeed = projSpeed;
 		this.target = target;
+		this.damage = damage;
+	}
+
+	// Shoot the projectile to the target
+	public bool shoot(){
+		return this.target.ReceiveDamage (this);
+	}
+
+	// Get the projectile damage (defined by weapon)
+	public float getDamage(){
+		return this.damage;
 	}
 }

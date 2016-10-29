@@ -20,6 +20,7 @@ public class Unit : MonoBehaviour, CanReceiveDamage
 		this.currentHealth = this.baseHealth;
         this.totalHealth = this.baseHealth;
 
+		// Unit movement towards the goal
         NavMeshAgent agent = GetComponent<NavMeshAgent>();
 		agent.destination = this.goal.position;
 
@@ -32,11 +33,12 @@ public class Unit : MonoBehaviour, CanReceiveDamage
 
 	}
 
-	public bool ReceiveDamage (Weapon wep)
+	// Receive damage from a projectile (shot by weapon)
+	public bool ReceiveDamage (Projectile proj)
 	{
-		this.currentHealth -= wep.getCurrentDamage();
+		this.currentHealth -= proj.getDamage();
 		Debug.Log ("Unit " + this.name +" currentHealth: " + this.currentHealth);
-		//Debug.Log("UNIT DAMAGED by HP: " + wep.getCurrentDamage());
+		//Debug.Log("UNIT DAMAGED by HP: " + proj.getDamage());
 
 		if (this.currentHealth <= 0.0f) {
 			Destroy (this.gameObject);
@@ -47,13 +49,22 @@ public class Unit : MonoBehaviour, CanReceiveDamage
 		}
 	}
 
+	// If enemy enters the range of attack
 	void OnTriggerEnter (Collider col)
 	{
 		if (col.gameObject.GetComponent<Building> ()) {
-			Debug.Log ("Unit Collision with Building");
-
+			Debug.Log ("Unit " + this.name + " Collision with Building");
 			// Adds enemy to attack to the queue
 			this.weapon.addTarget (col.gameObject.GetComponent<CanReceiveDamage> ());
+		}
+	}
+
+	// If enemy exits the range of attack
+	void OnTriggerExit (Collider col)
+	{
+		if (col.gameObject.GetComponent<Building> ()) {
+			// Removes enemy to attack from the queue
+			this.weapon.removeTarget (col.gameObject.GetComponent<CanReceiveDamage> ());
 		}
 	}
 }

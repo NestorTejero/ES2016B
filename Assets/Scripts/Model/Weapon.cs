@@ -29,6 +29,7 @@ public class Weapon : MonoBehaviour, CanUpgrade
 		// List of targets assigned to the weapon
 		this.targets = new List<CanReceiveDamage>();
 
+		// Call Attack every 'cooldown' seconds
 		InvokeRepeating("Attack", 0.0f, this.currentCooldown);
 
 		Debug.Log ("WEAPON CREATED");
@@ -52,15 +53,21 @@ public class Weapon : MonoBehaviour, CanUpgrade
 		this.source = GetComponent<AudioSource>();
 	}
 
-	// Getters
+	// Get weapon's current damage
     public float getCurrentDamage()
     {
         return this.currentDamage;
     }
 
+	// Add target to list
 	public void addTarget(CanReceiveDamage target){
 		this.targets.Add (target);
-		Debug.Log ("Target in queue");
+		Debug.Log ("Targets to attack :" + targets.Count);
+	}
+
+	// Remove target from list
+	public void removeTarget(CanReceiveDamage target){
+		this.targets.Remove (target);
 	}
 
 	// Called to attack a target
@@ -69,11 +76,16 @@ public class Weapon : MonoBehaviour, CanUpgrade
 		// Checks if there is a target in the range
 		if (this.targets.Count > 0) {
 			Awake ();
-			//Debug.Log ("targets num :" + targets.Count);
+
+			// Get target to attack
 			CanReceiveDamage target = targets [0];
+
+			// Create the projectile that will go towards the target
 			Projectile projectile = this.gameObject.AddComponent<Projectile>();
-			projectile.initialize (1.0f, target);
-			bool dead = target.ReceiveDamage (this);
+			projectile.create(1.0f, target, this.currentDamage);
+
+			// Shoot the projectile
+			bool dead = projectile.shoot ();
 			if (dead) {
 				this.targets.Remove (target);
 			}

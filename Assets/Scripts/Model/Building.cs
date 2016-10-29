@@ -19,7 +19,6 @@ public class Building : MonoBehaviour, CanUpgrade, CanRepair, CanReceiveDamage
 	void Start ()
 	{
 	    this.currentLevel = 0;
-
 		this.currentHealth = this.baseHealth;
 	    this.totalHealth = this.baseHealth;
 
@@ -49,6 +48,7 @@ public class Building : MonoBehaviour, CanUpgrade, CanRepair, CanReceiveDamage
 		Debug.Log ("BUILDING UPGRADED, now it has HP: " + this.totalHealth);
 	}
 
+	// Repair the building
 	public void Repair ()
 	{
 		this.currentHealth += this.repairQuantity;
@@ -58,11 +58,12 @@ public class Building : MonoBehaviour, CanUpgrade, CanRepair, CanReceiveDamage
 		Debug.Log ("BUILDING REPAIRED, HP: " + this.currentHealth);
 	}
 
-	public bool ReceiveDamage (Weapon wep)
+	// Receive damage from a projectile (shot by weapon)
+	public bool ReceiveDamage (Projectile proj)
 	{
-		this.currentHealth -= wep.getCurrentDamage();
+		this.currentHealth -= proj.getDamage();
 		Debug.Log ("Building's currentHealth: " + this.currentHealth);
-		//Debug.Log ("BUILDING DAMAGED by HP: " + wep.getCurrentDamage());
+		//Debug.Log ("BUILDING DAMAGED by HP: " + proj.getDamage());
 
 		// TODO should be moved to Controller
 		if (this.currentHealth <= 0.0) {
