@@ -25,7 +25,6 @@ GameObject:
   - 136: {fileID: 136000012608490970}
   - 114: {fileID: 114000010024108274}
   - 82: {fileID: 82000010392373694}
-  - 114: {fileID: 114000010181659434}
   m_Layer: 0
   m_Name: TowerModel
   m_TagString: Untagged
@@ -185,23 +184,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e97336b7d4616584e97bd98322705b9b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weapon: {fileID: 114000010181659434}
---- !u!114 &114000010181659434
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000011273534784}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0ec943e3d8fc87f4d8786ea1ea07361d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  baseDamage: 1
-  baseRange: 2.5
-  baseCooldown: 1
-  upgradeFactor: 1.1
-  shootSound: {fileID: 0}
+  wep: {fileID: 1000014082153582, guid: c4b02a18edba8e548aaecf858f4857d4, type: 2}
 --- !u!136 &136000012608490970
 CapsuleCollider:
   m_ObjectHideFlags: 1
