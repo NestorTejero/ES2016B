@@ -32,7 +32,10 @@ public class Weapon : MonoBehaviour, CanUpgrade
 		// Call Attack every 'cooldown' seconds
 		InvokeRepeating("Attack", 0.0f, this.currentCooldown);
 
-		Debug.Log ("WEAPON CREATED");
+        // Set sounds
+        this.source = GetComponent<AudioSource>();
+
+        Debug.Log ("WEAPON CREATED");
 	}
 
 	// Update is called once per frame
@@ -83,7 +86,7 @@ public class Weapon : MonoBehaviour, CanUpgrade
 				this.targets.Remove (target);
 			}
 
-            this.source = GetComponent<AudioSource>();
+            // Play sound
 			this.source.PlayOneShot (this.shootSound);
 		}
 	}
