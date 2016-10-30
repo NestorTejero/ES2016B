@@ -71,7 +71,7 @@ public class GameController : MonoBehaviour
         else if (dead is Unit)
         {
             Debug.Log(((Unit) dead).name + " is dead.");
-            playerDefender.notifyDeath((Unit) dead);
+            playerDefender.getMoney((Unit) dead);
         }
     }
 }

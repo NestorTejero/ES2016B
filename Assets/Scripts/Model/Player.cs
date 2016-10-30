@@ -13,7 +13,7 @@ public class Player
         this.logic = logic;
     }
 
-    public void notifyDeath(Unit deadUnit)
+    public void getMoney(Unit deadUnit)
     {
         Debug.Log("Oh! I've received " + deadUnit.rewardCoins + " coins! :D yay");
         logic.addCoins(deadUnit.rewardCoins);
