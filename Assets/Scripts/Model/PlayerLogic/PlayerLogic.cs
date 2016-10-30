@@ -2,12 +2,7 @@
 
 public abstract class PlayerLogic : MonoBehaviour
 {
-    private int numCoins;
-
-    public PlayerLogic()
-    {
-        numCoins = 0;
-    }
+    protected int numCoins;
 
     public abstract void Play();
 
