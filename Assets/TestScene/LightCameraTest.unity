@@ -292,6 +292,16 @@ Prefab:
       propertyPath: m_LocalScale.x
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 82000010392373694, guid: c66bd1096ea2787459a74ea7a73534ae,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 82000010392373694, guid: c66bd1096ea2787459a74ea7a73534ae,
+        type: 2}
+      propertyPath: m_PlayOnAwake
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c66bd1096ea2787459a74ea7a73534ae, type: 2}
   m_IsPrefabParent: 0
@@ -914,6 +924,16 @@ Prefab:
     - target: {fileID: 4000012349707492, guid: c66bd1096ea2787459a74ea7a73534ae, type: 2}
       propertyPath: m_LocalEulerAnglesHint.x
       value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 82000010392373694, guid: c66bd1096ea2787459a74ea7a73534ae,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 82000010392373694, guid: c66bd1096ea2787459a74ea7a73534ae,
+        type: 2}
+      propertyPath: m_PlayOnAwake
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c66bd1096ea2787459a74ea7a73534ae, type: 2}
@@ -2331,6 +2351,16 @@ Prefab:
       propertyPath: m_Name
       value: TowerN
       objectReference: {fileID: 0}
+    - target: {fileID: 82000010392373694, guid: c66bd1096ea2787459a74ea7a73534ae,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 82000010392373694, guid: c66bd1096ea2787459a74ea7a73534ae,
+        type: 2}
+      propertyPath: m_PlayOnAwake
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c66bd1096ea2787459a74ea7a73534ae, type: 2}
   m_IsPrefabParent: 0
@@ -2575,6 +2605,16 @@ Prefab:
     - target: {fileID: 4000012349707492, guid: c66bd1096ea2787459a74ea7a73534ae, type: 2}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 82000010392373694, guid: c66bd1096ea2787459a74ea7a73534ae,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 82000010392373694, guid: c66bd1096ea2787459a74ea7a73534ae,
+        type: 2}
+      propertyPath: m_PlayOnAwake
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c66bd1096ea2787459a74ea7a73534ae, type: 2}

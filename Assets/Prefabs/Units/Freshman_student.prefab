@@ -1808,7 +1808,7 @@ MonoBehaviour:
   baseRange: 12
   baseCooldown: 1
   upgradeFactor: 1.1
-  shootSound: {fileID: 0}
+  shootSound: {fileID: 8300000, guid: 82c2a987d26765844b0d2c40164b9393, type: 3}
 --- !u!114 &114000013301392412
 MonoBehaviour:
   m_ObjectHideFlags: 1
