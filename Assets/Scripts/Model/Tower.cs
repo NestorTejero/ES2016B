@@ -32,7 +32,7 @@ public class Tower : MonoBehaviour, CanUpgrade
 	// If enemy enters the range of attack
 	void OnTriggerEnter (Collider col)
 	{
-		if (col.gameObject.GetComponent<Unit> ()) {
+		if (col.gameObject.tag == "Unit") {
 			Debug.Log ("Tower " + this.name + " Collision with Unit");
 
 			// Adds enemy to attack to the queue
@@ -43,7 +43,7 @@ public class Tower : MonoBehaviour, CanUpgrade
 
 	// If enemy exits the range of attack
 	void OnTriggerExit (Collider col){
-		if (col.gameObject.GetComponent<Unit> ()) {
+		if (col.gameObject.tag == "Unit") {
 
 			// Removes enemy to attack from the queue
 			this.weapon.removeTarget (col.gameObject.GetComponent<CanReceiveDamage> ());
