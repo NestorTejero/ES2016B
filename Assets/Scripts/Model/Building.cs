@@ -74,8 +74,12 @@ public class Building : MonoBehaviour, CanUpgrade, CanRepair, CanReceiveDamage
 		} else {
 			return false;
 		}
-		//
 	}
+
+    public float getMissingHealth()
+    {
+        return this.totalHealth - this.currentHealth;
+    }
 
     void OnDestroy()
     {

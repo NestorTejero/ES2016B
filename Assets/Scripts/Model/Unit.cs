@@ -73,7 +73,6 @@ public class Unit : MonoBehaviour, CanReceiveDamage
 
     void OnDestroy()
     {
-        Debug.Log(this.currentHealth);
         GameController.instance.notifyDeath(this); // Tell controller I'm dead
     }
 }

@@ -6,17 +6,20 @@ using UnityEngine;
  * Class that makes Unit creation a service
  */
 
-public class UnitShop
+public class Shop
 {
     private readonly List<Unit> availableUnits;
+    private readonly GameObject building;
     // TODO list of positions to spawn Units
 
-    public UnitShop()
+    public Shop()
     {
         availableUnits = new List<Unit>();
-        var objs = GameObject.FindGameObjectsWithTag("Unit");
+        var objs = GameObject.FindGameObjectsWithTag("PurchasableUnit");
         foreach (var o in objs)
             availableUnits.Add(o.GetComponent<Unit>());
+
+        building = GameObject.FindGameObjectWithTag("Building");
     }
 
     public List<Unit> getAvailableUnits()
@@ -39,9 +42,18 @@ public class UnitShop
 
     public void purchaseUnit(Unit unitToPurchase)
     {
-        if (availableUnits.Contains(unitToPurchase))
-        {
-            // TODO Missing how to spawn it somewhere
-        }
+        // TODO Missing how to spawn it somewhere
+    }
+
+    public bool isBuildingRepairable(int numCoins)
+    {
+        // Reparable if there's enough coins to repair and there's health missing
+        return (building.GetComponent<Building>().repairCost <= numCoins) &&
+               (building.GetComponent<Building>().getMissingHealth() > 0);
+    }
+
+    public void repairBuilding()
+    {
+        building.GetComponent<Building>().Repair();
     }
 }

@@ -15,11 +15,13 @@ public class GameController : MonoBehaviour
     public Player playerAttacker;
     public Player playerDefender;
 
+    public Shop shop;
+
     public int totalWaves;
 
     // Use this for initialization
 
-    void Start()
+    private void Start()
     {
         currentWave = 0;
 
@@ -28,9 +30,11 @@ public class GameController : MonoBehaviour
 
         playerDefender = new Player();
         playerDefender.setLogic(new HumanAI());
+
+        shop = new Shop();
     }
 
-    void Awake()
+    private void Awake()
     {
         //Check if instance already exists
         if (instance == null)
