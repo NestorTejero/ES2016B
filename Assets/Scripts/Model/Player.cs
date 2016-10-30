@@ -1,22 +1,32 @@
 ﻿using UnityEngine;
-using System.Collections;
 
 /**
  * Class that represents a Player, let it be on enemy or friendly side
- * Basically works as a controller of its model
  */
+
 public class Player : MonoBehaviour
 {
+    private PlayerLogic logic;
     private int numCoins;
-	// Use this for initialization
-	void Start ()
-	{
-        this.numCoins = 0;
-	}
-	
-	// Update is called once per frame
-	void Update ()
-	{
-	
-	}
+    // Use this for initialization
+    void Start()
+    {
+        numCoins = 0;
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+    }
+
+    public void setLogic(PlayerLogic logic)
+    {
+        this.logic = logic;
+    }
+
+    public void notifyDeath(Unit deadUnit)
+    {
+        Debug.Log("Oh! I've received " + deadUnit.rewardCoins + " money! :D yay");
+        numCoins += deadUnit.rewardCoins;
+    }
 }

@@ -875,8 +875,8 @@ Transform:
   m_Children:
   - {fileID: 1881285618}
   - {fileID: 1932357939}
-  - {fileID: 270438057}
   - {fileID: 2102250271}
+  - {fileID: 270438057}
   m_Father: {fileID: 0}
   m_RootOrder: 6
 --- !u!1 &1072886236
@@ -1505,6 +1505,7 @@ GameObject:
   - 124: {fileID: 1513357972}
   - 81: {fileID: 1513357971}
   - 114: {fileID: 1513357976}
+  - 114: {fileID: 1513357977}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1594,6 +1595,19 @@ MonoBehaviour:
   moveSpeedV: 10
   moveSpeedH: 30
   ubCenter: {fileID: 1463266078}
+--- !u!114 &1513357977
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1513357970}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19131f013372765439b9aa9391d3ba10, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameController: {fileID: 1000011688498418, guid: c5cd0f004f98f714995e5d843d78918a,
+    type: 2}
 --- !u!1001 &1518507566
 Prefab:
   m_ObjectHideFlags: 0
@@ -2431,7 +2445,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4000012349707492, guid: c66bd1096ea2787459a74ea7a73534ae, type: 2}
       propertyPath: m_RootOrder
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1000011273534784, guid: c66bd1096ea2787459a74ea7a73534ae, type: 2}
       propertyPath: m_Name
