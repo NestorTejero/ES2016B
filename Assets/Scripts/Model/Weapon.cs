@@ -14,7 +14,7 @@ public class Weapon : MonoBehaviour, CanUpgrade
     private float currentRange;
     private float currentCooldown;
 	private List<CanReceiveDamage> targets;
-	private AudioSource source;
+    private AudioSource source;
 
 	// Use this for initialization
 	void Start ()

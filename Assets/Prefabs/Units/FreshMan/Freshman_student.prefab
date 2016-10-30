@@ -866,9 +866,10 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000011524580200}
   - 136: {fileID: 136000014170989696}
-  - 114: {fileID: 114000013301392412}
   - 195: {fileID: 195000012543937416}
   - 54: {fileID: 54000013360116166}
+  - 114: {fileID: 114000013301392412}
+  - 114: {fileID: 114000012536770096}
   m_Layer: 0
   m_Name: Freshman_student
   m_TagString: unit
@@ -1792,6 +1793,22 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &114000012536770096
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000013888679622}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ec943e3d8fc87f4d8786ea1ea07361d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  baseDamage: 5
+  baseRange: 2.5
+  baseCooldown: 1
+  upgradeFactor: 1.1
+  shootSound: {fileID: 0}
 --- !u!114 &114000013301392412
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1808,8 +1825,6 @@ MonoBehaviour:
   costCoins: 10
   rewardCoins: 10
   goal: {fileID: 4000012602783024, guid: c839f3d5ec503fe429715f930afaf77d, type: 2}
-  wep: {fileID: 1000013129042724, guid: 9f85bbeb579719e469dedec5492b9249, type: 2}
-  weapon: {fileID: 114000011872671916, guid: 9f85bbeb579719e469dedec5492b9249, type: 2}
 --- !u!136 &136000013034353544
 CapsuleCollider:
   m_ObjectHideFlags: 1
