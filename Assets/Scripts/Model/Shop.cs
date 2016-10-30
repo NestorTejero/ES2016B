@@ -9,7 +9,7 @@ using UnityEngine;
 public class Shop
 {
     private readonly List<Unit> availableUnits;
-    private readonly GameObject building;
+    private readonly Building building;
     // TODO list of positions to spawn Units
 
     public Shop()
@@ -19,7 +19,7 @@ public class Shop
         foreach (var o in objs)
             availableUnits.Add(o.GetComponent<Unit>());
 
-        building = GameObject.FindGameObjectWithTag("Building");
+        building = GameObject.FindGameObjectWithTag("Building").GetComponent<Building>();
     }
 
     public List<Unit> getAvailableUnits()
@@ -48,12 +48,11 @@ public class Shop
     public bool isBuildingRepairable(int numCoins)
     {
         // Reparable if there's enough coins to repair and there's health missing
-        return (building.GetComponent<Building>().repairCost <= numCoins) &&
-               (building.GetComponent<Building>().getMissingHealth() > 0);
+        return (building.repairCost <= numCoins) && (building.getMissingHealth() > 0);
     }
 
     public void repairBuilding()
     {
-        building.GetComponent<Building>().Repair();
+        building.Repair();
     }
 }
