@@ -4,12 +4,13 @@ using System.Collections.Generic;
 
 public class Tower : MonoBehaviour, CanUpgrade
 {
-	public Weapon weapon;
+    private Weapon weapon;
 	private int currentLevel;
     
     // Use this for initialization
     void Start ()
     {
+        this.weapon = this.gameObject.GetComponent<Weapon>();
         this.currentLevel = 0;
 		Debug.Log ("TOWER CREATED");
 	}
