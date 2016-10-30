@@ -1805,7 +1805,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   baseDamage: 5
-  baseRange: 2.5
+  baseRange: 12
   baseCooldown: 1
   upgradeFactor: 1.1
   shootSound: {fileID: 0}
