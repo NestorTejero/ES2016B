@@ -872,7 +872,7 @@ GameObject:
   - 114: {fileID: 114000012536770096}
   m_Layer: 0
   m_Name: Freshman_student
-  m_TagString: unit
+  m_TagString: Unit
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
