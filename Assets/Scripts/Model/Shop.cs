@@ -83,7 +83,7 @@ public class Shop : MonoBehaviour
         return false;
     }
 
-    public List<Tower> getPurchasableTowerUpgrades(int numCoins)
+    public List<Tower> getUpgradeableTowers(int numCoins)
     {
         return getAvailableTowers().Where(x => isTowerUpgradeable(x, numCoins)).ToList();
     }
