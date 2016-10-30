@@ -1,11 +1,15 @@
-﻿using UnityEngine;
-using System.Collections;
-
-public class HardAI : PlayerLogic
+﻿public class HardAI : PlayerLogic
 {
     // Makes the movement according to this AI
+    private void Start()
+    {
+    }
+
+    private void Update()
+    {
+    }
+
     public override void Play()
     {
-
     }
 }

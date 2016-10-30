@@ -1,10 +1,12 @@
-﻿public abstract class PlayerLogic
+﻿using UnityEngine;
+
+public abstract class PlayerLogic : MonoBehaviour
 {
     private int numCoins;
 
     public PlayerLogic()
     {
-        this.numCoins = 0;
+        numCoins = 0;
     }
 
     public abstract void Play();
