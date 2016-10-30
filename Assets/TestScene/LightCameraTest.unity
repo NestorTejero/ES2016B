@@ -1732,6 +1732,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameController: {fileID: 1000011688498418, guid: c5cd0f004f98f714995e5d843d78918a,
     type: 2}
+  shop: {fileID: 1000014043093526, guid: 42e3b4ca5bbd2cb4ba0ad03a70591d4b, type: 2}
 --- !u!1001 &1518507566
 Prefab:
   m_ObjectHideFlags: 0

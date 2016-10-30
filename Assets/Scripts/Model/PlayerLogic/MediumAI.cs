@@ -1,24 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class MediumAI : MonoBehaviour, PlayerLogic
+public class MediumAI : PlayerLogic
 {
+    // Makes the movement according to this AI
+    public override void Play()
+    {
 
-	// Use this for initialization
-	void Start ()
-	{
-	
-	}
-	
-	// Update is called once per frame
-	void Update ()
-	{
-	
-	}
-
-	// Makes the movement according to this AI
-	public void Play ()
-	{
-
-	}
+    }
 }

@@ -51,6 +51,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 982ae77851966ce418cff079122c7420, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerAttacker: {fileID: 0}
-  playerDefender: {fileID: 0}
   totalWaves: 0
