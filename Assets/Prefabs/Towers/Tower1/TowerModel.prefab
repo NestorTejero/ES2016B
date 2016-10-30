@@ -93,7 +93,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 2a055584652ad8c4ab2ad9c3b19a043f, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -200,7 +200,7 @@ MonoBehaviour:
   baseRange: 2.5
   baseCooldown: 1
   upgradeFactor: 1.1
-  shootSound: {fileID: 0}
+  shootSound: {fileID: 8300000, guid: 2a055584652ad8c4ab2ad9c3b19a043f, type: 3}
 --- !u!136 &136000012608490970
 CapsuleCollider:
   m_ObjectHideFlags: 1

@@ -46,12 +46,6 @@ public class Weapon : MonoBehaviour, CanUpgrade
 	{
 		this.currentDamage *= upgradeFactor;
 	}
-		
-	//USeed for sounds
-	void Awake()
-	{
-		this.source = GetComponent<AudioSource>();
-	}
 
 	// Get weapon's current damage
     public float getCurrentDamage()
@@ -75,7 +69,6 @@ public class Weapon : MonoBehaviour, CanUpgrade
 	{
 		// Checks if there is a target in the range
 		if (this.targets.Count > 0) {
-			Awake ();
 
 			// Get target to attack
 			CanReceiveDamage target = targets [0];
@@ -89,8 +82,9 @@ public class Weapon : MonoBehaviour, CanUpgrade
 			if (dead) {
 				this.targets.Remove (target);
 			}
-			float vol = Random.Range (.5f, 1.0f);
-			this.source.PlayOneShot (this.shootSound, vol);
+
+            this.source = GetComponent<AudioSource>();
+			this.source.PlayOneShot (this.shootSound);
 		}
 	}
 }
