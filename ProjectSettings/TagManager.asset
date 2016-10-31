@@ -7,6 +7,7 @@ TagManager:
   - Unit
   - Building
   - PurchasableUnit
+  - Tower
   layers:
   - Default
   - TransparentFX

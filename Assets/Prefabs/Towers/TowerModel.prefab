@@ -28,7 +28,7 @@ GameObject:
   - 114: {fileID: 114000012093082642}
   m_Layer: 0
   m_Name: TowerModel
-  m_TagString: Untagged
+  m_TagString: Tower
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -185,6 +185,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e97336b7d4616584e97bd98322705b9b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  upgradeCost: 1
 --- !u!114 &114000012093082642
 MonoBehaviour:
   m_ObjectHideFlags: 1

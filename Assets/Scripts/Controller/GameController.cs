@@ -15,8 +15,6 @@ public class GameController : MonoBehaviour
     public Player playerAttacker;
     public Player playerDefender;
 
-    public Shop shop;
-
     public int totalWaves;
 
     // Use this for initialization
@@ -25,13 +23,9 @@ public class GameController : MonoBehaviour
     {
         currentWave = 0;
 
-        playerAttacker = new Player();
-        playerAttacker.setLogic(new EasyAI()); // TODO choose when there'll be different difficulties
-
-        playerDefender = new Player();
-        playerDefender.setLogic(new HumanAI());
-
-        shop = new Shop();
+        // TODO choose when there'll be different difficulties, by now always EASY
+        playerAttacker = new EasyAI();
+        playerDefender = new HumanPlayer();
     }
 
     private void Awake()
@@ -72,12 +66,12 @@ public class GameController : MonoBehaviour
         if (dead is Building)
         {
             Debug.Log("GAME OVER Mate.");
-            // TODO Insert losing logic here
+            // JOAN => TODO Insert losing logic here
         }
         else if (dead is Unit)
         {
             Debug.Log(((Unit) dead).name + " is dead.");
-            playerDefender.notifyDeath((Unit) dead);
+            playerDefender.getMoney((Unit) dead);
         }
     }
 }
