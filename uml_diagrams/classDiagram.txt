@@ -20,29 +20,25 @@ class GameController << (S,#FF7700) Singleton >>{
     +notifyDeath(CanReceiveDamage dead) : void
 }
 
-class Player {
+GameController "1" -- "2" Player
+
+abstract class Player {
+    -numCoins : int
+    +{abstract}Play() : void
     +getMoney(Unit deadUnit) : void
 }
 
-GameController "1" -- "2" Player
-
-abstract class PlayerLogic {
-    -numCoins : int
-    +Play() : void
+class HumanPlayer extends Player {
 }
-
-class HumanAI extends PlayerLogic {
+class EasyAI extends Player {
 }
-class EasyAI extends PlayerLogic {
+class MediumAI extends Player {
 }
-class MediumAI extends PlayerLogic {
+class HardAI extends Player {
 }
-class HardAI extends PlayerLogic {
-}
-
-Player "1" -- "1" PlayerLogic
 
 class Shop << (S,#FF7700) Singleton >> {
+    +{static} instance : Shop
     --UNIT--
     +getAvailableUnits() : List<Unit>
     +isUnitPurchasable(Unit unitToPurchase, int numCoins) : bool
@@ -58,7 +54,7 @@ class Shop << (S,#FF7700) Singleton >> {
     +purchaseBuildingRepair() : void
 }
 
-PlayerLogic "*"--"1" Shop : buys from
+Player "*"--"1" Shop : buys from
 
 class Unit implements CanReceiveDamage{
     +baseHealth : float
