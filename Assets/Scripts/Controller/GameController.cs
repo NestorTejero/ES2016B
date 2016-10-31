@@ -24,8 +24,8 @@ public class GameController : MonoBehaviour
         currentWave = 0;
 
         // TODO choose when there'll be different difficulties, by now always EASY
-        playerAttacker = new Player(new EasyAI());
-        playerDefender = new Player(new HumanAI());
+        playerAttacker = new EasyAI();
+        playerDefender = new HumanPlayer();
     }
 
     private void Awake()

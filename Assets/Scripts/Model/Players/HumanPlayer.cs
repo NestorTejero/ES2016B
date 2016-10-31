@@ -1,4 +1,4 @@
-﻿public class MediumAI : PlayerLogic
+﻿public class HumanPlayer : Player
 {
     // Makes the movement according to this AI
     private void Start()

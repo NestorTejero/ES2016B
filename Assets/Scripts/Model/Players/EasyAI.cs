@@ -1,4 +1,4 @@
-﻿public class EasyAI : PlayerLogic
+﻿public class EasyAI : Player
 {
     // Makes the movement according to this AI
     private void Start()
