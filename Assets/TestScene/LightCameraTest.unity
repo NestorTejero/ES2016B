@@ -1628,8 +1628,8 @@ GameObject:
   - 92: {fileID: 1513357973}
   - 124: {fileID: 1513357972}
   - 81: {fileID: 1513357971}
-  - 114: {fileID: 1513357976}
   - 114: {fileID: 1513357977}
+  - 114: {fileID: 1513357976}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1698,10 +1698,10 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1513357970}
-  m_LocalRotation: {x: 0.12448501, y: 0.2981332, z: -0.039249968, w: 0.94555783}
-  m_LocalPosition: {x: 43.87, y: 20.53, z: 16.39}
+  m_LocalRotation: {x: 0.35355338, y: 0.35355338, z: -0.1464466, w: 0.8535535}
+  m_LocalPosition: {x: 40, y: 20, z: 25}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_LocalEulerAnglesHint: {x: 15, y: 35, z: 0}
+  m_LocalEulerAnglesHint: {x: 45, y: 45, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -1713,12 +1713,31 @@ MonoBehaviour:
   m_GameObject: {fileID: 1513357970}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f5350e6ce54f1b841ab4ba42628c7e47, type: 3}
+  m_Script: {fileID: 11500000, guid: 9e988c48b1c18e84891defb933dfe998, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeedV: 10
-  moveSpeedH: 30
-  ubCenter: {fileID: 1463266078}
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 1
+  position:
+    invertPan: 1
+    panSmooth: 7
+    distanceFromGround: 40
+    allowZoom: 1
+    zoomSmoth: 5
+    zoomStep: 5
+    maxZoom: 25
+    minZoom: 80
+    newDistance: 40
+  orbit:
+    xRotation: 50
+    yRotation: 0
+    allowOrbit: 0
+    yOrbitSmooth: 5
+  input:
+    PAN: MousePan
+    ORBIT_Y: MouseTurn
+    ZOOM: Mouse ScrollWheel
 --- !u!114 &1513357977
 MonoBehaviour:
   m_ObjectHideFlags: 0
