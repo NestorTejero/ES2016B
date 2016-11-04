@@ -11,10 +11,12 @@ public class Shop : MonoBehaviour
     public static Shop instance;
     private Building building;
     // TODO list of positions to spawn Units
+	public Transform[] spawnPoints;
 
     private void Start()
     {
         building = GameObject.FindGameObjectWithTag("Building").GetComponent<Building>();
+		spawnPoints = FindObjectsOfType<Enemies> ();
     }
 
     private void Awake()
@@ -62,6 +64,9 @@ public class Shop : MonoBehaviour
     public void purchaseUnit(Unit unitToPurchase)
     {
         // TODO Missing how to spawn it somewhere
+		int spawnIndex = Random.Range (0, spawnPoints.Length);
+		Instantiate (unitToPurchase, spawnPoints [spawnIndex].position, spawnPoints [spawnIndex].rotation);
+
     }
 
     //-------- UPGRADE TOWER --------//
