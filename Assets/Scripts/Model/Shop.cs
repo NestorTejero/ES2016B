@@ -16,7 +16,6 @@ public class Shop : MonoBehaviour
     private void Start()
     {
         building = GameObject.FindGameObjectWithTag("Building").GetComponent<Building>();
-		spawnPoints = FindObjectsOfType<Enemies> ();
     }
 
     private void Awake()
