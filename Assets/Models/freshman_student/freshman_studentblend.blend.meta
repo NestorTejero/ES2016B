@@ -158,10 +158,10 @@ ModelImporter:
     extraExposedTransformPaths: []
     clipAnimations:
     - serializedVersion: 16
-      name: attack
-      takeName: attack
-      firstFrame: 54
-      lastFrame: 80
+      name: Default Take
+      takeName: Default Take
+      firstFrame: -1
+      lastFrame: 81
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -302,7 +302,7 @@ ModelImporter:
         weight: 1
       maskType: 0
       maskSource: {instanceID: 0}
-      additiveReferencePoseFrame: 0
+      additiveReferencePoseFrame: 54
     - serializedVersion: 16
       name: freshmandead
       takeName: freshmandead
