@@ -6,7 +6,6 @@ TagManager:
   tags:
   - SpawnP
   - Building
-  - PurchasableUnit
   - Tower
   - Unit
   - Human

@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 
 /**
  * Singleton GameController class
@@ -59,7 +60,7 @@ public class GameController : MonoBehaviour
         if (dead is Building)
         {
             Debug.Log("GAME OVER Mate.");
-            // JOAN => TODO Insert losing logic here
+            SceneManager.LoadScene("MainMenu");
         }
         else if (dead is Unit)
         {
