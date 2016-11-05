@@ -12,9 +12,6 @@ public class GameController : MonoBehaviour
     private float maxSoundVolume;
     private float minSoundVolume;
 
-    public Player playerAttacker;
-    public Player playerDefender;
-
     public int totalWaves;
 
     // Use this for initialization
@@ -22,10 +19,6 @@ public class GameController : MonoBehaviour
     private void Start()
     {
         currentWave = 0;
-
-        // TODO choose when there'll be different difficulties, by now always EASY
-        playerAttacker = new EasyAI();
-        playerDefender = new HumanPlayer();
     }
 
     private void Awake()
@@ -71,7 +64,7 @@ public class GameController : MonoBehaviour
         else if (dead is Unit)
         {
             Debug.Log(((Unit) dead).name + " is dead.");
-            playerDefender.getMoney((Unit) dead);
+            GameObject.FindGameObjectWithTag("Human").GetComponent<Player>().getMoney((Unit) dead);
         }
     }
 }

@@ -8,6 +8,9 @@ TagManager:
   - Building
   - PurchasableUnit
   - Tower
+  - Unit
+  - Human
+  - AI
   layers:
   - Default
   - TransparentFX
