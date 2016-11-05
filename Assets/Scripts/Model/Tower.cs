@@ -4,12 +4,14 @@ using System.Collections.Generic;
 
 public class Tower : MonoBehaviour, CanUpgrade
 {
-	public Weapon weapon;
+    public int upgradeCost;
+    private Weapon weapon;
 	private int currentLevel;
     
     // Use this for initialization
     void Start ()
     {
+        this.weapon = this.gameObject.GetComponent<Weapon>();
         this.currentLevel = 0;
 		Debug.Log ("TOWER CREATED");
 	}
@@ -31,7 +33,7 @@ public class Tower : MonoBehaviour, CanUpgrade
 	// If enemy enters the range of attack
 	void OnTriggerEnter (Collider col)
 	{
-		if (col.gameObject.GetComponent<Unit> ()) {
+		if (col.gameObject.tag == "Unit") {
 			Debug.Log ("Tower " + this.name + " Collision with Unit");
 
 			// Adds enemy to attack to the queue
@@ -42,7 +44,7 @@ public class Tower : MonoBehaviour, CanUpgrade
 
 	// If enemy exits the range of attack
 	void OnTriggerExit (Collider col){
-		if (col.gameObject.GetComponent<Unit> ()) {
+		if (col.gameObject.tag == "Unit") {
 
 			// Removes enemy to attack from the queue
 			this.weapon.removeTarget (col.gameObject.GetComponent<CanReceiveDamage> ());

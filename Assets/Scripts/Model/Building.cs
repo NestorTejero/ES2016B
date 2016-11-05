@@ -33,7 +33,7 @@ public class Building : MonoBehaviour, CanUpgrade, CanRepair, CanReceiveDamage
         // TODO move this to controller
         if (this.timeToWin <= 0.0f)
         {
-            Application.LoadLevel("MainMenu");
+            Application.LoadLevel("MainMenu"); // TODO remove obsolete method
         }
         this.timeToWin -= Time.deltaTime * 1;
         //
@@ -66,12 +66,23 @@ public class Building : MonoBehaviour, CanUpgrade, CanRepair, CanReceiveDamage
 		//Debug.Log ("BUILDING DAMAGED by HP: " + proj.getDamage());
 
 		// TODO should be moved to Controller
-		if (this.currentHealth <= 0.0) {
-			Application.LoadLevel ("MainMenu");
+		if (this.currentHealth <= 0.0)
+		{
+		    Destroy(this.gameObject);
+			Application.LoadLevel ("MainMenu"); // TODO remove obsolete method
 			return true;
 		} else {
 			return false;
 		}
-		//
 	}
+
+    public float getMissingHealth()
+    {
+        return this.totalHealth - this.currentHealth;
+    }
+
+    void OnDestroy()
+    {
+        GameController.instance.notifyDeath(this); // Tell controller I'm dead
+    }
 }

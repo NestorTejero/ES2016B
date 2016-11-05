@@ -4,7 +4,10 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - enemy
+  - Unit
+  - Building
+  - PurchasableUnit
+  - Tower
   layers:
   - Default
   - TransparentFX

@@ -4,14 +4,14 @@ using System.Collections.Generic;
 
 public class Unit : MonoBehaviour, CanReceiveDamage
 {
-	public float baseHealth;
+    public float baseHealth;
     public float moveSpeed;
     public int costCoins;
     public int rewardCoins;
-	public Transform goal;
-	public Weapon weapon;
+    public Transform goal;
+    private Weapon weapon;
 
-	private float totalHealth;
+    private float totalHealth;
 	private float currentHealth;
 
 	// Use this for initialization
@@ -23,6 +23,8 @@ public class Unit : MonoBehaviour, CanReceiveDamage
 		// Unit movement towards the goal
         NavMeshAgent agent = GetComponent<NavMeshAgent>();
 		agent.destination = this.goal.position;
+
+	    this.weapon = this.gameObject.GetComponent<Weapon>();
 
         Debug.Log ("UNIT CREATED");
 	}
@@ -40,7 +42,8 @@ public class Unit : MonoBehaviour, CanReceiveDamage
 		Debug.Log ("Unit " + this.name +" currentHealth: " + this.currentHealth);
 		//Debug.Log("UNIT DAMAGED by HP: " + proj.getDamage());
 
-		if (this.currentHealth <= 0.0f) {
+		if (this.currentHealth <= 0.0f)
+		{
 			Destroy (this.gameObject);
 			Debug.Log ("Unit " + this.name + " is dead");
 			return true;
@@ -67,4 +70,9 @@ public class Unit : MonoBehaviour, CanReceiveDamage
 			this.weapon.removeTarget (col.gameObject.GetComponent<CanReceiveDamage> ());
 		}
 	}
+
+    void OnDestroy()
+    {
+        GameController.instance.notifyDeath(this); // Tell controller I'm dead
+    }
 }

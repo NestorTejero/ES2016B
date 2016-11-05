@@ -14,7 +14,7 @@ public class Weapon : MonoBehaviour, CanUpgrade
     private float currentRange;
     private float currentCooldown;
 	private List<CanReceiveDamage> targets;
-	private AudioSource source;
+    private AudioSource source;
 
 	// Use this for initialization
 	void Start ()
@@ -32,7 +32,10 @@ public class Weapon : MonoBehaviour, CanUpgrade
 		// Call Attack every 'cooldown' seconds
 		InvokeRepeating("Attack", 0.0f, this.currentCooldown);
 
-		Debug.Log ("WEAPON CREATED");
+        // Set sounds
+        this.source = GetComponent<AudioSource>();
+
+        Debug.Log ("WEAPON CREATED");
 	}
 
 	// Update is called once per frame
@@ -45,12 +48,6 @@ public class Weapon : MonoBehaviour, CanUpgrade
 	public void Upgrade ()
 	{
 		this.currentDamage *= upgradeFactor;
-	}
-		
-	//USeed for sounds
-	void Awake()
-	{
-		this.source = GetComponent<AudioSource>();
 	}
 
 	// Get weapon's current damage
@@ -75,7 +72,6 @@ public class Weapon : MonoBehaviour, CanUpgrade
 	{
 		// Checks if there is a target in the range
 		if (this.targets.Count > 0) {
-			Awake ();
 
 			// Get target to attack
 			CanReceiveDamage target = targets [0];
@@ -89,8 +85,9 @@ public class Weapon : MonoBehaviour, CanUpgrade
 			if (dead) {
 				this.targets.Remove (target);
 			}
-			float vol = Random.Range (.5f, 1.0f);
-			this.source.PlayOneShot (this.shootSound, vol);
+
+            // Play sound
+			this.source.PlayOneShot (this.shootSound);
 		}
 	}
 }
