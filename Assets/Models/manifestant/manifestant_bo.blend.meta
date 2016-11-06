@@ -127,7 +127,7 @@ ModelImporter:
     7400000: walking
     7400002: Manifestant_boAction
     7400004: manifestant_death
-    7400006: Atacking
+    7400006: manifestant_attacking
     7400008: manifestant_walking
     9500000: //RootNode
     13700000: Manifestant_bo_Body
@@ -299,7 +299,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Atacking
+      name: manifestant_attacking
       takeName: Atacking
       firstFrame: 30
       lastFrame: 49

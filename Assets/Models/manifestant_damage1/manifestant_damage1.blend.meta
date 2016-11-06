@@ -125,9 +125,9 @@ ModelImporter:
     4300002: Manifestant_bo_High-poly
     4300004: Manifestant_bo_Body
     7400000: Default Take
-    7400002: Atacking
-    7400004: manifestant_death
-    7400006: manifestant_walking
+    7400002: manifestant_d1_attacking
+    7400004: manifestant_d1_death
+    7400006: manifestant_d1_walking
     9500000: //RootNode
     13700000: Manifestant_bo_Body
     13700002: Manifestant_bo_High-poly
@@ -154,151 +154,7 @@ ModelImporter:
     extraExposedTransformPaths: []
     clipAnimations:
     - serializedVersion: 16
-      name: Default Take
-      takeName: Default Take
-      firstFrame: -1
-      lastFrame: 69
-      wrapMode: 0
-      orientationOffsetY: 0
-      level: 0
-      cycleOffset: 0
-      loop: 0
-      hasAdditiveReferencePose: 0
-      loopTime: 0
-      loopBlend: 0
-      loopBlendOrientation: 0
-      loopBlendPositionY: 0
-      loopBlendPositionXZ: 0
-      keepOriginalOrientation: 0
-      keepOriginalPositionY: 1
-      keepOriginalPositionXZ: 0
-      heightFromFeet: 0
-      mirror: 0
-      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
-      curves: []
-      events: []
-      transformMask:
-      - path: 
-        weight: 1
-      - path: Manifestant_bo
-        weight: 1
-      - path: Manifestant_bo/Root
-        weight: 1
-      - path: Manifestant_bo/Root/pelvis
-        weight: 1
-      - path: Manifestant_bo/Root/pelvis/spine_01
-        weight: 1
-      - path: Manifestant_bo/Root/pelvis/spine_01/spine_02
-        weight: 1
-      - path: Manifestant_bo/Root/pelvis/spine_01/spine_02/spine_03
-        weight: 1
-      - path: Manifestant_bo/Root/pelvis/spine_01/spine_02/spine_03/clavicle_l
-        weight: 1
-      - path: Manifestant_bo/Root/pelvis/spine_01/spine_02/spine_03/clavicle_l/upperarm_l
-        weight: 1
-      - path: Manifestant_bo/Root/pelvis/spine_01/spine_02/spine_03/clavicle_l/upperarm_l/lowerarm_l
-        weight: 1
-      - path: Manifestant_bo/Root/pelvis/spine_01/spine_02/spine_03/clavicle_l/upperarm_l/lowerarm_l/hand_l
-        weight: 1
-      - path: Manifestant_bo/Root/pelvis/spine_01/spine_02/spine_03/clavicle_l/upperarm_l/lowerarm_l/hand_l/index_01_l
-        weight: 1
-      - path: Manifestant_bo/Root/pelvis/spine_01/spine_02/spine_03/clavicle_l/upperarm_l/lowerarm_l/hand_l/index_01_l/index_02_l
-        weight: 1
-      - path: Manifestant_bo/Root/pelvis/spine_01/spine_02/spine_03/clavicle_l/upperarm_l/lowerarm_l/hand_l/index_01_l/index_02_l/index_03_l
-        weight: 1
-      - path: Manifestant_bo/Root/pelvis/spine_01/spine_02/spine_03/clavicle_l/upperarm_l/lowerarm_l/hand_l/middle_01_l
-        weight: 1
-      - path: Manifestant_bo/Root/pelvis/spine_01/spine_02/spine_03/clavicle_l/upperarm_l/lowerarm_l/hand_l/middle_01_l/middle_02_l
-        weight: 1
-      - path: Manifestant_bo/Root/pelvis/spine_01/spine_02/spine_03/clavicle_l/upperarm_l/lowerarm_l/hand_l/middle_01_l/middle_02_l/middle_03_l
-        weight: 1
-      - path: Manifestant_bo/Root/pelvis/spine_01/spine_02/spine_03/clavicle_l/upperarm_l/lowerarm_l/hand_l/pinky_01_l
-        weight: 1
-      - path: Manifestant_bo/Root/pelvis/spine_01/spine_02/spine_03/clavicle_l/upperarm_l/lowerarm_l/hand_l/pinky_01_l/pinky_02_l
-        weight: 1
-      - path: Manifestant_bo/Root/pelvis/spine_01/spine_02/spine_03/clavicle_l/upperarm_l/lowerarm_l/hand_l/pinky_01_l/pinky_02_l/pinky_03_l
-        weight: 1
-      - path: Manifestant_bo/Root/pelvis/spine_01/spine_02/spine_03/clavicle_l/upperarm_l/lowerarm_l/hand_l/ring_01_l
-        weight: 1
-      - path: Manifestant_bo/Root/pelvis/spine_01/spine_02/spine_03/clavicle_l/upperarm_l/lowerarm_l/hand_l/ring_01_l/ring_02_l
-        weight: 1
-      - path: Manifestant_bo/Root/pelvis/spine_01/spine_02/spine_03/clavicle_l/upperarm_l/lowerarm_l/hand_l/ring_01_l/ring_02_l/ring_03_l
-        weight: 1
-      - path: Manifestant_bo/Root/pelvis/spine_01/spine_02/spine_03/clavicle_l/upperarm_l/lowerarm_l/hand_l/thumb_01_l
-        weight: 1
-      - path: Manifestant_bo/Root/pelvis/spine_01/spine_02/spine_03/clavicle_l/upperarm_l/lowerarm_l/hand_l/thumb_01_l/thumb_02_l
-        weight: 1
-      - path: Manifestant_bo/Root/pelvis/spine_01/spine_02/spine_03/clavicle_l/upperarm_l/lowerarm_l/hand_l/thumb_01_l/thumb_02_l/thumb_03_l
-        weight: 1
-      - path: Manifestant_bo/Root/pelvis/spine_01/spine_02/spine_03/clavicle_r
-        weight: 1
-      - path: Manifestant_bo/Root/pelvis/spine_01/spine_02/spine_03/clavicle_r/upperarm_r
-        weight: 1
-      - path: Manifestant_bo/Root/pelvis/spine_01/spine_02/spine_03/clavicle_r/upperarm_r/lowerarm_r
-        weight: 1
-      - path: Manifestant_bo/Root/pelvis/spine_01/spine_02/spine_03/clavicle_r/upperarm_r/lowerarm_r/hand_r
-        weight: 1
-      - path: Manifestant_bo/Root/pelvis/spine_01/spine_02/spine_03/clavicle_r/upperarm_r/lowerarm_r/hand_r/index_01_r
-        weight: 1
-      - path: Manifestant_bo/Root/pelvis/spine_01/spine_02/spine_03/clavicle_r/upperarm_r/lowerarm_r/hand_r/index_01_r/index_02_r
-        weight: 1
-      - path: Manifestant_bo/Root/pelvis/spine_01/spine_02/spine_03/clavicle_r/upperarm_r/lowerarm_r/hand_r/index_01_r/index_02_r/index_03_r
-        weight: 1
-      - path: Manifestant_bo/Root/pelvis/spine_01/spine_02/spine_03/clavicle_r/upperarm_r/lowerarm_r/hand_r/middle_01_r
-        weight: 1
-      - path: Manifestant_bo/Root/pelvis/spine_01/spine_02/spine_03/clavicle_r/upperarm_r/lowerarm_r/hand_r/middle_01_r/middle_02_r
-        weight: 1
-      - path: Manifestant_bo/Root/pelvis/spine_01/spine_02/spine_03/clavicle_r/upperarm_r/lowerarm_r/hand_r/middle_01_r/middle_02_r/middle_03_r
-        weight: 1
-      - path: Manifestant_bo/Root/pelvis/spine_01/spine_02/spine_03/clavicle_r/upperarm_r/lowerarm_r/hand_r/pinky_01_r
-        weight: 1
-      - path: Manifestant_bo/Root/pelvis/spine_01/spine_02/spine_03/clavicle_r/upperarm_r/lowerarm_r/hand_r/pinky_01_r/pinky_02_r
-        weight: 1
-      - path: Manifestant_bo/Root/pelvis/spine_01/spine_02/spine_03/clavicle_r/upperarm_r/lowerarm_r/hand_r/pinky_01_r/pinky_02_r/pinky_03_r
-        weight: 1
-      - path: Manifestant_bo/Root/pelvis/spine_01/spine_02/spine_03/clavicle_r/upperarm_r/lowerarm_r/hand_r/ring_01_r
-        weight: 1
-      - path: Manifestant_bo/Root/pelvis/spine_01/spine_02/spine_03/clavicle_r/upperarm_r/lowerarm_r/hand_r/ring_01_r/ring_02_r
-        weight: 1
-      - path: Manifestant_bo/Root/pelvis/spine_01/spine_02/spine_03/clavicle_r/upperarm_r/lowerarm_r/hand_r/ring_01_r/ring_02_r/ring_03_r
-        weight: 1
-      - path: Manifestant_bo/Root/pelvis/spine_01/spine_02/spine_03/clavicle_r/upperarm_r/lowerarm_r/hand_r/thumb_01_r
-        weight: 1
-      - path: Manifestant_bo/Root/pelvis/spine_01/spine_02/spine_03/clavicle_r/upperarm_r/lowerarm_r/hand_r/thumb_01_r/thumb_02_r
-        weight: 1
-      - path: Manifestant_bo/Root/pelvis/spine_01/spine_02/spine_03/clavicle_r/upperarm_r/lowerarm_r/hand_r/thumb_01_r/thumb_02_r/thumb_03_r
-        weight: 1
-      - path: Manifestant_bo/Root/pelvis/spine_01/spine_02/spine_03/neck_01
-        weight: 1
-      - path: Manifestant_bo/Root/pelvis/spine_01/spine_02/spine_03/neck_01/head
-        weight: 1
-      - path: Manifestant_bo/Root/pelvis/thigh_l
-        weight: 1
-      - path: Manifestant_bo/Root/pelvis/thigh_l/calf_l
-        weight: 1
-      - path: Manifestant_bo/Root/pelvis/thigh_l/calf_l/foot_l
-        weight: 1
-      - path: Manifestant_bo/Root/pelvis/thigh_l/calf_l/foot_l/ball_l
-        weight: 1
-      - path: Manifestant_bo/Root/pelvis/thigh_r
-        weight: 1
-      - path: Manifestant_bo/Root/pelvis/thigh_r/calf_r
-        weight: 1
-      - path: Manifestant_bo/Root/pelvis/thigh_r/calf_r/foot_r
-        weight: 1
-      - path: Manifestant_bo/Root/pelvis/thigh_r/calf_r/foot_r/ball_r
-        weight: 1
-      - path: Manifestant_bo_Body
-        weight: 1
-      - path: Manifestant_bo_High-poly
-        weight: 1
-      - path: Manifestant_bo_Roba_manifestant
-        weight: 1
-      maskType: 0
-      maskSource: {instanceID: 0}
-      additiveReferencePoseFrame: 0
-    - serializedVersion: 16
-      name: Atacking
+      name: manifestant_d1_attacking
       takeName: Atacking
       firstFrame: 30
       lastFrame: 49
@@ -442,7 +298,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: manifestant_death
+      name: manifestant_d1_death
       takeName: manifestant_death
       firstFrame: 50
       lastFrame: 69
@@ -586,7 +442,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: manifestant_walking
+      name: manifestant_d1_walking
       takeName: manifestant_walking
       firstFrame: -1
       lastFrame: 30
