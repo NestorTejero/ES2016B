@@ -17,6 +17,7 @@ public class TerrainGrid : MonoBehaviour {
 	//private Vector3 terrainSize;
 
 	int gridX, gridZ;
+	public GameObject tower;
 
 	void Start() {
 
@@ -55,6 +56,34 @@ public class TerrainGrid : MonoBehaviour {
 	}
 
 	void GetInputs(){
+		if (Input.GetMouseButtonDown (0)) {
+			RaycastHit hit;
+			Ray ray = Camera.main.ScreenPointToRay (Input.mousePosition);
+			if (Physics.Raycast (ray, out hit)) {
+				if (hit.transform != null) {
+					Vector3 aux = Vector3.zero;
+					aux.x = (int)hit.point.x;
+					aux.y = (int)hit.point.y;
+					aux.z = (int)hit.point.z;
+					Debug.Log (aux);
+					bool valid = IsCellValid ((int)aux.x, (int)aux.z);
+					Debug.Log (valid);
+
+					bool insideGrid = false;
+					if ((int)aux.x <= gridWidth && (int)aux.z <= gridHeight)
+						insideGrid = true;
+
+					if (gridVisible && valid && insideGrid) {
+						aux.y = 0;
+						GameObject t = (GameObject)Instantiate (tower, aux,transform.rotation);
+						t.GetComponentInChildren<CapsuleCollider> ().radius = 15;
+						t.GetComponentInChildren<CapsuleCollider> ().height = 30;
+						toggleGrid ();
+					}
+				}
+			}
+		}
+
 		if (Input.GetKeyDown (KeyCode.A)) {
 			toggleGrid ();
 		}
