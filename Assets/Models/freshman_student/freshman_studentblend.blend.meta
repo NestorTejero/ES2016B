@@ -128,8 +128,8 @@ ModelImporter:
     4300004: Freshman_High-poly
     4300006: Freshman_Body
     7400000: Default Take
-    7400002: walk
-    7400004: attack
+    7400002: freshman_walk
+    7400004: freshman_attack
     7400006: freshmandead
     9500000: //RootNode
     13700000: Freshman_Body
@@ -158,10 +158,10 @@ ModelImporter:
     extraExposedTransformPaths: []
     clipAnimations:
     - serializedVersion: 16
-      name: Default Take
-      takeName: Default Take
-      firstFrame: -1
-      lastFrame: 81
+      name: freshman_attack
+      takeName: attack
+      firstFrame: 54
+      lastFrame: 80
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -450,7 +450,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: walk
+      name: freshman_walk
       takeName: walk
       firstFrame: 19
       lastFrame: 53
