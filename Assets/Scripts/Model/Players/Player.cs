@@ -5,7 +5,7 @@ public abstract class Player : MonoBehaviour
 {
     protected List<Unit> availableUnits;
     public int initialCoins;
-    protected int numCoins;
+    protected float numCoins;
 
     public abstract void Play();
 
@@ -13,10 +13,6 @@ public abstract class Player : MonoBehaviour
     {
         numCoins = initialCoins;
         InvokeRepeating("Play", 3.0f, 2.0f);
-    }
-
-    private void Update()
-    {
     }
 
     public void addCoins(int coins)
