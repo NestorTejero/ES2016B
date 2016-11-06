@@ -24,7 +24,7 @@ public class Weapon : MonoBehaviour, CanUpgrade
 	    this.currentCooldown = this.baseCooldown;
 
 		// Collider of the tower attached to this script
-		this.gameObject.GetComponent<CapsuleCollider> ().radius = this.currentRange;
+		this.gameObject.GetComponentInChildren<CapsuleCollider>().radius = this.currentRange;
 
 		// List of targets assigned to the weapon
 		this.targets = new List<CanReceiveDamage>();

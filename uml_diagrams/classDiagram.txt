@@ -4,51 +4,68 @@ interface CanUpgrade {
     +Upgrade() : void
 }
 interface CanReceiveDamage {
-    +ReceiveDamage(Weapon wep) : void
+    +ReceiveDamage(Projectile proj) : void
 }
 interface CanRepair {
     +Repair() : void
 }
 
-interface PlayerLogic {
-    +Play() : void
-}
-
-class GameController {
+class GameController << (S,#FF7700) Singleton >>{
+    +{static} instance : GameController
     +totalWaves : int
     -currentWave : int
     -minSoundVolume : float
     -maxSoundVolume : float
     -currentSoundVolume : float
-}
-
-class Player {
-    +numCoins : int
+    +notifyDeath(CanReceiveDamage dead) : void
 }
 
 GameController "1" -- "2" Player
 
-class HumanAI implements PlayerLogic {
-}
-class EasyAI implements PlayerLogic {
-}
-class MediumAI implements PlayerLogic {
-}
-class HardAI implements PlayerLogic {
+abstract class Player {
+    -numCoins : int
+    +{abstract}Play() : void
+    +getMoney(Unit deadUnit) : void
 }
 
-Player "1" -- "1" PlayerLogic
+class HumanPlayer extends Player {
+}
+class EasyAI extends Player {
+}
+class MediumAI extends Player {
+}
+class HardAI extends Player {
+}
+
+class Shop << (S,#FF7700) Singleton >> {
+    +{static} instance : Shop
+    --UNIT--
+    +getAvailableUnits() : List<Unit>
+    +isUnitPurchasable(Unit unitToPurchase, int numCoins) : bool
+    +getPurchasableUnits(int numCoins) : List<Unit>
+    +purchaseUnit(Unit unitToPurchase) : void
+    --TOWER--
+    +getAvailableTowers() : List<Tower>
+    +isTowerUpgradeable(Tower tower, int numCoins) : bool
+    +getUpgradeableTowers(int numCoins) : List<Tower>
+    +purchaseTowerUpgrade(Tower tower) : void
+    --BUILDING--
+    +isBuildingRepairable(int numCoins) : bool
+    +purchaseBuildingRepair() : void
+}
+
+Player "*"--"1" Shop : buys from
 
 class Unit implements CanReceiveDamage{
     +baseHealth : float
     -totalHealth : float
     -currentHealth : float
     +moveSpeed : float
-    +cost : int
+    +costCoins : int
     +rewardCoins : int
 }
 
-Player "1" -- "*" Unit
+GameController "1" -- "*" Unit : notifies
 
 class Weapon implements CanUpgrade{
     +baseDamage : float
@@ -63,10 +80,11 @@ class Weapon implements CanUpgrade{
 
 class Projectile {
     -projectileSpeed : float
+    -damage : float
     -target : CanReceiveDamage
 }
 
-Weapon "1" -- "*" Projectile
+Weapon "1" -- "*" Projectile : creates
 
 Unit "1" -- "1" Weapon
 Tower "1" -- "1" Weapon
@@ -80,14 +98,14 @@ class Building implements CanUpgrade, CanReceiveDamage, CanRepair {
     +upgradeCost : int
     +repairQuantity : float
     +repairCost : int
+    +getMissingHealth() : float
 }
 
-Player "1" -- "1" Building
+GameController "1" -- "1" Building : notifies
 
 class Tower implements CanUpgrade {
     -currentLevel : int
+    +upgradeCost : int
 }
-
-Player "1" -- "*" Tower
 
 @enduml
