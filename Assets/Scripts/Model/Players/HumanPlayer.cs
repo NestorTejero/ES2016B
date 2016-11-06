@@ -5,4 +5,7 @@
     public override void Play()
     {
     }
+	public override void PlayAI()
+	{
+	}
 }
