@@ -19,7 +19,8 @@ public class GameController : MonoBehaviour
 
     private void Start()
     {
-        currentWave = 0;
+        currentWave = 1;
+		totalWaves = 2; //TODO: this number changes depending of AI level
     }
 
     private void Awake()
@@ -60,7 +61,8 @@ public class GameController : MonoBehaviour
         if (dead is Building)
         {
             Debug.Log("GAME OVER Mate.");
-            SceneManager.LoadScene("MainMenu");
+            //SceneManager.LoadScene("MainMenu");
+			Application.Quit();
         }
         else if (dead is Unit)
         {
@@ -68,4 +70,14 @@ public class GameController : MonoBehaviour
             GameObject.FindGameObjectWithTag("Human").GetComponent<Player>().getMoney((Unit) dead);
         }
     }
+
+	public void notifyWaveClear (Player AI)
+	{
+		currentWave += 1;
+		Debug.Log ("Wave CLEAR!");
+		if (currentWave > totalWaves){
+			SceneManager.LoadScene("MainMenu");
+		}
+		AI.timeToUpgrade ();
+	}
 }

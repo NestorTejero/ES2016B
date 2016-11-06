@@ -2,18 +2,32 @@
 
 public class EasyAI : Player
 {
+
     // Makes the movement according to this AI
 
-    public override void Play()
+	public override void Play(){
+		//Empty method
+	}
+
+    public override void PlayAI()
     {
 		InvokeRepeating ("autoCoins", 0.0f, 1.0f);
-		var availableUnits = Shop.instance.getPurchasableUnits(numCoins);
-        var unit = availableUnits[0];
-		if (Shop.instance.isUnitPurchasable(unit, numCoins))
-        {
-            Shop.instance.purchaseUnit(unit);
-            Debug.Log("new unit purchased");
-        }
+		//create 20 units every wave
+		if (unitsWave < 20) {
+			var availableUnits = Shop.instance.getPurchasableUnits (numCoins);
+			var unit = availableUnits [0];
+			if (Shop.instance.isUnitPurchasable (unit, numCoins)) {
+				Shop.instance.purchaseUnit (unit);
+				Debug.Log ("new unit purchased");
+				unitsWave += 1;
+			}
+		}else{
+			if(!GameObject.FindObjectOfType(typeof(Unit))){
+				GameController.instance.notifyWaveClear(this);
+				unitsWave = 0;
+			}		
+		}
+
     }
 
 	private void autoCoins(){
