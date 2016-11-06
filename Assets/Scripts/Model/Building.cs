@@ -14,7 +14,6 @@ public class Building : MonoBehaviour, CanUpgrade, CanRepair, CanReceiveDamage
 	public float repairQuantity;
     public float repairCost;
 
-    private float timeToWin; // TODO move this to Controller
 
 	// Use this for initialization
 	void Start ()
@@ -23,7 +22,6 @@ public class Building : MonoBehaviour, CanUpgrade, CanRepair, CanReceiveDamage
 		this.currentHealth = this.baseHealth;
 	    this.totalHealth = this.baseHealth;
 
-        this.timeToWin = 30.0f; // TODO move this to controller
 
         Debug.Log ("BUILDING CREATED with HP: " + this.baseHealth);
 	}
@@ -31,13 +29,6 @@ public class Building : MonoBehaviour, CanUpgrade, CanRepair, CanReceiveDamage
 	// Update is called once per frame
 	void Update ()
 	{
-        // TODO move this to controller
-        if (this.timeToWin <= 0.0f)
-        {
-            SceneManager.LoadScene("MainMenu");
-        }
-        this.timeToWin -= Time.deltaTime * 1;
-        //
     }
 
 	// To upgrade when there are enough coins
@@ -79,4 +70,6 @@ public class Building : MonoBehaviour, CanUpgrade, CanRepair, CanReceiveDamage
     {
         return this.totalHealth - this.currentHealth;
     }
+
+
 }
