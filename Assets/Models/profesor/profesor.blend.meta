@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 0a2346bc162f8f64eb05f37032a1ff42
-timeCreated: 1477581240
+timeCreated: 1478468814
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
@@ -38,34 +38,36 @@ ModelImporter:
     100060: pinky_02_r
     100062: pinky_03_l
     100064: pinky_03_r
-    100066: //RootNode
-    100068: Profesor_makehumanmhx2
-    100070: Profesor_makehumanmhx2_Body
-    100072: Profesor_makehumanmhx2_Eyebrow004
-    100074: Profesor_makehumanmhx2_Low-poly
-    100076: Profesor_makehumanmhx2_Male_casualsuit01
-    100078: Profesor_makehumanmhx2_Shoes04
-    100080: Profesor_makehumanmhx2_Short03
-    100082: ring_01_l
-    100084: ring_01_r
-    100086: ring_02_l
-    100088: ring_02_r
-    100090: ring_03_l
-    100092: ring_03_r
-    100094: Root
-    100096: spine_01
-    100098: spine_02
-    100100: spine_03
-    100102: thigh_l
-    100104: thigh_r
-    100106: thumb_01_l
-    100108: thumb_01_r
-    100110: thumb_02_l
-    100112: thumb_02_r
-    100114: thumb_03_l
-    100116: thumb_03_r
-    100118: upperarm_l
-    100120: upperarm_r
+    100066: Plane
+    100068: //RootNode
+    100070: Profesor_makehumanmhx2
+    100072: Profesor_makehumanmhx2_Body
+    100074: Profesor_makehumanmhx2_Eyebrow004
+    100076: Profesor_makehumanmhx2_Low-poly
+    100078: Profesor_makehumanmhx2_Male_casualsuit01
+    100080: Profesor_makehumanmhx2_Shoes04
+    100082: Profesor_makehumanmhx2_Short03
+    100084: ring_01_l
+    100086: ring_01_r
+    100088: ring_02_l
+    100090: ring_02_r
+    100092: ring_03_l
+    100094: ring_03_r
+    100096: Root
+    100098: spine_01
+    100100: spine_02
+    100102: spine_03
+    100104: thigh_l
+    100106: thigh_r
+    100108: thumb_01_l
+    100110: thumb_01_r
+    100112: thumb_02_l
+    100114: thumb_02_r
+    100116: thumb_03_l
+    100118: thumb_03_r
+    100120: upperarm_l
+    100122: upperarm_r
+    100124: WGT-root
     400000: ball_l
     400002: ball_r
     400004: calf_l
@@ -99,49 +101,58 @@ ModelImporter:
     400060: pinky_02_r
     400062: pinky_03_l
     400064: pinky_03_r
-    400066: //RootNode
-    400068: Profesor_makehumanmhx2
-    400070: Profesor_makehumanmhx2_Body
-    400072: Profesor_makehumanmhx2_Eyebrow004
-    400074: Profesor_makehumanmhx2_Low-poly
-    400076: Profesor_makehumanmhx2_Male_casualsuit01
-    400078: Profesor_makehumanmhx2_Shoes04
-    400080: Profesor_makehumanmhx2_Short03
-    400082: ring_01_l
-    400084: ring_01_r
-    400086: ring_02_l
-    400088: ring_02_r
-    400090: ring_03_l
-    400092: ring_03_r
-    400094: Root
-    400096: spine_01
-    400098: spine_02
-    400100: spine_03
-    400102: thigh_l
-    400104: thigh_r
-    400106: thumb_01_l
-    400108: thumb_01_r
-    400110: thumb_02_l
-    400112: thumb_02_r
-    400114: thumb_03_l
-    400116: thumb_03_r
-    400118: upperarm_l
-    400120: upperarm_r
-    4300000: Profesor_makehumanmhx2_Male_casualsuit01
-    4300002: Profesor_makehumanmhx2_Shoes04
-    4300004: Profesor_makehumanmhx2_Eyebrow004
-    4300006: Profesor_makehumanmhx2_Low-poly
-    4300008: Profesor_makehumanmhx2_Short03
-    4300010: Profesor_makehumanmhx2_Body
+    400066: Plane
+    400068: //RootNode
+    400070: Profesor_makehumanmhx2
+    400072: Profesor_makehumanmhx2_Body
+    400074: Profesor_makehumanmhx2_Eyebrow004
+    400076: Profesor_makehumanmhx2_Low-poly
+    400078: Profesor_makehumanmhx2_Male_casualsuit01
+    400080: Profesor_makehumanmhx2_Shoes04
+    400082: Profesor_makehumanmhx2_Short03
+    400084: ring_01_l
+    400086: ring_01_r
+    400088: ring_02_l
+    400090: ring_02_r
+    400092: ring_03_l
+    400094: ring_03_r
+    400096: Root
+    400098: spine_01
+    400100: spine_02
+    400102: spine_03
+    400104: thigh_l
+    400106: thigh_r
+    400108: thumb_01_l
+    400110: thumb_01_r
+    400112: thumb_02_l
+    400114: thumb_02_r
+    400116: thumb_03_l
+    400118: thumb_03_r
+    400120: upperarm_l
+    400122: upperarm_r
+    400124: WGT-root
+    2300000: WGT-root
+    3300000: WGT-root
+    4300000: WGT-root
+    4300002: Plane
+    4300004: Profesor_makehumanmhx2_Male_casualsuit01
+    4300006: Profesor_makehumanmhx2_Shoes04
+    4300008: Profesor_makehumanmhx2_Eyebrow004
+    4300010: Profesor_makehumanmhx2_Low-poly
+    4300012: Profesor_makehumanmhx2_Short03
+    4300014: Profesor_makehumanmhx2_Body
     7400000: Default Take
-    7400002: Action
+    7400002: attacking
+    7400004: dies
+    7400006: walking
     9500000: //RootNode
-    13700000: Profesor_makehumanmhx2_Body
-    13700002: Profesor_makehumanmhx2_Eyebrow004
-    13700004: Profesor_makehumanmhx2_Low-poly
-    13700006: Profesor_makehumanmhx2_Male_casualsuit01
-    13700008: Profesor_makehumanmhx2_Shoes04
-    13700010: Profesor_makehumanmhx2_Short03
+    13700000: Plane
+    13700002: Profesor_makehumanmhx2_Body
+    13700004: Profesor_makehumanmhx2_Eyebrow004
+    13700006: Profesor_makehumanmhx2_Low-poly
+    13700008: Profesor_makehumanmhx2_Male_casualsuit01
+    13700010: Profesor_makehumanmhx2_Shoes04
+    13700012: Profesor_makehumanmhx2_Short03
   materials:
     importMaterials: 1
     materialName: 0
