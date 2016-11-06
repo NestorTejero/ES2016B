@@ -15,10 +15,6 @@ public abstract class Player : MonoBehaviour
         InvokeRepeating("Play", 3.0f, 2.0f);
     }
 
-    private void Update()
-    {
-    }
-
     public void addCoins(int coins)
     {
         numCoins += coins;
