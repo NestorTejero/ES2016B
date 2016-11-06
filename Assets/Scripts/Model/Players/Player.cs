@@ -5,7 +5,7 @@ public abstract class Player : MonoBehaviour
 {
     protected List<Unit> availableUnits;
     public int initialCoins;
-    protected float numCoins;
+    protected int numCoins;
 
     public abstract void Play();
 

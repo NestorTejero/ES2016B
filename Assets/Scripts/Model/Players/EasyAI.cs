@@ -6,18 +6,19 @@ public class EasyAI : Player
 
     public override void Play()
     {
-		var availableUnits = Shop.instance.getPurchasableUnits((int)numCoins);
+		InvokeRepeating ("autoCoins", 0.0f, 1.0f);
+		var availableUnits = Shop.instance.getPurchasableUnits(numCoins);
         var unit = availableUnits[0];
-		if (Shop.instance.isUnitPurchasable(unit, (int)numCoins))
+		if (Shop.instance.isUnitPurchasable(unit, numCoins))
         {
             Shop.instance.purchaseUnit(unit);
             Debug.Log("new unit purchased");
         }
     }
-	void Update()
-	{
-		//AI wins 20 coins x second
-		numCoins += Time.deltaTime * 20;
+
+	private void autoCoins(){
+		//AI wins 20 coins every second
+		numCoins += 20;
 	}
 		
 }
