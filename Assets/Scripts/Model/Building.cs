@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class Building : MonoBehaviour, CanUpgrade, CanRepair, CanReceiveDamage
 {
@@ -13,7 +14,6 @@ public class Building : MonoBehaviour, CanUpgrade, CanRepair, CanReceiveDamage
 	public float repairQuantity;
     public float repairCost;
 
-    private float timeToWin; // TODO move this to Controller
 
 	// Use this for initialization
 	void Start ()
@@ -22,7 +22,6 @@ public class Building : MonoBehaviour, CanUpgrade, CanRepair, CanReceiveDamage
 		this.currentHealth = this.baseHealth;
 	    this.totalHealth = this.baseHealth;
 
-        this.timeToWin = 30.0f; // TODO move this to controller
 
         Debug.Log ("BUILDING CREATED with HP: " + this.baseHealth);
 	}
@@ -30,13 +29,6 @@ public class Building : MonoBehaviour, CanUpgrade, CanRepair, CanReceiveDamage
 	// Update is called once per frame
 	void Update ()
 	{
-        // TODO move this to controller
-        if (this.timeToWin <= 0.0f)
-        {
-            Application.LoadLevel("MainMenu"); // TODO remove obsolete method
-        }
-        this.timeToWin -= Time.deltaTime * 1;
-        //
     }
 
 	// To upgrade when there are enough coins
@@ -65,11 +57,9 @@ public class Building : MonoBehaviour, CanUpgrade, CanRepair, CanReceiveDamage
 		Debug.Log ("Building's currentHealth: " + this.currentHealth);
 		//Debug.Log ("BUILDING DAMAGED by HP: " + proj.getDamage());
 
-		// TODO should be moved to Controller
 		if (this.currentHealth <= 0.0)
 		{
-		    Destroy(this.gameObject);
-			Application.LoadLevel ("MainMenu"); // TODO remove obsolete method
+            GameController.instance.notifyDeath(this);
 			return true;
 		} else {
 			return false;
@@ -81,8 +71,5 @@ public class Building : MonoBehaviour, CanUpgrade, CanRepair, CanReceiveDamage
         return this.totalHealth - this.currentHealth;
     }
 
-    void OnDestroy()
-    {
-        GameController.instance.notifyDeath(this); // Tell controller I'm dead
-    }
+
 }
