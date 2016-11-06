@@ -1,16 +1,17 @@
-﻿public class EasyAI : Player
+﻿using UnityEngine;
+
+public class EasyAI : Player
 {
     // Makes the movement according to this AI
-    private void Start()
-    {
-        numCoins = 0;
-    }
-
-    private void Update()
-    {
-    }
 
     public override void Play()
     {
+        var availableUnits = Shop.instance.getPurchasableUnits(numCoins);
+        var unit = availableUnits[0];
+        if (Shop.instance.isUnitPurchasable(unit, numCoins))
+        {
+            Shop.instance.purchaseUnit(unit);
+            Debug.Log("new unit purchased");
+        }
     }
 }

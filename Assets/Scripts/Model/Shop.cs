@@ -9,12 +9,13 @@ using UnityEngine;
 public class Shop : MonoBehaviour
 {
     public static Shop instance;
-    private Building building;
-    // TODO list of positions to spawn Units
+    public GameObject building;
+
+    public Transform[] respawns;
+    public List<GameObject> units;
 
     private void Start()
     {
-        building = GameObject.FindGameObjectWithTag("Building").GetComponent<Building>();
     }
 
     private void Awake()
@@ -41,8 +42,7 @@ public class Shop : MonoBehaviour
     public List<Unit> getAvailableUnits()
     {
         var availableUnits = new List<Unit>();
-        var objs = GameObject.FindGameObjectsWithTag("PurchasableUnit");
-        foreach (var o in objs)
+        foreach (var o in units)
             availableUnits.Add(o.GetComponent<Unit>());
         return availableUnits;
     }
@@ -61,7 +61,10 @@ public class Shop : MonoBehaviour
 
     public void purchaseUnit(Unit unitToPurchase)
     {
-        // TODO Missing how to spawn it somewhere
+        // TODO do with tags
+        var unitToPut = units.Where(x => x.GetComponent<Unit>().Equals(unitToPurchase)).ToList()[0];
+        var spawnIndex = Random.Range(0, respawns.Length);
+        Instantiate(unitToPut, respawns[spawnIndex].transform.position, respawns[spawnIndex].transform.rotation);
     }
 
     //-------- UPGRADE TOWER --------//
@@ -91,21 +94,20 @@ public class Shop : MonoBehaviour
     public void purchaseTowerUpgrade(Tower tower)
     {
         if (getAvailableTowers().Contains(tower))
-        {
             tower.Upgrade();
-        }
     }
 
     //-------- REPAIR BUILDING --------//
 
     public bool isBuildingRepairable(int numCoins)
     {
+        var b = building.GetComponent<Building>();
         // Reparable if there's enough coins to repair and there's health missing
-        return (building.repairCost <= numCoins) && (building.getMissingHealth() > 0);
+        return (b.repairCost <= numCoins) && (b.getMissingHealth() > 0);
     }
 
     public void purchaseBuildingRepair()
     {
-        building.Repair();
+        building.GetComponent<Building>().Repair();
     }
 }

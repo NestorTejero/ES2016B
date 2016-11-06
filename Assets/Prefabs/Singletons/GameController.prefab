@@ -51,4 +51,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 982ae77851966ce418cff079122c7420, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  totalWaves: 0
+  human: {fileID: 0}
+  easyAI: {fileID: 0}
+  totalWaves: 5
