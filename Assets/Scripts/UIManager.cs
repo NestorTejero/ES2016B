@@ -3,16 +3,16 @@ using System.Collections;
 using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour {
-	
+
 	GameObject[] pauseObjects;
 	AudioSource audio;
-	
+
 	public Toggle audioToggle;
-	
+
 	//we need this boolean to know if game is paused
 	bool gamePaused;
 
-	
+
 	// Use this for initialization
 	void Start () {
 		audio = GetComponent<AudioSource>();
@@ -66,6 +66,7 @@ public class UIManager : MonoBehaviour {
 		foreach(GameObject g in pauseObjects){
 			g.SetActive(false);
 		}
+		Time.timeScale = 1;
 		gamePaused = !gamePaused; // we need to change de boolean here
 	}
 
@@ -73,7 +74,7 @@ public class UIManager : MonoBehaviour {
 	public void LoadLevel(string level){
 		Application.LoadLevel(level);
 	}
-	
+
 	//mutes and unmutes the sound
 	public void setAudio(){
 		if(audioToggle.isOn){
@@ -83,6 +84,6 @@ public class UIManager : MonoBehaviour {
 		else{
 			audio.mute = true;
 			Debug.Log("Audio off.");
-		}		
+		}
 	}
 }
