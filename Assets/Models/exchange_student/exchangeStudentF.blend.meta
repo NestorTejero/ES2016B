@@ -134,6 +134,9 @@ ModelImporter:
     4300008: exchangestudentf3Mesh
     4300010: low-polyMesh
     7400000: Default Take
+    7400002: DieAction
+    7400004: WalkAction
+    7400006: AttackAction
     9500000: //RootNode
     13700000: exchangestudentf3Mesh
     13700002: eyebrow001Mesh
