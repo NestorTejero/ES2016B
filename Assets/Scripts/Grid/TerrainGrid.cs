@@ -18,8 +18,6 @@ public class TerrainGrid : MonoBehaviour {
 
 	int gridX, gridZ;
 
-	public GameObject tower;
-
 	void Start() {
 
 		/*GameObject terrain = GameObject.Find ("Terrain");
@@ -57,42 +55,6 @@ public class TerrainGrid : MonoBehaviour {
 	}
 
 	void GetInputs(){
-		if (Input.GetMouseButtonDown (0)) {
-			RaycastHit hit;
-			Ray ray = Camera.main.ScreenPointToRay (Input.mousePosition);
-			if (Physics.Raycast (ray, out hit)) {
-				if (hit.transform != null) {
-					Vector3 aux = Vector3.zero;
-					aux.x = (int)hit.point.x;
-					//aux.x += (cellSize/2.0f);
-					aux.y = (int)hit.point.y;
-					aux.z = (int)hit.point.z;
-					//aux.z += (cellSize/2.0f);
-					Debug.Log (aux);
-					bool valid = IsCellValid ((int)aux.x, (int)aux.z);
-					Debug.Log (valid);
-
-					bool insideGrid = false;
-					if ((int)aux.x <= gridWidth && (int)aux.z <= gridHeight)
-						insideGrid = true;
-					
-					if (gridVisible && valid && insideGrid) {
-						/*GameObject cube = GameObject.CreatePrimitive (PrimitiveType.Cube);
-						cube.AddComponent<Rigidbody> ();
-						cube.GetComponent<Rigidbody> ().isKinematic = true;
-						cube.transform.position = new Vector3 (aux.x, 1, aux.z);
-						cube.layer = 8;*/
-						aux.y = 0;
-						GameObject t = (GameObject)Instantiate (tower, aux,transform.rotation);
-						t.GetComponentInChildren<CapsuleCollider> ().radius = 15;
-						t.GetComponentInChildren<CapsuleCollider> ().height = 30;
-
-						toggleGrid ();
-					}
-				}
-			}
-		}
-
 		if (Input.GetKeyDown (KeyCode.A)) {
 			toggleGrid ();
 		}
@@ -113,8 +75,6 @@ public class TerrainGrid : MonoBehaviour {
 		go.transform.localPosition = Vector3.zero;
 		go.AddComponent<MeshRenderer>();
 		go.AddComponent<MeshFilter>().mesh = CreateMesh();
-
-		//go.AddComponent<BoxCollider> ();
 
 		return go;
 	}
