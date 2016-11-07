@@ -1,80 +1,111 @@
 @startuml
 
-class GameController {
-    isEndGame() : bool
+interface CanUpgrade {
+    +Upgrade() : void
+}
+interface CanReceiveDamage {
+    +ReceiveDamage(Projectile proj) : void
+}
+interface CanRepair {
+    +Repair() : void
 }
 
-class Player {
-    numCoins : int
-}
-
-class Defender extends Player {
-}
-
-
-class Attacker extends Player {
+class GameController << (S,#FF7700) Singleton >>{
+    +{static} instance : GameController
+    +totalWaves : int
+    -currentWave : int
+    -minSoundVolume : float
+    -maxSoundVolume : float
+    -currentSoundVolume : float
+    +notifyDeath(CanReceiveDamage dead) : void
 }
 
 GameController "1" -- "2" Player
 
-
-interface CanAttack {
-    Attack() : void
+abstract class Player {
+    -numCoins : int
+    +{abstract}Play() : void
+    +getMoney(Unit deadUnit) : void
 }
 
-interface PlayerLogic {
-    Play() : void
+class HumanPlayer extends Player {
+}
+class EasyAI extends Player {
+}
+class MediumAI extends Player {
+}
+class HardAI extends Player {
 }
 
-class HumanAI implements PlayerLogic {
-}
-class EasyAI implements PlayerLogic {
-}
-class MediumAI implements PlayerLogic {
-}
-class HardAI implements PlayerLogic {
-}
-
-Player "1" -- "1" PlayerLogic
-
-interface Upgradeable {
-    Upgrade() : void
-}
-
-class Unit implements CanAttack{
-    health : int
-    defense : int
-    speed : float
-    coinsAfterKill : int
-    
+class Shop << (S,#FF7700) Singleton >> {
+    +{static} instance : Shop
+    --UNIT--
+    +getAvailableUnits() : List<Unit>
+    +isUnitPurchasable(Unit unitToPurchase, int numCoins) : bool
+    +getPurchasableUnits(int numCoins) : List<Unit>
+    +purchaseUnit(Unit unitToPurchase) : void
+    --TOWER--
+    +getAvailableTowers() : List<Tower>
+    +isTowerUpgradeable(Tower tower, int numCoins) : bool
+    +getUpgradeableTowers(int numCoins) : List<Tower>
+    +purchaseTowerUpgrade(Tower tower) : void
+    --BUILDING--
+    +isBuildingRepairable(int numCoins) : bool
+    +purchaseBuildingRepair() : void
 }
 
-Attacker "1" -- "*" Unit
+Player "*"--"1" Shop : buys from
 
-class Weapon {
-    power : int
-    criticalMultiplier : float
-    criticalChance : float
-    cooldown : float
+class Unit implements CanReceiveDamage{
+    +baseHealth : float
+    -totalHealth : float
+    -currentHealth : float
+    +moveSpeed : float
+    +costCoins : int
+    +rewardCoins : int
 }
+
+GameController "1" -- "*" Unit : notifies
+
+class Weapon implements CanUpgrade{
+    +baseDamage : float
+    +baseRange : float
+    +baseAttackSpeed : float
+    -currentDamage : float
+    -currentRange : float
+    -currentAttackSpeed : float
+    -upgradeFactor : float
+    +Attack() : void
+}
+
+class Projectile {
+    -projectileSpeed : float
+    -damage : float
+    -target : CanReceiveDamage
+}
+
+Weapon "1" -- "*" Projectile : creates
 
 Unit "1" -- "1" Weapon
 Tower "1" -- "1" Weapon
 
-class Building {
+class Building implements CanUpgrade, CanReceiveDamage, CanRepair {
+    -currentLevel : int
+    +baseHealth : float
+    -totalHealth : float
+    -currentHealth : float
+    +upgradeFactor : float
+    +upgradeCost : int
+    +repairQuantity : float
+    +repairCost : int
+    +getMissingHealth() : float
 }
 
-Defender "1" -- "1" Building
+GameController "1" -- "1" Building : notifies
 
-class Tower implements Upgradeable, CanAttack{
+class Tower implements CanUpgrade {
+    -currentLevel : int
+    +upgradeCost : int
 }
- 
-Building "1" -- "*" Tower
-
-class Wall implements Upgradeable{
-    health : int
-}
-
-Building "1" -- "*" Wall
 
 @enduml
