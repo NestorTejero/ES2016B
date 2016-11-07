@@ -8,6 +8,9 @@ public class UIManager : MonoBehaviour {
 	AudioSource audio;
 
 	public Toggle audioToggle;
+	
+	// Text field that will show the tooltip:
+	public Text TooltipText;
 
 	//we need this boolean to know if game is paused
 	bool gamePaused;
@@ -20,6 +23,7 @@ public class UIManager : MonoBehaviour {
 		pauseObjects = GameObject.FindGameObjectsWithTag("ShowOnPause");
 		hidePaused();
 		gamePaused = false;
+		TooltipText = GameObject.Find("TooltipText").GetComponent<Text>();
 	}
 
 	// Update is called once per frame
@@ -28,6 +32,7 @@ public class UIManager : MonoBehaviour {
 		//uses the p button to pause and unpause the game
 		if(Input.GetKeyDown(KeyCode.Escape))
 		{
+			TooltipText.text = "";
 			if(!gamePaused)
 			{
 				Time.timeScale = 0;
