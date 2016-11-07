@@ -13,6 +13,7 @@ public class Unit : MonoBehaviour, CanReceiveDamage
 
     private float totalHealth;
 	private float currentHealth;
+    
 
 	// Use this for initialization
 	void Start ()
