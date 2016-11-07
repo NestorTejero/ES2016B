@@ -3,11 +3,7 @@ using UnityEngine.SceneManagement;
 using System.Collections;
 
 public class MainMenu : MonoBehaviour {
-
-	public bool isQuitButton = false;
-	public bool isHelpButton = false;
-	public bool isOptionsButton = false;
-
+	
 	// Use this for initialization
 	void Start () {
 		//Should the cursor be visible?
@@ -30,15 +26,19 @@ public class MainMenu : MonoBehaviour {
 		GetComponent<Renderer>().material.color = Color.white;
 	}
 
-	public void OnMouseUpAsButton(){
+	public void goToGame(){
+		SceneManager.LoadScene(2); //Load the game (next scene)
+	}
 
-		if(isQuitButton)
-			Application.Quit();
-		else if(isHelpButton)
-			SceneManager.LoadScene(4); 
-		else if(isOptionsButton)
-			SceneManager.LoadScene(3); 
-		else
-			SceneManager.LoadScene(2); //Load the game (next scene)
+	public void goToOptions(){
+		SceneManager.LoadScene(3); 
+	}
+
+	public void goToHelp(){
+		SceneManager.LoadScene(4); 
+	}
+
+	public void exit(){
+		Application.Quit();
 	}
 }
