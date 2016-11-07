@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -14,9 +13,6 @@ public class Unit : MonoBehaviour, CanReceiveDamage
 
     private float totalHealth;
 	private float currentHealth;
-	
-	// Tooltip field
-	public Text TooltipText;
     
 
 	// Use this for initialization
@@ -30,8 +26,6 @@ public class Unit : MonoBehaviour, CanReceiveDamage
 		agent.destination = this.goal.position;
 
 	    this.weapon = this.gameObject.GetComponent<Weapon>();
-		
-		TooltipText = GameObject.Find("TooltipText").GetComponent<Text>();
 
         Debug.Log ("UNIT CREATED");
 	}
@@ -41,21 +35,6 @@ public class Unit : MonoBehaviour, CanReceiveDamage
 	{
 
 	}
-	
-	// This function is called when we put the mouse over the gameobject
-	void OnMouseOver ()
-    {
-		// Change the text bellow to set a new tooltip message
-		TooltipText.text = "Kill them with fire!";
-
-    }
-	
-	// This function is called when we put the mouse out of the gameobject
-	void OnMouseExit ()
-    {
-		TooltipText.text = "";
-
-    }
 
 	// Receive damage from a projectile (shot by weapon)
 	public bool ReceiveDamage (Projectile proj)

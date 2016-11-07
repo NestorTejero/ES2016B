@@ -937,6 +937,10 @@ Prefab:
       propertyPath: m_Name
       value: TowerS
       objectReference: {fileID: 0}
+    - target: {fileID: 1000011397538348, guid: 68a97d8f079caa14fb7838b4a02d5867, type: 2}
+      propertyPath: m_TagString
+      value: Tower
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 68a97d8f079caa14fb7838b4a02d5867, type: 2}
   m_IsPrefabParent: 0
@@ -1083,6 +1087,23 @@ Transform:
   - {fileID: 556951377}
   m_Father: {fileID: 0}
   m_RootOrder: 12
+--- !u!1 &480012921 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1000011397538348, guid: 68a97d8f079caa14fb7838b4a02d5867,
+    type: 2}
+  m_PrefabInternal: {fileID: 1184307612}
+--- !u!114 &480012925
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 480012921}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c560541b48665841ba3b5e1ea6450e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TooltipText: {fileID: 0}
 --- !u!1 &486854556
 GameObject:
   m_ObjectHideFlags: 0
@@ -1571,6 +1592,10 @@ Prefab:
       propertyPath: m_Name
       value: TowerE
       objectReference: {fileID: 0}
+    - target: {fileID: 1000011397538348, guid: 68a97d8f079caa14fb7838b4a02d5867, type: 2}
+      propertyPath: m_TagString
+      value: Tower
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 68a97d8f079caa14fb7838b4a02d5867, type: 2}
   m_IsPrefabParent: 0
@@ -1740,6 +1765,23 @@ MonoBehaviour:
           m_CallState: 2
       m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
         Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  - eventID: 4
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 486854558}
+          m_MethodName: set_text
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+      m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
+        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   delegates: []
 --- !u!1 &878300464
 GameObject:
@@ -1862,6 +1904,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c560541b48665841ba3b5e1ea6450e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  TooltipText: {fileID: 0}
 --- !u!1001 &918661194
 Prefab:
   m_ObjectHideFlags: 0
@@ -1929,6 +1972,10 @@ Prefab:
       propertyPath: m_Name
       value: TowerW
       objectReference: {fileID: 0}
+    - target: {fileID: 1000011397538348, guid: 68a97d8f079caa14fb7838b4a02d5867, type: 2}
+      propertyPath: m_TagString
+      value: Tower
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 68a97d8f079caa14fb7838b4a02d5867, type: 2}
   m_IsPrefabParent: 0
@@ -1967,6 +2014,23 @@ MonoBehaviour:
       m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
         Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   - eventID: 1
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 486854558}
+          m_MethodName: set_text
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+      m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
+        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  - eventID: 4
     callback:
       m_PersistentCalls:
         m_Calls:
@@ -2274,6 +2338,10 @@ Prefab:
     - target: {fileID: 4000011410470234, guid: 68a97d8f079caa14fb7838b4a02d5867, type: 2}
       propertyPath: m_LocalScale.y
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1000011397538348, guid: 68a97d8f079caa14fb7838b4a02d5867, type: 2}
+      propertyPath: m_TagString
+      value: Tower
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 68a97d8f079caa14fb7838b4a02d5867, type: 2}
@@ -2639,6 +2707,40 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c839f3d5ec503fe429715f930afaf77d, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &1413151250 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1000011397538348, guid: 68a97d8f079caa14fb7838b4a02d5867,
+    type: 2}
+  m_PrefabInternal: {fileID: 645185884}
+--- !u!114 &1413151254
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1413151250}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c560541b48665841ba3b5e1ea6450e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TooltipText: {fileID: 0}
+--- !u!1 &1429962199 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1000011397538348, guid: 68a97d8f079caa14fb7838b4a02d5867,
+    type: 2}
+  m_PrefabInternal: {fileID: 918661194}
+--- !u!114 &1429962203
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1429962199}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c560541b48665841ba3b5e1ea6450e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TooltipText: {fileID: 0}
 --- !u!1 &1430226219
 GameObject:
   m_ObjectHideFlags: 0
@@ -3483,6 +3585,23 @@ MonoBehaviour:
           m_CallState: 2
       m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
         Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  - eventID: 4
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 486854558}
+          m_MethodName: set_text
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+      m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
+        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   delegates: []
 --- !u!82 &1775105556 stripped
 AudioSource:
@@ -4235,6 +4354,23 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 7
+--- !u!1 &2022095652 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1000011397538348, guid: 68a97d8f079caa14fb7838b4a02d5867,
+    type: 2}
+  m_PrefabInternal: {fileID: 392682460}
+--- !u!114 &2022095656
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2022095652}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c560541b48665841ba3b5e1ea6450e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TooltipText: {fileID: 0}
 --- !u!1001 &2035776841
 Prefab:
   m_ObjectHideFlags: 0

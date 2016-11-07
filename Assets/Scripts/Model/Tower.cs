@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -9,17 +8,12 @@ public class Tower : MonoBehaviour, CanUpgrade
     private Weapon weapon;
 	private int currentLevel;
 	
-	// Tooltip field
-	public Text TooltipText;
     
     // Use this for initialization
     void Start ()
     {
         this.weapon = this.gameObject.GetComponent<Weapon>();
-        this.currentLevel = 0;
-		
-		TooltipText = GameObject.Find("TooltipText").GetComponent<Text>();
-		
+        this.currentLevel = 0;		
 		Debug.Log ("TOWER CREATED");
 	}
 		
@@ -28,21 +22,6 @@ public class Tower : MonoBehaviour, CanUpgrade
 	{
 
 	}
-	
-	// This function is called when we put the mouse over the gameobject
-	void OnMouseOver ()
-    {
-		// Change the text bellow to set a new tooltip message
-		TooltipText.text = "Protect this building!";
-
-    }
-	
-	// This function is called when we put the mouse out of the gameobject
-	void OnMouseExit ()
-    {
-		TooltipText.text = "";
-
-    }
 	
 	// To upgrade when there are enough coins
 	public void Upgrade ()
