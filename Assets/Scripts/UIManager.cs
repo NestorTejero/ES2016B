@@ -13,9 +13,7 @@ public class UIManager : MonoBehaviour {
 	bool gamePaused;
 	
 	// Control of volume:
-	public AudioListener audioListener;
-	public Slider volumeSlider;
-
+	public Slider volumeSlider = null;
 
 	// Use this for initialization
 	void Start () {
@@ -24,12 +22,10 @@ public class UIManager : MonoBehaviour {
 		hidePaused();
 		gamePaused = false;
 		TooltipText = GameObject.Find("TooltipText").GetComponent<Text>();
-		
-		GameObject temp = GameObject.Find("EffectsSlider");
-		volumeSlider = temp.GetComponent<Slider>();
+		//volumeSlider = null;
+		//GameObject temp = GameObject.Find("EffectsSlider");
+		//volumeSlider = GameObject.Find("EffectsSlider").GetComponent<Slider>();
 		volumeSlider.onValueChanged.AddListener (delegate {ValueChangeCheck ();});
-		GameObject tempo = GameObject.Find("Main Camera(RTS)");
-		audioListener = tempo.GetComponent<AudioListener>();
 	}
 
 	// Update is called once per frame
@@ -56,9 +52,9 @@ public class UIManager : MonoBehaviour {
 	// Changes the effects sound
 	public void ValueChangeCheck()
 	{
+		AudioListener.volume = volumeSlider.normalizedValue;
 		//audioListener.volume = volumeSlider.value;
 	}
-
 
 	//Reloads the Level
 	public void Reload(){
