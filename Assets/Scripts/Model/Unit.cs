@@ -45,7 +45,8 @@ public class Unit : MonoBehaviour, CanReceiveDamage
 
 		if (this.currentHealth <= 0.0f)
 		{
-			Destroy (this.gameObject);
+            GameController.instance.notifyDeath(this); // Tell controller I'm dead
+            Destroy (this.gameObject);
 			Debug.Log ("Unit " + this.name + " is dead");
 			return true;
 		} else {
@@ -71,9 +72,4 @@ public class Unit : MonoBehaviour, CanReceiveDamage
 			this.weapon.removeTarget (col.gameObject.GetComponent<CanReceiveDamage> ());
 		}
 	}
-
-    void OnDestroy()
-    {
-        GameController.instance.notifyDeath(this); // Tell controller I'm dead
-    }
 }
