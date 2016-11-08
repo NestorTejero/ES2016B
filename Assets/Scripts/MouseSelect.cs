@@ -59,7 +59,6 @@ public class MouseSelect : MonoBehaviour {
 			TooltipText.text = "Protect this building!";
 		}
 		
-		
 		if(this.tag == "Unit" || this.name == "Freshman_Roba_freshman"){
 			TooltipText.text = "Kill them with fire!";
 		}
