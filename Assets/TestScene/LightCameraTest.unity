@@ -6093,7 +6093,7 @@ Prefab:
     - target: {fileID: 65000012229569138, guid: c839f3d5ec503fe429715f930afaf77d,
         type: 2}
       propertyPath: m_Size.z
-      value: 12.299478
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 65000012229569138, guid: c839f3d5ec503fe429715f930afaf77d,
         type: 2}

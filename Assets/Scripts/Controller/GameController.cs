@@ -61,8 +61,8 @@ public class GameController : MonoBehaviour
         if (dead is Building)
         {
             Debug.Log("GAME OVER Mate.");
-            //SceneManager.LoadScene("MainMenu");
-			Application.Quit();
+            SceneManager.LoadScene("MainMenu");
+			//Application.Quit();
         }
         else if (dead is Unit)
         {
