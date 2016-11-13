@@ -15,6 +15,7 @@ public class Weapon : MonoBehaviour, CanUpgrade
     private float currentCooldown;
 	private List<CanReceiveDamage> targets;
     private AudioSource source;
+	private Projectile projectile;
 
 	// Use this for initialization
 	void Start ()
@@ -28,6 +29,9 @@ public class Weapon : MonoBehaviour, CanUpgrade
 
 		// List of targets assigned to the weapon
 		this.targets = new List<CanReceiveDamage>();
+
+		// Create the projectile that will go towards the target
+		this.projectile = this.gameObject.GetComponentInChildren<Projectile>();
 
 		// Call Attack every 'cooldown' seconds
 		InvokeRepeating("Attack", 0.0f, this.currentCooldown);
@@ -76,12 +80,11 @@ public class Weapon : MonoBehaviour, CanUpgrade
 			// Get target to attack
 			CanReceiveDamage target = targets [0];
 
-			// Create the projectile that will go towards the target
-			Projectile projectile = this.gameObject.AddComponent<Projectile>();
-			projectile.create(1.0f, target, this.currentDamage);
+			// Set the projectile properties
+			projectile.Properties (1.0f, target, this.currentDamage);
 
 			// Shoot the projectile
-			bool dead = projectile.shoot ();
+			bool dead = projectile.Shoot ();
 			if (dead) {
 				this.targets.Remove (target);
 			}
