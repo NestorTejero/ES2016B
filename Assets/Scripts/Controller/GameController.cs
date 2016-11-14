@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Runtime.CompilerServices;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 
 /**
@@ -56,13 +57,13 @@ public class GameController : MonoBehaviour
         currentSoundVolume = s;
     }
 
+    [MethodImpl(MethodImplOptions.Synchronized)]
     public void notifyDeath(CanReceiveDamage dead)
     {
         if (dead is Building)
         {
             Debug.Log("GAME OVER Mate.");
             SceneManager.LoadScene("MainMenu");
-			//Application.Quit();
         }
         else if (dead is Unit)
         {
@@ -71,13 +72,14 @@ public class GameController : MonoBehaviour
         }
     }
 
-	public void notifyWaveClear (Player AI)
+    [MethodImpl(MethodImplOptions.Synchronized)]
+    public void notifyWaveClear (AI ai)
 	{
 		currentWave += 1;
 		Debug.Log ("Wave CLEAR!");
 		if (currentWave > totalWaves){
 			SceneManager.LoadScene("MainMenu");
 		}
-		AI.timeToUpgrade ();
+		ai.timeToUpgrade ();
 	}
 }

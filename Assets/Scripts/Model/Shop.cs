@@ -8,33 +8,10 @@ using UnityEngine;
 
 public class Shop : MonoBehaviour
 {
-    public static Shop instance;
     public GameObject building;
 
     public Transform[] respawns;
     public List<GameObject> units;
-
-    private void Start()
-    {
-    }
-
-    private void Awake()
-    {
-        //Check if instance already exists
-        if (instance == null)
-
-            //if not, set instance to this
-            instance = this;
-
-        //If instance already exists and it's not this:
-        else if (instance != this)
-
-            //Then destroy this. This enforces our singleton pattern, meaning there can only ever be one instance of a GameManager.
-            Destroy(gameObject);
-
-        //Sets this to not be destroyed when reloading scene
-        DontDestroyOnLoad(gameObject);
-    }
 
     //-------- UNIT PURCHASE --------//
 
