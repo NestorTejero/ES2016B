@@ -1,13 +1,12 @@
 @startuml
 
+package Model {
+
 interface CanUpgrade {
     +Upgrade() : void
 }
 interface CanReceiveDamage {
     +ReceiveDamage(Projectile proj) : void
-}
-interface CanRepair {
-    +Repair() : void
 }
 
 class GameController << (S,#FF7700) Singleton >>{
@@ -18,27 +17,29 @@ class GameController << (S,#FF7700) Singleton >>{
     -maxSoundVolume : float
     -currentSoundVolume : float
     +notifyDeath(CanReceiveDamage dead) : void
+    +notifyWaveClear(AI ai) : void
 }
 
 GameController "1" -- "2" Player
 
-abstract class Player {
+class Player {
     -numCoins : int
-    +{abstract}Play() : void
     +getMoney(Unit deadUnit) : void
 }
 
-class HumanPlayer extends Player {
-}
-class EasyAI extends Player {
-}
-class MediumAI extends Player {
-}
-class HardAI extends Player {
+abstract class AI extends Player{
+    +{abstract}Play() : void
+    +timeToUpgrade() : void
 }
 
-class Shop << (S,#FF7700) Singleton >> {
-    +{static} instance : Shop
+class EasyAI extends AI {
+}
+class MediumAI extends AI {
+}
+class HardAI extends AI {
+}
+
+class Shop {
     --UNIT--
     +getAvailableUnits() : List<Unit>
     +isUnitPurchasable(Unit unitToPurchase, int numCoins) : bool
@@ -54,7 +55,7 @@ class Shop << (S,#FF7700) Singleton >> {
     +purchaseBuildingRepair() : void
 }
 
-Player "*"--"1" Shop : buys from
+AI "*"--"1" Shop : buys from
 
 class Unit implements CanReceiveDamage{
     +baseHealth : float
@@ -82,6 +83,9 @@ class Projectile {
     -projectileSpeed : float
     -damage : float
     -target : CanReceiveDamage
+    +Properties(projSpeed, target, damage)
+    +Shoot() : bool
+    +getDamage() : float
 }
 
 Weapon "1" -- "*" Projectile : creates
@@ -89,7 +93,7 @@ Weapon "1" -- "*" Projectile : creates
 Unit "1" -- "1" Weapon
 Tower "1" -- "1" Weapon
 
-class Building implements CanUpgrade, CanReceiveDamage, CanRepair {
+class Building implements CanUpgrade, CanReceiveDamage {
     -currentLevel : int
     +baseHealth : float
     -totalHealth : float
@@ -108,4 +112,10 @@ class Tower implements CanUpgrade {
     +upgradeCost : int
 }
 
+class APIHUD << (S,#FF7700) Singleton >>{
+    +{static} instance : APIHUD
+    -selectedItem : bool
+}
+
+}
 @enduml
