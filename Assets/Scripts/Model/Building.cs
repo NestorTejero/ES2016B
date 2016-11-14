@@ -2,7 +2,7 @@
 using System.Collections;
 using UnityEngine.SceneManagement;
 
-public class Building : MonoBehaviour, CanUpgrade, CanRepair, CanReceiveDamage
+public class Building : MonoBehaviour, CanUpgrade, CanReceiveDamage
 {
     private float currentLevel;
     public float baseHealth;
