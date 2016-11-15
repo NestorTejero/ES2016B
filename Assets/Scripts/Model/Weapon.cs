@@ -78,19 +78,30 @@ public class Weapon : MonoBehaviour, CanUpgrade
 		if (this.targets.Count > 0) {
 
 			// Get target to attack
-			CanReceiveDamage target = targets [0];
+			CanReceiveDamage target = this.targets [0];
 
-			// Set the projectile properties
-			projectile.Properties (1.0f, target, this.currentDamage);
-
-			// Shoot the projectile
-			bool dead = projectile.Shoot ();
-			if (dead) {
+			// Check if target was killed by another weapon
+			if(target.isDead ()){
+				Debug.Log ("DEAD BEFORE CREATING PROJECTILE");
 				this.targets.Remove (target);
 			}
 
-            // Play sound
-			this.source.PlayOneShot (this.shootSound);
+			if (this.targets.Count > 0) {
+				// Get target to attack
+				target = this.targets [0];
+
+				// Set the projectile properties
+				projectile.Properties (1.0f, target, this.currentDamage);
+
+				// Shoot the projectile
+				bool dead = projectile.Shoot ();
+				if (dead) {
+					this.targets.Remove (target);
+				}
+
+				// Play sound
+				this.source.PlayOneShot (this.shootSound);
+			}
 		}
 	}
 }

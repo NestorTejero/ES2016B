@@ -71,5 +71,9 @@ public class Building : MonoBehaviour, CanUpgrade, CanReceiveDamage
         return this.totalHealth - this.currentHealth;
     }
 
+	public bool isDead()
+	{
+		return this == null;
+	}
 
 }
