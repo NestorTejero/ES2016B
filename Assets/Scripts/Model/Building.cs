@@ -1,55 +1,75 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class Building : MonoBehaviour, CanUpgrade, CanRepair, CanReceiveDamage
 {
-	public float maxHealth;
-	public float health;
-	public float upgradeHealthFactor;
-	public float repairHealthQuantity;
-    private float timeToWin;
+    private float currentLevel;
+    public float baseHealth;
+    private float totalHealth;
+    private float currentHealth;
+
+	public float upgradeFactor;
+    public float upgradeCost;
+	public float repairQuantity;
+    public float repairCost;
+
 
 	// Use this for initialization
 	void Start ()
 	{
-		this.health = this.maxHealth;
-        this.timeToWin = 10.0f;
-		Debug.Log ("BUILDING CREATED with HP: " + this.maxHealth);
+	    this.currentLevel = 0;
+		this.currentHealth = this.baseHealth;
+	    this.totalHealth = this.baseHealth;
+
+
+        Debug.Log ("BUILDING CREATED with HP: " + this.baseHealth);
 	}
 
 	// Update is called once per frame
 	void Update ()
 	{
-        if (this.timeToWin <= 0.0f)
-        {
-            Application.LoadLevel("MainMenu");
-        }
-        this.timeToWin -= Time.deltaTime * 1;
     }
 
 	// To upgrade when there are enough coins
 	public void Upgrade ()
 	{
-		this.maxHealth *= this.upgradeHealthFactor;
-		this.health *= this.upgradeHealthFactor;
-		Debug.Log ("BUILDING UPGRADED, now it has HP: " + this.maxHealth);
+		this.totalHealth *= this.upgradeFactor;
+		this.currentHealth *= this.upgradeFactor;
+	    this.currentLevel++;
+		Debug.Log ("BUILDING UPGRADED, now it has HP: " + this.totalHealth);
 	}
 
+	// Repair the building
 	public void Repair ()
 	{
-		this.health += this.repairHealthQuantity;
-		if (this.health > this.maxHealth) {
-			this.health = this.maxHealth;
+		this.currentHealth += this.repairQuantity;
+		if (this.currentHealth > this.totalHealth) {
+			this.currentHealth = this.totalHealth;
 		}
-		Debug.Log ("BUILDING REPAIRED, HP: " + this.health);
+		Debug.Log ("BUILDING REPAIRED, HP: " + this.currentHealth);
 	}
 
-	public void ReceiveDamage (Weapon wep)
+	// Receive damage from a projectile (shot by weapon)
+	public bool ReceiveDamage (Projectile proj)
 	{
-		this.health -= wep.power;
-		if (this.health <= 0.0) {
-            Application.LoadLevel("MainMenu");
+		this.currentHealth -= proj.getDamage();
+		Debug.Log ("Building's currentHealth: " + this.currentHealth);
+		//Debug.Log ("BUILDING DAMAGED by HP: " + proj.getDamage());
+
+		if (this.currentHealth <= 0.0)
+		{
+            GameController.instance.notifyDeath(this);
+			return true;
+		} else {
+			return false;
 		}
-		Debug.Log ("BUILDING DAMAGED by HP: " + wep.power);
 	}
+
+    public float getMissingHealth()
+    {
+        return this.totalHealth - this.currentHealth;
+    }
+
+
 }

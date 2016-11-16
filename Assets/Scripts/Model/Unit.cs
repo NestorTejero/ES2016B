@@ -1,23 +1,32 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
-public class Unit : MonoBehaviour, CanAttack, CanReceiveDamage
+public class Unit : MonoBehaviour, CanReceiveDamage
 {
-	public Transform goal;
-	public float maxHealth;
-	public float health; // TODO change to private
-    public Weapon weapon;
-    public GameObject objectTarget;
-    private Building target;
+    public float baseHealth;
+    public float moveSpeed;
+    public int costCoins;
+    public int rewardCoins;
+    public Transform goal;
+    private Weapon weapon;
+
+    private float totalHealth;
+	private float currentHealth;
+    
+
 	// Use this for initialization
 	void Start ()
 	{
-		health = maxHealth;
-		NavMeshAgent agent = GetComponent<NavMeshAgent>();
-		agent.destination = goal.position;
-        target = objectTarget.gameObject.GetComponent<Building>();
+		this.currentHealth = this.baseHealth;
+        this.totalHealth = this.baseHealth;
 
-        InvokeRepeating("Attack", 0.0f, 1.0f);
+		// Unit movement towards the goal
+        NavMeshAgent agent = GetComponent<NavMeshAgent>();
+		agent.destination = this.goal.position;
+
+	    this.weapon = this.gameObject.GetComponent<Weapon>();
+
         Debug.Log ("UNIT CREATED");
 	}
 	
@@ -27,22 +36,40 @@ public class Unit : MonoBehaviour, CanAttack, CanReceiveDamage
 
 	}
 
-	// To attack wall when near enough
-	public void Attack ()
+	// Receive damage from a projectile (shot by weapon)
+	public bool ReceiveDamage (Projectile proj)
 	{
-        target.health -= 1.0f;
-        Debug.Log("Unit: " + this.name + "attaks" + target.name);
-        Debug.Log("Target Health" + target.health);
-    }
+		this.currentHealth -= proj.getDamage();
+		Debug.Log ("Unit " + this.name +" currentHealth: " + this.currentHealth);
+		//Debug.Log("UNIT DAMAGED by HP: " + proj.getDamage());
 
-	// To upgrade when there are enough coins
-	public void ReceiveDamage (Weapon wep)
-	{
-		this.health -= wep.power;
-		if (this.health <= 0.0f) {
-			// TODO implement death and stuff here
-				// The logic that destroys the enemy shouldn't go inside Tower	
+		if (this.currentHealth <= 0.0f)
+		{
+            GameController.instance.notifyDeath(this); // Tell controller I'm dead
+            Destroy (this.gameObject);
+			Debug.Log ("Unit " + this.name + " is dead");
+			return true;
+		} else {
+			return false;
 		}
-		Debug.Log ("UNIT DAMAGED by HP: " + wep.power);
+	}
+
+	// If enemy enters the range of attack
+	void OnTriggerEnter (Collider col)
+	{
+		if (col.gameObject.GetComponent<Building> ()) {
+			Debug.Log ("Unit " + this.name + " Collision with Building");
+			// Adds enemy to attack to the queue
+			this.weapon.addTarget (col.gameObject.GetComponent<CanReceiveDamage> ());
+		}
+	}
+
+	// If enemy exits the range of attack
+	void OnTriggerExit (Collider col)
+	{
+		if (col.gameObject.GetComponent<Building> ()) {
+			// Removes enemy to attack from the queue
+			this.weapon.removeTarget (col.gameObject.GetComponent<CanReceiveDamage> ());
+		}
 	}
 }
