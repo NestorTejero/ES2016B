@@ -42,6 +42,7 @@ public class MouseSelect : MonoBehaviour {
 			APIHUD.instance.setAttackSpeed("-");
 			APIHUD.instance.setDamage("-");
 			APIHUD.instance.setRange("-");
+			APIHUD.instance.setVisibleUpgradeButton (true);
 		}
 
 		if(this.tag == "Unit"){
@@ -49,6 +50,7 @@ public class MouseSelect : MonoBehaviour {
 			APIHUD.instance.setAttackSpeed("-");
 			APIHUD.instance.setDamage(this.GetComponent<Weapon>().baseDamage.ToString());
 			APIHUD.instance.setRange(this.GetComponent<Weapon>().baseRange.ToString());
+			APIHUD.instance.setVisibleUpgradeButton (false);
 		}
     }
 	
