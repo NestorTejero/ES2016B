@@ -4,28 +4,37 @@ using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour {
 
+	// List of objects that we show when the game is paused
 	GameObject[] pauseObjects;
 	
 	// Text field that will show the tooltip:
 	public Text TooltipText;
 
-	//we need this boolean to know if game is paused
+	// We need this boolean to know if game is paused
 	bool gamePaused;
 	
 	// Control of volume:
 	public Slider volumeSlider = null;
+	public Slider musicSlider = null;
+	
+	// Menu icons:
+	public Image musicIcon; // This is the gameobject that shows the music volume sprite
+	public Image effectsIcon; // This is the gameobject that shows the effects volume sprite
+	// Sprites according to volume level:
+	public Sprite soundFull;
+	public Sprite soundMedium;
+	public Sprite soundLow;
+	public Sprite soundMuted;
 
-	// Use this for initialization
+	// Initialization
 	void Start () {
-		Time.timeScale = 1;
+		Time.timeScale = 1; // Game speed
 		pauseObjects = GameObject.FindGameObjectsWithTag("ShowOnPause");
 		hidePaused();
 		gamePaused = false;
-		TooltipText = GameObject.Find("TooltipText").GetComponent<Text>();
-		//volumeSlider = null;
-		//GameObject temp = GameObject.Find("EffectsSlider");
-		//volumeSlider = GameObject.Find("EffectsSlider").GetComponent<Slider>();
-		volumeSlider.onValueChanged.AddListener (delegate {ValueChangeCheck ();});
+		// Theese listeners help us to know if slider's values changed:
+		volumeSlider.onValueChanged.AddListener (delegate {effectsChangeCheck ();});
+		musicSlider.onValueChanged.AddListener (delegate {musicChangeCheck ();});
 	}
 
 	// Update is called once per frame
@@ -41,7 +50,6 @@ public class UIManager : MonoBehaviour {
 				showPaused();
 				gamePaused = !gamePaused;
 			} else if (gamePaused){
-				Debug.Log ("high");
 				Time.timeScale = 1;
 				hidePaused();
 			}
@@ -49,11 +57,41 @@ public class UIManager : MonoBehaviour {
 
 	}
 	
-	// Changes the effects sound
-	public void ValueChangeCheck()
-	{
+	// This function is called when we change the effects slider value
+	public void effectsChangeCheck(){
+		// We set the AudioListener volume according to the effects slider
 		AudioListener.volume = volumeSlider.normalizedValue;
-		//audioListener.volume = volumeSlider.value;
+		
+		// Different icon is shown according to the volume
+		if (volumeSlider.value == 0){
+			effectsIcon.sprite = soundMuted;
+		}
+		else if(volumeSlider.normalizedValue < 0.5f){
+			effectsIcon.sprite = soundLow;
+		}
+		else if(volumeSlider.normalizedValue < 1.0f){
+			effectsIcon.sprite = soundMedium;
+		}
+		else{
+			effectsIcon.sprite = soundFull;
+		}
+	}
+	
+	// This function is called everytime we change the music slider value
+	public void musicChangeCheck(){
+		// Different icon is shown according to the volume
+		if (musicSlider.value == 0){
+			musicIcon.sprite = soundMuted;
+		}
+		else if(musicSlider.normalizedValue < 0.5f){
+			musicIcon.sprite = soundLow;
+		}
+		else if(musicSlider.normalizedValue < 1.0f){
+			musicIcon.sprite = soundMedium;
+		}
+		else{
+			musicIcon.sprite = soundFull;
+		}
 	}
 
 	//Reloads the Level
