@@ -37,25 +37,16 @@ public class Unit : MonoBehaviour, CanReceiveDamage
 	}
 
 	// Receive damage from a projectile (shot by weapon)
-	public bool ReceiveDamage (Projectile proj)
+	public void ReceiveDamage (Projectile proj)
 	{
-		if (this.isDead()) {
-			Debug.Log ("DEAD ON RECEIVE DAMAGE");
-			return true;
-		} else {
-			this.currentHealth -= proj.getDamage ();
-			Debug.Log ("Unit " + this.name + " currentHealth: " + this.currentHealth);
-			//Debug.Log("UNIT DAMAGED by HP: " + proj.getDamage());
+		this.currentHealth -= proj.getDamage ();
+		Debug.Log ("Unit " + this.name + " currentHealth: " + this.currentHealth);
+		//Debug.Log("UNIT DAMAGED by HP: " + proj.getDamage());
 
-			if (this.currentHealth <= 0.0f) {
-				GameController.instance.notifyDeath (this); // Tell controller I'm dead
-				Destroy (this.gameObject);
-				Debug.Log ("Unit " + this.name + " is dead");
-				return true;
-			} else {
-				return false;
-			}
-		}
+		if (this.currentHealth <= 0.0f) {
+			GameController.instance.notifyDeath (this); // Tell controller I'm dead
+			Destroy (this.gameObject);
+		} 
 	}
 
 	// If enemy enters the range of attack

@@ -63,45 +63,49 @@ public class Weapon : MonoBehaviour, CanUpgrade
 	// Add target to list
 	public void addTarget(CanReceiveDamage target){
 		this.targets.Add (target);
-		Debug.Log ("Targets to attack :" + targets.Count);
+		Debug.Log (this.gameObject.name + "-> Targets to attack :" + targets.Count);
 	}
 
 	// Remove target from list
 	public void removeTarget(CanReceiveDamage target){
 		this.targets.Remove (target);
+		Debug.Log (this.gameObject.name + "-> Targets to attack :" + targets.Count);
+	}
+
+	// Get the available target to attack from the targets list
+	public CanReceiveDamage getAvailableTarget(){
+
+		// Checks if there is a target in the range
+		while (this.targets.Count > 0) {
+
+			// Get target to attack
+			CanReceiveDamage target = this.targets [0];
+
+			// Check if target is already dead
+			if (target.isDead ()) {
+				Debug.Log (this.gameObject.name + ": TARGET ALREADY DEAD");
+				this.removeTarget (target);
+			} else {
+				Debug.Log (this.gameObject.name + ": TARGET AVAILABLE TO SHOOT");
+				return target;
+			}
+		}
+		Debug.Log (this.gameObject.name + ": NO TARGETS ON QUEUE");
+		return null;
 	}
 
 	// Called to attack a target
 	public void Attack()
 	{
-		// Checks if there is a target in the range
-		if (this.targets.Count > 0) {
+		CanReceiveDamage target = getAvailableTarget();
+		if (target != null) {
+			
+			// Set the projectile properties and shoot
+			projectile.Properties (1.0f, target, this.currentDamage);
+			projectile.Shoot ();
 
-			// Get target to attack
-			CanReceiveDamage target = this.targets [0];
-
-			// Check if target was killed by another weapon
-			if(target.isDead ()){
-				Debug.Log ("DEAD BEFORE CREATING PROJECTILE");
-				this.targets.Remove (target);
-			}
-
-			if (this.targets.Count > 0) {
-				// Get target to attack
-				target = this.targets [0];
-
-				// Set the projectile properties
-				projectile.Properties (1.0f, target, this.currentDamage);
-
-				// Shoot the projectile
-				bool dead = projectile.Shoot ();
-				if (dead) {
-					this.targets.Remove (target);
-				}
-
-				// Play sound
-				this.source.PlayOneShot (this.shootSound);
-			}
+			// Play sound
+			this.source.PlayOneShot (this.shootSound);
 		}
 	}
 }
