@@ -3,5 +3,6 @@ using System.Collections;
 
 interface CanUpgrade
 {
-	void Upgrade ();
+    bool IsUpgradeable(int numCoins);
+    void Upgrade ();
 }

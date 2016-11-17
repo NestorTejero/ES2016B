@@ -6,7 +6,7 @@ public class Unit : MonoBehaviour, CanReceiveDamage
 {
     public float baseHealth;
     public float moveSpeed;
-    public int costCoins;
+    public int purchaseCost;
     public int rewardCoins;
     public Transform goal;
     private Weapon weapon;
@@ -28,12 +28,6 @@ public class Unit : MonoBehaviour, CanReceiveDamage
 	    this.weapon = this.gameObject.GetComponent<Weapon>();
 
         Debug.Log ("UNIT CREATED");
-	}
-	
-	// Update is called once per frame
-	void Update ()
-	{
-
 	}
 
 	// Receive damage from a projectile (shot by weapon)

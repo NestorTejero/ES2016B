@@ -9,48 +9,52 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1000011688498418}
+  m_RootGameObject: {fileID: 1000012705739962}
   m_IsPrefabParent: 1
---- !u!1 &1000011688498418
+--- !u!1 &1000012705739962
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 4
   m_Component:
-  - 4: {fileID: 4000011911116396}
-  - 114: {fileID: 114000013129703110}
+  - 4: {fileID: 4000013832137182}
+  - 114: {fileID: 114000010288231944}
   m_Layer: 0
-  m_Name: GameController
-  m_TagString: Untagged
+  m_Name: UnitShop
+  m_TagString: Shop
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4000011911116396
+--- !u!4 &4000013832137182
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000011688498418}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 77.27756, y: 0, z: 70.85602}
+  m_GameObject: {fileID: 1000012705739962}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -284.5907, y: 62.901962, z: 203.82153}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
---- !u!114 &114000013129703110
+--- !u!114 &114000010288231944
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000011688498418}
+  m_GameObject: {fileID: 1000012705739962}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 982ae77851966ce418cff079122c7420, type: 3}
+  m_Script: {fileID: 11500000, guid: 68f4cb35acf3cf24daabf6680cd5070d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  human: {fileID: 0}
-  easyAI: {fileID: 0}
-  totalWaves: 5
+  respawns:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  units:
+  - {fileID: 1000013888679622, guid: b59ff40f280f3434ea61c01fbebaf21e, type: 2}
