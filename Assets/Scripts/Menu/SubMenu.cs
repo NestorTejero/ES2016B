@@ -32,6 +32,22 @@ public class SubMenu : MonoBehaviour {
 		GetComponent<Renderer>().material.color = Color.white;
 	}
 
+	public void OnEasy(){
+		SceneManager.LoadScene(5);
+	}
+
+	public void OnMedium(){
+		SceneManager.LoadScene(5);
+	}
+
+	public void OnHard(){
+		SceneManager.LoadScene(5);
+	}
+
+	public void OnBack(){
+		SceneManager.LoadScene(0);
+	}
+
 	public void OnMouseUpAsButton(){
 
 		if(isEasyButton)
