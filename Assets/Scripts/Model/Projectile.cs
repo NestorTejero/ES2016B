@@ -28,8 +28,8 @@ public class Projectile : MonoBehaviour
 	}
 
 	// Shoot the projectile to the target
-	public bool Shoot(){
-		return this.target.ReceiveDamage (this);
+	public void Shoot(){
+		this.target.ReceiveDamage (this);
 	}
 
 	// Get the projectile damage (defined by weapon)
