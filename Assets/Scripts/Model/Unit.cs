@@ -67,10 +67,8 @@ public class Unit : MonoBehaviour, CanReceiveDamage
 			this.weapon.removeTarget (col.gameObject.GetComponent<CanReceiveDamage> ());
 		}
 	}
-
-	public bool isDead ()
-	{
-		return this == null;
-	} 
 		
+	public float getCurrentHealth(){
+		return this.currentHealth;
+	}
 }

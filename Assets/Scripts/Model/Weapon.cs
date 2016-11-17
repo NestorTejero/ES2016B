@@ -82,7 +82,7 @@ public class Weapon : MonoBehaviour, CanUpgrade
 			CanReceiveDamage target = this.targets [0];
 
 			// Check if target is already dead
-			if (target.isDead ()) {
+			if (target.getCurrentHealth() <= 0.0f) {
 				Debug.Log (this.gameObject.name + ": TARGET ALREADY DEAD");
 				this.removeTarget (target);
 			} else {
