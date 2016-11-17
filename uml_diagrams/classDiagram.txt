@@ -4,6 +4,7 @@ package Model {
 
 interface CanUpgrade {
     +Upgrade() : void
+    +IsUpgradeable(int numCoins) : bool
 }
 interface CanReceiveDamage {
     +ReceiveDamage(Projectile proj) : void
@@ -39,36 +40,31 @@ class MediumAI extends AI {
 class HardAI extends AI {
 }
 
-class Shop {
-    --UNIT--
-    +getAvailableUnits() : List<Unit>
-    +isUnitPurchasable(Unit unitToPurchase, int numCoins) : bool
-    +getPurchasableUnits(int numCoins) : List<Unit>
-    +purchaseUnit(Unit unitToPurchase) : void
-    --TOWER--
-    +getAvailableTowers() : List<Tower>
-    +isTowerUpgradeable(Tower tower, int numCoins) : bool
-    +getUpgradeableTowers(int numCoins) : List<Tower>
-    +purchaseTowerUpgrade(Tower tower) : void
-    --BUILDING--
-    +isBuildingRepairable(int numCoins) : bool
-    +purchaseBuildingRepair() : void
+class UnitShop {
+    +respawns : Transform[]
+    +units : List<GameObject>
+    +GetAvailable() : List<Unit>
+    +IsPurchasable(Unit toPurchase, int numCoins) : bool
+    +GetPurchasable(int numCoins) : List<Unit>
+    +Purchase(Unit toPurchase) : void
 }
 
-AI "*"--"1" Shop : buys from
+Unit "*" -- "1" UnitShop : sells
+
+AI "*"--"1" UnitShop : buys from
 
 class Unit implements CanReceiveDamage{
     +baseHealth : float
     -totalHealth : float
     -currentHealth : float
     +moveSpeed : float
-    +costCoins : int
+    +purchaseCost : int
     +rewardCoins : int
 }
 
 GameController "1" -- "*" Unit : notifies
 
-class Weapon implements CanUpgrade{
+class Weapon {
     +baseDamage : float
     +baseRange : float
     +baseAttackSpeed : float
@@ -102,7 +98,8 @@ class Building implements CanUpgrade, CanReceiveDamage {
     +upgradeCost : int
     +repairQuantity : float
     +repairCost : int
-    +getMissingHealth() : float
+    +IsRepairable(int numCoins) : bool
+    +Repair() : void
 }
 
 GameController "1" -- "1" Building : notifies
