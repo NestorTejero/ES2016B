@@ -15,5 +15,7 @@ public class Player : MonoBehaviour
     {
         Debug.Log("Oh! I've received " + deadUnit.rewardCoins + " coins! :D yay");
         addCoins(deadUnit.rewardCoins);
+
+		APIHUD.instance.setMoney (numCoins.ToString());
     }
 }
