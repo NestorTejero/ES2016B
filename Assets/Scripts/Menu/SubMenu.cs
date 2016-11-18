@@ -8,10 +8,11 @@ public class SubMenu : MonoBehaviour {
 	public bool isMediumButton = false;
 	public bool isHardButton = false;
 	public bool isReturnButton = false;
+    public AudioSource audioSource;
 
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
 		//Should the cursor be visible?
 		Cursor.visible = true;
 		//The cursor will automatically be hidden, centered on view and made to never leave the view.
@@ -35,14 +36,20 @@ public class SubMenu : MonoBehaviour {
 	public void OnMouseUpAsButton(){
 
 		if(isEasyButton)
-			SceneManager.LoadScene(5);
-		else if(isMediumButton)
-			SceneManager.LoadScene(5); 
-		else if(isHardButton)
-			SceneManager.LoadScene(5); 
-		else if(isReturnButton)
-			SceneManager.LoadScene(0); 
+            StartCoroutine(playAndLoad(5));
+        else if(isMediumButton)
+            StartCoroutine(playAndLoad(5));
+        else if(isHardButton)
+            StartCoroutine(playAndLoad(5));
+        else if(isReturnButton)
+            StartCoroutine(playAndLoad(0));
 		else
-			Application.Quit();; //Load the game (next scene)
+			Application.Quit(); //Load the game (next scene)
 	}
+    public IEnumerator playAndLoad(int scene)
+    {
+        audioSource.Play();
+        yield return new WaitForSeconds(audioSource.clip.length);
+        SceneManager.LoadScene(scene); //Load the game (next scene)  
+    }
 }
