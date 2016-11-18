@@ -25,7 +25,7 @@ GameObject:
   - 65: {fileID: 65000010334541254}
   m_Layer: 8
   m_Name: TowerModel
-  m_TagString: Tower
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -44,7 +44,7 @@ GameObject:
   - 114: {fileID: 114000010655950502}
   m_Layer: 8
   m_Name: Tower
-  m_TagString: Untagged
+  m_TagString: Tower
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

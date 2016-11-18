@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class Weapon : MonoBehaviour, CanUpgrade
+public class Weapon : MonoBehaviour
 {
     public float baseDamage;
     public float baseRange;
@@ -42,14 +42,8 @@ public class Weapon : MonoBehaviour, CanUpgrade
         Debug.Log ("WEAPON CREATED");
 	}
 
-	// Update is called once per frame
-	void Update ()
-	{
-
-	}
-
-	// Upgrade weapon features
-	public void Upgrade ()
+    // Upgrade weapon features
+    public void Upgrade ()
 	{
 		this.currentDamage *= upgradeFactor;
 	}
