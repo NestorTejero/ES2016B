@@ -51,25 +51,23 @@ public class Building : MonoBehaviour, CanUpgrade, CanReceiveDamage
 	}
 
 	// Receive damage from a projectile (shot by weapon)
-	public bool ReceiveDamage (Projectile proj)
+	public void ReceiveDamage (Projectile proj)
 	{
 		this.currentHealth -= proj.getDamage();
 		Debug.Log ("Building's currentHealth: " + this.currentHealth);
 		//Debug.Log ("BUILDING DAMAGED by HP: " + proj.getDamage());
 
-		if (this.currentHealth <= 0.0)
-		{
-            GameController.instance.notifyDeath(this);
-			return true;
-		} else {
-			return false;
+		if (this.currentHealth <= 0.0) {
+			GameController.instance.notifyDeath (this);
 		}
 	}
 
-    public float getMissingHealth()
+    public float getMissingHealth ()
     {
         return this.totalHealth - this.currentHealth;
     }
 
-
+	public float getCurrentHealth(){
+		return this.currentHealth;
+	}
 }
