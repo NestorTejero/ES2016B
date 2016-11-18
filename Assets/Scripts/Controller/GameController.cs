@@ -22,6 +22,8 @@ public class GameController : MonoBehaviour
     {
         currentWave = 1;
 		totalWaves = 2; //TODO: this number changes depending of AI level
+
+		APIHUD.instance.setWave(currentWave.ToString());
     }
 
     private void Awake()
@@ -81,5 +83,7 @@ public class GameController : MonoBehaviour
 			SceneManager.LoadScene("MainMenu");
 		}
 		ai.timeToUpgrade ();
+
+		APIHUD.instance.setWave(currentWave.ToString());
 	}
 }

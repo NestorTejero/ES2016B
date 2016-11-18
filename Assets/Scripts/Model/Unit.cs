@@ -37,6 +37,10 @@ public class Unit : MonoBehaviour, CanReceiveDamage
 		Debug.Log ("Unit " + this.name + " currentHealth: " + this.currentHealth);
 		//Debug.Log("UNIT DAMAGED by HP: " + proj.getDamage());
 
+		if (APIHUD.instance.getGameObjectSelected () == this.gameObject) {
+			APIHUD.instance.setHealth (this.currentHealth, this.totalHealth);
+		}
+
 		if (this.currentHealth <= 0.0f) {
 			GameController.instance.notifyDeath (this); // Tell controller I'm dead
 			Destroy (this.gameObject);
@@ -64,5 +68,9 @@ public class Unit : MonoBehaviour, CanReceiveDamage
 		
 	public float getCurrentHealth(){
 		return this.currentHealth;
+	}
+
+	public float getTotalHealth(){
+		return this.totalHealth;
 	}
 }
