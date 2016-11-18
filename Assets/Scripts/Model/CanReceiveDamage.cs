@@ -4,5 +4,5 @@ using System.Collections;
 public interface CanReceiveDamage
 {
 	void ReceiveDamage (Projectile proj);
-	float getCurrentHealth ();
+	GameObject getGameObject ();
 }

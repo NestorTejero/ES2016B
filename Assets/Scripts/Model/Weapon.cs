@@ -82,7 +82,7 @@ public class Weapon : MonoBehaviour, CanUpgrade
 			CanReceiveDamage target = this.targets [0];
 
 			// Check if target is already dead
-			if (target.getCurrentHealth() <= 0.0f) {
+			if (target.Equals(null) || target == null) {
 				Debug.Log (this.gameObject.name + ": TARGET ALREADY DEAD");
 				this.removeTarget (target);
 			} else {
@@ -98,14 +98,19 @@ public class Weapon : MonoBehaviour, CanUpgrade
 	public void Attack()
 	{
 		CanReceiveDamage target = getAvailableTarget();
-		if (target != null) {
-			
-			// Set the projectile properties and shoot
-			projectile.Properties (1.0f, target, this.currentDamage);
-			projectile.Shoot ();
 
+		if (target != null) {
+
+			GameObject proj_clone = (GameObject) Instantiate (this.projectile.gameObject, this.projectile.gameObject.transform.position, this.projectile.gameObject.transform.rotation);
+		
+			proj_clone.GetComponent<Projectile>().Properties(target, this.currentDamage);
+			//proj_clone.GetComponent<Projectile>().Shoot ();
+
+			//this.projectile.Properties (target, this.currentDamage);
+			//this.projectile.Shoot ();
 			// Play sound
 			this.source.PlayOneShot (this.shootSound);
+			Destroy (projectile);
 		}
 	}
 }

@@ -68,7 +68,7 @@ public class Unit : MonoBehaviour, CanReceiveDamage
 		}
 	}
 		
-	public float getCurrentHealth(){
-		return this.currentHealth;
+	public GameObject getGameObject(){
+		return this.gameObject;
 	}
 }
