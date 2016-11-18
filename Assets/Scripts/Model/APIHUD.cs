@@ -5,6 +5,7 @@ public class APIHUD : MonoBehaviour {
 
 	public static APIHUD instance;
 	private bool selectedItem = false;
+	private GameObject gameObjectSelected;
 
 	void Awake()
 	{
@@ -23,11 +24,24 @@ public class APIHUD : MonoBehaviour {
 		setTime(timer.instance.getTime ());
 	}
 
-	public void setHealth(string health){
+	public void setHealth(float currentHealth, float totalHealth){
 		if (selectedItem == false) {
 			setSelectedItemLabel ();	
 		}
-		transform.FindChild("containerStats").FindChild("container_info").FindChild("imgLifeBar").FindChild("txtLife").GetComponent<UnityEngine.UI.Text>().text = health;
+
+		float maxWidthBarLife = transform.FindChild("containerStats").FindChild("container_info").FindChild("imgLifeBar").GetComponent<RectTransform>().rect.width;
+		float maxHeigthBarLife = transform.FindChild("containerStats").FindChild("container_info").FindChild("imgLifeBar").GetComponent<RectTransform>().rect.height;
+	
+		float widthLifeBar = (currentHealth * maxWidthBarLife) / totalHealth;
+
+		//Rect r = transform.FindChild ("containerStats").FindChild ("container_info").FindChild ("imgLifeBar").FindChild ("imgLife").GetComponent<RectTransform> ().rect;
+		//r.width = widthLifeBar;
+
+		//transform.FindChild("containerStats").FindChild("container_info").FindChild("imgLifeBar").FindChild("imgLife").GetComponent<RectTransform>().rect = r;
+
+		transform.FindChild("containerStats").FindChild("container_info").FindChild("imgLifeBar").FindChild("imgLife").GetComponent<RectTransform>().sizeDelta = new Vector2(widthLifeBar, maxHeigthBarLife);
+
+		transform.FindChild("containerStats").FindChild("container_info").FindChild("imgLifeBar").FindChild("txtLife").GetComponent<UnityEngine.UI.Text>().text = currentHealth.ToString();
 	}
 
 	public void setAttackSpeed(string atackSpeed){
@@ -58,6 +72,9 @@ public class APIHUD : MonoBehaviour {
 		transform.FindChild("containerGameStats").FindChild("lblPoints").FindChild("txtPoints").GetComponent<UnityEngine.UI.Text>().text = points;
 	}
 
+	public void setMoney(string money){
+		transform.FindChild("containerGameStats").FindChild("lblMoney").FindChild("txtMoney").GetComponent<UnityEngine.UI.Text>().text = money;
+	}
 	public void setVisibleUpgradeButton(bool visible){
 		transform.FindChild ("buttons").FindChild ("container_buttons").gameObject.active = visible;
 	}
@@ -67,5 +84,13 @@ public class APIHUD : MonoBehaviour {
 	//	transform.FindChild ("buttons").FindChild ("container_buttons").gameObject.active = true;
 		//transform.FindChild ("containerStats").FindChild ("container_NoSelectItem").GetComponent<UnityEngine.UI.Text>().text = "";
 		selectedItem = true;
+	}
+
+	public void setGameObjectSelected(GameObject gameObject){
+		this.gameObjectSelected = gameObject;
+	}
+
+	public GameObject getGameObjectSelected(){
+		return this.gameObjectSelected;
 	}
 }

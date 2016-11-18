@@ -57,6 +57,10 @@ public class Building : MonoBehaviour, CanUpgrade, CanReceiveDamage
 		Debug.Log ("Building's currentHealth: " + this.currentHealth);
 		//Debug.Log ("BUILDING DAMAGED by HP: " + proj.getDamage());
 
+		if (APIHUD.instance.getGameObjectSelected () == this.gameObject) {
+			APIHUD.instance.setHealth (this.currentHealth, this.totalHealth);
+		}
+
 		if (this.currentHealth <= 0.0) {
 			GameController.instance.notifyDeath (this);
 		}
@@ -69,5 +73,9 @@ public class Building : MonoBehaviour, CanUpgrade, CanReceiveDamage
 
 	public float getCurrentHealth(){
 		return this.currentHealth;
+	}
+
+	public float getTotalHealth(){
+		return this.totalHealth;
 	}
 }
