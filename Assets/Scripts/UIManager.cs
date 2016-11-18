@@ -14,8 +14,8 @@ public class UIManager : MonoBehaviour {
 	bool gamePaused;
 	
 	// Control of volume:
-	public Slider volumeSlider = null;
-	public Slider musicSlider = null;
+	public Slider volumeSlider;
+	public Slider musicSlider;
 	
 	// Menu icons:
 	public Image musicIcon; // This is the gameobject that shows the music volume sprite
@@ -25,6 +25,10 @@ public class UIManager : MonoBehaviour {
 	public Sprite soundMedium;
 	public Sprite soundLow;
 	public Sprite soundMuted;
+	
+	// We store the current volume before muting sound with icons
+	private float lastMVolume; // Music volume
+	private float lastEVolume; // Effects volume
 
 	// Initialization
 	void Start () {
@@ -35,6 +39,9 @@ public class UIManager : MonoBehaviour {
 		// Theese listeners help us to know if slider's values changed:
 		volumeSlider.onValueChanged.AddListener (delegate {effectsChangeCheck ();});
 		musicSlider.onValueChanged.AddListener (delegate {musicChangeCheck ();});
+		
+		lastMVolume = 1;
+		lastEVolume = 1;
 	}
 
 	// Update is called once per frame
@@ -57,11 +64,38 @@ public class UIManager : MonoBehaviour {
 
 	}
 	
+	// This function mutes or unmuted the effects volume, according to the current value
+	public void effectsIconClick(){
+		if (AudioListener.volume == 0){
+			if (lastEVolume == 0){
+				lastEVolume = 1;
+			}
+			AudioListener.volume = lastEVolume;
+			volumeSlider.value = lastEVolume;
+			setEffectsIcon();
+		}
+		else{
+			float aux = AudioListener.volume;
+			AudioListener.volume = 0;
+			volumeSlider.value = 0;
+			setEffectsIcon();
+			lastEVolume = aux;
+			
+		}
+	}
+	
 	// This function is called when we change the effects slider value
 	public void effectsChangeCheck(){
 		// We set the AudioListener volume according to the effects slider
 		AudioListener.volume = volumeSlider.normalizedValue;
+		lastEVolume = AudioListener.volume;
 		
+		setEffectsIcon();
+		
+	}
+	
+	// This function sets the correct icon volume
+	private void setEffectsIcon(){
 		// Different icon is shown according to the volume
 		if (volumeSlider.value == 0){
 			effectsIcon.sprite = soundMuted;
@@ -77,8 +111,32 @@ public class UIManager : MonoBehaviour {
 		}
 	}
 	
+	// This function mutes or unmuted the music volume, according to the current value
+	public void musicIconClick(){
+		if (musicSlider.value == 0){
+			if (lastMVolume == 0){
+				lastMVolume = 1;
+			}
+			musicSlider.value = lastMVolume;
+			setMusicIcon();
+		}
+		else{
+			float aux = musicSlider.value;
+			musicSlider.value = 0;
+			setMusicIcon();
+			lastMVolume = aux;
+		}
+	}
+	
 	// This function is called everytime we change the music slider value
 	public void musicChangeCheck(){
+		
+		lastMVolume = musicSlider.value;
+		setMusicIcon();
+	}
+	
+	// This function sets the correct icon volume
+	private void setMusicIcon(){
 		// Different icon is shown according to the volume
 		if (musicSlider.value == 0){
 			musicIcon.sprite = soundMuted;
