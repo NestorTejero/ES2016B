@@ -8,13 +8,14 @@ public class Weapon : MonoBehaviour, CanUpgrade
     public float baseRange;
     public float baseCooldown;
 	public float upgradeFactor;
-	public AudioClip shootSound;
+    public AudioSource source_shoot, source_death;
+    public AudioClip shootSound, deathSound1, deathSound2, deathSound3;
 
     private float currentDamage;
     private float currentRange;
     private float currentCooldown;
 	private List<CanReceiveDamage> targets;
-    private AudioSource source;
+    
 
 	// Use this for initialization
 	void Start ()
@@ -33,7 +34,7 @@ public class Weapon : MonoBehaviour, CanUpgrade
 		InvokeRepeating("Attack", 0.0f, this.currentCooldown);
 
         // Set sounds
-        this.source = GetComponent<AudioSource>();
+        //this.source_shoot = GetComponent<AudioSource>();
 
         Debug.Log ("WEAPON CREATED");
 	}
@@ -84,11 +85,17 @@ public class Weapon : MonoBehaviour, CanUpgrade
 			bool dead = projectile.shoot ();
 			if (dead) {
 				this.targets.Remove (target);
-			}
+                // Play death sound
+                if (!this.source_death.isPlaying)
+                    this.source_death.PlayOneShot(this.deathSound1);
+            }
 
-            // Play sound
-			this.source.PlayOneShot (this.shootSound);
-		}
+            // Play shoot sound
+            if (!this.source_shoot.isPlaying)
+            {
+                this.source_shoot.PlayOneShot(this.shootSound);
+            }
+        }
 	}
 }
 
