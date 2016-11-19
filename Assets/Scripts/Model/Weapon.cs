@@ -8,7 +8,8 @@ public class Weapon : MonoBehaviour
     public float baseRange;
     public float baseCooldown;
 	public float upgradeFactor;
-	public AudioClip shootSound;
+    public AudioClip shootSound, deathSound1, deathSound2, deathSound3;
+    public AudioSource source_shoot, source_death;
 
     private float currentDamage;
     private float currentRange;
@@ -63,7 +64,10 @@ public class Weapon : MonoBehaviour
 	// Remove target from list
 	public void removeTarget(CanReceiveDamage target){
 		this.targets.Remove (target);
-		Debug.Log (this.gameObject.name + "-> Targets to attack :" + targets.Count);
+        // Play death sound
+        if (!this.source_death.isPlaying)
+            this.source_death.PlayOneShot(this.deathSound1);
+        Debug.Log (this.gameObject.name + "-> Targets to attack :" + targets.Count);
 	}
 
 	// Get the available target to attack from the targets list
@@ -98,9 +102,12 @@ public class Weapon : MonoBehaviour
 			projectile.Properties (1.0f, target, this.currentDamage);
 			projectile.Shoot ();
 
-			// Play sound
-			this.source.PlayOneShot (this.shootSound);
-		}
+            // Play shoot sound
+            if (!this.source_shoot.isPlaying)
+            {
+                this.source_shoot.PlayOneShot(this.shootSound);
+            }
+        }
 	}
 }
 
