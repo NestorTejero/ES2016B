@@ -22,6 +22,7 @@ AudioMixerController:
     - 46406ac078f593747bd24b1fc14f8155
     - 068cf8d61121fe54da3349261be2c2f7
     - 4fe0c9c0cd6ff594dba1bd1ccb855281
+    - 330df21278cba80438d9dbbd5f6787eb
     name: View
   m_CurrentViewIndex: 0
   m_TargetSnapshot: {fileID: 24500003}
@@ -38,6 +39,7 @@ AudioMixerGroupController:
   - {fileID: 243000010375373928}
   - {fileID: 243000012664302004}
   - {fileID: 243000011310593780}
+  - {fileID: 243000013056095814}
   m_Volume: 2e7ecc127de83b548bfa821cdb031eb3
   m_Pitch: 87a1a44ad6b592e48a335a89b96b18ee
   m_Effects:
@@ -93,7 +95,7 @@ AudioMixerGroupController:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: Cannon
+  m_Name: Shoot
   m_AudioMixer: {fileID: 24100000}
   m_GroupID: 4fe0c9c0cd6ff594dba1bd1ccb855281
   m_Children: []
@@ -118,6 +120,23 @@ AudioMixerGroupController:
   m_Pitch: 752dd5762b0abda4a8a4bac8783c041e
   m_Effects:
   - {fileID: 244000013620581844}
+  m_UserColorIndex: 0
+  m_Mute: 0
+  m_Solo: 0
+  m_BypassEffects: 0
+--- !u!243 &243000013056095814
+AudioMixerGroupController:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: Death
+  m_AudioMixer: {fileID: 24100000}
+  m_GroupID: 330df21278cba80438d9dbbd5f6787eb
+  m_Children: []
+  m_Volume: 581c975d27e44ab488391f3b80721bb2
+  m_Pitch: d917ba814a0f6f740afc478d2b5a1b89
+  m_Effects:
+  - {fileID: 244000011943011644}
   m_UserColorIndex: 0
   m_Mute: 0
   m_Solo: 0
@@ -161,6 +180,19 @@ AudioMixerEffectController:
   m_EffectID: a86f96a9fd9393d4f8b3db724589a26e
   m_EffectName: Attenuation
   m_MixLevel: f91a15346cfc804478c1b3947846c9e7
+  m_Parameters: []
+  m_SendTarget: {fileID: 0}
+  m_EnableWetMix: 0
+  m_Bypass: 0
+--- !u!244 &244000011943011644
+AudioMixerEffectController:
+  m_ObjectHideFlags: 3
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: 
+  m_EffectID: 8c074ffdcfa11044fba75bd6f144fc47
+  m_EffectName: Attenuation
+  m_MixLevel: 1dcc93a710d67ad438de58cbf71de5c2
   m_Parameters: []
   m_SendTarget: {fileID: 0}
   m_EnableWetMix: 0
