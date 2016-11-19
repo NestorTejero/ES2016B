@@ -40,8 +40,10 @@ public class UIManager : MonoBehaviour {
 		volumeSlider.onValueChanged.AddListener (delegate {effectsChangeCheck ();});
 		musicSlider.onValueChanged.AddListener (delegate {musicChangeCheck ();});
 		
-		lastMVolume = 1;
-		lastEVolume = 1;
+		volumeSlider.value = PersistentValues.effectsVolume;
+		musicSlider.value = PersistentValues.musicVolume;
+		lastMVolume = PersistentValues.musicLastVolume;
+		lastEVolume = PersistentValues.effectsLastVolume;
 	}
 
 	// Update is called once per frame
@@ -82,6 +84,8 @@ public class UIManager : MonoBehaviour {
 			lastEVolume = aux;
 			
 		}
+		PersistentValues.effectsVolume = volumeSlider.value;
+		PersistentValues.effectsLastVolume = lastEVolume;
 	}
 	
 	// This function is called when we change the effects slider value
@@ -90,6 +94,8 @@ public class UIManager : MonoBehaviour {
 		AudioListener.volume = volumeSlider.normalizedValue;
 		lastEVolume = AudioListener.volume;
 		
+		PersistentValues.effectsVolume = volumeSlider.value;
+		PersistentValues.effectsLastVolume = lastEVolume;
 		setEffectsIcon();
 		
 	}
@@ -126,6 +132,8 @@ public class UIManager : MonoBehaviour {
 			setMusicIcon();
 			lastMVolume = aux;
 		}
+		PersistentValues.musicVolume = musicSlider.value;
+		PersistentValues.musicLastVolume = lastMVolume;
 	}
 	
 	// This function is called everytime we change the music slider value
@@ -133,6 +141,9 @@ public class UIManager : MonoBehaviour {
 		
 		lastMVolume = musicSlider.value;
 		setMusicIcon();
+		
+		PersistentValues.musicVolume = musicSlider.value;
+		PersistentValues.musicLastVolume = lastMVolume;
 	}
 	
 	// This function sets the correct icon volume
