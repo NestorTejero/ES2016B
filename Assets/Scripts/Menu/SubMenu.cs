@@ -74,8 +74,8 @@ public class SubMenu : MonoBehaviour {
 
 	public void effectsChangeCheck(){
 		// We set the AudioListener volume according to the effects slider
-		AudioListener.volume = volumeSlider.normalizedValue;
-		lastEVolume = AudioListener.volume;
+		//AudioListener.volume = volumeSlider.normalizedValue;
+		lastEVolume = volumeSlider.normalizedValue;
 
 		setEffectsIcon();
 
@@ -125,19 +125,19 @@ public class SubMenu : MonoBehaviour {
 
 
 	public void effectsIconClick(){
-		if (AudioListener.volume == 0){
+		if (volumeSlider.value == 0){
 			if (lastEVolume == 0){
 				lastEVolume = 1;
 			}
-			AudioListener.volume = lastEVolume;
+			//AudioListener.volume = lastEVolume;
 			volumeSlider.value = lastEVolume;
-			effectsChangeCheck();
+			setEffectsIcon();
 		}
 		else{
-			float aux = AudioListener.volume;
-			AudioListener.volume = 0;
+			float aux = volumeSlider.value;
+			//AudioListener.volume = 0;
 			volumeSlider.value = 0;
-			effectsChangeCheck();
+			setEffectsIcon();
 			lastEVolume = aux;
 
 		}
@@ -149,12 +149,12 @@ public class SubMenu : MonoBehaviour {
 				lastMVolume = 1;
 			}
 			musicSlider.value = lastMVolume;
-			musicChangeCheck();
+			setMusicIcon();
 		}
 		else{
 			float aux = musicSlider.value;
 			musicSlider.value = 0;
-			musicChangeCheck();
+			setMusicIcon();
 			lastMVolume = aux;
 		}
 	}
