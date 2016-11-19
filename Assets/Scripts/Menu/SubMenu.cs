@@ -13,10 +13,11 @@ public class SubMenu : MonoBehaviour {
     public AudioSource audioSource;
 
 	// Control of volume:
-	public Slider volumeSlider = null;
-	public Slider musicSlider = null;
+	public Slider volumeSlider;
+	public Slider musicSlider;
 
-	public Image musicIcon;
+	// Menu icons:
+	public Image musicIcon; 
 	public Image effectsIcon;
 
 	public Sprite soundFull;
@@ -29,11 +30,7 @@ public class SubMenu : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-		//Should the cursor be visible?
-		Cursor.visible = true;
-		//The cursor will automatically be hidden, centered on view and made to never leave the view.
-		Screen.lockCursor = false;
-		// Sliders of Sound
+		
 		volumeSlider.onValueChanged.AddListener (delegate {effectsChangeCheck ();});
 		musicSlider.onValueChanged.AddListener (delegate {musicChangeCheck ();});
 		lastMVolume = 1;
@@ -75,9 +72,19 @@ public class SubMenu : MonoBehaviour {
     }
 
 
-	// Changes the effects sound
 	public void effectsChangeCheck(){
+		// We set the AudioListener volume according to the effects slider
 		AudioListener.volume = volumeSlider.normalizedValue;
+		lastEVolume = AudioListener.volume;
+
+		setEffectsIcon();
+
+	}
+
+
+	// Changes the effects sound
+	private void setEffectsIcon(){
+		// Different icon is shown according to the volume
 		if (volumeSlider.value == 0){
 			effectsIcon.sprite = soundMuted;
 		}
@@ -92,9 +99,16 @@ public class SubMenu : MonoBehaviour {
 		}
 	}
 
-	// Changes the music sound
 	public void musicChangeCheck(){
-		AudioListener.volume = volumeSlider.normalizedValue;
+
+		lastMVolume = musicSlider.value;
+		setMusicIcon();
+	}
+
+
+	// Changes the music sound
+	private void setMusicIcon(){
+		// Different icon is shown according to the volume
 		if (musicSlider.value == 0){
 			musicIcon.sprite = soundMuted;
 		}
@@ -108,7 +122,6 @@ public class SubMenu : MonoBehaviour {
 			musicIcon.sprite = soundFull;
 		}
 	}
-
 
 
 	public void effectsIconClick(){
