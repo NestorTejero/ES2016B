@@ -10,6 +10,7 @@ TagManager:
   - Unit
   - Human
   - AI
+  - Shop
   layers:
   - Default
   - TransparentFX

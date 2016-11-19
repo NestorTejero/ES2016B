@@ -22,7 +22,7 @@ GameObject:
   - 114: {fileID: 114000010410853242}
   m_Layer: 0
   m_Name: EasyAI
-  m_TagString: Untagged
+  m_TagString: AI
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

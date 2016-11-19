@@ -17,7 +17,9 @@ public class loadingScreen : MonoBehaviour {
 
 	void Update () {
 
-		if (time == 100) {
+		if (time == 100)
+		{
+		    SceneManager.UnloadScene(1);
 			SceneManager.LoadScene(1); 
 		}
 
