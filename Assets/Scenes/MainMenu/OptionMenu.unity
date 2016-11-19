@@ -1365,14 +1365,6 @@ MonoBehaviour:
   isHardButton: 0
   isReturnButton: 1
   audioSource: {fileID: 927727973}
-  volumeSlider: {fileID: 0}
-  musicSlider: {fileID: 0}
-  musicIcon: {fileID: 0}
-  effectsIcon: {fileID: 0}
-  soundFull: {fileID: 0}
-  soundMedium: {fileID: 0}
-  soundLow: {fileID: 0}
-  soundMuted: {fileID: 0}
 --- !u!102 &1119966433
 TextMesh:
   serializedVersion: 3
@@ -1433,6 +1425,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 1282082968}
   - 114: {fileID: 1282082969}
+  - 114: {fileID: 1282082970}
   m_Layer: 0
   m_Name: GameMenu
   m_TagString: Untagged
@@ -1461,7 +1454,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1282082967}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cb8efa7baca364a569eb291e219ae382, type: 3}
   m_Name: 
@@ -1471,6 +1464,17 @@ MonoBehaviour:
   isHardButton: 0
   isReturnButton: 0
   audioSource: {fileID: 376443508}
+--- !u!114 &1282082970
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1282082967}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ac1cd619befc414ab9339d38c247a97, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   volumeSlider: {fileID: 1293073786}
   musicSlider: {fileID: 109522167}
   musicIcon: {fileID: 1631480890}
@@ -1687,7 +1691,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1282082969}
+        - m_Target: {fileID: 1282082970}
           m_MethodName: musicIconClick
           m_Mode: 1
           m_Arguments:
@@ -2234,7 +2238,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1282082969}
+        - m_Target: {fileID: 1282082970}
           m_MethodName: effectsIconClick
           m_Mode: 1
           m_Arguments:
