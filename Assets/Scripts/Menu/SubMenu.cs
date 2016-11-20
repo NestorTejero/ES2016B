@@ -33,42 +33,24 @@ public class SubMenu : MonoBehaviour {
 	}
 
 	public void OnEasy(){
-		SceneManager.LoadScene(5);
+		PersistentValues.difficulty = 1;
+		StartCoroutine(playAndLoad(5));
 	}
 
 	public void OnMedium(){
-		SceneManager.LoadScene(5);
+		PersistentValues.difficulty = 2;
+		StartCoroutine(playAndLoad(5));
 	}
 
 	public void OnHard(){
-		SceneManager.LoadScene(5);
+		PersistentValues.difficulty = 3;
+		StartCoroutine(playAndLoad(5));
 	}
 
 	public void OnBack(){
-		SceneManager.LoadScene(0);
+		StartCoroutine(playAndLoad(0));
 	}
-
-	public void OnMouseUpAsButton(){
-
-		if(isEasyButton){
-			PersistentValues.difficulty = 1;
-            StartCoroutine(playAndLoad(5));
-		}
-        else if(isMediumButton){
-			PersistentValues.difficulty = 2;
-            StartCoroutine(playAndLoad(5));
-		}
-        else if(isHardButton){
-			PersistentValues.difficulty = 3;
-            StartCoroutine(playAndLoad(5));
-		}
-        else if(isReturnButton){
-            StartCoroutine(playAndLoad(0));
-		}
-		else{
-			Application.Quit(); //Load the game (next scene)
-		}
-	}
+		
     public IEnumerator playAndLoad(int scene)
     {
         audioSource.Play();
