@@ -8,7 +8,6 @@ public class Tower : MonoBehaviour, CanUpgrade
     private Weapon weapon;
 	private int currentLevel;
 	
-    
     // Use this for initialization
     void Start ()
     {
@@ -16,12 +15,11 @@ public class Tower : MonoBehaviour, CanUpgrade
         this.currentLevel = 0;		
 		Debug.Log ("TOWER CREATED");
 	}
-		
-    // Update is called once per frame
-    void Update ()
-	{
 
-	}
+    public bool IsUpgradeable(int numCoins)
+    {
+        return this.upgradeCost <= numCoins;
+    }
 	
 	// To upgrade when there are enough coins
 	public void Upgrade ()
@@ -41,7 +39,6 @@ public class Tower : MonoBehaviour, CanUpgrade
 			this.weapon.addTarget (col.gameObject.GetComponent<CanReceiveDamage> ());
 		}
 	}
-
 
 	// If enemy exits the range of attack
 	void OnTriggerExit (Collider col){
