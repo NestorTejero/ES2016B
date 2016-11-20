@@ -1,25 +1,21 @@
 ﻿using System;
+using UnityEngine;
 
 namespace AssemblyCSharp
 {
-	public class DamageCostUnit
+	public class DamageCostUnit : MonoBehaviour
 	{
 		public Unit unit;
-		private float dmgCost;
+		public float dmgCost;
 
 
 		public DamageCostUnit (Unit unit)
 		{
-		
 			this.unit = unit;
-			dmgCost = (unit.weapon.baseDamage)/unit.purchaseCost;
+			dmgCost = (unit.damage)/unit.purchaseCost;
 
 		}
-
-		public int Cmp (DamageCostUnit other)
-		{
-			return this.dmgCost.CompareTo(other.dmgCost);
-		}
+			
 	}
 }
 

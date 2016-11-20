@@ -19,6 +19,7 @@ public class MediumAI : AI
 				shop.Purchase(unit);
 				Debug.Log("NEW UNIT " + unit.name + " PURCHASED.");
 				unitsWave += 1;
+				numCoins -= unit.purchaseCost;
 			}
 
 			/* we look for buy a second unit, this time is random */
@@ -44,7 +45,7 @@ public class MediumAI : AI
 
 	private void autoCoins(){
 		//AI wins 20 coins every second
-		numCoins += 40;
+		numCoins += 20;
 	}
 }
 

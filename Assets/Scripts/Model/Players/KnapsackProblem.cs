@@ -22,19 +22,19 @@ namespace AssemblyCSharp
 		 * This function obtains a sorted list of units with damage/cost
 		*/
 		public void infoCalc(List<Unit> availableUnits, int actualCoins){
-			maxCoins = actualCoins;
+			this.maxCoins = actualCoins;
 
-			for (int i = 0; i < availableUnits.Count - 1; i++)
+			for (int i = 0; i < availableUnits.Count; i++)
 			{
 				DamageCostUnit unitC = new DamageCostUnit (availableUnits [i]);
-				listDmgCost.Add (unitC);
+				this.listDmgCost.Add (unitC);
 			}
 
-			listDmgCost.Sort();
+			listDmgCost.OrderBy (i => i.dmgCost).Reverse ();
 
-			for (int i = 0; i < listDmgCost.Count - 1; i++) 
+			for (int i = 0; i < listDmgCost.Count; i++) 
 			{
-				benefit.Add (listDmgCost [i].unit);
+				this.benefit.Add (listDmgCost [i].unit);
 			}
 		}
 

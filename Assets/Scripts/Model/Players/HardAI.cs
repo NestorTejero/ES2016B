@@ -45,6 +45,6 @@ public class HardAI : AI
 
 	private void autoCoins(){
 		//AI wins 20 coins every second
-		numCoins += 80;
+		numCoins += 20;
 	}
 }
