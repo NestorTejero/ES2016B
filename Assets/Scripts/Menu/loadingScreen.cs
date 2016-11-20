@@ -40,6 +40,11 @@ public class loadingScreen : MonoBehaviour {
 
 	}
 
+	// Skip the Loading Screen
+	public void Skip(){
+		SceneManager.UnloadScene(1);
+		SceneManager.LoadScene(1); 
+	}
 
 }
 	

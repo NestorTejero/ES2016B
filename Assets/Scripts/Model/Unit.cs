@@ -6,10 +6,11 @@ public class Unit : MonoBehaviour, CanReceiveDamage
 {
     public float baseHealth;
     public float moveSpeed;
-    public int costCoins;
+    public int purchaseCost;
     public int rewardCoins;
     public Transform goal;
-    private Weapon weapon;
+    public Weapon weapon;
+	public float damage;
 
     private float totalHealth;
 	private float currentHealth;
@@ -27,13 +28,9 @@ public class Unit : MonoBehaviour, CanReceiveDamage
 
 	    this.weapon = this.gameObject.GetComponent<Weapon>();
 
-        Debug.Log ("UNIT CREATED");
-	}
-	
-	// Update is called once per frame
-	void Update ()
-	{
+		this.damage = weapon.baseDamage;
 
+        Debug.Log ("UNIT CREATED");
 	}
 
 	// Receive damage by weapon
@@ -42,6 +39,10 @@ public class Unit : MonoBehaviour, CanReceiveDamage
 		this.currentHealth -= damage;
 		Debug.Log ("Unit " + this.name + " currentHealth: " + this.currentHealth);
 		//Debug.Log("UNIT DAMAGED by HP: " + proj.getDamage());
+
+		if (APIHUD.instance.getGameObjectSelected () == this.gameObject) {
+			APIHUD.instance.setHealth (this.currentHealth, this.totalHealth);
+		}
 
 		if (this.currentHealth <= 0.0f) {
 			GameController.instance.notifyDeath (this); // Tell controller I'm dead
@@ -70,5 +71,9 @@ public class Unit : MonoBehaviour, CanReceiveDamage
 		
 	public GameObject getGameObject(){
 		return this.gameObject;
+	}
+
+	public float getTotalHealth(){
+		return this.totalHealth;
 	}
 }

@@ -8,21 +8,22 @@ public class EasyAI : AI
 	public override void Play(){
         InvokeRepeating("autoCoins", 0.0f, 1.0f);
         //create 20 units every wave
-	    Shop shop = GameObject.FindGameObjectWithTag("Shop").GetComponent<Shop>();
+	    UnitShop shop = GameObject.FindGameObjectWithTag("Shop").GetComponent<UnitShop>();
         if (unitsWave < 20)
         {
-            var availableUnits = shop.getPurchasableUnits(numCoins);
+            var availableUnits = shop.GetPurchasable(numCoins);
             var unit = availableUnits[0];
-            if (shop.isUnitPurchasable(unit, numCoins))
+            if (shop.IsPurchasable(unit, numCoins))
             {
-                shop.purchaseUnit(unit);
-                Debug.Log("new unit purchased");
+                shop.Purchase(unit);
+                Debug.Log("NEW UNIT " + unit.name + " PURCHASED.");
                 unitsWave += 1;
+				numCoins -= unit.purchaseCost;
             }
         }
         else
         {
-            if (!GameObject.FindObjectOfType(typeof(Unit)))
+            if (GameObject.FindGameObjectsWithTag("Unit").Length == 0)
             {
                 GameController.instance.notifyWaveClear(this);
                 unitsWave = 0;
