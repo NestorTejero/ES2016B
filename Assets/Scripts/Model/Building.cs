@@ -2,7 +2,7 @@
 using System.Collections;
 using UnityEngine.SceneManagement;
 
-public class Building : MonoBehaviour, CanUpgrade, CanRepair, CanReceiveDamage
+public class Building : MonoBehaviour, CanUpgrade, CanReceiveDamage
 {
     private float currentLevel;
     public float baseHealth;
@@ -14,7 +14,6 @@ public class Building : MonoBehaviour, CanUpgrade, CanRepair, CanReceiveDamage
 	public float repairQuantity;
     public float repairCost;
 
-    private float timeToWin; // TODO move this to Controller
 
 	// Use this for initialization
 	void Start ()
@@ -23,31 +22,27 @@ public class Building : MonoBehaviour, CanUpgrade, CanRepair, CanReceiveDamage
 		this.currentHealth = this.baseHealth;
 	    this.totalHealth = this.baseHealth;
 
-        this.timeToWin = 30.0f; // TODO move this to controller
-
         Debug.Log ("BUILDING CREATED with HP: " + this.baseHealth);
 	}
 
-	// Update is called once per frame
-	void Update ()
-	{
-        // TODO move this to controller
-        if (this.timeToWin <= 0.0f)
-        {
-            SceneManager.LoadScene("MainMenu");
-        }
-        this.timeToWin -= Time.deltaTime * 1;
-        //
+    public bool IsUpgradeable(int numCoins)
+    {
+        return this.upgradeCost <= numCoins;
     }
 
-	// To upgrade when there are enough coins
-	public void Upgrade ()
+    // To upgrade when there are enough coins
+    public void Upgrade ()
 	{
 		this.totalHealth *= this.upgradeFactor;
 		this.currentHealth *= this.upgradeFactor;
 	    this.currentLevel++;
 		Debug.Log ("BUILDING UPGRADED, now it has HP: " + this.totalHealth);
 	}
+
+    public bool IsRepairable(int numCoins)
+    {
+        return (this.repairCost <= numCoins) && (this.totalHealth > this.currentHealth);
+    }
 
 	// Repair the building
 	public void Repair ()
@@ -60,23 +55,26 @@ public class Building : MonoBehaviour, CanUpgrade, CanRepair, CanReceiveDamage
 	}
 
 	// Receive damage from a projectile (shot by weapon)
-	public bool ReceiveDamage (Projectile proj)
+	public void ReceiveDamage (Projectile proj)
 	{
 		this.currentHealth -= proj.getDamage();
 		Debug.Log ("Building's currentHealth: " + this.currentHealth);
 		//Debug.Log ("BUILDING DAMAGED by HP: " + proj.getDamage());
 
-		if (this.currentHealth <= 0.0)
-		{
-            GameController.instance.notifyDeath(this);
-			return true;
-		} else {
-			return false;
+		if (APIHUD.instance.getGameObjectSelected () == this.gameObject) {
+			APIHUD.instance.setHealth (this.currentHealth, this.totalHealth);
+		}
+
+		if (this.currentHealth <= 0.0) {
+			GameController.instance.notifyDeath (this);
 		}
 	}
 
-    public float getMissingHealth()
-    {
-        return this.totalHealth - this.currentHealth;
-    }
+	public float getCurrentHealth(){
+		return this.currentHealth;
+	}
+
+	public float getTotalHealth(){
+		return this.totalHealth;
+	}
 }

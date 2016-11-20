@@ -6,13 +6,14 @@ public class Unit : MonoBehaviour, CanReceiveDamage
 {
     public float baseHealth;
     public float moveSpeed;
-    public int costCoins;
+    public int purchaseCost;
     public int rewardCoins;
     public Transform goal;
     private Weapon weapon;
 
     private float totalHealth;
 	private float currentHealth;
+    
 
 	// Use this for initialization
 	void Start ()
@@ -28,28 +29,22 @@ public class Unit : MonoBehaviour, CanReceiveDamage
 
         Debug.Log ("UNIT CREATED");
 	}
-	
-	// Update is called once per frame
-	void Update ()
-	{
-
-	}
 
 	// Receive damage from a projectile (shot by weapon)
-	public bool ReceiveDamage (Projectile proj)
+	public void ReceiveDamage (Projectile proj)
 	{
-		this.currentHealth -= proj.getDamage();
-		Debug.Log ("Unit " + this.name +" currentHealth: " + this.currentHealth);
+		this.currentHealth -= proj.getDamage ();
+		Debug.Log ("Unit " + this.name + " currentHealth: " + this.currentHealth);
 		//Debug.Log("UNIT DAMAGED by HP: " + proj.getDamage());
 
-		if (this.currentHealth <= 0.0f)
-		{
-			Destroy (this.gameObject);
-			Debug.Log ("Unit " + this.name + " is dead");
-			return true;
-		} else {
-			return false;
+		if (APIHUD.instance.getGameObjectSelected () == this.gameObject) {
+			APIHUD.instance.setHealth (this.currentHealth, this.totalHealth);
 		}
+
+		if (this.currentHealth <= 0.0f) {
+			GameController.instance.notifyDeath (this); // Tell controller I'm dead
+			Destroy (this.gameObject);
+		} 
 	}
 
 	// If enemy enters the range of attack
@@ -70,9 +65,12 @@ public class Unit : MonoBehaviour, CanReceiveDamage
 			this.weapon.removeTarget (col.gameObject.GetComponent<CanReceiveDamage> ());
 		}
 	}
+		
+	public float getCurrentHealth(){
+		return this.currentHealth;
+	}
 
-    void OnDestroy()
-    {
-        GameController.instance.notifyDeath(this); // Tell controller I'm dead
-    }
+	public float getTotalHealth(){
+		return this.totalHealth;
+	}
 }

@@ -3,5 +3,6 @@ using System.Collections;
 
 public interface CanReceiveDamage
 {
-	bool ReceiveDamage (Projectile proj);
+	void ReceiveDamage (Projectile proj);
+	float getCurrentHealth ();
 }

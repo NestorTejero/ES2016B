@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Runtime.CompilerServices;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 
 /**
@@ -19,7 +20,10 @@ public class GameController : MonoBehaviour
 
     private void Start()
     {
-        currentWave = 0;
+        currentWave = 1;
+		totalWaves = 2; //TODO: this number changes depending of AI level
+
+		APIHUD.instance.setWave(currentWave.ToString());
     }
 
     private void Awake()
@@ -55,6 +59,7 @@ public class GameController : MonoBehaviour
         currentSoundVolume = s;
     }
 
+    [MethodImpl(MethodImplOptions.Synchronized)]
     public void notifyDeath(CanReceiveDamage dead)
     {
         if (dead is Building)
@@ -68,4 +73,17 @@ public class GameController : MonoBehaviour
             GameObject.FindGameObjectWithTag("Human").GetComponent<Player>().getMoney((Unit) dead);
         }
     }
+
+    [MethodImpl(MethodImplOptions.Synchronized)]
+    public void notifyWaveClear (AI ai)
+	{
+		currentWave += 1;
+		Debug.Log ("Wave CLEAR!");
+		if (currentWave > totalWaves){
+			SceneManager.LoadScene("MainMenu");
+		}
+		ai.timeToUpgrade ();
+
+		APIHUD.instance.setWave(currentWave.ToString());
+	}
 }

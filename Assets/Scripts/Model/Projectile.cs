@@ -10,25 +10,26 @@ public class Projectile : MonoBehaviour
     private CanReceiveDamage target;
 	private float damage;
 
-	void Start () {
+	void Start(){
 	
 	}
+		
 	
 	// Update is called once per frame
 	void Update () {
 	
 	}
 
-	// Create the projectile with its properties
-	public void create(float projSpeed, CanReceiveDamage target, float damage){
+	// Set the projectile properties
+	public void Properties (float projSpeed, CanReceiveDamage target, float damage) {
 		this.projectileSpeed = projSpeed;
 		this.target = target;
 		this.damage = damage;
 	}
 
 	// Shoot the projectile to the target
-	public bool shoot(){
-		return this.target.ReceiveDamage (this);
+	public void Shoot(){
+		this.target.ReceiveDamage (this);
 	}
 
 	// Get the projectile damage (defined by weapon)

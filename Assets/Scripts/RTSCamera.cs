@@ -105,10 +105,10 @@ public class RTSCamera : MonoBehaviour {
 		PanWorld ();
 	}
 		
-	void FixedUpdate(){
+	/*void FixedUpdate(){
 		//calling a function that checks for the camera to stay at the same distance to the ground
 		HandleCameraDistance ();
-	}
+	}*/
 		
 	void PanWorld(){
 		//getting our camera position
@@ -129,7 +129,7 @@ public class RTSCamera : MonoBehaviour {
 			targetPos += Vector3.Cross (transform.right, Vector3.up) * (currentMousePos.y - previousMousePos.y) * position.panSmooth * panDirection *Time.deltaTime;
 		}
 		//check if our nextPos is outside the terrain, if the next position is inside, change camera position
-		if(targetPos.x >= 0 && targetPos.x <= terrainWidth && targetPos.z >= 0 && targetPos.z <= terrainHeight)
+		if(targetPos.x >= -3500 && targetPos.x <= terrainWidth && targetPos.z >= -3500 && targetPos.z <= terrainHeight)
 			transform.position = targetPos;
 	}
 
