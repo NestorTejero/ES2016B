@@ -9,7 +9,7 @@ public class Unit : MonoBehaviour, CanReceiveDamage
     public int purchaseCost;
     public int rewardCoins;
     public Transform goal;
-    private Weapon weapon;
+    public Weapon weapon;
 
     private float totalHealth;
 	private float currentHealth;
