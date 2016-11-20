@@ -76,4 +76,8 @@ public class Unit : MonoBehaviour, CanReceiveDamage
 	public float getTotalHealth(){
 		return this.totalHealth;
 	}
+
+	public float getCurrentHealth(){
+		return this.currentHealth;
+	}
 }

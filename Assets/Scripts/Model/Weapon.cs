@@ -76,7 +76,7 @@ public class Weapon : MonoBehaviour
             //audio.PlayOneShot(list[number], 0.5f);
             source_death.PlayOneShot(death[Random.Range(0, death.Length)], 0.5f);
         }
-    Debug.Log(this.gameObject.name + "-> Targets to attack :" + targets.Count);
+    	Debug.Log(this.gameObject.name + "-> Targets to attack :" + targets.Count);
     }
 
 	// Get the available target to attack from the targets list
@@ -108,11 +108,9 @@ public class Weapon : MonoBehaviour
 
 		if (target != null)
 		{
-
 		    // Play shoot sound
-		    if (!this.source_shoot.isPlaying)
-		    {
-			this.source_shoot.PlayOneShot(this.shootSound);
+		    if (!this.source_shoot.isPlaying) {
+				this.source_shoot.PlayOneShot(this.shootSound);
 		    }
 		    //Creates projectile with its properties and destroys it after 3 seconds
 		    GameObject proj_clone = (GameObject) Instantiate (this.proj_obj, this.proj_origin.transform.position, this.proj_origin.transform.rotation);

@@ -78,7 +78,8 @@ public class Building : MonoBehaviour, CanUpgrade, CanReceiveDamage
 	public float getTotalHealth(){
 		return this.totalHealth;
 	}
-public GameObject getGameObject(){
-	return this.gameObject;
-}
+
+	public GameObject getGameObject(){
+		return this.gameObject;
+	}
 }
