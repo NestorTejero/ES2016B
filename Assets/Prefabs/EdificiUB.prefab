@@ -24,9 +24,10 @@ GameObject:
   - 95: {fileID: 95000012103147354}
   - 114: {fileID: 114000013154992960}
   - 65: {fileID: 65000012229569138}
-  m_Layer: 0
+  - 114: {fileID: 114000013401498404}
+  m_Layer: 8
   m_Name: EdificiUB
-  m_TagString: Untagged
+  m_TagString: Building
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -39,7 +40,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 4000012953025264}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: UBcenter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -53,8 +54,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000011756980988}
   m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 75, y: 3, z: 46}
-  m_LocalScale: {x: 2.6737485, y: 6, z: 2.9974363}
+  m_LocalPosition: {x: 71.6, y: 3, z: 40.9}
+  m_LocalScale: {x: 5.8, y: 12, z: 8}
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
   m_Children:
   - {fileID: 4000012953025264}
@@ -66,10 +67,10 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000012730123916}
-  m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: -0.6518585, z: 2.3353293}
-  m_LocalScale: {x: 13.090237, y: 4.6706586, z: 3.2592907}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: -1, z: 2}
+  m_LocalScale: {x: 13, y: 5, z: 3}
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 4000012602783024}
   m_RootOrder: 0
@@ -86,7 +87,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: d9b12a5876d899d47bb777e327893362, type: 2}
+  - {fileID: 2100000, guid: a53414c8adb14ae4682241dbfc577675, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_ProbeAnchor: {fileID: 0}
@@ -119,8 +120,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 13.551388, y: 3.2195718, z: 3.2436805}
-  m_Center: {x: 0, y: -0.60957897, z: 0.61367905}
+  m_Size: {x: 15.685989, y: 3.9950056, z: 9}
+  m_Center: {x: -0.032602504, y: -1.1115463, z: 0}
 --- !u!95 &95000012103147354
 Animator:
   serializedVersion: 3
@@ -154,3 +155,15 @@ MonoBehaviour:
   upgradeCost: 10
   repairQuantity: 10
   repairCost: 10
+--- !u!114 &114000013401498404
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011756980988}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c560541b48665841ba3b5e1ea6450e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TooltipText: {fileID: 0}

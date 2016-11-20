@@ -20,7 +20,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000011121997564}
   - 114: {fileID: 114000012759804252}
-  - 54: {fileID: 54000010893473554}
   m_Layer: 8
   m_Name: Projectile
   m_TagString: Untagged
@@ -39,6 +38,7 @@ GameObject:
   - 33: {fileID: 33000010789470954}
   - 23: {fileID: 23000011807366558}
   - 95: {fileID: 95000012361482716}
+  - 54: {fileID: 54000010170111420}
   m_Layer: 0
   m_Name: rock
   m_TagString: Untagged
@@ -109,18 +109,18 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000014292163158}
   m_Mesh: {fileID: 4300000, guid: c365fe210c5631a4fb3af876ef387f19, type: 3}
---- !u!54 &54000010893473554
+--- !u!54 &54000010170111420
 Rigidbody:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000012011802270}
+  m_GameObject: {fileID: 1000014292163158}
   serializedVersion: 2
   m_Mass: 1
   m_Drag: 0
-  m_AngularDrag: 0.05
+  m_AngularDrag: 0
   m_UseGravity: 1
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
@@ -152,3 +152,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4afcdf504eb034419143c4ba1751568, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damage: 0

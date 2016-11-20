@@ -23,7 +23,7 @@ GameObject:
   - 136: {fileID: 136000013034353544}
   m_Layer: 0
   m_Name: Enemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1880,6 +1880,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c560541b48665841ba3b5e1ea6450e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  TooltipText: {fileID: 0}
 --- !u!114 &114000012536770096
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1892,10 +1893,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   baseDamage: 5
-  baseRange: 12
+  baseRange: 20
   baseCooldown: 1
   upgradeFactor: 1.1
   shootSound: {fileID: 8300000, guid: 82c2a987d26765844b0d2c40164b9393, type: 3}
+  proj_obj: {fileID: 1000010710961544, guid: 2e8b93f0bfb9bde4eb2da65533f3af7d, type: 2}
+  proj_origin: {fileID: 1000013888679622}
 --- !u!114 &114000013301392412
 MonoBehaviour:
   m_ObjectHideFlags: 1

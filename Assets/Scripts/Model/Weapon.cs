@@ -9,13 +9,14 @@ public class Weapon : MonoBehaviour, CanUpgrade
     public float baseCooldown;
 	public float upgradeFactor;
 	public AudioClip shootSound;
+	public GameObject proj_obj; // Projectile prefab
+	public GameObject proj_origin; // Projectile origin 
 
     private float currentDamage;
     private float currentRange;
     private float currentCooldown;
 	private List<CanReceiveDamage> targets;
     private AudioSource source;
-	private Projectile projectile;
 
 	// Use this for initialization
 	void Start ()
@@ -29,9 +30,6 @@ public class Weapon : MonoBehaviour, CanUpgrade
 
 		// List of targets assigned to the weapon
 		this.targets = new List<CanReceiveDamage>();
-
-		// Create the projectile that will go towards the target
-		this.projectile = this.gameObject.GetComponentInChildren<Projectile>();
 
 		// Call Attack every 'cooldown' seconds
 		InvokeRepeating("Attack", 0.0f, this.currentCooldown);
@@ -82,7 +80,7 @@ public class Weapon : MonoBehaviour, CanUpgrade
 			CanReceiveDamage target = this.targets [0];
 
 			// Check if target is already dead
-			if (target.Equals(null) || target == null) {
+			if (target.Equals(null)) {
 				Debug.Log (this.gameObject.name + ": TARGET ALREADY DEAD");
 				this.removeTarget (target);
 			} else {
@@ -100,17 +98,13 @@ public class Weapon : MonoBehaviour, CanUpgrade
 		CanReceiveDamage target = getAvailableTarget();
 
 		if (target != null) {
-
-			GameObject proj_clone = (GameObject) Instantiate (this.projectile.gameObject, this.projectile.gameObject.transform.position, this.projectile.gameObject.transform.rotation);
-		
-			proj_clone.GetComponent<Projectile>().Properties(target, this.currentDamage);
-			//proj_clone.GetComponent<Projectile>().Shoot ();
-
-			//this.projectile.Properties (target, this.currentDamage);
-			//this.projectile.Shoot ();
 			// Play sound
 			this.source.PlayOneShot (this.shootSound);
-			Destroy (projectile);
+
+			//Creates projectile with its properties and destroys it after 3 seconds
+			GameObject proj_clone = (GameObject) Instantiate (this.proj_obj, this.proj_origin.transform.position, this.proj_origin.transform.rotation);
+			proj_clone.GetComponent<Projectile> ().Properties (target, this.currentDamage);
+			Destroy (proj_clone, 3.0f);
 		}
 	}
 }

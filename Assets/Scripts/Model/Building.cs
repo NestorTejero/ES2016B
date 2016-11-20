@@ -50,10 +50,10 @@ public class Building : MonoBehaviour, CanUpgrade, CanReceiveDamage
 		Debug.Log ("BUILDING REPAIRED, HP: " + this.currentHealth);
 	}
 
-	// Receive damage from a projectile (shot by weapon)
-	public void ReceiveDamage (Projectile proj)
+	// Receive damage by weapon
+	public void ReceiveDamage (float damage)
 	{
-		this.currentHealth -= proj.getDamage();
+		this.currentHealth -= damage;
 		Debug.Log ("Building's currentHealth: " + this.currentHealth);
 		//Debug.Log ("BUILDING DAMAGED by HP: " + proj.getDamage());
 

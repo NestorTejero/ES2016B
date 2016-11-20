@@ -36,10 +36,10 @@ public class Unit : MonoBehaviour, CanReceiveDamage
 
 	}
 
-	// Receive damage from a projectile (shot by weapon)
-	public void ReceiveDamage (Projectile proj)
+	// Receive damage by weapon
+	public void ReceiveDamage (float damage)
 	{
-		this.currentHealth -= proj.getDamage ();
+		this.currentHealth -= damage;
 		Debug.Log ("Unit " + this.name + " currentHealth: " + this.currentHealth);
 		//Debug.Log("UNIT DAMAGED by HP: " + proj.getDamage());
 
