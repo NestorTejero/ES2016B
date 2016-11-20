@@ -34,16 +34,24 @@ public class SubMenu : MonoBehaviour {
 
 	public void OnMouseUpAsButton(){
 
-		if(isEasyButton)
+		if(isEasyButton){
+			PersistentValues.difficulty = 1;
             StartCoroutine(playAndLoad(5));
-        else if(isMediumButton)
+		}
+        else if(isMediumButton){
+			PersistentValues.difficulty = 2;
             StartCoroutine(playAndLoad(5));
-        else if(isHardButton)
+		}
+        else if(isHardButton){
+			PersistentValues.difficulty = 3;
             StartCoroutine(playAndLoad(5));
-        else if(isReturnButton)
+		}
+        else if(isReturnButton){
             StartCoroutine(playAndLoad(0));
-		else
+		}
+		else{
 			Application.Quit(); //Load the game (next scene)
+		}
 	}
     public IEnumerator playAndLoad(int scene)
     {
