@@ -9,7 +9,8 @@ public class Unit : MonoBehaviour, CanReceiveDamage
     public int purchaseCost;
     public int rewardCoins;
     public Transform goal;
-    private Weapon weapon;
+    public Weapon weapon;
+	public float damage;
 
     private float totalHealth;
 	private float currentHealth;
@@ -26,6 +27,8 @@ public class Unit : MonoBehaviour, CanReceiveDamage
 		agent.destination = this.goal.position;
 
 	    this.weapon = this.gameObject.GetComponent<Weapon>();
+
+		this.damage = weapon.baseDamage;
 
         Debug.Log ("UNIT CREATED");
 	}
