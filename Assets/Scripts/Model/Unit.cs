@@ -10,6 +10,7 @@ public class Unit : MonoBehaviour, CanReceiveDamage
     public int rewardCoins;
     public Transform goal;
     public Weapon weapon;
+	// TODO This shouldn't be public
 	public float damage;
 
     private float totalHealth;
@@ -46,7 +47,7 @@ public class Unit : MonoBehaviour, CanReceiveDamage
 
 		if (this.currentHealth <= 0.0f) {
 			GameController.instance.notifyDeath (this); // Tell controller I'm dead
-			Destroy (this.gameObject);
+			Destroy (this.gameObject, 0.5f);
 		} 
 	}
 

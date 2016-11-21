@@ -8,9 +8,12 @@ public class Weapon : MonoBehaviour
     public float baseRange;
     public float baseCooldown;
     public float upgradeFactor;
+	// TODO What are the deathSound1,2,3 for? They are loaded in Start
     public AudioClip shootSound, deathSound1, deathSound2, deathSound3;
+	// TODO Should get this sources from code with tag
     public AudioSource source_shoot, source_death;
-    public AudioClip[] death;
+	// TODO This should be private
+	public AudioClip[] death;
     public GameObject proj_obj; // Projectile prefab
     public GameObject proj_origin; // Projectile origin
 
@@ -18,7 +21,6 @@ public class Weapon : MonoBehaviour
     private float currentRange;
     private float currentCooldown;
     private List<CanReceiveDamage> targets;
- 
 
 	// Use this for initialization
 	void Start ()
@@ -70,6 +72,7 @@ public class Weapon : MonoBehaviour
     public void removeTarget(CanReceiveDamage target)
     {
         this.targets.Remove(target);
+		// TODO Careful! This is not the moment when the enemy dies (it is just removed from the target list)
         // Play death sound
         if (!this.source_death.isPlaying)
         {
@@ -109,12 +112,12 @@ public class Weapon : MonoBehaviour
 		if (target != null)
 		{
 		    // Play shoot sound
-		    if (!this.source_shoot.isPlaying) {
+			if (!this.source_shoot.isPlaying) {
 				this.source_shoot.PlayOneShot(this.shootSound);
 		    }
 		    //Creates projectile with its properties and destroys it after 3 seconds
 		    GameObject proj_clone = (GameObject) Instantiate (this.proj_obj, this.proj_origin.transform.position, this.proj_origin.transform.rotation);
-		    proj_clone.GetComponent<Projectile> ().Properties (target, this.currentDamage);
+		    proj_clone.GetComponent<Projectile> ().Shoot (target, this.currentDamage);
 		    Destroy (proj_clone, 3.0f);
 		}
 	}
