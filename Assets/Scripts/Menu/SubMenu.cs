@@ -32,19 +32,25 @@ public class SubMenu : MonoBehaviour {
 		GetComponent<Renderer>().material.color = Color.white;
 	}
 
-	public void OnMouseUpAsButton(){
-
-		if(isEasyButton)
-            StartCoroutine(playAndLoad(5));
-        else if(isMediumButton)
-            StartCoroutine(playAndLoad(5));
-        else if(isHardButton)
-            StartCoroutine(playAndLoad(5));
-        else if(isReturnButton)
-            StartCoroutine(playAndLoad(0));
-		else
-			Application.Quit(); //Load the game (next scene)
+	public void OnEasy(){
+		PersistentValues.difficulty = 1;
+		StartCoroutine(playAndLoad(5));
 	}
+
+	public void OnMedium(){
+		PersistentValues.difficulty = 2;
+		StartCoroutine(playAndLoad(5));
+	}
+
+	public void OnHard(){
+		PersistentValues.difficulty = 3;
+		StartCoroutine(playAndLoad(5));
+	}
+
+	public void OnBack(){
+		StartCoroutine(playAndLoad(0));
+	}
+		
     public IEnumerator playAndLoad(int scene)
     {
         audioSource.Play();
