@@ -10,6 +10,7 @@ public class Unit : MonoBehaviour, CanReceiveDamage
     public int rewardCoins;
     public Transform goal;
     public Weapon weapon;
+	// TODO This shouldn't be public
 	public float damage;
 
     private float totalHealth;
@@ -33,10 +34,10 @@ public class Unit : MonoBehaviour, CanReceiveDamage
         Debug.Log ("UNIT CREATED");
 	}
 
-	// Receive damage from a projectile (shot by weapon)
-	public void ReceiveDamage (Projectile proj)
+	// Receive damage by weapon
+	public void ReceiveDamage (float damage)
 	{
-		this.currentHealth -= proj.getDamage ();
+		this.currentHealth -= damage;
 		Debug.Log ("Unit " + this.name + " currentHealth: " + this.currentHealth);
 		//Debug.Log("UNIT DAMAGED by HP: " + proj.getDamage());
 
@@ -46,7 +47,7 @@ public class Unit : MonoBehaviour, CanReceiveDamage
 
 		if (this.currentHealth <= 0.0f) {
 			GameController.instance.notifyDeath (this); // Tell controller I'm dead
-			Destroy (this.gameObject);
+			Destroy (this.gameObject, 0.5f);
 		} 
 	}
 
@@ -69,11 +70,15 @@ public class Unit : MonoBehaviour, CanReceiveDamage
 		}
 	}
 		
-	public float getCurrentHealth(){
-		return this.currentHealth;
+	public GameObject getGameObject(){
+		return this.gameObject;
 	}
 
 	public float getTotalHealth(){
 		return this.totalHealth;
+	}
+
+	public float getCurrentHealth(){
+		return this.currentHealth;
 	}
 }

@@ -11,6 +11,8 @@ TagManager:
   - Human
   - AI
   - Shop
+  - ShowOnPause
+  - Enemy
   layers:
   - Default
   - TransparentFX
