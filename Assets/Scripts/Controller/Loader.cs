@@ -7,6 +7,7 @@
 public class Loader : MonoBehaviour
 {
     public GameObject gameController;
+	public GameObject MediumAI;
 
     private void Awake()
     {
@@ -15,5 +16,11 @@ public class Loader : MonoBehaviour
 
             //Instantiate GameController prefab
             Instantiate(gameController);
+			
+			//Instantiate(MediumAI);
+			//MediumAI = (GameObject)Instantiate (Resources.Load ("Prefabs/MediumAI"));
+		 //MediumAI = Instantiate(Resources.Load("Prefabs/Players/EasyAI")) as GameObject;
     }
+
+
 }
