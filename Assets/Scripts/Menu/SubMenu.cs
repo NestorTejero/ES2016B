@@ -40,7 +40,6 @@ public class SubMenu : MonoBehaviour {
 	public void OnMedium(){
 		PersistentValues.difficulty = 2;
 		StartCoroutine(playAndLoad(5));
-
 	}
 
 	public void OnHard(){

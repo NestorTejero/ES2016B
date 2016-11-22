@@ -4,6 +4,8 @@
  * Loads Singleton GameController in the beginning of the game
  */
 
+//this script is attached to the camera
+
 public class Loader : MonoBehaviour
 {
     public GameObject gameController;
@@ -24,7 +26,7 @@ public class Loader : MonoBehaviour
 		if (PersistentValues.difficulty == 1) {
 			Instantiate (EasyAI);
 		} else if (PersistentValues.difficulty == 2) {
-			Instantiate (EasyAI);
+			Instantiate (MediumAI);
 		} else if (PersistentValues.difficulty == 3) {
 			Instantiate (HardAI);
 		}
