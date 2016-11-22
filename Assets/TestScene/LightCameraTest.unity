@@ -3221,6 +3221,24 @@ Prefab:
       propertyPath: position.maxZoom
       value: 20
       objectReference: {fileID: 0}
+    - target: {fileID: 114000012840542320, guid: bff796d9ccbfec543abdb4e4040c57c1,
+        type: 2}
+      propertyPath: MediumAI
+      value: 
+      objectReference: {fileID: 1000012482274262, guid: 2ec18a7bc2ea112499b471d4e0b3513c,
+        type: 2}
+    - target: {fileID: 114000012840542320, guid: bff796d9ccbfec543abdb4e4040c57c1,
+        type: 2}
+      propertyPath: EasyAI
+      value: 
+      objectReference: {fileID: 1000013852025098, guid: a3a6ddb75a3205841ba1472cdca08e5c,
+        type: 2}
+    - target: {fileID: 114000012840542320, guid: bff796d9ccbfec543abdb4e4040c57c1,
+        type: 2}
+      propertyPath: HardAI
+      value: 
+      objectReference: {fileID: 1000014065262796, guid: 1f705680d27dc844aa565d8a5bdea8cb,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: bff796d9ccbfec543abdb4e4040c57c1, type: 2}
   m_IsPrefabParent: 0
