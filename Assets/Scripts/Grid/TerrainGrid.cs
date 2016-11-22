@@ -3,81 +3,136 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class TerrainGrid : MonoBehaviour {
+	// layer to take in consideration to choose a grid to be valid or not
+	public LayerMask buildingsMask;
+	// varibles used to make the grid including the materials
 	public float cellSize = 1;
 	public int gridWidth = 50;
 	public int gridHeight = 50;
 	public float yOffset = 0.5f;
 	public Material cellMaterialValid;
 	public Material cellMaterialInvalid;
-
+	// boolean to know if the grid is toggled or not
 	bool gridVisible;
-	GameObject[] _cells;
-	private float[] _heights;
 
-	//private Vector3 terrainSize;
-
-	int gridX, gridZ;
+	//gameobject with the prefab of the tower
 	public GameObject tower;
 
+	//this object will be modified and used to show where the tower will be placed
+	public GameObject towerShadow;
+	GameObject shadow;
+
+	// basic matrix structure that will have all the cells in it
+	Square [,] grid;
+
+	// gameobject which will be following the camera and containing the grid
+	GameObject gridBox;
+	Vector3 boxPos;
+
+	// start to initiate everything
 	void Start() {
 
-		/*GameObject terrain = GameObject.Find ("Terrain");
-		Terrain t = terrain.GetComponent<Terrain>();
-		terrainSize = t.terrainData.size;
-		Debug.Log (terrainSize);
-
-		gridWidth = (int)terrainSize.x;
-		gridHeight = (int)terrainSize.z;*/
+		gridBox = GameObject.Find ("Grid");
+		boxPos = gridBox.transform.position;
 
 		gridVisible = false;
 
-		_cells = new GameObject[gridHeight * gridWidth];
-		_heights = new float[(gridHeight + 1) * (gridWidth + 1)];
+		grid = new Square[gridWidth, gridHeight];
+		Vector3 gridBottomLeft = transform.position - Vector3.right * gridWidth / 2 - Vector3.forward * gridHeight / 2;
 
-		for (int z = 0; z < gridHeight; z++) {
-			for (int x = 0; x < gridWidth; x++) {
-				_cells[z * gridWidth + x] = CreateChild();
+		// this lines create the grid and initiates all the variables of the cells
+		for (int x = 0; x < gridWidth; ++x) {
+			for (int y = 0; y < gridHeight; ++y) {
+				Vector3 worldPoint = gridBottomLeft + (Vector3.right * x) + (Vector3.forward * y);
+				bool building = !(Physics.CheckSphere (worldPoint, cellSize));
+				GameObject cell = CreateChild (x,y,gridBottomLeft);
+				cell.SetActive (gridVisible);
+				grid [x, y] = new Square (building, worldPoint, cell);
+
 			}
 		}
 
-		for (int i = 0; i < _cells.Length; ++i) {
-			_cells [i].SetActive(gridVisible);
-		}
+		//initiate the towerShadow, to do so, we have to change the layers and disable the colliders
+		shadow = (GameObject)Instantiate (towerShadow, Input.mousePosition,transform.rotation);
+		shadow.GetComponentInChildren<MeshRenderer> ().enabled = false;
+		shadow.layer = LayerMask.NameToLayer ("Default");
+		shadow.transform.GetChild (0).gameObject.layer = LayerMask.NameToLayer ("Default");
+
+		//shadow.GetComponentInChildren<Weapon> ().enabled = false;
+		//shadow.GetComponentInChildren<Tower> ().enabled = false;
+
+
 	}
 
+	/* 	every frame want to:
+		-update the box position
+		-update the cells including the materials
+		-check if there are inputs
+		-check if the grid is visible or not to show the shadow
+		-move the shadow
+	*/
 	void Update () {
-		UpdateSize();
 
-		UpdateHeights();
+		boxPos = gridBox.transform.position;
+
+		UpdateCells();
 
 		GetInputs ();
 
-		UpdateCells();
+		if (gridVisible) {
+			shadow.GetComponentInChildren<MeshRenderer> ().enabled = true;
+			moveShadow ();
+		}
+		else shadow.GetComponentInChildren<MeshRenderer> ().enabled = false;
 	}
 
+	/*	to move the shadow we just check if the mouse is inside the grid
+		after that, checking with raycasthit the position where to locate the
+		shadow
+	*/
+	void moveShadow(){
+		RaycastHit hit;
+		Ray ray = Camera.main.ScreenPointToRay (Input.mousePosition);
+		if (Physics.Raycast (ray, out hit)) {
+			if (hit.transform != null && hit.transform.gameObject.layer == LayerMask.NameToLayer ("Grid")) {
+				Vector3 aux = Vector3.zero;
+				aux.x = (int)hit.point.x;
+				aux.y = (int)hit.point.y;
+				aux.z = (int)hit.point.z;
+				shadow.transform.position = aux;
+			}
+		}
+	}
+
+	/*
+		This function checks 2 kinds of inputs:
+		-Pressing A to toggle the grid/building mode
+		-Left-Click to place the tower in the position
+	*/
 	void GetInputs(){
 		if (Input.GetMouseButtonDown (0)) {
 			RaycastHit hit;
 			Ray ray = Camera.main.ScreenPointToRay (Input.mousePosition);
 			if (Physics.Raycast (ray, out hit)) {
-				if (hit.transform != null) {
+				if (hit.transform != null && hit.transform.gameObject.layer == LayerMask.NameToLayer("Grid")) {
+					//Debug.Log (hit.transform.gameObject.layer);
 					Vector3 aux = Vector3.zero;
 					aux.x = (int)hit.point.x;
 					aux.y = (int)hit.point.y;
 					aux.z = (int)hit.point.z;
-					Debug.Log (aux);
+
 					bool valid = IsCellValid ((int)aux.x, (int)aux.z);
 					Debug.Log (valid);
 
-					bool insideGrid = false;
-					if ((int)aux.x <= gridWidth && (int)aux.z <= gridHeight)
-						insideGrid = true;
-
-					if (gridVisible && valid && insideGrid) {
+					if (gridVisible && valid) {
 						aux.y = 0;
 						GameObject t = (GameObject)Instantiate (tower, aux,transform.rotation);
-						t.GetComponentInChildren<CapsuleCollider> ().radius = 15;
+						t.GetComponentInChildren<CapsuleCollider> ().radius = 20;
 						t.GetComponentInChildren<CapsuleCollider> ().height = 30;
+						
+						t.GetComponentInChildren<Weapon> ().source_death = GameObject.Find ("Death Audio Source").GetComponent<AudioSource>();
+						t.GetComponentInChildren<Weapon> ().source_shoot = GameObject.Find ("Shoot Audio Source").GetComponent<AudioSource>();
+
 						toggleGrid ();
 					}
 				}
@@ -89,14 +144,23 @@ public class TerrainGrid : MonoBehaviour {
 		}
 	}
 
+	/*
+	 * this function toggle on/off every cell of the grid
+	 */
 	void toggleGrid(){
 		gridVisible = !gridVisible;
-		for (int i = 0; i < _cells.Length; ++i) {
-			_cells [i].SetActive(gridVisible);
+		for (int i = 0; i < gridWidth; ++i) {
+			for (int j = 0; j < gridHeight; ++j) {
+				grid [i, j].cell.SetActive (gridVisible);
+			}
 		}
 	}
 
-	GameObject CreateChild() {
+	/*
+		this function creates the gameObject that will represent the cell
+		and places it in the grid layer
+	*/
+	GameObject CreateChild(int x, int z, Vector3 gridLeft) {
 		GameObject go = new GameObject();
 
 		go.name = "Grid Cell";
@@ -104,78 +168,57 @@ public class TerrainGrid : MonoBehaviour {
 		go.transform.localPosition = Vector3.zero;
 		go.AddComponent<MeshRenderer>();
 		go.AddComponent<MeshFilter>().mesh = CreateMesh();
+		go.layer = LayerMask.NameToLayer("Grid");
 
 		return go;
 	}
 
-	void UpdateSize() {
-		int newSize = gridHeight * gridWidth;
-		int oldSize = _cells.Length;
-
-		if (newSize == oldSize)
-			return;
-
-		GameObject[] oldCells = _cells;
-		_cells = new GameObject[newSize];
-
-		if (newSize < oldSize) {
-			for (int i = 0; i < newSize; i++) {
-				_cells[i] = oldCells[i];
-			}
-
-			for (int i = newSize; i < oldSize; i++) {
-				Destroy(oldCells[i]);
-			}
-		}
-		else if (newSize > oldSize) {
-			for (int i = 0; i < oldSize; i++) {
-				_cells[i] = oldCells[i];
-			}
-
-			for (int i = oldSize; i < newSize; i++) {
-				_cells[i] = CreateChild();
-			}
-		}
-
-		_heights = new float[(gridHeight + 1) * (gridWidth + 1)];
-	}
-
-	void UpdateHeights() {
-		RaycastHit hitInfo;
-		Vector3 origin;
-
-		for (int z = 0; z < gridHeight + 1; z++) {
-			for (int x = 0; x < gridWidth + 1; x++) {
-				origin = new Vector3(x * cellSize, 200, z * cellSize);
-				Physics.Raycast(transform.TransformPoint(origin), Vector3.down, out hitInfo, Mathf.Infinity, LayerMask.GetMask("Terrain"));
-
-				_heights[z * (gridWidth + 1) + x] = hitInfo.point.y;
-			}
-		}
-	}
-
+	/*
+	 * this function updates cells information, which includes changing the material
+	 * if needed
+	 */
 	void UpdateCells() {
 		for (int z = 0; z < gridHeight; z++) {
 			for (int x = 0; x < gridWidth; x++) {
-				GameObject cell = _cells[z * gridWidth + x];
+				GameObject cell = grid[x,z].cell;
 				MeshRenderer meshRenderer = cell.GetComponent<MeshRenderer>();
 				MeshFilter meshFilter = cell.GetComponent<MeshFilter>();
 
-				meshRenderer.material = IsCellValid(x, z) ? cellMaterialValid : cellMaterialInvalid;
+				//meshRenderer.material = IsCellValid(x, z) ? cellMaterialValid : cellMaterialInvalid;
+				if (IsCellValid (x, z)) {
+					meshRenderer.material = cellMaterialValid;
+					grid [x, z].valid = true;
+				} else {
+					meshRenderer.material = cellMaterialInvalid;
+					grid [x, z].valid = false;
+				}
+
 				UpdateMesh(meshFilter.mesh, x, z);
 			}
 		}
 	}
 
-	//important
+	/*
+		Makes a rayCast to check if there is a building in that cell position.
+		Returns a boolean that will change or not the material of the cell.
+	*/
 	bool IsCellValid(int x, int z) {
+		Vector3 cellPos = Vector3.zero;
+		cellPos.x = boxPos.x - (gridWidth/2 - x);
+		cellPos.y = 200;
+		cellPos.z = boxPos.z - (gridHeight/2 - z);
+
 		RaycastHit hitInfo;
-		Vector3 origin = new Vector3(x * cellSize + cellSize/2, 200, z * cellSize + cellSize/2);
-		Physics.Raycast(transform.TransformPoint(origin), Vector3.down, out hitInfo, Mathf.Infinity, LayerMask.GetMask("Buildings"));
+		//Vector3 origin = new Vector3(x * cellSize + cellSize/2, 200, z * cellSize + cellSize/2);
+		//Debug.Log (transform.TransformPoint(origin));
+		Physics.Raycast(cellPos, Vector3.down, out hitInfo, Mathf.Infinity, LayerMask.GetMask("Buildings"));
 
 		return (hitInfo.collider == null);
 	}
 
+	/*
+		The following functions are used to make the mesh of the cells
+	*/
 	Mesh CreateMesh() {
 		Mesh mesh = new Mesh();
 
@@ -196,8 +239,9 @@ public class TerrainGrid : MonoBehaviour {
 			MeshVertex(x + 1, z + 1),
 		};
 	}
-
+	
 	Vector3 MeshVertex(int x, int z) {
-		return new Vector3(x * cellSize, _heights[z * (gridWidth + 1) + x] + yOffset, z * cellSize);
-	}
+		return new Vector3(x * cellSize - (gridWidth/2), yOffset, z * cellSize - (gridHeight/2));
+	}		
+
 }
