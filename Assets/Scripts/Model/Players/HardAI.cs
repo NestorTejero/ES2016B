@@ -9,8 +9,6 @@ public class HardAI : AI
 	KnapsackProblem aiSolver = new KnapsackProblem();
 
 	public override void Play(){
-		InvokeRepeating("autoCoins", 0.0f, 1.0f);
-
 		//create 200 units every wave
 		UnitShop shop = GameObject.FindGameObjectWithTag("Shop").GetComponent<UnitShop>();
 		if (unitsWave < 200)
@@ -41,10 +39,5 @@ public class HardAI : AI
 				unitsWave = 0;
 			}
 		}
-	}
-
-	private void autoCoins(){
-		//AI wins 20 coins every second
-		numCoins += 20;
 	}
 }

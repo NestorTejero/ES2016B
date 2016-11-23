@@ -1804,7 +1804,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   baseHealth: 10
   moveSpeed: 10
-  purchaseCost: 10
+  purchaseCost: 6
   rewardCoins: 10
   goal: {fileID: 0}
   weapon: {fileID: 0}
@@ -1825,12 +1825,6 @@ MonoBehaviour:
   baseCooldown: 1
   upgradeFactor: 1.1
   shootSound: {fileID: 8300000, guid: cf73db8e4891a754791d586816040dff, type: 3}
-  deathSound1: {fileID: 0}
-  deathSound2: {fileID: 0}
-  deathSound3: {fileID: 0}
-  source_shoot: {fileID: 0}
-  source_death: {fileID: 0}
-  death: []
   proj_obj: {fileID: 0}
   proj_origin: {fileID: 0}
 --- !u!136 &136000012203421290

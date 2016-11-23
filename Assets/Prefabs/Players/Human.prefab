@@ -19,7 +19,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 4000012180771102}
-  - 114: {fileID: 114000013775780256}
+  - 114: {fileID: 114000011915692604}
   m_Layer: 0
   m_Name: Human
   m_TagString: Human
@@ -40,7 +40,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
---- !u!114 &114000013775780256
+--- !u!114 &114000011915692604
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -48,7 +48,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1000010673938870}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a52bff418a75d9c4dbb7d271385367f1, type: 3}
+  m_Script: {fileID: 11500000, guid: 9334df1812911d14c82574dc495e14cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialCoins: 1000
+  initialCoins: 10

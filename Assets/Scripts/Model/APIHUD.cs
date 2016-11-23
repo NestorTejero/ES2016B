@@ -64,7 +64,7 @@ public class APIHUD : MonoBehaviour {
 		transform.FindChild("containerGameStats").FindChild("lblTime").FindChild("txtTime").GetComponent<UnityEngine.UI.Text>().text = time;
 	}
 
-	public void setDificulty(string dificulty){
+	public void setDifficulty(string dificulty){
 		transform.FindChild("containerGameStats").FindChild("lblDificulty").FindChild("txtDificulty").GetComponent<UnityEngine.UI.Text>().text = dificulty;
 	}
 

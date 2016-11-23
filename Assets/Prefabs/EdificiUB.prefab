@@ -176,7 +176,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b896dc487ce42994d8caf855021c3deb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseHealth: 40
+  baseHealth: 200
   upgradeFactor: 1.1
   upgradeCost: 10
   repairQuantity: 10

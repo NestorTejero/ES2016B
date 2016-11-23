@@ -1803,16 +1803,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   baseDamage: 5
-  baseRange: 20
+  baseRange: 10
   baseCooldown: 1
   upgradeFactor: 1.1
   shootSound: {fileID: 8300000, guid: 82c2a987d26765844b0d2c40164b9393, type: 3}
-  deathSound1: {fileID: 0}
-  deathSound2: {fileID: 0}
-  deathSound3: {fileID: 0}
-  source_shoot: {fileID: 0}
-  source_death: {fileID: 0}
-  death: []
   proj_obj: {fileID: 1000010710961544, guid: 2e8b93f0bfb9bde4eb2da65533f3af7d, type: 2}
   proj_origin: {fileID: 1000013888679622}
 --- !u!114 &114000013301392412
@@ -1828,7 +1822,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   baseHealth: 10
   moveSpeed: 2
-  purchaseCost: 1
+  purchaseCost: 5
   rewardCoins: 10
   goal: {fileID: 4000012602783024, guid: c839f3d5ec503fe429715f930afaf77d, type: 2}
   weapon: {fileID: 0}

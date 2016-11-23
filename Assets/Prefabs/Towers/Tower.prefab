@@ -213,17 +213,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ec943e3d8fc87f4d8786ea1ea07361d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseDamage: 5
+  baseDamage: 10
   baseRange: 15
   baseCooldown: 1
   upgradeFactor: 1.1
   shootSound: {fileID: 8300000, guid: 2a055584652ad8c4ab2ad9c3b19a043f, type: 3}
-  deathSound1: {fileID: 8300000, guid: 3f7e09bd67e847f45ace64da45db0149, type: 3}
-  deathSound2: {fileID: 8300000, guid: 776cf6f6266e9854a9ea90a83e12ff16, type: 3}
-  deathSound3: {fileID: 8300000, guid: 791d3cc93a6c045469c396acd64d32a6, type: 3}
-  source_shoot: {fileID: 0}
-  source_death: {fileID: 0}
-  death: []
   proj_obj: {fileID: 1000012011802270, guid: dd4ce48133aa3a64db2f85c879d52083, type: 2}
   proj_origin: {fileID: 1000011089548668}
 --- !u!114 &114000013366404552
