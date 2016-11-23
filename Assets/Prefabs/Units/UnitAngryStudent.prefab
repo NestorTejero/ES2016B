@@ -710,9 +710,10 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000013459174682}
   - 95: {fileID: 95000013308994448}
+  - 136: {fileID: 136000012203421290}
   m_Layer: 0
   m_Name: Model
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1832,6 +1833,19 @@ MonoBehaviour:
   death: []
   proj_obj: {fileID: 0}
   proj_origin: {fileID: 0}
+--- !u!136 &136000012203421290
+CapsuleCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000013397829430}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.5
+  m_Height: 1
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!136 &136000012339464386
 CapsuleCollider:
   m_ObjectHideFlags: 1
@@ -1839,7 +1853,7 @@ CapsuleCollider:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000013916661712}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   m_Radius: 1.2
   m_Height: 7
