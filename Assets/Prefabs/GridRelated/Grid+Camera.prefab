@@ -251,6 +251,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameController: {fileID: 1000011688498418, guid: c5cd0f004f98f714995e5d843d78918a,
     type: 2}
+  MediumAI: {fileID: 0}
+  EasyAI: {fileID: 0}
+  HardAI: {fileID: 0}
 --- !u!114 &114000013589342588
 MonoBehaviour:
   m_ObjectHideFlags: 1

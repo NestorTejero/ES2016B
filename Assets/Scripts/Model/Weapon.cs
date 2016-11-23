@@ -8,12 +8,9 @@ public class Weapon : MonoBehaviour
     public float baseRange;
     public float baseCooldown;
     public float upgradeFactor;
-	// TODO What are the deathSound1,2,3 for? They are loaded in Start
-    public AudioClip shootSound, deathSound1, deathSound2, deathSound3;
-	// TODO Should get this sources from code with tag
-    public AudioSource source_shoot, source_death;
-	// TODO This should be private
-	public AudioClip[] death;
+	public AudioClip shootSound;
+    private AudioSource source_shoot, source_death;
+	private AudioClip[] death;
     public GameObject proj_obj; // Projectile prefab
     public GameObject proj_origin; // Projectile origin
 
@@ -46,7 +43,9 @@ public class Weapon : MonoBehaviour
             (AudioClip)Resources.Load("Sound/Effects/Death 2"),
             (AudioClip)Resources.Load("Sound/Effects/Death 3")
         };
-
+			
+		this.source_death = GameObject.Find ("Death Audio Source").GetComponent<AudioSource>();
+		this.source_shoot = GameObject.Find ("Shoot Audio Source").GetComponent<AudioSource>();
         Debug.Log ("WEAPON CREATED");
 	}
 
@@ -77,7 +76,7 @@ public class Weapon : MonoBehaviour
         if (!this.source_death.isPlaying)
         {
             //audio.PlayOneShot(list[number], 0.5f);
-            source_death.PlayOneShot(death[Random.Range(0, death.Length)], 0.5f);
+            this.source_death.PlayOneShot(death[Random.Range(0, death.Length)], 0.5f);
         }
     	Debug.Log(this.gameObject.name + "-> Targets to attack :" + targets.Count);
     }
@@ -120,6 +119,14 @@ public class Weapon : MonoBehaviour
 		    proj_clone.GetComponent<Projectile> ().Shoot (target, this.currentDamage);
 		    Destroy (proj_clone, 3.0f);
 		}
+	}
+
+	public void setSourceDeath(AudioSource death){
+		this.source_death = death;
+	}
+
+	public void setSourceShoot(AudioSource shoot){
+		this.source_shoot = shoot;
 	}
 }
 
