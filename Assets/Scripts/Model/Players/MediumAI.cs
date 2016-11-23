@@ -6,7 +6,6 @@ public class MediumAI : AI
 	// Makes the movement according to this AI
 
 	public override void Play(){
-		InvokeRepeating("autoCoins", 0.0f, 1.0f);
 		//create 70 units every wave
 		UnitShop shop = GameObject.FindGameObjectWithTag("Shop").GetComponent<UnitShop>();
 		if (unitsWave < 70)
@@ -41,11 +40,6 @@ public class MediumAI : AI
 				unitsWave = 0;
 			}
 		}
-	}
-
-	private void autoCoins(){
-		//AI wins 20 coins every second
-		numCoins += 20;
 	}
 }
 

@@ -6,15 +6,6 @@ public class MainMenu : MonoBehaviour
 {
     public AudioSource audioSource;
 
-    void Awake()
-    {
-
-    }
-    void Update()
-    {
-
-    }
-
     // Use this for initialization
     void Start()
     {

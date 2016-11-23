@@ -6,7 +6,6 @@ public class EasyAI : AI
     // Makes the movement according to this AI
 
 	public override void Play(){
-        InvokeRepeating("autoCoins", 0.0f, 1.0f);
         //create 20 units every wave
 	    UnitShop shop = GameObject.FindGameObjectWithTag("Shop").GetComponent<UnitShop>();
         if (unitsWave < 20)
@@ -33,6 +32,6 @@ public class EasyAI : AI
 
 	private void autoCoins(){
 		//AI wins 20 coins every second
-		numCoins += 20;
+		numCoins += 1;
 	}
 }

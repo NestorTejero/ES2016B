@@ -1822,7 +1822,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   baseHealth: 10
   moveSpeed: 2
-  purchaseCost: 1
+  purchaseCost: 5
   rewardCoins: 10
   goal: {fileID: 4000012602783024, guid: c839f3d5ec503fe429715f930afaf77d, type: 2}
   weapon: {fileID: 0}
