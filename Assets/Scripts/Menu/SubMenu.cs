@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.Collections;
+using UnityEngine.UI;
+
 
 public class SubMenu : MonoBehaviour {
 
@@ -8,14 +10,12 @@ public class SubMenu : MonoBehaviour {
 	public bool isMediumButton = false;
 	public bool isHardButton = false;
 	public bool isReturnButton = false;
+    public AudioSource audioSource;
 
 
-	// Use this for initialization
-	void Start () {
-		//Should the cursor be visible?
-		Cursor.visible = true;
-		//The cursor will automatically be hidden, centered on view and made to never leave the view.
-		Screen.lockCursor = false;
+    // Use this for initialization
+    void Start () {
+		
 	}
 
 	public void OnMouseEnter(){
@@ -32,17 +32,29 @@ public class SubMenu : MonoBehaviour {
 		GetComponent<Renderer>().material.color = Color.white;
 	}
 
-	public void OnMouseUpAsButton(){
-
-		if(isEasyButton)
-			SceneManager.LoadScene(5);
-		else if(isMediumButton)
-			SceneManager.LoadScene(5); 
-		else if(isHardButton)
-			SceneManager.LoadScene(5); 
-		else if(isReturnButton)
-			SceneManager.LoadScene(0); 
-		else
-			Application.Quit();; //Load the game (next scene)
+	public void OnEasy(){
+		PersistentValues.difficulty = 1;
+		StartCoroutine(playAndLoad(5));
 	}
+
+	public void OnMedium(){
+		PersistentValues.difficulty = 2;
+		StartCoroutine(playAndLoad(5));
+	}
+
+	public void OnHard(){
+		PersistentValues.difficulty = 3;
+		StartCoroutine(playAndLoad(5));
+	}
+
+	public void OnBack(){
+		StartCoroutine(playAndLoad(0));
+	}
+		
+    public IEnumerator playAndLoad(int scene)
+    {
+        audioSource.Play();
+        yield return new WaitForSeconds(audioSource.clip.length);
+        SceneManager.LoadScene(scene); //Load the game (next scene)  
+    }
 }

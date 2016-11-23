@@ -2,7 +2,7 @@
 using System.Collections;
 using UnityEngine.SceneManagement;
 
-public class Building : MonoBehaviour, CanUpgrade, CanRepair, CanReceiveDamage
+public class Building : MonoBehaviour, CanUpgrade, CanReceiveDamage
 {
     private float currentLevel;
     public float baseHealth;
@@ -26,19 +26,24 @@ public class Building : MonoBehaviour, CanUpgrade, CanRepair, CanReceiveDamage
         Debug.Log ("BUILDING CREATED with HP: " + this.baseHealth);
 	}
 
-	// Update is called once per frame
-	void Update ()
-	{
+    public bool IsUpgradeable(int numCoins)
+    {
+        return this.upgradeCost <= numCoins;
     }
 
-	// To upgrade when there are enough coins
-	public void Upgrade ()
+    // To upgrade when there are enough coins
+    public void Upgrade ()
 	{
 		this.totalHealth *= this.upgradeFactor;
 		this.currentHealth *= this.upgradeFactor;
 	    this.currentLevel++;
 		Debug.Log ("BUILDING UPGRADED, now it has HP: " + this.totalHealth);
 	}
+
+    public bool IsRepairable(int numCoins)
+    {
+        return (this.repairCost <= numCoins) && (this.totalHealth > this.currentHealth);
+    }
 
 	// Repair the building
 	public void Repair ()
@@ -50,26 +55,31 @@ public class Building : MonoBehaviour, CanUpgrade, CanRepair, CanReceiveDamage
 		Debug.Log ("BUILDING REPAIRED, HP: " + this.currentHealth);
 	}
 
-	// Receive damage from a projectile (shot by weapon)
-	public bool ReceiveDamage (Projectile proj)
+	// Receive damage by weapon
+	public void ReceiveDamage (float damage)
 	{
-		this.currentHealth -= proj.getDamage();
+		this.currentHealth -= damage;
 		Debug.Log ("Building's currentHealth: " + this.currentHealth);
 		//Debug.Log ("BUILDING DAMAGED by HP: " + proj.getDamage());
 
-		if (this.currentHealth <= 0.0)
-		{
-            GameController.instance.notifyDeath(this);
-			return true;
-		} else {
-			return false;
+		if (APIHUD.instance.getGameObjectSelected () == this.gameObject) {
+			APIHUD.instance.setHealth (this.currentHealth, this.totalHealth);
+		}
+
+		if (this.currentHealth <= 0.0) {
+			GameController.instance.notifyDeath (this);
 		}
 	}
 
-    public float getMissingHealth()
-    {
-        return this.totalHealth - this.currentHealth;
-    }
+	public float getCurrentHealth(){
+		return this.currentHealth;
+	}
 
+	public float getTotalHealth(){
+		return this.totalHealth;
+	}
 
+	public GameObject getGameObject(){
+		return this.gameObject;
+	}
 }

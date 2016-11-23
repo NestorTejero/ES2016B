@@ -10,6 +10,9 @@ TagManager:
   - Unit
   - Human
   - AI
+  - Shop
+  - ShowOnPause
+  - Enemy
   layers:
   - Default
   - TransparentFX
@@ -21,7 +24,7 @@ TagManager:
   - 
   - Buildings
   - Terrain
-  - 
+  - Grid
   - 
   - 
   - 

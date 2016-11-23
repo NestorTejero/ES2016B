@@ -6,10 +6,12 @@ public class Unit : MonoBehaviour, CanReceiveDamage
 {
     public float baseHealth;
     public float moveSpeed;
-    public int costCoins;
+    public int purchaseCost;
     public int rewardCoins;
     public Transform goal;
-    private Weapon weapon;
+    public Weapon weapon;
+	// TODO This shouldn't be public
+	public float damage;
 
     private float totalHealth;
 	private float currentHealth;
@@ -27,31 +29,26 @@ public class Unit : MonoBehaviour, CanReceiveDamage
 
 	    this.weapon = this.gameObject.GetComponent<Weapon>();
 
+		this.damage = weapon.baseDamage;
+
         Debug.Log ("UNIT CREATED");
 	}
-	
-	// Update is called once per frame
-	void Update ()
-	{
 
-	}
-
-	// Receive damage from a projectile (shot by weapon)
-	public bool ReceiveDamage (Projectile proj)
+	// Receive damage by weapon
+	public void ReceiveDamage (float damage)
 	{
-		this.currentHealth -= proj.getDamage();
-		Debug.Log ("Unit " + this.name +" currentHealth: " + this.currentHealth);
+		this.currentHealth -= damage;
+		Debug.Log ("Unit " + this.name + " currentHealth: " + this.currentHealth);
 		//Debug.Log("UNIT DAMAGED by HP: " + proj.getDamage());
 
-		if (this.currentHealth <= 0.0f)
-		{
-            GameController.instance.notifyDeath(this); // Tell controller I'm dead
-            Destroy (this.gameObject);
-			Debug.Log ("Unit " + this.name + " is dead");
-			return true;
-		} else {
-			return false;
+		if (APIHUD.instance.getGameObjectSelected () == this.gameObject) {
+			APIHUD.instance.setHealth (this.currentHealth, this.totalHealth);
 		}
+
+		if (this.currentHealth <= 0.0f) {
+			GameController.instance.notifyDeath (this); // Tell controller I'm dead
+			Destroy (this.gameObject, 0.5f);
+		} 
 	}
 
 	// If enemy enters the range of attack
@@ -71,5 +68,17 @@ public class Unit : MonoBehaviour, CanReceiveDamage
 			// Removes enemy to attack from the queue
 			this.weapon.removeTarget (col.gameObject.GetComponent<CanReceiveDamage> ());
 		}
+	}
+		
+	public GameObject getGameObject(){
+		return this.gameObject;
+	}
+
+	public float getTotalHealth(){
+		return this.totalHealth;
+	}
+
+	public float getCurrentHealth(){
+		return this.currentHealth;
 	}
 }
