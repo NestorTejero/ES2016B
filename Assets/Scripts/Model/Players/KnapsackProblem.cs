@@ -5,7 +5,7 @@ using System;
 
 namespace AssemblyCSharp
 {
-	public class KnapsackProblem : MonoBehaviour
+	public class KnapsackProblem
 	{
 		List<Unit> benefit;
 		private int maxCoins;

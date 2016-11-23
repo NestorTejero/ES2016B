@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace AssemblyCSharp
 {
-	public class DamageCostUnit : MonoBehaviour
+	public class DamageCostUnit
 	{
 		public Unit unit;
 		public float dmgCost;
