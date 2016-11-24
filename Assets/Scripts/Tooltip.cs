@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using System.Collections;
 using UnityEngine.UI;
 
 public class Tooltip : MonoBehaviour
@@ -8,22 +7,17 @@ public class Tooltip : MonoBehaviour
     public Text TooltipText;
 
     // Use this for initialization
-    void Start()
+    private void Start()
     {
         TooltipText = GameObject.Find("TooltipText").GetComponent<Text>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-    }
-
-    void OnMouseOver()
+    private void OnMouseOver()
     {
         TooltipText.text = "Text we want to show";
     }
 
-    void OnMouseExit()
+    private void OnMouseExit()
     {
         TooltipText.text = "";
     }

@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using System.Collections;
 
 public abstract class AI : Player
 {
@@ -17,13 +16,11 @@ public abstract class AI : Player
 
     public void timeToUpgrade()
     {
-        CancelInvoke(methodName: "Play");
-        CancelInvoke(methodName: "AutoCoins");
-        float delay = 15.0f;
+        CancelInvoke("Play");
+        CancelInvoke("AutoCoins");
+        var delay = 15.0f;
         while (delay > 0)
-        {
             delay -= Time.deltaTime;
-        }
         InvokeRepeating("Play", 10.0f, 2.0f);
         InvokeRepeating("AutoCoins", 0.0f, 1.0f);
     }

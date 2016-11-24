@@ -1,16 +1,13 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using UnityEngine;
-using System;
 
 namespace AssemblyCSharp
 {
     public class KnapsackProblem
     {
-        List<Unit> benefit;
+        private readonly List<Unit> benefit;
+        private readonly List<DamageCostUnit> listDmgCost;
         private int maxCoins;
-        List<DamageCostUnit> listDmgCost;
-
 
         public KnapsackProblem()
         {
@@ -24,20 +21,18 @@ namespace AssemblyCSharp
 
         public void infoCalc(List<Unit> availableUnits, int actualCoins)
         {
-            this.maxCoins = actualCoins;
+            maxCoins = actualCoins;
 
-            for (int i = 0; i < availableUnits.Count; i++)
+            for (var i = 0; i < availableUnits.Count; i++)
             {
-                DamageCostUnit unitC = new DamageCostUnit(availableUnits[i]);
-                this.listDmgCost.Add(unitC);
+                var unitC = new DamageCostUnit(availableUnits[i]);
+                listDmgCost.Add(unitC);
             }
 
             listDmgCost.OrderBy(i => i.dmgCost).Reverse();
 
-            for (int i = 0; i < listDmgCost.Count; i++)
-            {
-                this.benefit.Add(listDmgCost[i].unit);
-            }
+            for (var i = 0; i < listDmgCost.Count; i++)
+                benefit.Add(listDmgCost[i].unit);
         }
 
         /**
@@ -53,9 +48,9 @@ namespace AssemblyCSharp
             position = 0;
             actualCost = 0;
 
-            while (actualCost < maxCoins && position < benefit.Count)
+            while ((actualCost < maxCoins) && (position < benefit.Count))
             {
-                Unit unitAux = benefit[position];
+                var unitAux = benefit[position];
 
                 if (actualCost + unitAux.purchaseCost <= maxCoins)
                 {
@@ -67,7 +62,6 @@ namespace AssemblyCSharp
                     position++;
                 }
             }
-
             return solution;
         }
     }

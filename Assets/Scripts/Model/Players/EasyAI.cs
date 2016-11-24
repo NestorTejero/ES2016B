@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using UnityEngine.VR;
 
 public class EasyAI : AI
 {
@@ -8,7 +7,7 @@ public class EasyAI : AI
     public override void Play()
     {
         //create 20 units every wave
-        UnitShop shop = GameObject.FindGameObjectWithTag("Shop").GetComponent<UnitShop>();
+        var shop = GameObject.FindGameObjectWithTag("Shop").GetComponent<UnitShop>();
         if (unitsWave < 20)
         {
             var availableUnits = shop.GetPurchasable(numCoins);
@@ -29,11 +28,5 @@ public class EasyAI : AI
                 unitsWave = 0;
             }
         }
-    }
-
-    private void autoCoins()
-    {
-        //AI wins 20 coins every second
-        numCoins += 1;
     }
 }
