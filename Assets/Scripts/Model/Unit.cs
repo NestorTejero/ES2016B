@@ -10,75 +10,82 @@ public class Unit : MonoBehaviour, CanReceiveDamage
     public int rewardCoins;
     public Transform goal;
     public Weapon weapon;
-	// TODO This shouldn't be public
-	public float damage;
+    // TODO This shouldn't be public
+    public float damage;
 
     private float totalHealth;
-	private float currentHealth;
-    
+    private float currentHealth;
 
-	// Use this for initialization
-	void Start ()
-	{
-		this.currentHealth = this.baseHealth;
+
+    // Use this for initialization
+    void Start()
+    {
+        this.currentHealth = this.baseHealth;
         this.totalHealth = this.baseHealth;
 
-		// Unit movement towards the goal
+        // Unit movement towards the goal
         NavMeshAgent agent = GetComponent<NavMeshAgent>();
-		agent.destination = this.goal.position;
+        agent.destination = this.goal.position;
 
-	    this.weapon = this.gameObject.GetComponent<Weapon>();
+        this.weapon = this.gameObject.GetComponent<Weapon>();
 
-		this.damage = weapon.baseDamage;
+        this.damage = weapon.baseDamage;
 
-        Debug.Log ("UNIT CREATED");
-	}
+        Debug.Log("UNIT CREATED");
+    }
 
-	// Receive damage by weapon
-	public void ReceiveDamage (float damage)
-	{
-		this.currentHealth -= damage;
-		Debug.Log ("Unit " + this.name + " currentHealth: " + this.currentHealth);
-		//Debug.Log("UNIT DAMAGED by HP: " + proj.getDamage());
+    // Receive damage by weapon
+    public void ReceiveDamage(float damage)
+    {
+        this.currentHealth -= damage;
+        Debug.Log("Unit " + this.name + " currentHealth: " + this.currentHealth);
+        //Debug.Log("UNIT DAMAGED by HP: " + proj.getDamage());
 
-		if (APIHUD.instance.getGameObjectSelected () == this.gameObject) {
-			APIHUD.instance.setHealth (this.currentHealth, this.totalHealth);
-		}
+        if (APIHUD.instance.getGameObjectSelected() == this.gameObject)
+        {
+            APIHUD.instance.setHealth(this.currentHealth, this.totalHealth);
+        }
 
-		if (this.currentHealth <= 0.0f) {
-			GameController.instance.notifyDeath (this); // Tell controller I'm dead
-			Destroy (this.gameObject, 0.5f);
-		} 
-	}
+        if (this.currentHealth <= 0.0f)
+        {
+            GameController.instance.notifyDeath(this); // Tell controller I'm dead
+            Destroy(this.gameObject, 0.5f);
+        }
+    }
 
-	// If enemy enters the range of attack
-	void OnTriggerEnter (Collider col)
-	{
-		if (col.gameObject.GetComponent<Building> ()) {
-			Debug.Log ("Unit " + this.name + " Collision with Building");
-			// Adds enemy to attack to the queue
-			this.weapon.addTarget (col.gameObject.GetComponent<CanReceiveDamage> ());
-		}
-	}
+    // If enemy enters the range of attack
+    void OnTriggerEnter(Collider col)
+    {
+        if (col.gameObject.GetComponent<Building>())
+        {
+            Debug.Log("Unit " + this.name + " Collision with Building");
+            // Adds enemy to attack to the queue
+            this.weapon.addTarget(col.gameObject.GetComponent<CanReceiveDamage>());
+        }
+    }
 
-	// If enemy exits the range of attack
-	void OnTriggerExit (Collider col)
-	{
-		if (col.gameObject.GetComponent<Building> ()) {
-			// Removes enemy to attack from the queue
-			this.weapon.removeTarget (col.gameObject.GetComponent<CanReceiveDamage> ());
-		}
-	}
-		
-	public GameObject getGameObject(){
-		return this.gameObject;
-	}
+    // If enemy exits the range of attack
+    void OnTriggerExit(Collider col)
+    {
+        if (col.gameObject.GetComponent<Building>())
+        {
+            // Removes enemy to attack from the queue
+            this.weapon.removeTarget(col.gameObject.GetComponent<CanReceiveDamage>());
+        }
+    }
 
-	public float getTotalHealth(){
-		return this.totalHealth;
-	}
+    public GameObject getGameObject()
+    {
+        return this.gameObject;
+    }
 
-	public float getCurrentHealth(){
-		return this.currentHealth;
-	}
+    public float getTotalHealth()
+    {
+        return this.totalHealth;
+    }
+
+    public float getCurrentHealth()
+    {
+        return this.currentHealth;
+    }
 }

@@ -1,8 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class MusicManager : MonoBehaviour {
+public class MusicManager : MonoBehaviour
+{
     private static MusicManager _instance;
+
     public static MusicManager instance
     {
         get

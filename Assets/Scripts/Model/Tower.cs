@@ -6,46 +6,48 @@ public class Tower : MonoBehaviour, CanUpgrade
 {
     public int upgradeCost;
     private Weapon weapon;
-	private int currentLevel;
-	
+    private int currentLevel;
+
     // Use this for initialization
-    void Start ()
+    void Start()
     {
         this.weapon = this.gameObject.GetComponent<Weapon>();
-        this.currentLevel = 0;		
-		Debug.Log ("TOWER CREATED");
-	}
+        this.currentLevel = 0;
+        Debug.Log("TOWER CREATED");
+    }
 
     public bool IsUpgradeable(int numCoins)
     {
         return this.upgradeCost <= numCoins;
     }
-	
-	// To upgrade when there are enough coins
-	public void Upgrade ()
-	{
-		this.weapon.Upgrade();
-	    this.currentLevel++;
-		Debug.Log ("TOWER UPGRADED, Power: " + this.weapon.getCurrentDamage());
-	}
 
-	// If enemy enters the range of attack
-	void OnTriggerEnter (Collider col)
-	{
-		if (col.gameObject.tag == "Enemy") {
-			Debug.Log ("Tower " + this.name + " Collision with Unit");
+    // To upgrade when there are enough coins
+    public void Upgrade()
+    {
+        this.weapon.Upgrade();
+        this.currentLevel++;
+        Debug.Log("TOWER UPGRADED, Power: " + this.weapon.getCurrentDamage());
+    }
 
-			// Adds enemy to attack to the queue
-			this.weapon.addTarget (col.gameObject.GetComponentInParent<CanReceiveDamage> ());
-		}
-	}
+    // If enemy enters the range of attack
+    void OnTriggerEnter(Collider col)
+    {
+        if (col.gameObject.tag == "Enemy")
+        {
+            Debug.Log("Tower " + this.name + " Collision with Unit");
 
-	// If enemy exits the range of attack
-	void OnTriggerExit (Collider col){
-		if (col.gameObject.tag == "Enemy") {
+            // Adds enemy to attack to the queue
+            this.weapon.addTarget(col.gameObject.GetComponentInParent<CanReceiveDamage>());
+        }
+    }
 
-			// Removes enemy to attack from the queue
-			this.weapon.removeTarget (col.gameObject.GetComponentInParent<CanReceiveDamage> ());
-		}
-	}
+    // If enemy exits the range of attack
+    void OnTriggerExit(Collider col)
+    {
+        if (col.gameObject.tag == "Enemy")
+        {
+            // Removes enemy to attack from the queue
+            this.weapon.removeTarget(col.gameObject.GetComponentInParent<CanReceiveDamage>());
+        }
+    }
 }

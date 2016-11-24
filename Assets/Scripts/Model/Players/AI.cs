@@ -4,7 +4,7 @@ using System.Collections;
 public abstract class AI : Player
 {
     public abstract void Play();
-    
+
     protected void Start()
     {
         numCoins = initialCoins;
@@ -14,6 +14,7 @@ public abstract class AI : Player
     }
 
     /* Give human player time to upgrade or repair */
+
     public void timeToUpgrade()
     {
         CancelInvoke(methodName: "Play");
@@ -26,7 +27,7 @@ public abstract class AI : Player
         InvokeRepeating("Play", 10.0f, 2.0f);
         InvokeRepeating("AutoCoins", 0.0f, 1.0f);
     }
-    
+
     protected void AutoCoins()
     {
         numCoins += 5;
