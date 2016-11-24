@@ -1,31 +1,18 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 using UnityEngine.SceneManagement;
-using System.Collections;
-using UnityEngine.UI;
-
 
 public class SubMenu : MonoBehaviour
 {
-    public bool isEasyButton = false;
-    public bool isMediumButton = false;
-    public bool isHardButton = false;
-    public bool isReturnButton = false;
     public AudioSource audioSource;
-
-
-    // Use this for initialization
-    void Start()
-    {
-    }
+    public bool isEasyButton = false;
+    public bool isHardButton = false;
+    public bool isMediumButton = false;
+    public bool isReturnButton = false;
 
     public void OnMouseEnter()
     {
         GetComponent<Renderer>().material.color = Color.black;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
     }
 
     public void OnMouseExit()

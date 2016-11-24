@@ -80,9 +80,7 @@ public class GameController : MonoBehaviour
         currentWave += 1;
         Debug.Log("Wave CLEAR!");
         if (currentWave > totalWaves)
-        {
             SceneManager.LoadScene("MainMenu");
-        }
         ai.timeToUpgrade();
 
         APIHUD.instance.setWave(currentWave.ToString());

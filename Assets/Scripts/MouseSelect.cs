@@ -1,17 +1,16 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
-using System.Collections;
 
 public class MouseSelect : MonoBehaviour
 {
-    static private Transform transformSelected;
+    private static Transform transformSelected;
     private bool isSelected;
 
     // Tooltip field
     public Text TooltipText;
 
     // Use this for initialization
-    void Start()
+    private void Start()
     {
         transformSelected = null;
         isSelected = false;
@@ -20,15 +19,12 @@ public class MouseSelect : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
         //for debug and testing use renderer.material.color = Color.red 
         //to check if object is not selected or Debug.Log
-        if (isSelected && transform != transformSelected)
-        {
+        if (isSelected && (transform != transformSelected))
             isSelected = false;
-            //print("not selected + this.name");
-        }
     }
 
     public void OnMouseDown()
@@ -36,25 +32,25 @@ public class MouseSelect : MonoBehaviour
         isSelected = true;
         transformSelected = transform;
 
-        APIHUD.instance.setGameObjectSelected(this.gameObject);
+        APIHUD.instance.setGameObjectSelected(gameObject);
 
-        if (this.tag == "Building")
+        if (tag == "Building")
         {
-            APIHUD.instance.setHealth(this.GetComponent<Building>().getCurrentHealth(),
-                this.GetComponent<Building>().getTotalHealth());
+            APIHUD.instance.setHealth(GetComponent<Building>().getCurrentHealth(),
+                GetComponent<Building>().getTotalHealth());
             APIHUD.instance.setAttackSpeed("-");
             APIHUD.instance.setDamage("-");
             APIHUD.instance.setRange("-");
             APIHUD.instance.setVisibleUpgradeButton(true);
         }
 
-        if (this.tag == "Unit")
+        if (tag == "Unit")
         {
-            APIHUD.instance.setHealth(this.GetComponent<Unit>().getCurrentHealth(),
-                this.GetComponent<Unit>().getTotalHealth());
-            APIHUD.instance.setAttackSpeed(this.GetComponent<Unit>().moveSpeed.ToString());
-            APIHUD.instance.setDamage(this.GetComponent<Weapon>().baseDamage.ToString());
-            APIHUD.instance.setRange(this.GetComponent<Weapon>().baseRange.ToString());
+            APIHUD.instance.setHealth(GetComponent<Unit>().getCurrentHealth(),
+                GetComponent<Unit>().getTotalHealth());
+            APIHUD.instance.setAttackSpeed(GetComponent<Unit>().moveSpeed.ToString());
+            APIHUD.instance.setDamage(GetComponent<Weapon>().baseDamage.ToString());
+            APIHUD.instance.setRange(GetComponent<Weapon>().baseRange.ToString());
             APIHUD.instance.setVisibleUpgradeButton(false);
         }
     }
@@ -62,16 +58,12 @@ public class MouseSelect : MonoBehaviour
     //Here we can edit tooltips
     public void OnMouseOver()
     {
-        if (this.tag == "Tower" || this.name == "TowerN" || this.name == "TowerE" || this.name == "TowerW" ||
-            this.name == "TowerS" || this.name == "EdificiUB")
-        {
+        if ((tag == "Tower") || (name == "TowerN") || (name == "TowerE") || (name == "TowerW") ||
+            (name == "TowerS") || (name == "EdificiUB"))
             TooltipText.text = "Protect this building!";
-        }
 
-        if (this.tag == "Unit" || this.name == "Freshman_Roba_freshman")
-        {
+        if ((tag == "Unit") || (name == "Freshman_Roba_freshman"))
             TooltipText.text = "Kill them with fire!";
-        }
     }
 
     public void OnMouseExit()

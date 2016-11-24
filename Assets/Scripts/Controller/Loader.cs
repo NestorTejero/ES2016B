@@ -8,10 +8,10 @@
 
 public class Loader : MonoBehaviour
 {
-    public GameObject gameController;
-    public GameObject MediumAI;
     public GameObject EasyAI;
+    public GameObject gameController;
     public GameObject HardAI;
+    public GameObject MediumAI;
 
     private void Awake()
     {
@@ -24,16 +24,10 @@ public class Loader : MonoBehaviour
     private void Start()
     {
         if (PersistentValues.difficulty == 1)
-        {
             Instantiate(EasyAI);
-        }
         else if (PersistentValues.difficulty == 2)
-        {
             Instantiate(MediumAI);
-        }
         else if (PersistentValues.difficulty == 3)
-        {
             Instantiate(HardAI);
-        }
     }
 }

@@ -1,37 +1,36 @@
 ﻿using UnityEngine;
-using System.Collections;
 using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
+    public Image effectsIcon; // This is the gameobject that shows the effects volume sprite
+
+    // We need this boolean to know if game is paused
+    private bool gamePaused;
+    private float lastEVolume; // Effects volume
+
+    // We store the current volume before muting sound with icons
+    private float lastMVolume; // Music volume
+
+    // Menu icons:
+    public Image musicIcon; // This is the gameobject that shows the music volume sprite
+    public Slider musicSlider;
     // List of objects that we show when the game is paused
-    GameObject[] pauseObjects;
+    private GameObject[] pauseObjects;
+    // Sprites according to volume level:
+    public Sprite soundFull;
+    public Sprite soundLow;
+    public Sprite soundMedium;
+    public Sprite soundMuted;
 
     // Text field that will show the tooltip:
     public Text TooltipText;
 
-    // We need this boolean to know if game is paused
-    bool gamePaused;
-
     // Control of volume:
     public Slider volumeSlider;
-    public Slider musicSlider;
-
-    // Menu icons:
-    public Image musicIcon; // This is the gameobject that shows the music volume sprite
-    public Image effectsIcon; // This is the gameobject that shows the effects volume sprite
-    // Sprites according to volume level:
-    public Sprite soundFull;
-    public Sprite soundMedium;
-    public Sprite soundLow;
-    public Sprite soundMuted;
-
-    // We store the current volume before muting sound with icons
-    private float lastMVolume; // Music volume
-    private float lastEVolume; // Effects volume
 
     // Initialization
-    void Start()
+    private void Start()
     {
         Time.timeScale = 1; // Game speed
         pauseObjects = GameObject.FindGameObjectsWithTag("ShowOnPause");
@@ -48,7 +47,7 @@ public class UIManager : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
         //uses the p button to pause and unpause the game
         if (Input.GetKeyDown(KeyCode.Escape))
@@ -74,16 +73,14 @@ public class UIManager : MonoBehaviour
         if (AudioListener.volume == 0)
         {
             if (lastEVolume == 0)
-            {
                 lastEVolume = 1;
-            }
             AudioListener.volume = lastEVolume;
             volumeSlider.value = lastEVolume;
             setEffectsIcon();
         }
         else
         {
-            float aux = AudioListener.volume;
+            var aux = AudioListener.volume;
             AudioListener.volume = 0;
             volumeSlider.value = 0;
             setEffectsIcon();
@@ -110,21 +107,13 @@ public class UIManager : MonoBehaviour
     {
         // Different icon is shown according to the volume
         if (volumeSlider.value == 0)
-        {
             effectsIcon.sprite = soundMuted;
-        }
         else if (volumeSlider.normalizedValue < 0.5f)
-        {
             effectsIcon.sprite = soundLow;
-        }
         else if (volumeSlider.normalizedValue < 1.0f)
-        {
             effectsIcon.sprite = soundMedium;
-        }
         else
-        {
             effectsIcon.sprite = soundFull;
-        }
     }
 
     // This function mutes or unmuted the music volume, according to the current value
@@ -133,15 +122,13 @@ public class UIManager : MonoBehaviour
         if (musicSlider.value == 0)
         {
             if (lastMVolume == 0)
-            {
                 lastMVolume = 1;
-            }
             musicSlider.value = lastMVolume;
             setMusicIcon();
         }
         else
         {
-            float aux = musicSlider.value;
+            var aux = musicSlider.value;
             musicSlider.value = 0;
             setMusicIcon();
             lastMVolume = aux;
@@ -165,21 +152,13 @@ public class UIManager : MonoBehaviour
     {
         // Different icon is shown according to the volume
         if (musicSlider.value == 0)
-        {
             musicIcon.sprite = soundMuted;
-        }
         else if (musicSlider.normalizedValue < 0.5f)
-        {
             musicIcon.sprite = soundLow;
-        }
         else if (musicSlider.normalizedValue < 1.0f)
-        {
             musicIcon.sprite = soundMedium;
-        }
         else
-        {
             musicIcon.sprite = soundFull;
-        }
     }
 
     //Reloads the Level
@@ -198,19 +177,15 @@ public class UIManager : MonoBehaviour
     //shows objects with ShowOnPause tag
     public void showPaused()
     {
-        foreach (GameObject g in pauseObjects)
-        {
+        foreach (var g in pauseObjects)
             g.SetActive(true);
-        }
     }
 
     //hides objects with ShowOnPause tag
     public void hidePaused()
     {
-        foreach (GameObject g in pauseObjects)
-        {
+        foreach (var g in pauseObjects)
             g.SetActive(false);
-        }
         Time.timeScale = 1;
         gamePaused = !gamePaused; // we need to change de boolean here
     }

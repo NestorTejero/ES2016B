@@ -1,17 +1,16 @@
-﻿using UnityEngine;
-using UnityEngine.VR;
-using AssemblyCSharp;
+﻿using AssemblyCSharp;
+using UnityEngine;
 
 public class HardAI : AI
 {
     // Makes the movement according to this AI
 
-    KnapsackProblem aiSolver = new KnapsackProblem();
+    private readonly KnapsackProblem aiSolver = new KnapsackProblem();
 
     public override void Play()
     {
         //create 200 units every wave
-        UnitShop shop = GameObject.FindGameObjectWithTag("Shop").GetComponent<UnitShop>();
+        var shop = GameObject.FindGameObjectWithTag("Shop").GetComponent<UnitShop>();
         if (unitsWave < 200)
         {
             var availableUnits = shop.GetPurchasable(numCoins);
@@ -21,7 +20,7 @@ public class HardAI : AI
             var unitsToPurchase = aiSolver.Resolve();
 
             /* We buy the units */
-            for (int i = 0; i < unitsToPurchase.Count; i++)
+            for (var i = 0; i < unitsToPurchase.Count; i++)
             {
                 var unit = unitsToPurchase[i];
                 if (shop.IsPurchasable(unit, numCoins))

@@ -1,69 +1,33 @@
-﻿using UnityEngine;
-using System.Collections;
+﻿using System;
+using UnityEngine;
 
 public class RTSCamera : MonoBehaviour
 {
+    private Vector3 camVel = Vector3.zero;
+    private Vector3 currentMousePos = Vector3.zero;
+
+    //vectors used while moving the camera around
+    private Vector3 destination = Vector3.zero;
     //this is the laerMask used to autocontrol the camera height
     public LayerMask groundLayer;
+    public InputSettings input = new InputSettings();
+    public OrbitSettings orbit = new OrbitSettings();
+    //int to change the way the dragging move is performed
+    private int panDirection;
 
-    //Class that have all variables used to move the camera
-    [System.Serializable]
-    public class PositionSettings
-    {
-        public bool invertPan = true; // bool used to move in the oposite way you are dragging the mouse
-        public float panSmooth = 7.0f; // speed of the dragging movement
-        public float distanceFromGround = 60.0f; // base height used for the camera to "avoid" obstacles
-        public bool allowZoom = true; // bool to allow zoom with the mouse wheel
-        public float zoomSmoth = 5.0f; // speed of the zoom movement
-        public float zoomStep = 5.0f; // how much the distance is increased while you are turning the mouse wheel
-        public float maxZoom = 40.0f; // how close you can be to the scene
-        public float minZoom = 80.0f; // how far you can be to the scene
-
-        //newDistance is used to check before zoom movement
-        [HideInInspector] public float newDistance = 60.0f; //Same as distanceFromGround
-    }
-
-    //class that have variables involved in camera rotation
-    [System.Serializable]
-    public class OrbitSettings
-    {
-        public float xRotation = 50.0f; // used to initialize the x rotation of the camera
-        public float yRotation = 0.0f; // used to initialixe the y rotation of the camera
-        public bool allowOrbit = true; // bool used to allow orbit or not
-        public float yOrbitSmooth = 5.0f; // orbit speed
-    }
-
-    // Class that have the custom inputs to use the camera
-    [System.Serializable]
-    public class InputSettings
-    {
-        public string PAN = "MousePan"; // used to check the camera dragging
-        public string ORBIT_Y = "MouseTurn"; // used to check the camera rotation
-        public string ZOOM = "Mouse ScrollWheel"; // used to check the zoom
-    }
+    //floats to control if there is an input
+    private float panInput, orbitInput, zoomInput;
 
     //initializing the new classes
     public PositionSettings position = new PositionSettings();
-    public OrbitSettings orbit = new OrbitSettings();
-    public InputSettings input = new InputSettings();
-
-    //vectors used while moving the camera around
-    Vector3 destination = Vector3.zero;
-    Vector3 camVel = Vector3.zero;
-    Vector3 previousMousePos = Vector3.zero;
-    Vector3 currentMousePos = Vector3.zero;
-
-    //floats to control if there is an input
-    float panInput, orbitInput, zoomInput;
-    //int to change the way the dragging move is performed
-    int panDirection = 0;
+    private Vector3 previousMousePos = Vector3.zero;
+    private float terrainHeight;
 
     //floats to get the size of the field to avoid going further
-    float terrainWidth = 0.0f;
-    float terrainHeight = 0.0f;
+    private float terrainWidth;
 
     // Use this for initialization
-    void Start()
+    private void Start()
     {
         //initializing inputs to 0
         panInput = 0.0f;
@@ -72,7 +36,7 @@ public class RTSCamera : MonoBehaviour
 
         //getting the terrain size initialized
         Vector3 terrainSize;
-        GameObject GameTerrain = GameObject.Find("Terrain");
+        var GameTerrain = GameObject.Find("Terrain");
         terrainSize = GameTerrain.GetComponent<Terrain>().terrainData.size;
 
         terrainWidth = terrainSize.x;
@@ -82,7 +46,7 @@ public class RTSCamera : MonoBehaviour
     }
 
     //responsible for setting input variables
-    void GetInput()
+    private void GetInput()
     {
         panInput = Input.GetAxis(input.PAN);
         orbitInput = Input.GetAxis(input.ORBIT_Y);
@@ -94,7 +58,7 @@ public class RTSCamera : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
         //update input
         GetInput();
@@ -113,10 +77,10 @@ public class RTSCamera : MonoBehaviour
         HandleCameraDistance ();
     }*/
 
-    void PanWorld()
+    private void PanWorld()
     {
         //getting our camera position
-        Vector3 targetPos = transform.position;
+        var targetPos = transform.position;
 
         //setting the direction of the movement
         if (position.invertPan)
@@ -136,15 +100,16 @@ public class RTSCamera : MonoBehaviour
                          position.panSmooth*panDirection*Time.deltaTime;
         }
         //check if our nextPos is outside the terrain, if the next position is inside, change camera position
-        if (targetPos.x >= -3500 && targetPos.x <= terrainWidth && targetPos.z >= -3500 && targetPos.z <= terrainHeight)
+        if ((targetPos.x >= -3500) && (targetPos.x <= terrainWidth) && (targetPos.z >= -3500) &&
+            (targetPos.z <= terrainHeight))
             transform.position = targetPos;
     }
 
     //this function makes the camera stay at the same distance with the groundLayer
     //using ray and rayCastHit can know where the camera is looking at and making it stay the same distance
-    void HandleCameraDistance()
+    private void HandleCameraDistance()
     {
-        Ray ray = new Ray(transform.position, transform.forward);
+        var ray = new Ray(transform.position, transform.forward);
         RaycastHit hit;
         if (Physics.Raycast(ray, out hit, 100, groundLayer))
         {
@@ -155,7 +120,7 @@ public class RTSCamera : MonoBehaviour
     }
 
     //Zoom() is a function that changes the camera distance with the scene. This is betwen the max and min zoom set
-    void Zoom()
+    private void Zoom()
     {
         position.newDistance += position.zoomStep*-zoomInput;
         //calling Lerp to make a smoother transition betwen camera pos and nextPos
@@ -175,12 +140,46 @@ public class RTSCamera : MonoBehaviour
     }
 
     //Rotate() allows the camera to rotate in the 'y' axis. Can be disabled with its checkbox
-    void Rotate()
+    private void Rotate()
     {
         if (orbitInput > 0)
-        {
             orbit.yRotation += (currentMousePos.x - previousMousePos.x)*orbit.yOrbitSmooth*Time.deltaTime;
-        }
         transform.rotation = Quaternion.Euler(orbit.xRotation, orbit.yRotation, 0.0f);
+    }
+
+    //Class that have all variables used to move the camera
+    [Serializable]
+    public class PositionSettings
+    {
+        public bool allowZoom = true; // bool to allow zoom with the mouse wheel
+        public float distanceFromGround = 60.0f; // base height used for the camera to "avoid" obstacles
+        public bool invertPan = true; // bool used to move in the oposite way you are dragging the mouse
+        public float maxZoom = 40.0f; // how close you can be to the scene
+        public float minZoom = 80.0f; // how far you can be to the scene
+
+        //newDistance is used to check before zoom movement
+        [HideInInspector] public float newDistance = 60.0f; //Same as distanceFromGround
+        public float panSmooth = 7.0f; // speed of the dragging movement
+        public float zoomSmoth = 5.0f; // speed of the zoom movement
+        public float zoomStep = 5.0f; // how much the distance is increased while you are turning the mouse wheel
+    }
+
+    //class that have variables involved in camera rotation
+    [Serializable]
+    public class OrbitSettings
+    {
+        public bool allowOrbit = true; // bool used to allow orbit or not
+        public float xRotation = 50.0f; // used to initialize the x rotation of the camera
+        public float yOrbitSmooth = 5.0f; // orbit speed
+        public float yRotation; // used to initialixe the y rotation of the camera
+    }
+
+    // Class that have the custom inputs to use the camera
+    [Serializable]
+    public class InputSettings
+    {
+        public string ORBIT_Y = "MouseTurn"; // used to check the camera rotation
+        public string PAN = "MousePan"; // used to check the camera dragging
+        public string ZOOM = "Mouse ScrollWheel"; // used to check the zoom
     }
 }

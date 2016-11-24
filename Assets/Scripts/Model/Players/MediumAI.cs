@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using UnityEngine.VR;
 
 public class MediumAI : AI
 {
@@ -8,7 +7,7 @@ public class MediumAI : AI
     public override void Play()
     {
         //create 70 units every wave
-        UnitShop shop = GameObject.FindGameObjectWithTag("Shop").GetComponent<UnitShop>();
+        var shop = GameObject.FindGameObjectWithTag("Shop").GetComponent<UnitShop>();
         if (unitsWave < 70)
         {
             /* we buy the unit with less damage */

@@ -1,28 +1,20 @@
 ﻿using UnityEngine;
-using System.Collections;
+using UnityEngine.UI;
 
 public class APIHUD : MonoBehaviour
 {
     public static APIHUD instance;
-    private bool selectedItem = false;
     private GameObject gameObjectSelected;
+    private bool selectedItem;
 
-    void Awake()
+    private void Awake()
     {
         if (instance == null)
-        {
             instance = this;
-            return;
-        }
-    }
-
-    // Use this for initialization
-    void Start()
-    {
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
         setTime(timer.instance.getTime());
     }
@@ -30,24 +22,22 @@ public class APIHUD : MonoBehaviour
     public void setHealth(float currentHealth, float totalHealth)
     {
         if (selectedItem == false)
-        {
             setSelectedItemLabel();
-        }
 
-        float maxWidthBarLife =
+        var maxWidthBarLife =
             transform.FindChild("containerStats")
                 .FindChild("container_info")
                 .FindChild("imgLifeBar")
                 .GetComponent<RectTransform>()
                 .rect.width;
-        float maxHeigthBarLife =
+        var maxHeigthBarLife =
             transform.FindChild("containerStats")
                 .FindChild("container_info")
                 .FindChild("imgLifeBar")
                 .GetComponent<RectTransform>()
                 .rect.height;
 
-        float widthLifeBar = (currentHealth*maxWidthBarLife)/totalHealth;
+        var widthLifeBar = currentHealth*maxWidthBarLife/totalHealth;
 
         //Rect r = transform.FindChild ("containerStats").FindChild ("container_info").FindChild ("imgLifeBar").FindChild ("imgLife").GetComponent<RectTransform> ().rect;
         //r.width = widthLifeBar;
@@ -65,7 +55,7 @@ public class APIHUD : MonoBehaviour
             .FindChild("container_info")
             .FindChild("imgLifeBar")
             .FindChild("txtLife")
-            .GetComponent<UnityEngine.UI.Text>()
+            .GetComponent<Text>()
             .text = currentHealth.ToString();
     }
 
@@ -75,7 +65,7 @@ public class APIHUD : MonoBehaviour
             .FindChild("container_info")
             .FindChild("lblAttackSpeed")
             .FindChild("txtAttackSpeed")
-            .GetComponent<UnityEngine.UI.Text>()
+            .GetComponent<Text>()
             .text = atackSpeed;
     }
 
@@ -85,7 +75,7 @@ public class APIHUD : MonoBehaviour
             .FindChild("container_info")
             .FindChild("lblDamage")
             .FindChild("txtDamage")
-            .GetComponent<UnityEngine.UI.Text>()
+            .GetComponent<Text>()
             .text = damage;
     }
 
@@ -95,7 +85,7 @@ public class APIHUD : MonoBehaviour
             .FindChild("container_info")
             .FindChild("lblRange")
             .FindChild("txtRange")
-            .GetComponent<UnityEngine.UI.Text>()
+            .GetComponent<Text>()
             .text = damage;
     }
 
@@ -104,7 +94,7 @@ public class APIHUD : MonoBehaviour
         transform.FindChild("containerGameStats")
             .FindChild("lblWave")
             .FindChild("txtWave")
-            .GetComponent<UnityEngine.UI.Text>()
+            .GetComponent<Text>()
             .text = wave;
     }
 
@@ -113,7 +103,7 @@ public class APIHUD : MonoBehaviour
         transform.FindChild("containerGameStats")
             .FindChild("lblTime")
             .FindChild("txtTime")
-            .GetComponent<UnityEngine.UI.Text>()
+            .GetComponent<Text>()
             .text = time;
     }
 
@@ -122,7 +112,7 @@ public class APIHUD : MonoBehaviour
         transform.FindChild("containerGameStats")
             .FindChild("lblDificulty")
             .FindChild("txtDificulty")
-            .GetComponent<UnityEngine.UI.Text>()
+            .GetComponent<Text>()
             .text = dificulty;
     }
 
@@ -131,7 +121,7 @@ public class APIHUD : MonoBehaviour
         transform.FindChild("containerGameStats")
             .FindChild("lblPoints")
             .FindChild("txtPoints")
-            .GetComponent<UnityEngine.UI.Text>()
+            .GetComponent<Text>()
             .text = points;
     }
 
@@ -140,7 +130,7 @@ public class APIHUD : MonoBehaviour
         transform.FindChild("containerGameStats")
             .FindChild("lblMoney")
             .FindChild("txtMoney")
-            .GetComponent<UnityEngine.UI.Text>()
+            .GetComponent<Text>()
             .text = money;
     }
 
@@ -159,11 +149,11 @@ public class APIHUD : MonoBehaviour
 
     public void setGameObjectSelected(GameObject gameObject)
     {
-        this.gameObjectSelected = gameObject;
+        gameObjectSelected = gameObject;
     }
 
     public GameObject getGameObjectSelected()
     {
-        return this.gameObjectSelected;
+        return gameObjectSelected;
     }
 }

@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using System.Collections;
 
 public class PersistentValues : MonoBehaviour
 {
@@ -12,7 +11,7 @@ public class PersistentValues : MonoBehaviour
     // Level of difficulty: - Set to default 1 for testing
     public static int difficulty = 1; // Easy = 1, Medium = 2, Hard = 3
 
-    void Awake()
+    private void Awake()
     {
         DontDestroyOnLoad(this);
     }

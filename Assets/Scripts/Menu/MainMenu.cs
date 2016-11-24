@@ -1,13 +1,13 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 using UnityEngine.SceneManagement;
-using System.Collections;
 
 public class MainMenu : MonoBehaviour
 {
     public AudioSource audioSource;
 
     // Use this for initialization
-    void Start()
+    private void Start()
     {
         //Should the cursor be visible?
         Cursor.visible = true;
