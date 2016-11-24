@@ -3,6 +3,6 @@ using System.Collections;
 
 public interface CanReceiveDamage
 {
-	void ReceiveDamage (float damage);
-	GameObject getGameObject ();
+    void ReceiveDamage(float damage);
+    GameObject getGameObject();
 }

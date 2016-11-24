@@ -21,9 +21,9 @@ public class GameController : MonoBehaviour
     private void Start()
     {
         currentWave = 1;
-		totalWaves = 2; //TODO: this number changes depending of AI level
+        totalWaves = 2; //TODO: this number changes depending of AI level
 
-		APIHUD.instance.setWave(currentWave.ToString());
+        APIHUD.instance.setWave(currentWave.ToString());
     }
 
     private void Awake()
@@ -75,15 +75,16 @@ public class GameController : MonoBehaviour
     }
 
     [MethodImpl(MethodImplOptions.Synchronized)]
-    public void notifyWaveClear (AI ai)
-	{
-		currentWave += 1;
-		Debug.Log ("Wave CLEAR!");
-		if (currentWave > totalWaves){
-			SceneManager.LoadScene("MainMenu");
-		}
-		ai.timeToUpgrade ();
+    public void notifyWaveClear(AI ai)
+    {
+        currentWave += 1;
+        Debug.Log("Wave CLEAR!");
+        if (currentWave > totalWaves)
+        {
+            SceneManager.LoadScene("MainMenu");
+        }
+        ai.timeToUpgrade();
 
-		APIHUD.instance.setWave(currentWave.ToString());
-	}
+        APIHUD.instance.setWave(currentWave.ToString());
+    }
 }

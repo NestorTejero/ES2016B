@@ -18,7 +18,6 @@ public class MainMenu : MonoBehaviour
     public void OnMouseEnter()
     {
         GetComponent<Renderer>().material.color = Color.black;
-
     }
 
     public void OnMouseExit()

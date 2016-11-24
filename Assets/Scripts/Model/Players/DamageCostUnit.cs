@@ -3,19 +3,16 @@ using UnityEngine;
 
 namespace AssemblyCSharp
 {
-	public class DamageCostUnit
-	{
-		public Unit unit;
-		public float dmgCost;
+    public class DamageCostUnit
+    {
+        public Unit unit;
+        public float dmgCost;
 
 
-		public DamageCostUnit (Unit unit)
-		{
-			this.unit = unit;
-			dmgCost = (unit.damage)/unit.purchaseCost;
-
-		}
-			
-	}
+        public DamageCostUnit(Unit unit)
+        {
+            this.unit = unit;
+            dmgCost = (unit.damage)/unit.purchaseCost;
+        }
+    }
 }
-
