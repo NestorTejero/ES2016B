@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
-using System.Collections;
 
 public interface CanReceiveDamage
 {
-	bool ReceiveDamage (Projectile proj);
+    void ReceiveDamage(float damage);
+    GameObject getGameObject();
 }

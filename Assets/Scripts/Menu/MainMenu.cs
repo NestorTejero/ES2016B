@@ -1,44 +1,54 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 using UnityEngine.SceneManagement;
-using System.Collections;
 
-public class MainMenu : MonoBehaviour {
+public class MainMenu : MonoBehaviour
+{
+    public AudioSource audioSource;
 
-	public bool isQuitButton = false;
-	public bool isHelpButton = false;
-	public bool isOptionsButton = false;
+    // Use this for initialization
+    private void Start()
+    {
+        //Should the cursor be visible?
+        Cursor.visible = true;
+        //The cursor will automatically be hidden, centered on view and made to never leave the view.
+        Screen.lockCursor = false;
+    }
 
-	// Use this for initialization
-	void Start () {
-		//Should the cursor be visible?
-		Cursor.visible = true;
-		//The cursor will automatically be hidden, centered on view and made to never leave the view.
-		Screen.lockCursor = false;
-	}
+    public void OnMouseEnter()
+    {
+        GetComponent<Renderer>().material.color = Color.black;
+    }
 
-	public void OnMouseEnter(){
-		GetComponent<Renderer>().material.color = Color.black;
+    public void OnMouseExit()
+    {
+        GetComponent<Renderer>().material.color = Color.white;
+    }
 
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+    public void goToGame()
+    {
+        StartCoroutine(playAndLoad(2));
+    }
 
-	public void OnMouseExit(){
-		GetComponent<Renderer>().material.color = Color.white;
-	}
+    public void goToOptions()
+    {
+        StartCoroutine(playAndLoad(3));
+    }
 
-	public void OnMouseUpAsButton(){
+    public void goToHelp()
+    {
+        StartCoroutine(playAndLoad(4));
+    }
 
-		if(isQuitButton)
-			Application.Quit();
-		else if(isHelpButton)
-			SceneManager.LoadScene(4); 
-		else if(isOptionsButton)
-			SceneManager.LoadScene(3); 
-		else
-			SceneManager.LoadScene(2); //Load the game (next scene)
-	}
+    public void exit()
+    {
+        Application.Quit();
+    }
+
+    public IEnumerator playAndLoad(int scene)
+    {
+        audioSource.Play();
+        yield return new WaitForSeconds(audioSource.clip.length);
+        SceneManager.LoadScene(scene); //Load the game (next scene)  
+    }
 }

@@ -1,94 +1,134 @@
-﻿using UnityEngine;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
-public class Weapon : MonoBehaviour, CanUpgrade
+public class Weapon : MonoBehaviour
 {
+    public float baseCooldown;
     public float baseDamage;
     public float baseRange;
-    public float baseCooldown;
-	public float upgradeFactor;
-	public AudioClip shootSound;
+    private float currentCooldown;
 
     private float currentDamage;
     private float currentRange;
-    private float currentCooldown;
-	private List<CanReceiveDamage> targets;
-    private AudioSource source;
+    private AudioClip[] death;
+    public GameObject proj_obj; // Projectile prefab
+    public GameObject proj_origin; // Projectile origin
+    public AudioClip shootSound;
+    private AudioSource source_shoot, source_death;
+    private List<CanReceiveDamage> targets;
+    public float upgradeFactor;
 
-	// Use this for initialization
-	void Start ()
-	{
-	    this.currentDamage = this.baseDamage;
-	    this.currentRange = this.baseRange;
-	    this.currentCooldown = this.baseCooldown;
+    // Use this for initialization
+    private void Start()
+    {
+        currentDamage = baseDamage;
+        currentRange = baseRange;
+        currentCooldown = baseCooldown;
 
-		// Collider of the tower attached to this script
-		this.gameObject.GetComponentInChildren<CapsuleCollider>().radius = this.currentRange;
+        // Collider of the tower attached to this script
+        gameObject.GetComponentInChildren<CapsuleCollider>().radius = currentRange;
 
-		// List of targets assigned to the weapon
-		this.targets = new List<CanReceiveDamage>();
+        // List of targets assigned to the weapon
+        targets = new List<CanReceiveDamage>();
 
-		// Call Attack every 'cooldown' seconds
-		InvokeRepeating("Attack", 0.0f, this.currentCooldown);
+
+        // Call Attack every 'cooldown' seconds
+        InvokeRepeating("Attack", 0.0f, currentCooldown);
 
         // Set sounds
-        this.source = GetComponent<AudioSource>();
+        death = new[]
+        {
+            (AudioClip) Resources.Load("Sound/Effects/Death 1"),
+            (AudioClip) Resources.Load("Sound/Effects/Death 2"),
+            (AudioClip) Resources.Load("Sound/Effects/Death 3")
+        };
 
-        Debug.Log ("WEAPON CREATED");
-	}
-
-	// Update is called once per frame
-	void Update ()
-	{
-
-	}
-
-	// Upgrade weapon features
-	public void Upgrade ()
-	{
-		this.currentDamage *= upgradeFactor;
-	}
-
-	// Get weapon's current damage
-    public float getCurrentDamage()
-    {
-        return this.currentDamage;
+        source_death = GameObject.Find("Death Audio Source").GetComponent<AudioSource>();
+        source_shoot = GameObject.Find("Shoot Audio Source").GetComponent<AudioSource>();
+        Debug.Log("WEAPON CREATED");
     }
 
-	// Add target to list
-	public void addTarget(CanReceiveDamage target){
-		this.targets.Add (target);
-		Debug.Log ("Targets to attack :" + targets.Count);
-	}
+    // Upgrade weapon features
+    public void Upgrade()
+    {
+        currentDamage *= upgradeFactor;
+    }
 
-	// Remove target from list
-	public void removeTarget(CanReceiveDamage target){
-		this.targets.Remove (target);
-	}
+    // Get weapon's current damage
+    public float getCurrentDamage()
+    {
+        return currentDamage;
+    }
 
-	// Called to attack a target
-	public void Attack()
-	{
-		// Checks if there is a target in the range
-		if (this.targets.Count > 0) {
+    // Add target to list
+    public void addTarget(CanReceiveDamage target)
+    {
+        targets.Add(target);
+        Debug.Log(gameObject.name + "-> Targets to attack :" + targets.Count);
+    }
 
-			// Get target to attack
-			CanReceiveDamage target = targets [0];
+    // Remove target from list
+    public void removeTarget(CanReceiveDamage target)
+    {
+        targets.Remove(target);
+        // TODO Careful! This is not the moment when the enemy dies (it is just removed from the target list)
+        // Play death sound
+        if (!source_death.isPlaying)
+            source_death.PlayOneShot(death[Random.Range(0, death.Length)], 0.5f);
+        Debug.Log(gameObject.name + "-> Targets to attack :" + targets.Count);
+    }
 
-			// Create the projectile that will go towards the target
-			Projectile projectile = this.gameObject.AddComponent<Projectile>();
-			projectile.create(1.0f, target, this.currentDamage);
+    // Get the available target to attack from the targets list
+    public CanReceiveDamage getAvailableTarget()
+    {
+        // Checks if there is a target in the range
+        while (targets.Count > 0)
+        {
+            // Get target to attack
+            var target = targets[0];
 
-			// Shoot the projectile
-			bool dead = projectile.shoot ();
-			if (dead) {
-				this.targets.Remove (target);
-			}
+            // Check if target is already dead
+            if (target.Equals(null))
+            {
+                Debug.Log(gameObject.name + ": TARGET ALREADY DEAD");
+                removeTarget(target);
+            }
+            else
+            {
+                Debug.Log(gameObject.name + ": TARGET AVAILABLE TO SHOOT");
+                return target;
+            }
+        }
+        Debug.Log(gameObject.name + ": NO TARGETS ON QUEUE");
+        return null;
+    }
 
-            // Play sound
-			this.source.PlayOneShot (this.shootSound);
-		}
-	}
+    // Called to attack a target
+    public void Attack()
+    {
+        var target = getAvailableTarget();
+
+        if (target != null)
+        {
+            // Play shoot sound
+            if (!source_shoot.isPlaying)
+                source_shoot.PlayOneShot(shootSound);
+            //Creates projectile with its properties and destroys it after 3 seconds
+            var proj_clone =
+                (GameObject)
+                Instantiate(proj_obj, proj_origin.transform.position, proj_origin.transform.rotation);
+            proj_clone.GetComponent<Projectile>().Shoot(target, currentDamage);
+            Destroy(proj_clone, 3.0f);
+        }
+    }
+
+    public void setSourceDeath(AudioSource death)
+    {
+        source_death = death;
+    }
+
+    public void setSourceShoot(AudioSource shoot)
+    {
+        source_shoot = shoot;
+    }
 }
-

@@ -1,15 +1,29 @@
 ﻿using UnityEngine;
-using System.Collections;
 
-public class timer : MonoBehaviour {
+public class timer : MonoBehaviour
+{
+    public static timer instance;
+    private float startTime;
 
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+    private void Awake()
+    {
+        if (instance == null)
+            instance = this;
+    }
+
+    // Use this for initialization
+    private void Start()
+    {
+        startTime = Time.time;
+    }
+
+    public string getTime()
+    {
+        var t = Time.time - startTime;
+        var horas = ((int) t/3600%24).ToString("00");
+        var minutes = ((int) t/60).ToString("00");
+        var seconds = (t%60).ToString("00");
+
+        return horas + ":" + minutes + ":" + seconds;
+    }
 }
