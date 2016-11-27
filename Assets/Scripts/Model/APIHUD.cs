@@ -1,16 +1,33 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using UnityEditor;
 
 public class APIHUD : MonoBehaviour
 {
     public static APIHUD instance;
     private GameObject gameObjectSelected;
     private bool selectedItem;
+	public GameObject lifeBar;
+	public GameObject moneyIndicator;
+	public GameObject timeIndicator;
+	public GameObject scoreIndicator;
+	public GameObject waveIndicator;
+	public GameObject attackIndicator;
+	public GameObject defenseIndicator;
+	public GameObject speedIndicator;
+	public GameObject rangeIndicator;
+	public GameObject actionUpLeft;
+	public GameObject actionUpCenter;
+	public GameObject actionUpRight;
+	public GameObject actionDownLeft;
+	public GameObject actionDownCenter;
+	public GameObject actionDownRight;
 
     private void Awake()
     {
         if (instance == null)
             instance = this;
+		setUnitInfoVisibility (false);
     }
 
     // Update is called once per frame
@@ -19,137 +36,123 @@ public class APIHUD : MonoBehaviour
         setTime(timer.instance.getTime());
     }
 
+	private void setTextIndicator(GameObject indicator, string text)
+	{
+		if (text != null) {
+			indicator.transform.FindChild ("Indicator")
+				.GetComponent<Text> ()
+				.text = text;
+		} else {
+			indicator.SetActive (false);
+		}
+
+	}
+
     public void setHealth(float currentHealth, float totalHealth)
     {
-        if (selectedItem == false)
-            setSelectedItemLabel();
 
-        var maxWidthBarLife =
-            transform.FindChild("containerStats")
-                .FindChild("container_info")
-                .FindChild("imgLifeBar")
-                .GetComponent<RectTransform>()
-                .rect.width;
-        var maxHeigthBarLife =
-            transform.FindChild("containerStats")
-                .FindChild("container_info")
-                .FindChild("imgLifeBar")
-                .GetComponent<RectTransform>()
-                .rect.height;
+		var maxWidthBarLife = lifeBar.GetComponent<RectTransform>().rect.width;
 
-        var widthLifeBar = currentHealth*maxWidthBarLife/totalHealth;
+		var lifePercent = currentHealth/(float) totalHealth;
 
-        //Rect r = transform.FindChild ("containerStats").FindChild ("container_info").FindChild ("imgLifeBar").FindChild ("imgLife").GetComponent<RectTransform> ().rect;
-        //r.width = widthLifeBar;
+		var fillerGeometry = lifeBar.transform.FindChild("Filler").GetComponent<RectTransform>();
+		fillerGeometry.anchorMax = new Vector2 (lifePercent, 1.0f);
 
-        //transform.FindChild("containerStats").FindChild("container_info").FindChild("imgLifeBar").FindChild("imgLife").GetComponent<RectTransform>().rect = r;
-
-        transform.FindChild("containerStats")
-            .FindChild("container_info")
-            .FindChild("imgLifeBar")
-            .FindChild("imgLife")
-            .GetComponent<RectTransform>()
-            .sizeDelta = new Vector2(widthLifeBar, maxHeigthBarLife);
-
-        transform.FindChild("containerStats")
-            .FindChild("container_info")
-            .FindChild("imgLifeBar")
-            .FindChild("txtLife")
-            .GetComponent<Text>()
-            .text = currentHealth.ToString();
+		setTextIndicator(lifeBar, ((int)(lifePercent * 100)) + "%");
+		lifeBar.transform.FindChild ("Indicator")
+			.GetComponent<Text>()
+			.color = lifePercent > 0.5 ? Color.white : Color.black;
     }
 
-    public void setAttackSpeed(string atackSpeed)
+	public void setAttackSpeed(string text)
     {
-        transform.FindChild("containerStats")
-            .FindChild("container_info")
-            .FindChild("lblAttackSpeed")
-            .FindChild("txtAttackSpeed")
-            .GetComponent<Text>()
-            .text = atackSpeed;
+		setTextIndicator (speedIndicator, text);
     }
 
-    public void setDamage(string damage)
+	public void setDamage(string text)
     {
-        transform.FindChild("containerStats")
-            .FindChild("container_info")
-            .FindChild("lblDamage")
-            .FindChild("txtDamage")
-            .GetComponent<Text>()
-            .text = damage;
+		setTextIndicator (attackIndicator, text);
     }
 
-    public void setRange(string damage)
+    public void setRange(string text)
     {
-        transform.FindChild("containerStats")
-            .FindChild("container_info")
-            .FindChild("lblRange")
-            .FindChild("txtRange")
-            .GetComponent<Text>()
-            .text = damage;
+		setTextIndicator (rangeIndicator, text);
     }
 
-    public void setWave(string wave)
+    public void setWave(string text)
     {
-        transform.FindChild("containerGameStats")
-            .FindChild("lblWave")
-            .FindChild("txtWave")
-            .GetComponent<Text>()
-            .text = wave;
+		setTextIndicator (waveIndicator, text);
     }
 
-    public void setTime(string time)
+    public void setTime(string text)
     {
-        transform.FindChild("containerGameStats")
-            .FindChild("lblTime")
-            .FindChild("txtTime")
-            .GetComponent<Text>()
-            .text = time;
+		setTextIndicator (timeIndicator, text);
     }
 
     public void setDifficulty(string dificulty)
     {
-        transform.FindChild("containerGameStats")
-            .FindChild("lblDificulty")
-            .FindChild("txtDificulty")
-            .GetComponent<Text>()
-            .text = dificulty;
+        
     }
 
-    public void setPoints(string points)
+    public void setPoints(string text)
     {
-        transform.FindChild("containerGameStats")
-            .FindChild("lblPoints")
-            .FindChild("txtPoints")
-            .GetComponent<Text>()
-            .text = points;
+		setTextIndicator (scoreIndicator, text);
     }
 
-    public void setMoney(string money)
+    public void setMoney(string text)
     {
-        transform.FindChild("containerGameStats")
-            .FindChild("lblMoney")
-            .FindChild("txtMoney")
-            .GetComponent<Text>()
-            .text = money;
+		setTextIndicator (moneyIndicator, text);
     }
 
     public void setVisibleUpgradeButton(bool visible)
     {
-        transform.FindChild("buttons").FindChild("container_buttons").gameObject.active = visible;
+       // transform.FindChild("buttons").FindChild("container_buttons").gameObject.active = visible;
     }
 
-    private void setSelectedItemLabel()
-    {
-        transform.FindChild("containerStats").FindChild("container_info").gameObject.active = true;
-        //	transform.FindChild ("buttons").FindChild ("container_buttons").gameObject.active = true;
-        //transform.FindChild ("containerStats").FindChild ("container_NoSelectItem").GetComponent<UnityEngine.UI.Text>().text = "";
-        selectedItem = true;
-    }
+	private void setUnitInfoVisibility(bool visibility)
+	{
+		lifeBar.SetActive (visibility);
+		attackIndicator.SetActive (visibility);
+		defenseIndicator.SetActive (visibility);
+		speedIndicator.SetActive (visibility);
+		rangeIndicator.SetActive (visibility);
+	}
+
+	private void setActionFunctionality(GameObject button, string spritePath, UnityEngine.Events.UnityAction callback)
+	{
+		button.transform.FindChild("Background")
+			.GetComponent<Image>()
+			.sprite = AssetDatabase.LoadAssetAtPath<Sprite>("Assets/Textures/" + spritePath);
+		if (callback != null) {
+			button.transform.GetComponent<Button>()
+				.onClick.AddListener(callback);
+		} else {
+			button.transform.GetComponent<Button> ()
+				.onClick.RemoveAllListeners ();
+		}
+
+	}
+
+	private void clearAllActions()
+	{
+		setActionFunctionality (actionUpLeft, "hud_button_disabled.png", null);
+		setActionFunctionality (actionUpCenter, "hud_button_disabled.png", null);
+		setActionFunctionality (actionUpRight, "hud_button_disabled.png", null);
+		setActionFunctionality (actionDownLeft, "hud_button_disabled.png", null);
+		setActionFunctionality (actionDownCenter, "hud_button_disabled.png", null);
+		setActionFunctionality (actionDownRight, "hud_button_disabled.png", null);
+	}
 
     public void setGameObjectSelected(GameObject gameObject)
     {
         gameObjectSelected = gameObject;
+		setUnitInfoVisibility (gameObject != null);
+		clearAllActions ();
+		if (gameObject.tag == "Building") {
+			setActionFunctionality (actionUpLeft, "hud_button_addtower.png", delegate {
+				print("You pressed the button");
+			});
+		}
     }
 
     public GameObject getGameObjectSelected()
