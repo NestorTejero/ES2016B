@@ -42,6 +42,9 @@ public class Building : MonoBehaviour, CanUpgrade, CanReceiveDamage
         currentHealth *= upgradeFactor;
         currentLevel++;
         Debug.Log("BUILDING UPGRADED, now it has HP: " + totalHealth);
+
+        if (APIHUD.instance.getGameObjectSelected() == gameObject)
+            APIHUD.instance.setHealth(currentHealth, totalHealth);
     }
 
 
@@ -66,6 +69,9 @@ public class Building : MonoBehaviour, CanUpgrade, CanReceiveDamage
         if (currentHealth > totalHealth)
             currentHealth = totalHealth;
         Debug.Log("BUILDING REPAIRED, HP: " + currentHealth);
+
+        if (APIHUD.instance.getGameObjectSelected() == gameObject)
+            APIHUD.instance.setHealth(currentHealth, totalHealth);
     }
 
     public float getCurrentHealth()

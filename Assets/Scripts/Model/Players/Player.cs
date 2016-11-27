@@ -5,6 +5,12 @@ public class Player : MonoBehaviour
     public int initialCoins;
     protected int numCoins, unitsWave;
 
+    private void Start()
+    {
+        numCoins = initialCoins;
+        APIHUD.instance.setMoney(numCoins.ToString());
+    }
+
     public void addCoins(int coins)
     {
         numCoins += coins;
