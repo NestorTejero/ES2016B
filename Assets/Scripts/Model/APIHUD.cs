@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
-using UnityEditor;
 
 public class APIHUD : MonoBehaviour
 {
@@ -50,9 +49,6 @@ public class APIHUD : MonoBehaviour
 
     public void setHealth(float currentHealth, float totalHealth)
     {
-
-		var maxWidthBarLife = lifeBar.GetComponent<RectTransform>().rect.width;
-
 		var lifePercent = currentHealth/(float) totalHealth;
 
 		var fillerGeometry = lifeBar.transform.FindChild("Filler").GetComponent<RectTransform>();
@@ -122,7 +118,7 @@ public class APIHUD : MonoBehaviour
 	{
 		button.transform.FindChild("Background")
 			.GetComponent<Image>()
-			.sprite = AssetDatabase.LoadAssetAtPath<Sprite>("Assets/Textures/" + spritePath);
+			.sprite = Resources.Load<Sprite>("Sprites/" + spritePath);
 		if (callback != null) {
 			button.transform.GetComponent<Button>()
 				.onClick.AddListener(callback);
@@ -135,12 +131,12 @@ public class APIHUD : MonoBehaviour
 
 	private void clearAllActions()
 	{
-		setActionFunctionality (actionUpLeft, "hud_button_disabled.png", null);
-		setActionFunctionality (actionUpCenter, "hud_button_disabled.png", null);
-		setActionFunctionality (actionUpRight, "hud_button_disabled.png", null);
-		setActionFunctionality (actionDownLeft, "hud_button_disabled.png", null);
-		setActionFunctionality (actionDownCenter, "hud_button_disabled.png", null);
-		setActionFunctionality (actionDownRight, "hud_button_disabled.png", null);
+		setActionFunctionality (actionUpLeft, "hud_button_disabled", null);
+		setActionFunctionality (actionUpCenter, "hud_button_disabled", null);
+		setActionFunctionality (actionUpRight, "hud_button_disabled", null);
+		setActionFunctionality (actionDownLeft, "hud_button_disabled", null);
+		setActionFunctionality (actionDownCenter, "hud_button_disabled", null);
+		setActionFunctionality (actionDownRight, "hud_button_disabled", null);
 	}
 
     public void setGameObjectSelected(GameObject gameObject)
@@ -149,7 +145,7 @@ public class APIHUD : MonoBehaviour
 		setUnitInfoVisibility (gameObject != null);
 		clearAllActions ();
 		if (gameObject.tag == "Building") {
-			setActionFunctionality (actionUpLeft, "hud_button_addtower.png", delegate {
+			setActionFunctionality (actionUpLeft, "hud_button_addtower", delegate {
 				print("You pressed the button");
 			});
 		}
