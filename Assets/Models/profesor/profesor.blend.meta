@@ -145,6 +145,9 @@ ModelImporter:
     7400002: attacking
     7400004: dies
     7400006: walking
+    7400008: attackAction
+    7400010: dieAction
+    7400012: walkAction
     9500000: //RootNode
     13700000: Plane
     13700002: Profesor_makehumanmhx2_Body

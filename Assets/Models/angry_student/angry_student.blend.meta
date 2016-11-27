@@ -122,6 +122,10 @@ ModelImporter:
     7400002: Die
     7400004: Run
     7400006: Throw
+    7400008: dieAction
+    7400010: throwAction
+    7400012: walkAction
+    7400014: attackAction
     9500000: //RootNode
     13700000: short01Mesh
   materials:
