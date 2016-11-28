@@ -1,16 +1,11 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 using UnityEngine.SceneManagement;
-using System.Collections;
-using UnityEngine.UI;
 
-
-public class SubMenu : MonoBehaviour {
-
-	public bool isEasyButton = false;
-	public bool isMediumButton = false;
-	public bool isHardButton = false;
-	public bool isReturnButton = false;
+public class SubMenu : MonoBehaviour
+{
     public AudioSource audioSource;
+<<<<<<< HEAD
 	public GameObject menu;
 
     // Use this for initialization
@@ -35,30 +30,46 @@ public class SubMenu : MonoBehaviour {
 	void Update () {
 
 	}
+=======
+    public bool isEasyButton = false;
+    public bool isHardButton = false;
+    public bool isMediumButton = false;
+    public bool isReturnButton = false;
 
-	public void OnMouseExit(){
-		GetComponent<Renderer>().material.color = Color.white;
-	}
+    public void OnMouseEnter()
+    {
+        GetComponent<Renderer>().material.color = Color.black;
+    }
 
-	public void OnEasy(){
-		PersistentValues.difficulty = 1;
-		StartCoroutine(playAndLoad(5));
-	}
+    public void OnMouseExit()
+    {
+        GetComponent<Renderer>().material.color = Color.white;
+    }
+>>>>>>> dev
 
-	public void OnMedium(){
-		PersistentValues.difficulty = 2;
-		StartCoroutine(playAndLoad(5));
-	}
+    public void OnEasy()
+    {
+        PersistentValues.difficulty = 1;
+        StartCoroutine(playAndLoad(5));
+    }
 
-	public void OnHard(){
-		PersistentValues.difficulty = 3;
-		StartCoroutine(playAndLoad(5));
-	}
+    public void OnMedium()
+    {
+        PersistentValues.difficulty = 2;
+        StartCoroutine(playAndLoad(5));
+    }
 
-	public void OnBack(){
-		StartCoroutine(playAndLoad(0));
-	}
-		
+    public void OnHard()
+    {
+        PersistentValues.difficulty = 3;
+        StartCoroutine(playAndLoad(5));
+    }
+
+    public void OnBack()
+    {
+        StartCoroutine(playAndLoad(0));
+    }
+
     public IEnumerator playAndLoad(int scene)
     {
         audioSource.Play();

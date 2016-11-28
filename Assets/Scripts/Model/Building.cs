@@ -1,85 +1,86 @@
 ﻿using UnityEngine;
-using System.Collections;
-using UnityEngine.SceneManagement;
 
 public class Building : MonoBehaviour, CanUpgrade, CanReceiveDamage
 {
-    private float currentLevel;
     public float baseHealth;
-    private float totalHealth;
     private float currentHealth;
-
-	public float upgradeFactor;
-    public float upgradeCost;
-	public float repairQuantity;
+    private float currentLevel;
     public float repairCost;
+    public float repairQuantity;
+    private float totalHealth;
+    public float upgradeCost;
 
+    public float upgradeFactor;
 
-	// Use this for initialization
-	void Start ()
-	{
-	    this.currentLevel = 0;
-		this.currentHealth = this.baseHealth;
-	    this.totalHealth = this.baseHealth;
+    // Receive damage by weapon
+    public void ReceiveDamage(float damage)
+    {
+        currentHealth -= damage;
+        Debug.Log("Building's currentHealth: " + currentHealth);
 
+        if (APIHUD.instance.getGameObjectSelected() == gameObject)
+            APIHUD.instance.setHealth(currentHealth, totalHealth);
 
-        Debug.Log ("BUILDING CREATED with HP: " + this.baseHealth);
-	}
+        if (currentHealth <= 0.0)
+            GameController.instance.notifyDeath(this);
+    }
+
+    public GameObject getGameObject()
+    {
+        return gameObject;
+    }
 
     public bool IsUpgradeable(int numCoins)
     {
-        return this.upgradeCost <= numCoins;
+        return upgradeCost <= numCoins;
     }
 
     // To upgrade when there are enough coins
-    public void Upgrade ()
-	{
-		this.totalHealth *= this.upgradeFactor;
-		this.currentHealth *= this.upgradeFactor;
-	    this.currentLevel++;
-		Debug.Log ("BUILDING UPGRADED, now it has HP: " + this.totalHealth);
-	}
+    public void Upgrade()
+    {
+        totalHealth *= upgradeFactor;
+        currentHealth *= upgradeFactor;
+        currentLevel++;
+        Debug.Log("BUILDING UPGRADED, now it has HP: " + totalHealth);
+
+        if (APIHUD.instance.getGameObjectSelected() == gameObject)
+            APIHUD.instance.setHealth(currentHealth, totalHealth);
+    }
+
+
+    // Use this for initialization
+    private void Start()
+    {
+        currentLevel = 0;
+        currentHealth = baseHealth;
+        totalHealth = baseHealth;
+        Debug.Log("BUILDING CREATED with HP: " + baseHealth);
+    }
 
     public bool IsRepairable(int numCoins)
     {
-        return (this.repairCost <= numCoins) && (this.totalHealth > this.currentHealth);
+        return (repairCost <= numCoins) && (totalHealth > currentHealth);
     }
 
-	// Repair the building
-	public void Repair ()
-	{
-		this.currentHealth += this.repairQuantity;
-		if (this.currentHealth > this.totalHealth) {
-			this.currentHealth = this.totalHealth;
-		}
-		Debug.Log ("BUILDING REPAIRED, HP: " + this.currentHealth);
-	}
+    // Repair the building
+    public void Repair()
+    {
+        currentHealth += repairQuantity;
+        if (currentHealth > totalHealth)
+            currentHealth = totalHealth;
+        Debug.Log("BUILDING REPAIRED, HP: " + currentHealth);
 
-	// Receive damage by weapon
-	public void ReceiveDamage (float damage)
-	{
-		this.currentHealth -= damage;
-		Debug.Log ("Building's currentHealth: " + this.currentHealth);
-		//Debug.Log ("BUILDING DAMAGED by HP: " + proj.getDamage());
+        if (APIHUD.instance.getGameObjectSelected() == gameObject)
+            APIHUD.instance.setHealth(currentHealth, totalHealth);
+    }
 
-		if (APIHUD.instance.getGameObjectSelected () == this.gameObject) {
-			APIHUD.instance.setHealth (this.currentHealth, this.totalHealth);
-		}
+    public float getCurrentHealth()
+    {
+        return currentHealth;
+    }
 
-		if (this.currentHealth <= 0.0) {
-			GameController.instance.notifyDeath (this);
-		}
-	}
-
-	public float getCurrentHealth(){
-		return this.currentHealth;
-	}
-
-	public float getTotalHealth(){
-		return this.totalHealth;
-	}
-
-	public GameObject getGameObject(){
-		return this.gameObject;
-	}
+    public float getTotalHealth()
+    {
+        return totalHealth;
+    }
 }

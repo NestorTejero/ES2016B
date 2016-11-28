@@ -1,71 +1,68 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using UnityEngine;
-using System;
 
 namespace AssemblyCSharp
 {
-	public class KnapsackProblem : MonoBehaviour
-	{
-		List<Unit> benefit;
-		private int maxCoins;
-		List<DamageCostUnit> listDmgCost;
+    public class KnapsackProblem
+    {
+        private readonly List<Unit> benefit;
+        private readonly List<DamageCostUnit> listDmgCost;
+        private int maxCoins;
 
+        public KnapsackProblem()
+        {
+            benefit = new List<Unit>();
+            listDmgCost = new List<DamageCostUnit>();
+        }
 
-		public KnapsackProblem ()
-		{
-			benefit = new List<Unit> ();
-			listDmgCost = new List<DamageCostUnit> ();
-		}
+        /**
+         * This function obtains a sorted list of units with damage/cost
+        */
 
-		/**
-		 * This function obtains a sorted list of units with damage/cost
-		*/
-		public void infoCalc(List<Unit> availableUnits, int actualCoins){
-			this.maxCoins = actualCoins;
+        public void infoCalc(List<Unit> availableUnits, int actualCoins)
+        {
+            maxCoins = actualCoins;
 
-			for (int i = 0; i < availableUnits.Count; i++)
-			{
-				DamageCostUnit unitC = new DamageCostUnit (availableUnits [i]);
-				this.listDmgCost.Add (unitC);
-			}
+            for (var i = 0; i < availableUnits.Count; i++)
+            {
+                var unitC = new DamageCostUnit(availableUnits[i]);
+                listDmgCost.Add(unitC);
+            }
 
-			listDmgCost.OrderBy (i => i.dmgCost).Reverse ();
+            listDmgCost.OrderBy(i => i.dmgCost).Reverse();
 
-			for (int i = 0; i < listDmgCost.Count; i++) 
-			{
-				this.benefit.Add (listDmgCost [i].unit);
-			}
-		}
+            for (var i = 0; i < listDmgCost.Count; i++)
+                benefit.Add(listDmgCost[i].unit);
+        }
 
-		/**
-		 * This function realize a greedy algorithm of Knopack problem
-		*/
-		public List<Unit> Resolve()
-		{
-			List<Unit> solution;
-			int position, actualCost;
+        /**
+         * This function realize a greedy algorithm of Knopack problem
+        */
 
-			solution = new List<Unit>();
-			position = 0;
-			actualCost = 0;
+        public List<Unit> Resolve()
+        {
+            List<Unit> solution;
+            int position, actualCost;
 
-			while(actualCost < maxCoins && position < benefit.Count)
-			{
-				Unit unitAux = benefit [position];
+            solution = new List<Unit>();
+            position = 0;
+            actualCost = 0;
 
-				if (actualCost + unitAux.purchaseCost <= maxCoins) {
-					solution.Add (unitAux);
-					actualCost += unitAux.purchaseCost;
-				} else {
-					position++;
-				}
-			}
+            while ((actualCost < maxCoins) && (position < benefit.Count))
+            {
+                var unitAux = benefit[position];
 
-			return solution;
-
-		}
-
-	}
+                if (actualCost + unitAux.purchaseCost <= maxCoins)
+                {
+                    solution.Add(unitAux);
+                    actualCost += unitAux.purchaseCost;
+                }
+                else
+                {
+                    position++;
+                }
+            }
+            return solution;
+        }
+    }
 }
-

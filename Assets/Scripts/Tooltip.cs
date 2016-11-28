@@ -1,32 +1,24 @@
 ﻿using UnityEngine;
-using System.Collections;
-
 using UnityEngine.UI;
 
-public class Tooltip : MonoBehaviour {
-	
-	// Text field that will show the tooltip:
-	public Text TooltipText;
+public class Tooltip : MonoBehaviour
+{
+    // Text field that will show the tooltip:
+    public Text TooltipText;
 
-	// Use this for initialization
-	void Start () {
-		TooltipText = GameObject.Find("TooltipText").GetComponent<Text>();
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
-	
-	void OnMouseOver ()
+    // Use this for initialization
+    private void Start()
     {
-		TooltipText.text = "Text we want to show";
-
+        TooltipText = GameObject.Find("TooltipText").GetComponent<Text>();
     }
-	
-	void OnMouseExit ()
-    {
-		TooltipText.text = "";
 
+    private void OnMouseOver()
+    {
+        TooltipText.text = "Text we want to show";
+    }
+
+    private void OnMouseExit()
+    {
+        TooltipText.text = "";
     }
 }
