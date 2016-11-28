@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 public class SubMenu : MonoBehaviour
 {
     public AudioSource audioSource;
-<<<<<<< HEAD
+
 	public GameObject menu;
 
     // Use this for initialization
@@ -21,16 +21,11 @@ public class SubMenu : MonoBehaviour
 
 	}
 
-	public void OnMouseEnter(){
-		GetComponent<Renderer>().material.color = Color.black;
-
-	}
-
 	// Update is called once per frame
 	void Update () {
 
 	}
-=======
+
     public bool isEasyButton = false;
     public bool isHardButton = false;
     public bool isMediumButton = false;
@@ -45,7 +40,7 @@ public class SubMenu : MonoBehaviour
     {
         GetComponent<Renderer>().material.color = Color.white;
     }
->>>>>>> dev
+
 
     public void OnEasy()
     {
