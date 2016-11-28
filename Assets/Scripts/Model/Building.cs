@@ -44,6 +44,7 @@ public class Building : MonoBehaviour, CanUpgrade, CanReceiveDamage, HUDSubject
         health.Upgrade(upgradeFactor);
         currentLevel++;
         NotifyHUD();
+        Debug.Log("BUILDING UPGRADED, TOTAL HP: " + health.GetTotalHealth());
     }
 
     public void NotifyHUD()
@@ -76,6 +77,6 @@ public class Building : MonoBehaviour, CanUpgrade, CanReceiveDamage, HUDSubject
     {
         health.AddHealth(repairQuantity);
         NotifyHUD();
-        Debug.Log("BUILDING REPAIRED, HP: " + health.GetCurrentHealth());
+        Debug.Log("BUILDING REPAIRED, CURRENT HP: " + health.GetCurrentHealth());
     }
 }
