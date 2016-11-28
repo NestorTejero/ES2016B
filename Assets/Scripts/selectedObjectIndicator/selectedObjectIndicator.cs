@@ -8,7 +8,7 @@ public class selectedObjectIndicator : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-	
+		transform.position = new Vector3(0, -1000000, 0);
 	}
 	
 	// Update is called once per frame
