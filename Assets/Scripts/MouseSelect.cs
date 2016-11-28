@@ -5,6 +5,7 @@ public class MouseSelect : MonoBehaviour
 {
     private static Transform transformSelected;
     private bool isSelected;
+	////private GameObject selectedObjectIndicator; 
 
     // Tooltip field
     public Text TooltipText;
@@ -36,6 +37,10 @@ public class MouseSelect : MonoBehaviour
 
         if (tag == "Building")
         {
+			if(GameObject.Find ("selectedObjectIndicator") != null){
+				GameObject.Find ("selectedObjectIndicator").GetComponent<selectedObjectIndicator> ().setSelectedObject(gameObject, gameObject.transform.localScale.y * 2);
+			}
+				
             APIHUD.instance.setHealth(GetComponent<Building>().getCurrentHealth(),
                 GetComponent<Building>().getTotalHealth());
             APIHUD.instance.setAttackSpeed("-");
@@ -46,6 +51,10 @@ public class MouseSelect : MonoBehaviour
 
         if (tag == "Unit")
         {
+			if(GameObject.Find ("selectedObjectIndicator") != null){
+				GameObject.Find ("selectedObjectIndicator").GetComponent<selectedObjectIndicator> ().setSelectedObject(gameObject, gameObject.transform.localScale.y * 8);
+			}
+
             APIHUD.instance.setHealth(GetComponent<Unit>().getCurrentHealth(),
                 GetComponent<Unit>().getTotalHealth());
             APIHUD.instance.setAttackSpeed(GetComponent<Unit>().moveSpeed.ToString());
@@ -53,6 +62,12 @@ public class MouseSelect : MonoBehaviour
             APIHUD.instance.setRange(GetComponent<Weapon>().baseRange.ToString());
             APIHUD.instance.setVisibleUpgradeButton(false);
         }
+
+		if (tag == "Tower") {
+			if(GameObject.Find ("selectedObjectIndicator") != null){
+				GameObject.Find ("selectedObjectIndicator").GetComponent<selectedObjectIndicator> ().setSelectedObject(gameObject, gameObject.transform.localScale.y * 25);
+			}
+		}
     }
 
     //Here we can edit tooltips
