@@ -210,8 +210,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dabf35ee1cffbe34095cd5246fbea36c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dayLength: 1
-  nightLength: 0
+  dayLength: 0.5
+  nightLength: 0.2
   time: 1
   hour: 0
   ubCenter: {fileID: 0}

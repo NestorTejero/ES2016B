@@ -1,78 +1,84 @@
 ﻿using UnityEngine;
-using System.Collections;
-using System.Collections.Generic;
 
 public class Unit : MonoBehaviour, CanReceiveDamage
 {
     public float baseHealth;
-    public float moveSpeed;
-    public int costCoins;
-    public int rewardCoins;
+    private float currentHealth;
+    // TODO This shouldn't be public
+    public float damage;
     public Transform goal;
-    private Weapon weapon;
+    public float moveSpeed;
+    public int purchaseCost;
+    public int rewardCoins;
 
     private float totalHealth;
-	private float currentHealth;
+    public Weapon weapon;
 
-	// Use this for initialization
-	void Start ()
-	{
-		this.currentHealth = this.baseHealth;
-        this.totalHealth = this.baseHealth;
-
-		// Unit movement towards the goal
-        NavMeshAgent agent = GetComponent<NavMeshAgent>();
-		agent.destination = this.goal.position;
-
-	    this.weapon = this.gameObject.GetComponent<Weapon>();
-
-        Debug.Log ("UNIT CREATED");
-	}
-	
-	// Update is called once per frame
-	void Update ()
-	{
-
-	}
-
-	// Receive damage from a projectile (shot by weapon)
-	public bool ReceiveDamage (Projectile proj)
-	{
-		this.currentHealth -= proj.getDamage();
-		Debug.Log ("Unit " + this.name +" currentHealth: " + this.currentHealth);
-		//Debug.Log("UNIT DAMAGED by HP: " + proj.getDamage());
-
-		if (this.currentHealth <= 0.0f)
-		{
-			Destroy (this.gameObject);
-			Debug.Log ("Unit " + this.name + " is dead");
-			return true;
-		} else {
-			return false;
-		}
-	}
-
-	// If enemy enters the range of attack
-	void OnTriggerEnter (Collider col)
-	{
-		if (col.gameObject.GetComponent<Building> ()) {
-			Debug.Log ("Unit " + this.name + " Collision with Building");
-			// Adds enemy to attack to the queue
-			this.weapon.addTarget (col.gameObject.GetComponent<CanReceiveDamage> ());
-		}
-	}
-
-	// If enemy exits the range of attack
-	void OnTriggerExit (Collider col)
-	{
-		if (col.gameObject.GetComponent<Building> ()) {
-			// Removes enemy to attack from the queue
-			this.weapon.removeTarget (col.gameObject.GetComponent<CanReceiveDamage> ());
-		}
-	}
-
-    void OnDestroy()
+    // Receive damage by weapon
+    public void ReceiveDamage(float damage)
     {
-        GameController.instance.notifyDeath(this); // Tell controller I'm dead
+        currentHealth -= damage;
+        Debug.Log("Unit " + name + " currentHealth: " + currentHealth);
+        //Debug.Log("UNIT DAMAGED by HP: " + proj.getDamage());
+
+        if (APIHUD.instance.getGameObjectSelected() == gameObject)
+            APIHUD.instance.setHealth(currentHealth, totalHealth);
+
+        if (currentHealth <= 0.0f)
+        {
+            GameController.instance.notifyDeath(this); // Tell controller I'm dead
+            Destroy(gameObject, 0.5f);
+        }
+    }
+
+    public GameObject getGameObject()
+    {
+        return gameObject;
+    }
+
+
+    // Use this for initialization
+    private void Start()
+    {
+        currentHealth = baseHealth;
+        totalHealth = baseHealth;
+
+        // Unit movement towards the goal
+        var agent = GetComponent<NavMeshAgent>();
+        agent.destination = goal.position;
+
+        weapon = gameObject.GetComponent<Weapon>();
+
+        damage = weapon.baseDamage;
+
+        Debug.Log("UNIT CREATED");
+    }
+
+    // If enemy enters the range of attack
+    private void OnTriggerEnter(Collider col)
+    {
+        if (col.gameObject.GetComponent<Building>())
+        {
+            Debug.Log("Unit " + name + " Collision with Building");
+            // Adds enemy to attack to the queue
+            weapon.addTarget(col.gameObject.GetComponent<CanReceiveDamage>());
+        }
+    }
+
+    // If enemy exits the range of attack
+    private void OnTriggerExit(Collider col)
+    {
+        if (col.gameObject.GetComponent<Building>())
+            weapon.removeTarget(col.gameObject.GetComponent<CanReceiveDamage>());
+    }
+
+    public float getTotalHealth()
+    {
+        return totalHealth;
+    }
+
+    public float getCurrentHealth()
+    {
+        return currentHealth;
     }
 }

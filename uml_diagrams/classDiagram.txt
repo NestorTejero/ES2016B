@@ -1,13 +1,13 @@
 @startuml
 
+package Model {
+
 interface CanUpgrade {
     +Upgrade() : void
+    +IsUpgradeable(int numCoins) : bool
 }
 interface CanReceiveDamage {
     +ReceiveDamage(Projectile proj) : void
-}
-interface CanRepair {
-    +Repair() : void
 }
 
 class GameController << (S,#FF7700) Singleton >>{
@@ -18,56 +18,53 @@ class GameController << (S,#FF7700) Singleton >>{
     -maxSoundVolume : float
     -currentSoundVolume : float
     +notifyDeath(CanReceiveDamage dead) : void
+    +notifyWaveClear(AI ai) : void
 }
 
 GameController "1" -- "2" Player
 
-abstract class Player {
+class Player {
     -numCoins : int
-    +{abstract}Play() : void
     +getMoney(Unit deadUnit) : void
 }
 
-class HumanPlayer extends Player {
-}
-class EasyAI extends Player {
-}
-class MediumAI extends Player {
-}
-class HardAI extends Player {
+abstract class AI extends Player{
+    +{abstract}Play() : void
+    +timeToUpgrade() : void
 }
 
-class Shop << (S,#FF7700) Singleton >> {
-    +{static} instance : Shop
-    --UNIT--
-    +getAvailableUnits() : List<Unit>
-    +isUnitPurchasable(Unit unitToPurchase, int numCoins) : bool
-    +getPurchasableUnits(int numCoins) : List<Unit>
-    +purchaseUnit(Unit unitToPurchase) : void
-    --TOWER--
-    +getAvailableTowers() : List<Tower>
-    +isTowerUpgradeable(Tower tower, int numCoins) : bool
-    +getUpgradeableTowers(int numCoins) : List<Tower>
-    +purchaseTowerUpgrade(Tower tower) : void
-    --BUILDING--
-    +isBuildingRepairable(int numCoins) : bool
-    +purchaseBuildingRepair() : void
+class EasyAI extends AI {
+}
+class MediumAI extends AI {
+}
+class HardAI extends AI {
 }
 
-Player "*"--"1" Shop : buys from
+class UnitShop {
+    +respawns : Transform[]
+    +units : List<GameObject>
+    +GetAvailable() : List<Unit>
+    +IsPurchasable(Unit toPurchase, int numCoins) : bool
+    +GetPurchasable(int numCoins) : List<Unit>
+    +Purchase(Unit toPurchase) : void
+}
+
+Unit "*" -- "1" UnitShop : sells
+
+AI "*"--"1" UnitShop : buys from
 
 class Unit implements CanReceiveDamage{
     +baseHealth : float
     -totalHealth : float
     -currentHealth : float
     +moveSpeed : float
-    +costCoins : int
+    +purchaseCost : int
     +rewardCoins : int
 }
 
 GameController "1" -- "*" Unit : notifies
 
-class Weapon implements CanUpgrade{
+class Weapon {
     +baseDamage : float
     +baseRange : float
     +baseAttackSpeed : float
@@ -82,6 +79,9 @@ class Projectile {
     -projectileSpeed : float
     -damage : float
     -target : CanReceiveDamage
+    +Properties(projSpeed, target, damage)
+    +Shoot() : bool
+    +getDamage() : float
 }
 
 Weapon "1" -- "*" Projectile : creates
@@ -89,7 +89,7 @@ Weapon "1" -- "*" Projectile : creates
 Unit "1" -- "1" Weapon
 Tower "1" -- "1" Weapon
 
-class Building implements CanUpgrade, CanReceiveDamage, CanRepair {
+class Building implements CanUpgrade, CanReceiveDamage {
     -currentLevel : int
     +baseHealth : float
     -totalHealth : float
@@ -98,7 +98,8 @@ class Building implements CanUpgrade, CanReceiveDamage, CanRepair {
     +upgradeCost : int
     +repairQuantity : float
     +repairCost : int
-    +getMissingHealth() : float
+    +IsRepairable(int numCoins) : bool
+    +Repair() : void
 }
 
 GameController "1" -- "1" Building : notifies
@@ -108,4 +109,10 @@ class Tower implements CanUpgrade {
     +upgradeCost : int
 }
 
+class APIHUD << (S,#FF7700) Singleton >>{
+    +{static} instance : APIHUD
+    -selectedItem : bool
+}
+
+}
 @enduml
