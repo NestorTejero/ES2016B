@@ -1,4 +1,6 @@
-﻿public class HealthComponent
+﻿using System;
+
+public class HealthComponent
 {
     public float baseHealth;
     private float currentHealth;
@@ -7,8 +9,8 @@
     public HealthComponent(float baseHealth)
     {
         this.baseHealth = baseHealth;
-        this.currentHealth = baseHealth;
-        this.totalHealth = baseHealth;
+        currentHealth = baseHealth;
+        totalHealth = baseHealth;
     }
 
     public float GetCurrentHealth()
@@ -25,18 +27,14 @@
     {
         currentHealth -= damage;
         if (currentHealth <= 0.0f)
-        {
-            throw new System.Exception();
-        }
+            throw new Exception();
     }
 
     public void AddHealth(float healthQuantity)
     {
         currentHealth += healthQuantity;
         if (currentHealth > totalHealth)
-        {
             currentHealth = totalHealth;
-        }
     }
 
     public bool IsHealthFull()
