@@ -55,6 +55,7 @@ GameObject:
   - 54: {fileID: 54000010725431262}
   - 114: {fileID: 114000013366404552}
   - 114: {fileID: 114000010181972648}
+  - 114: {fileID: 114000014177185980}
   m_Layer: 8
   m_Name: Tower
   m_TagString: Tower
@@ -213,13 +214,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ec943e3d8fc87f4d8786ea1ea07361d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  baseCooldown: 1
   baseDamage: 10
   baseRange: 15
-  baseCooldown: 1
-  upgradeFactor: 1.1
-  shootSound: {fileID: 8300000, guid: 2a055584652ad8c4ab2ad9c3b19a043f, type: 3}
   proj_obj: {fileID: 1000012011802270, guid: dd4ce48133aa3a64db2f85c879d52083, type: 2}
   proj_origin: {fileID: 1000011089548668}
+  shootSound: {fileID: 8300000, guid: 2a055584652ad8c4ab2ad9c3b19a043f, type: 3}
+  upgradeFactor: 1.1
 --- !u!114 &114000013366404552
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -232,6 +233,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   upgradeCost: 1
+--- !u!114 &114000014177185980
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011397538348}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c560541b48665841ba3b5e1ea6450e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TooltipText: {fileID: 0}
 --- !u!136 &136000013266248522
 CapsuleCollider:
   m_ObjectHideFlags: 1
