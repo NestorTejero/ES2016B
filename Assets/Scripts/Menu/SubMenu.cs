@@ -11,11 +11,19 @@ public class SubMenu : MonoBehaviour {
 	public bool isHardButton = false;
 	public bool isReturnButton = false;
     public AudioSource audioSource;
-
+	public GameObject menu;
 
     // Use this for initialization
     void Start () {
-		
+		float width = Screen.width;
+		float height = Screen.height;
+
+		float aux1, aux2;
+		aux1 = width / 2.0f;
+		aux2 = height / 2.0f;
+
+		menu.transform.position = new Vector3 (aux1,aux2,1);
+
 	}
 
 	public void OnMouseEnter(){
