@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class Tower : MonoBehaviour, CanUpgrade
+public class Tower : MonoBehaviour, CanUpgrade, HUDSubject
 {
     private int currentLevel;
     public int upgradeCost;
@@ -17,6 +17,18 @@ public class Tower : MonoBehaviour, CanUpgrade
         weapon.Upgrade();
         currentLevel++;
         Debug.Log("TOWER UPGRADED, Power: " + weapon.getCurrentDamage());
+    }
+
+    public void NotifyHUD()
+    {
+        var updateInfo = new HUDInfo
+        {
+            Damage = weapon.getCurrentDamage().ToString(),
+            Range = weapon.getCurrentRange().ToString(),
+            VisibleUpgradeButton = true
+        };
+
+        APIHUD.instance.notifyChange(this, updateInfo);
     }
 
     // Use this for initialization

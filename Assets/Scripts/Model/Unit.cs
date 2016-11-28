@@ -1,32 +1,30 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
-public class Unit : MonoBehaviour, CanReceiveDamage
+public class Unit : MonoBehaviour, CanReceiveDamage, HUDSubject
 {
     public float baseHealth;
-    private float currentHealth;
-    // TODO This shouldn't be public
-    public float damage;
     public Transform goal;
+
+    private HealthComponent health;
     public float moveSpeed;
     public int purchaseCost;
     public int rewardCoins;
-
-    private float totalHealth;
     public Weapon weapon;
 
     // Receive damage by weapon
     public void ReceiveDamage(float damage)
     {
-        currentHealth -= damage;
-        Debug.Log("Unit " + name + " currentHealth: " + currentHealth);
-        //Debug.Log("UNIT DAMAGED by HP: " + proj.getDamage());
-
-        if (APIHUD.instance.getGameObjectSelected() == gameObject)
-            APIHUD.instance.setHealth(currentHealth, totalHealth);
-
-        if (currentHealth <= 0.0f)
+        try
         {
-            GameController.instance.notifyDeath(this); // Tell controller I'm dead
+            health.LoseHealth(damage);
+            NotifyHUD();
+            Debug.Log("UNIT " + name + " CURRENT_HEALTH: " + health.GetCurrentHealth());
+        }
+        catch (Exception)
+        {
+            NotifyHUD();
+            GameController.instance.notifyDeath(this);
             Destroy(gameObject, 0.5f);
         }
     }
@@ -36,20 +34,30 @@ public class Unit : MonoBehaviour, CanReceiveDamage
         return gameObject;
     }
 
+    public void NotifyHUD()
+    {
+        var updateInfo = new HUDInfo
+        {
+            CurrentHealth = health.GetCurrentHealth(),
+            TotalHealth = health.GetTotalHealth(),
+            Damage = weapon.getCurrentDamage().ToString(),
+            Range = weapon.getCurrentRange().ToString(),
+            VisibleUpgradeButton = false
+        };
+
+        APIHUD.instance.notifyChange(this, updateInfo);
+    }
 
     // Use this for initialization
     private void Start()
     {
-        currentHealth = baseHealth;
-        totalHealth = baseHealth;
+        health = new HealthComponent(baseHealth);
 
         // Unit movement towards the goal
         var agent = GetComponent<NavMeshAgent>();
         agent.destination = goal.position;
 
         weapon = gameObject.GetComponent<Weapon>();
-
-        damage = weapon.baseDamage;
 
         Debug.Log("UNIT CREATED");
     }
@@ -72,13 +80,8 @@ public class Unit : MonoBehaviour, CanReceiveDamage
             weapon.removeTarget(col.gameObject.GetComponent<CanReceiveDamage>());
     }
 
-    public float getTotalHealth()
+    public float GetDamage()
     {
-        return totalHealth;
-    }
-
-    public float getCurrentHealth()
-    {
-        return currentHealth;
+        return weapon.getCurrentDamage();
     }
 }

@@ -6,10 +6,11 @@ public class Weapon : MonoBehaviour
     public float baseCooldown;
     public float baseDamage;
     public float baseRange;
-    private float currentCooldown;
 
+    private float currentCooldown;
     private float currentDamage;
     private float currentRange;
+
     private AudioClip[] death;
     public GameObject proj_obj; // Projectile prefab
     public GameObject proj_origin; // Projectile origin
@@ -58,6 +59,11 @@ public class Weapon : MonoBehaviour
     public float getCurrentDamage()
     {
         return currentDamage;
+    }
+
+    public float getCurrentRange()
+    {
+        return currentRange;
     }
 
     // Add target to list
