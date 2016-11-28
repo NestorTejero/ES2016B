@@ -5,6 +5,7 @@ public class Unit : MonoBehaviour, CanReceiveDamage, HUDSubject
 {
     public float baseHealth;
     public Transform goal;
+    public float damage;
 
     private HealthComponent health;
     public float moveSpeed;
@@ -58,6 +59,7 @@ public class Unit : MonoBehaviour, CanReceiveDamage, HUDSubject
         agent.destination = goal.position;
 
         weapon = gameObject.GetComponent<Weapon>();
+        damage = weapon.baseDamage;
 
         Debug.Log("UNIT CREATED");
     }
@@ -82,6 +84,6 @@ public class Unit : MonoBehaviour, CanReceiveDamage, HUDSubject
 
     public float GetDamage()
     {
-        return weapon.getCurrentDamage();
+        return damage;
     }
 }
