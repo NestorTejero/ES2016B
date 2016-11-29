@@ -1791,12 +1791,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   baseHealth: 10
+  damage: 0
+  goal: {fileID: 4000012602783024, guid: c839f3d5ec503fe429715f930afaf77d, type: 2}
   moveSpeed: 10
   purchaseCost: 8
   rewardCoins: 10
-  goal: {fileID: 4000012602783024, guid: c839f3d5ec503fe429715f930afaf77d, type: 2}
   weapon: {fileID: 0}
-  damage: 0
 --- !u!114 &114000012013163112
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1820,13 +1820,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ec943e3d8fc87f4d8786ea1ea07361d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  baseCooldown: 1
   baseDamage: 20
   baseRange: 1
-  baseCooldown: 1
-  upgradeFactor: 1.1
+  proj_obj: {fileID: 1000012144391894, guid: ecf0109ef1d3ac6408373e89d3f53369, type: 2}
+  proj_origin: {fileID: 1000011473136326}
   shootSound: {fileID: 8300000, guid: cf73db8e4891a754791d586816040dff, type: 3}
-  proj_obj: {fileID: 0}
-  proj_origin: {fileID: 0}
+  upgradeFactor: 1.1
 --- !u!136 &136000011654396924
 CapsuleCollider:
   m_ObjectHideFlags: 1

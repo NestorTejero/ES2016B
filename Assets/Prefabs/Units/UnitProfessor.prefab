@@ -1858,12 +1858,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   baseHealth: 100
+  damage: 0
+  goal: {fileID: 0}
   moveSpeed: 2
   purchaseCost: 10
   rewardCoins: 10
-  goal: {fileID: 0}
   weapon: {fileID: 0}
-  damage: 0
 --- !u!114 &114000010403048296
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1875,19 +1875,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ec943e3d8fc87f4d8786ea1ea07361d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  baseCooldown: 1
   baseDamage: 5
   baseRange: 20
-  baseCooldown: 1
-  upgradeFactor: 1.1
-  shootSound: {fileID: 8300000, guid: cf73db8e4891a754791d586816040dff, type: 3}
-  deathSound1: {fileID: 0}
-  deathSound2: {fileID: 0}
-  deathSound3: {fileID: 0}
-  source_shoot: {fileID: 0}
-  source_death: {fileID: 0}
-  death: []
-  proj_obj: {fileID: 1000010710961544, guid: 2e8b93f0bfb9bde4eb2da65533f3af7d, type: 2}
+  proj_obj: {fileID: 1000013555855676, guid: 53d078e9c0daef34a99c36c2ac602451, type: 2}
   proj_origin: {fileID: 1000011433983142}
+  shootSound: {fileID: 8300000, guid: cf73db8e4891a754791d586816040dff, type: 3}
+  upgradeFactor: 1.1
 --- !u!114 &114000011979553074
 MonoBehaviour:
   m_ObjectHideFlags: 1
