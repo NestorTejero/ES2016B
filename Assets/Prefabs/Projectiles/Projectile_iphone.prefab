@@ -21,7 +21,7 @@ GameObject:
   - 4: {fileID: 4000010080178632}
   - 114: {fileID: 114000011916913222}
   m_Layer: 0
-  m_Name: Projectile_unit
+  m_Name: Projectile_iphone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
