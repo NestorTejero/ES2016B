@@ -89,7 +89,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 0}
+  - {fileID: 2100000, guid: 1e10c3c7ca8638e4ea5e50844d254ba4, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_ProbeAnchor: {fileID: 0}
@@ -122,8 +122,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 14.050818, y: 3.4227073, z: 6.1198244}
-  m_Center: {x: 0.051974587, y: -0.60742253, z: 1.8777386}
+  m_Size: {x: 14.849152, y: 4.078011, z: 6.1198244}
+  m_Center: {x: 0.074919336, y: -0.58859825, z: 1.8777748}
 --- !u!95 &95000012103147354
 Animator:
   serializedVersion: 3
@@ -177,10 +177,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   baseHealth: 200
-  upgradeFactor: 1.1
-  upgradeCost: 10
-  repairQuantity: 10
   repairCost: 10
+  repairQuantity: 10
+  upgradeCost: 10
+  upgradeFactor: 1.1
 --- !u!114 &114000013401498404
 MonoBehaviour:
   m_ObjectHideFlags: 1

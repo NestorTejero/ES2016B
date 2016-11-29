@@ -20,6 +20,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000010080178632}
   - 114: {fileID: 114000011916913222}
+  - 135: {fileID: 135000013505197476}
   m_Layer: 0
   m_Name: Projectile_iphone
   m_TagString: Untagged
@@ -251,3 +252,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4afcdf504eb034419143c4ba1751568, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speed: 2
+--- !u!135 &135000013505197476
+SphereCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000010710961544}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}

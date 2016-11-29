@@ -20,6 +20,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000012428786158}
   - 95: {fileID: 95000013820304462}
+  - 54: {fileID: 54000010736105966}
   m_Layer: 0
   m_Name: barrelF
   m_TagString: Untagged
@@ -36,6 +37,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000013591494908}
   - 114: {fileID: 114000012387540994}
+  - 135: {fileID: 135000013972960198}
   m_Layer: 0
   m_Name: Projectile_barrel
   m_TagString: Untagged
@@ -472,6 +474,21 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000013801109420}
   m_Mesh: {fileID: 4300008, guid: 91ef3576c82b91648b5d98db8a803261, type: 3}
+--- !u!54 &54000010736105966
+Rigidbody:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000010005324076}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0
+  m_UseGravity: 1
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!95 &95000013820304462
 Animator:
   serializedVersion: 3
@@ -500,3 +517,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4afcdf504eb034419143c4ba1751568, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speed: 2
+--- !u!135 &135000013972960198
+SphereCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000010174275792}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}

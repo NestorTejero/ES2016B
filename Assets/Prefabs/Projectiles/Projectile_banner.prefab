@@ -22,6 +22,7 @@ GameObject:
   - 33: {fileID: 33000013697018764}
   - 23: {fileID: 23000014175265852}
   - 95: {fileID: 95000012278275834}
+  - 54: {fileID: 54000010912465454}
   m_Layer: 0
   m_Name: pancarta
   m_TagString: Untagged
@@ -38,6 +39,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000012906238998}
   - 114: {fileID: 114000013432761704}
+  - 135: {fileID: 135000011101580628}
   m_Layer: 0
   m_Name: Projectile_banner
   m_TagString: Untagged
@@ -108,6 +110,21 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000011823417746}
   m_Mesh: {fileID: 4300000, guid: ec54a199f2449c64c9ee02d45b357729, type: 3}
+--- !u!54 &54000010912465454
+Rigidbody:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011823417746}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0
+  m_UseGravity: 1
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!95 &95000012278275834
 Animator:
   serializedVersion: 3
@@ -136,3 +153,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4afcdf504eb034419143c4ba1751568, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speed: 2
+--- !u!135 &135000011101580628
+SphereCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000014186153920}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
