@@ -122,6 +122,9 @@ ModelImporter:
     7400002: Atacking
     7400004: manifestant_death
     7400006: manifestant_walking
+    7400008: attackAction
+    7400010: dieAction
+    7400012: walkAction
     9500000: //RootNode
     13700000: Manifestant_bo_Body
   materials:
