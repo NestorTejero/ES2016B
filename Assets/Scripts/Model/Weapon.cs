@@ -117,7 +117,7 @@ public class Weapon : MonoBehaviour
             //Creates projectile with its properties and destroys it after 3 seconds
             var proj_clone = (GameObject) Instantiate(proj_obj, proj_origin.transform.position, proj_origin.transform.rotation);
             proj_clone.GetComponent<Projectile>().Shoot(target, currentDamage);
-            Destroy(proj_clone, 3.0f);
+            Destroy(proj_clone, 10.0f);
         }
     }
 
