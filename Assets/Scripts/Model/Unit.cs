@@ -29,10 +29,9 @@ public class Unit : MonoBehaviour, CanReceiveDamage
             APIHUD.instance.setHealth(currentHealth, totalHealth);
 
         if (currentHealth <= 0.0f)
-        {
             this.Die();
 
-        }
+
     }
 
     public GameObject getGameObject()
