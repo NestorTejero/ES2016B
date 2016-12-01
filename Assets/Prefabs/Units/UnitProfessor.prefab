@@ -385,7 +385,6 @@ GameObject:
   - 114: {fileID: 114000010367484482}
   - 114: {fileID: 114000010403048296}
   - 114: {fileID: 114000011979553074}
-  - 82: {fileID: 82000012313206084}
   m_Layer: 0
   m_Name: UnitProfessor
   m_TagString: Unit
@@ -1755,80 +1754,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!82 &82000012313206084
-AudioSource:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000011433983142}
-  m_Enabled: 1
-  serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: cf73db8e4891a754791d586816040dff, type: 3}
-  m_PlayOnAwake: 1
-  m_Volume: 1
-  m_Pitch: 1
-  Loop: 0
-  Mute: 0
-  Spatialize: 0
-  Priority: 128
-  DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 500
-  Pan2D: 0
-  rolloffMode: 0
-  BypassEffects: 0
-  BypassListenerEffects: 0
-  BypassReverbZones: 0
-  rolloffCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    - time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  panLevelCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 0
-  spreadCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  reverbZoneMixCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 0
 --- !u!95 &95000013040448440
 Animator:
   serializedVersion: 3
@@ -1858,36 +1783,30 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   baseHealth: 100
+  damage: 0
+  goal: {fileID: 0}
   moveSpeed: 2
   purchaseCost: 10
   rewardCoins: 10
-  goal: {fileID: 0}
   weapon: {fileID: 0}
-  damage: 0
 --- !u!114 &114000010403048296
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000011433983142}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0ec943e3d8fc87f4d8786ea1ea07361d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  baseCooldown: 1
   baseDamage: 5
   baseRange: 20
-  baseCooldown: 1
-  upgradeFactor: 1.1
-  shootSound: {fileID: 8300000, guid: cf73db8e4891a754791d586816040dff, type: 3}
-  deathSound1: {fileID: 0}
-  deathSound2: {fileID: 0}
-  deathSound3: {fileID: 0}
-  source_shoot: {fileID: 0}
-  source_death: {fileID: 0}
-  death: []
   proj_obj: {fileID: 1000010710961544, guid: 2e8b93f0bfb9bde4eb2da65533f3af7d, type: 2}
   proj_origin: {fileID: 1000011433983142}
+  shootSound: {fileID: 8300000, guid: cf73db8e4891a754791d586816040dff, type: 3}
+  upgradeFactor: 1.1
 --- !u!114 &114000011979553074
 MonoBehaviour:
   m_ObjectHideFlags: 1
