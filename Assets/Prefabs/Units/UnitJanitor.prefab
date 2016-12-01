@@ -523,6 +523,7 @@ GameObject:
   - 4: {fileID: 4000010004646268}
   - 95: {fileID: 95000013873204816}
   - 136: {fileID: 136000011654396924}
+  - 114: {fileID: 114000011502329446}
   m_Layer: 0
   m_Name: Model
   m_TagString: Enemy
@@ -1704,6 +1705,17 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &114000011502329446
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000012226338648}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f798caec2da5b74c8d81cdab3a9e80c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114000011651817712
 MonoBehaviour:
   m_ObjectHideFlags: 1

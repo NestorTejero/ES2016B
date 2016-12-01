@@ -591,6 +591,8 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000010646470914}
   - 95: {fileID: 95000013598499900}
+  - 136: {fileID: 136000013006767752}
+  - 114: {fileID: 114000011863687550}
   m_Layer: 0
   m_Name: Model
   m_TagString: Untagged
@@ -1695,7 +1697,7 @@ Animator:
   m_GameObject: {fileID: 1000012871979134}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: c98682456dcc044c4928268df66c56ce, type: 3}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 567d2a3f6a8f3324786f65cc9e61ba0b, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -1716,7 +1718,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   baseHealth: 18
   damage: 2
-  goal: {fileID: 0}
+  goal: {fileID: 4000012602783024, guid: c839f3d5ec503fe429715f930afaf77d, type: 2}
   moveSpeed: 10
   purchaseCost: 6
   rewardCoins: 10
@@ -1751,6 +1753,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TooltipText: {fileID: 0}
+--- !u!114 &114000011863687550
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000012871979134}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f798caec2da5b74c8d81cdab3a9e80c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!136 &136000012314590818
 CapsuleCollider:
   m_ObjectHideFlags: 1
@@ -1764,6 +1777,19 @@ CapsuleCollider:
   m_Height: 7
   m_Direction: 1
   m_Center: {x: 0, y: 3, z: -0.2}
+--- !u!136 &136000013006767752
+CapsuleCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000012871979134}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.5
+  m_Height: 1
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!137 &137000011257656134
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1
