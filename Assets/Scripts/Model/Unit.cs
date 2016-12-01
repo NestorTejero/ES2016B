@@ -17,6 +17,7 @@ public class Unit : MonoBehaviour, CanReceiveDamage
     private GameObject model;
     private UnitAnimation animScript;
 
+    private NavMeshAgent agent;
     // Receive damage by weapon
     public void ReceiveDamage(float damage)
     {
@@ -47,17 +48,21 @@ public class Unit : MonoBehaviour, CanReceiveDamage
         totalHealth = baseHealth;
 
         //NAVMESH DATA FOR PATHFINDING Unit movement towards the goal  
-        var agent = GetComponent<NavMeshAgent>();
+        agent = GetComponent<NavMeshAgent>();
         agent.destination = goal.position;
         agent.speed = this.moveSpeed;
+        agent.acceleration = this.moveSpeed;
 
-        weapon = gameObject.GetComponent<Weapon>();
-        damage = weapon.baseDamage;
 
         //ANIMATION DATA(We search parent object for Model SubObject and use animation script for animating everything)
         model = this.transform.FindChild("Model").gameObject;
-        Debug.Log(gameObject.name  +gameObject.GetHashCode() + model.name + "FOUND");
+        //Debug.Log(gameObject.name  +gameObject.GetHashCode() + model.name + "FOUND");
         animScript = model.GetComponent<UnitAnimation>();
+
+
+        //WEAPON SCRIPT DATA
+        weapon = gameObject.GetComponent<Weapon>();
+        damage = weapon.baseDamage;
         weapon.setAnimScript(animScript);
  
 
@@ -99,10 +104,18 @@ public class Unit : MonoBehaviour, CanReceiveDamage
     public void Die()
     {
 
+        //Stop VavMesh Agent From Moving Further
+        agent.enabled = false;
+        //Disable Colider to avoid colliding with projectiles when dead
+        gameObject.GetComponent<CapsuleCollider>().enabled = false;
+        model.GetComponent<CapsuleCollider>().enabled = false;
         GameController.instance.notifyDeath(this); // Tell controller I'm dead
         //PLAY DIE SOUND HERE
+
+
         animScript.Die();
-        Destroy(gameObject, 1.0f);
+
+        Destroy(gameObject, 1.5f);
 
     }
 }
