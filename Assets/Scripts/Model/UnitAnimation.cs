@@ -18,6 +18,7 @@ public class UnitAnimation : MonoBehaviour
         walkHash = Animator.StringToHash("Walk");
         attackHash = Animator.StringToHash("Attack");
         dieHash = Animator.StringToHash("Die");
+        animController.SetBool(walkHash, true);
     }
 
     public void Attack()
