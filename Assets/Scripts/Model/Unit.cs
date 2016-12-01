@@ -29,6 +29,7 @@ public class Unit : MonoBehaviour, CanReceiveDamage
 
         if (currentHealth <= 0.0f)
         {
+            animScript.Die();
             GameController.instance.notifyDeath(this); // Tell controller I'm dead
             Destroy(gameObject, 0.5f);
         }
