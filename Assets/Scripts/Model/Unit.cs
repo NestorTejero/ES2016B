@@ -29,9 +29,10 @@ public class Unit : MonoBehaviour, CanReceiveDamage
 
         if (currentHealth <= 0.0f)
         {
-            animScript.Die();
+            
             GameController.instance.notifyDeath(this); // Tell controller I'm dead
-            Destroy(gameObject, 0.5f);
+            animScript.Die();
+            //Destroy(gameObject, 1.0f);
         }
     }
 
@@ -58,8 +59,8 @@ public class Unit : MonoBehaviour, CanReceiveDamage
 
         //Animation Data (We search parent object for Model Subobject and use animation script for animating everything)
         model = this.transform.FindChild("Model").gameObject;
-        Debug.Log(gameObject.name + model.name + "FOUND");
-        UnitAnimation animScript = model.GetComponent<UnitAnimation>();
+        Debug.Log(gameObject.name  +gameObject.GetHashCode() + model.name + "FOUND");
+        animScript = model.GetComponent<UnitAnimation>();
         //animScript.Walk();
         weapon.setAnimScript(animScript);
 
