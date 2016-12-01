@@ -24,12 +24,18 @@ public class SoundOptions : MonoBehaviour
     // Use this for initialization
     private void Start()
     {
-        volumeSlider.onValueChanged.AddListener(delegate { effectsChangeCheck(); });
-        musicSlider.onValueChanged.AddListener(delegate { musicChangeCheck(); });
-        volumeSlider.value = PersistentValues.effectsVolume;
-        musicSlider.value = PersistentValues.musicVolume;
-        lastMVolume = PersistentValues.musicLastVolume;
-        lastEVolume = PersistentValues.effectsLastVolume;
+		if (volumeSlider != null) {
+			volumeSlider.onValueChanged.AddListener (delegate {
+				effectsChangeCheck ();
+			});
+			musicSlider.onValueChanged.AddListener (delegate {
+				musicChangeCheck ();
+			});
+			volumeSlider.value = PersistentValues.effectsVolume;
+			musicSlider.value = PersistentValues.musicVolume;
+			lastMVolume = PersistentValues.musicLastVolume;
+			lastEVolume = PersistentValues.effectsLastVolume;
+		}
     }
 
     public void effectsChangeCheck()

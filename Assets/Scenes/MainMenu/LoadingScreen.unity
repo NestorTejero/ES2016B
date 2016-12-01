@@ -703,9 +703,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 583fa974eb3ac41fab164aaf8e647265, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  time: 0
-  percent: {fileID: 1959468141}
   bar: {fileID: 1854160249}
+  percent: {fileID: 1959468141}
+  time: 0
 --- !u!1 &1232550833
 GameObject:
   m_ObjectHideFlags: 0
@@ -910,6 +910,7 @@ GameObject:
   - 224: {fileID: 1753647389}
   - 223: {fileID: 1753647388}
   - 114: {fileID: 1753647386}
+  - 114: {fileID: 1753647387}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -933,6 +934,27 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &1753647387
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1753647385}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1980459831, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_UiScaleMode: 1
+  m_ReferencePixelsPerUnit: 100
+  m_ScaleFactor: 1
+  m_ReferenceResolution: {x: 1920, y: 1080}
+  m_ScreenMatchMode: 0
+  m_MatchWidthOrHeight: 0
+  m_PhysicalUnit: 3
+  m_FallbackScreenDPI: 96
+  m_DefaultSpriteDPI: 96
+  m_DynamicPixelsPerUnit: 1
 --- !u!223 &1753647388
 Canvas:
   m_ObjectHideFlags: 0
