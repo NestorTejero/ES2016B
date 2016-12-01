@@ -14,6 +14,9 @@ public class Unit : MonoBehaviour, CanReceiveDamage
     private float totalHealth;
     public Weapon weapon;
 
+    private GameObject model;
+    private UnitAnimation animScript;
+
     // Receive damage by weapon
     public void ReceiveDamage(float damage)
     {
@@ -50,6 +53,14 @@ public class Unit : MonoBehaviour, CanReceiveDamage
         weapon = gameObject.GetComponent<Weapon>();
 
         damage = weapon.baseDamage;
+
+
+        //Animation Data (We search parent object for Model Subobject and use animation script for animating everything)
+        model = this.transform.FindChild("Model").gameObject;
+        Debug.Log(gameObject.name + model.name + "FOUND");
+        UnitAnimation animScript = model.GetComponent<UnitAnimation>();
+        //animScript.Walk();
+        weapon.setAnimScript(animScript);
 
         Debug.Log("UNIT CREATED");
     }
