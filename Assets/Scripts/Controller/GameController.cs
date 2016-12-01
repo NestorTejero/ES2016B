@@ -71,7 +71,6 @@ public class GameController : MonoBehaviour
         {
             Debug.Log(((Unit) dead).name + " is dead.");
             GameObject.FindGameObjectWithTag("Human").GetComponent<Player>().getMoney((Unit) dead);
-            Destroy((Unit)dead, 1.0f);
         }
     }
 

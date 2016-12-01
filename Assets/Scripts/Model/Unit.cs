@@ -29,10 +29,8 @@ public class Unit : MonoBehaviour, CanReceiveDamage
 
         if (currentHealth <= 0.0f)
         {
-            
-            GameController.instance.notifyDeath(this); // Tell controller I'm dead
-            animScript.Die();
-            //Destroy(gameObject, 1.0f);
+            this.Die();
+
         }
     }
 
@@ -48,21 +46,20 @@ public class Unit : MonoBehaviour, CanReceiveDamage
         currentHealth = baseHealth;
         totalHealth = baseHealth;
 
-        // Unit movement towards the goal
+        //NAVMESH DATA FOR PATHFINDING Unit movement towards the goal  
         var agent = GetComponent<NavMeshAgent>();
         agent.destination = goal.position;
+        agent.speed = this.moveSpeed;
 
         weapon = gameObject.GetComponent<Weapon>();
-
         damage = weapon.baseDamage;
 
-
-        //Animation Data (We search parent object for Model Subobject and use animation script for animating everything)
+        //ANIMATION DATA(We search parent object for Model SubObject and use animation script for animating everything)
         model = this.transform.FindChild("Model").gameObject;
         Debug.Log(gameObject.name  +gameObject.GetHashCode() + model.name + "FOUND");
         animScript = model.GetComponent<UnitAnimation>();
-        //animScript.Walk();
         weapon.setAnimScript(animScript);
+ 
 
         Debug.Log("UNIT CREATED");
     }
@@ -93,5 +90,19 @@ public class Unit : MonoBehaviour, CanReceiveDamage
     public float getCurrentHealth()
     {
         return currentHealth;
+    }
+
+   /*
+    * This funcion Kills Unit and Plays Necesary Sounds and Animations
+    *
+    * */
+    public void Die()
+    {
+
+        GameController.instance.notifyDeath(this); // Tell controller I'm dead
+        //PLAY DIE SOUND HERE
+        animScript.Die();
+        Destroy(gameObject, 1.0f);
+
     }
 }
