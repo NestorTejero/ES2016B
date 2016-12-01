@@ -49,22 +49,20 @@ public class Unit : MonoBehaviour, CanReceiveDamage
         //NAVMESH DATA FOR PATHFINDING Unit movement towards the goal  
         agent = GetComponent<NavMeshAgent>();
         agent.destination = goal.position;
-        agent.speed = this.moveSpeed;
-        agent.acceleration = this.moveSpeed;
-
+        agent.speed = moveSpeed;
+        agent.acceleration = moveSpeed;
+        agent.angularSpeed = 200f;
 
         //ANIMATION DATA(We search parent object for Model SubObject and use animation script for animating everything)
         model = this.transform.FindChild("Model").gameObject;
         //Debug.Log(gameObject.name  +gameObject.GetHashCode() + model.name + "FOUND");
         animScript = model.GetComponent<UnitAnimation>();
 
-
         //WEAPON SCRIPT DATA
         weapon = gameObject.GetComponent<Weapon>();
         damage = weapon.baseDamage;
         weapon.setAnimScript(animScript);
  
-
         Debug.Log("UNIT CREATED");
     }
 
@@ -117,4 +115,5 @@ public class Unit : MonoBehaviour, CanReceiveDamage
         Destroy(gameObject, 1.5f);
 
     }
+
 }
