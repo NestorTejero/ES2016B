@@ -1751,8 +1751,8 @@ Rigidbody:
   m_Mass: 1
   m_Drag: 0
   m_AngularDrag: 0
-  m_UseGravity: 0
-  m_IsKinematic: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
@@ -1881,7 +1881,7 @@ MonoBehaviour:
   baseCooldown: 5
   baseDamage: 5
   baseRange: 20
-  proj_obj: {fileID: 1000010710961544, guid: 2e8b93f0bfb9bde4eb2da65533f3af7d, type: 2}
+  proj_obj: {fileID: 1000013555855676, guid: 53d078e9c0daef34a99c36c2ac602451, type: 2}
   proj_origin: {fileID: 1000011433983142}
   shootSound: {fileID: 8300000, guid: cf73db8e4891a754791d586816040dff, type: 3}
   upgradeFactor: 1.1
@@ -1915,7 +1915,7 @@ CapsuleCollider:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000011433983142}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   m_Radius: 1.2
   m_Height: 7
