@@ -34,7 +34,7 @@ public class Weapon : MonoBehaviour
         targets = new List<CanReceiveDamage>();
 
 		// Get first projectile (or only one in Units case)
-		proj_obj = projectiles [0];
+		this.proj_obj = projectiles [0];
 
         // Call Attack every 'cooldown' seconds
         InvokeRepeating("Attack", 0.0f, currentCooldown);
@@ -125,12 +125,14 @@ public class Weapon : MonoBehaviour
             var proj_clone = (GameObject) Instantiate(proj_obj, proj_origin.transform.position, proj_origin.transform.rotation);
             proj_clone.GetComponent<Projectile>().Shoot(target, currentDamage);
             Destroy(proj_clone, 10.0f);
+
+			//Animation data
+			if (this.gameObject.tag == "Unit")
+			{
+				animScript.Attack();
+			}
         }
-        //Animation data
-		if (this.gameObject.tag == "Unit")
-        {
-            animScript.Attack();
-        }
+       
     }
 
     public void setSourceDeath(AudioSource death)
