@@ -127,5 +127,5 @@ public class Unit : MonoBehaviour, CanReceiveDamage
         Destroy(gameObject, 1.5f);
 
     }
-
+    //TODO Make Damaged texture apear when unit has <50% HP
 }
