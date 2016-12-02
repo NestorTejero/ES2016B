@@ -381,7 +381,7 @@ GameObject:
   - 4: {fileID: 4000010657185096}
   - 137: {fileID: 137000011257656134}
   m_Layer: 0
-  m_Name: Freshman_Body
+  m_Name: UnitMesh
   m_TagString: UnitMeshMaterial
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

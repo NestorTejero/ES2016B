@@ -887,7 +887,7 @@ GameObject:
   - 4: {fileID: 4000013165661280}
   - 137: {fileID: 137000010535062674}
   m_Layer: 0
-  m_Name: Profesor_makehumanmhx2_Body
+  m_Name: UnitMesh
   m_TagString: UnitMeshMaterial
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

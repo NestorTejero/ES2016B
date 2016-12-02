@@ -840,7 +840,7 @@ GameObject:
   - 4: {fileID: 4000012951435394}
   - 137: {fileID: 137000011520582928}
   m_Layer: 0
-  m_Name: short01Mesh
+  m_Name: UnitMesh
   m_TagString: UnitMeshMaterial
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

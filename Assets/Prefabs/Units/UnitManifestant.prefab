@@ -207,7 +207,7 @@ GameObject:
   - 4: {fileID: 4000011855192568}
   - 137: {fileID: 137000010822974484}
   m_Layer: 0
-  m_Name: Manifestant_bo_Body
+  m_Name: UnitMesh
   m_TagString: UnitMeshMaterial
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

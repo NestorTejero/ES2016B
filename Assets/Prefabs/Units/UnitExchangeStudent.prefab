@@ -477,7 +477,7 @@ GameObject:
   - 4: {fileID: 4000012002237296}
   - 137: {fileID: 137000013303779256}
   m_Layer: 0
-  m_Name: exchangestudentf3Mesh
+  m_Name: UnitMesh
   m_TagString: UnitMeshMaterial
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

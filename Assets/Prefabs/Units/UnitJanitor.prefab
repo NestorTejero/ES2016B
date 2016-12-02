@@ -96,7 +96,7 @@ GameObject:
   - 4: {fileID: 4000013558802204}
   - 137: {fileID: 137000012713128026}
   m_Layer: 0
-  m_Name: eyebrow
+  m_Name: UnitMesh
   m_TagString: UnitMeshMaterial
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
