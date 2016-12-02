@@ -148,4 +148,8 @@ public class Weapon : MonoBehaviour
         this.animScript = ascript;
     }
 
+	public void setProjectile(int level)
+	{
+		this.proj_obj = projectiles [level];
+	}
 }

@@ -16,6 +16,7 @@ public class Tower : MonoBehaviour, CanUpgrade
     {
         weapon.Upgrade();
         currentLevel++;
+		weapon.setProjectile (currentLevel);
         Debug.Log("TOWER UPGRADED, Power: " + weapon.getCurrentDamage());
     }
 
@@ -26,7 +27,7 @@ public class Tower : MonoBehaviour, CanUpgrade
         currentLevel = 0;
         Debug.Log("TOWER CREATED");
     }
-
+		
     // If enemy enters the range of attack
     private void OnTriggerEnter(Collider col)
     {

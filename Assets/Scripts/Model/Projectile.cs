@@ -20,7 +20,7 @@ public class Projectile : MonoBehaviour
     {
         //this.proj = gameObject.GetComponentInChildren<Rigidbody>();
 		this.proj = this.gameObject;
-		this.angle = 45.0f;
+		this.angle = 20.0f;
 		this.gravity = 9.8f;
 		this.elapse_time = 0;
     }
@@ -35,7 +35,6 @@ public class Projectile : MonoBehaviour
 
 		// Calculate the velocity needed to throw the object to the target at specified angle.
 		//float velocity = distance / (Mathf.Sin(2 * angle * Mathf.Deg2Rad) / gravity);
-		//Debug.Log (velocity);
 
 		// Extract the X  Y componenent of the velocity
 		float Vx = Mathf.Sqrt(this.speed) * Mathf.Cos(angle * Mathf.Deg2Rad);
