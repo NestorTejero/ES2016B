@@ -19,8 +19,8 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 4000013596121706}
-  - 135: {fileID: 135000011876058330}
   - 114: {fileID: 114000014184441446}
+  - 135: {fileID: 135000013715520402}
   m_Layer: 0
   m_Name: Projectile_laser
   m_TagString: Untagged
@@ -53,7 +53,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 500
---- !u!135 &135000011876058330
+--- !u!135 &135000013715520402
 SphereCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}

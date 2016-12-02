@@ -6,20 +6,21 @@ public class Weapon : MonoBehaviour
     public float baseCooldown;
     public float baseDamage;
     public float baseRange;
-    private float currentCooldown;
+	public float upgradeFactor;
+	public List<GameObject> projectiles;
+	public GameObject proj_origin; // Projectile origin
+	public AudioClip shootSound;
 
+	private float currentCooldown;
     private float currentDamage;
     private float currentRange;
     private AudioClip[] death;
-    public GameObject proj_obj; // Projectile prefab
-    public GameObject proj_origin; // Projectile origin
-    public AudioClip shootSound;
+	private GameObject proj_obj; // Projectile object
     private AudioSource source_shoot, source_death;
     private List<CanReceiveDamage> targets;
-    public float upgradeFactor;
-
-    private UnitAnimation animScript;
-    // Use this for initialization
+	private UnitAnimation animScript;
+    
+	// Use this for initialization
     private void Start()
     {
         currentDamage = baseDamage;
@@ -32,6 +33,8 @@ public class Weapon : MonoBehaviour
         // List of targets assigned to the weapon
         targets = new List<CanReceiveDamage>();
 
+		// Get first projectile (or only one in Units case)
+		proj_obj = projectiles [0];
 
         // Call Attack every 'cooldown' seconds
         InvokeRepeating("Attack", 0.0f, currentCooldown);
@@ -124,7 +127,7 @@ public class Weapon : MonoBehaviour
             Destroy(proj_clone, 10.0f);
         }
         //Animation data
-        if (tag == "Unit")
+		if (this.gameObject.tag == "Unit")
         {
             animScript.Attack();
         }
@@ -139,8 +142,10 @@ public class Weapon : MonoBehaviour
     {
         source_shoot = shoot;
     }
-    public void setAnimScript(UnitAnimation ascript)
+    
+	public void setAnimScript(UnitAnimation ascript)
     {
         this.animScript = ascript;
     }
+
 }

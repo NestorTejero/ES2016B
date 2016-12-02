@@ -1837,7 +1837,8 @@ MonoBehaviour:
   baseCooldown: 1
   baseDamage: 20
   baseRange: 1
-  proj_obj: {fileID: 1000012144391894, guid: ecf0109ef1d3ac6408373e89d3f53369, type: 2}
+  projectiles:
+  - {fileID: 1000012144391894, guid: ecf0109ef1d3ac6408373e89d3f53369, type: 2}
   proj_origin: {fileID: 1000011473136326}
   shootSound: {fileID: 8300000, guid: cf73db8e4891a754791d586816040dff, type: 3}
   upgradeFactor: 1.1
