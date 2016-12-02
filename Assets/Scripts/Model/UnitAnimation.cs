@@ -18,6 +18,7 @@ public class UnitAnimation : MonoBehaviour
         walkHash = Animator.StringToHash("Walk");
         attackHash = Animator.StringToHash("Attack");
         dieHash = Animator.StringToHash("Die");
+        
         animController.SetBool(walkHash, true);
     }
 
@@ -37,5 +38,9 @@ public class UnitAnimation : MonoBehaviour
     {
         animController.SetBool(walkHash, true);
         Debug.Log("Animation Walk");
+    }
+    public void setAnimationSpeed(float speed)
+    {
+        animController.speed = speed;
     }
 }
