@@ -96,7 +96,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000010960794684}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 148.21144, y: 0.2657254, z: 0.0000019073486}
+  m_LocalPosition: {x: 112.10071, y: -11.477163, z: -5.471145}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
@@ -211,13 +211,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dayLength: 0.5
-  nightLength: 0.2
-  time: 1
   hour: 0
-  ubCenter: {fileID: 0}
-  sun: {fileID: 108000011949886082}
   moon: {fileID: 108000010415340492}
+  nightLength: 0.2
   stars: {fileID: 198000013440651658}
+  sun: {fileID: 108000011949886082}
+  time: 1
+  ubCenter: {fileID: 0}
 --- !u!198 &198000013440651658
 ParticleSystem:
   m_ObjectHideFlags: 1
