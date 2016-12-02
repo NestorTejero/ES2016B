@@ -711,6 +711,7 @@ GameObject:
   - 4: {fileID: 4000013459174682}
   - 95: {fileID: 95000013308994448}
   - 136: {fileID: 136000012203421290}
+  - 114: {fileID: 114000010047693420}
   m_Layer: 0
   m_Name: Model
   m_TagString: Enemy
@@ -807,7 +808,6 @@ GameObject:
   - 114: {fileID: 114000011136992976}
   - 114: {fileID: 114000011314646622}
   - 114: {fileID: 114000011104445112}
-  - 82: {fileID: 82000011854888952}
   m_Layer: 0
   m_Name: UnitAngryStudent
   m_TagString: Unit
@@ -840,8 +840,8 @@ GameObject:
   - 4: {fileID: 4000012951435394}
   - 137: {fileID: 137000011520582928}
   m_Layer: 0
-  m_Name: short01Mesh
-  m_TagString: Untagged
+  m_Name: UnitMesh
+  m_TagString: UnitMeshMaterial
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1470,7 +1470,7 @@ Transform:
   m_GameObject: {fileID: 1000013397829430}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 3.5, y: 3.5, z: 3.5}
+  m_LocalScale: {x: 4, y: 4, z: 4}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 4000010526193654}
@@ -1688,80 +1688,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!82 &82000011854888952
-AudioSource:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000013916661712}
-  m_Enabled: 1
-  serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: cf73db8e4891a754791d586816040dff, type: 3}
-  m_PlayOnAwake: 1
-  m_Volume: 1
-  m_Pitch: 1
-  Loop: 0
-  Mute: 0
-  Spatialize: 0
-  Priority: 128
-  DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 500
-  Pan2D: 0
-  rolloffMode: 0
-  BypassEffects: 0
-  BypassListenerEffects: 0
-  BypassReverbZones: 0
-  rolloffCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    - time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  panLevelCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 0
-  spreadCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  reverbZoneMixCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 0
 --- !u!95 &95000013308994448
 Animator:
   serializedVersion: 3
@@ -1779,6 +1705,17 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &114000010047693420
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000013397829430}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f798caec2da5b74c8d81cdab3a9e80c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114000011104445112
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1803,12 +1740,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   baseHealth: 10
+  damage: 0
+  goal: {fileID: 4000012602783024, guid: c839f3d5ec503fe429715f930afaf77d, type: 2}
   moveSpeed: 10
   purchaseCost: 6
   rewardCoins: 10
-  goal: {fileID: 0}
   weapon: {fileID: 0}
-  damage: 0
+  normalTexture: {fileID: 2800000, guid: 4be1c0cf7bd784a3cad58e51da5b7e8b, type: 3}
+  damagedTexture: {fileID: 2800000, guid: 690fe8ad5b6514d96ab19502ea5c9d13, type: 3}
 --- !u!114 &114000011314646622
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1820,13 +1759,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ec943e3d8fc87f4d8786ea1ea07361d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  baseCooldown: 4
   baseDamage: 20
   baseRange: 1
-  baseCooldown: 1
-  upgradeFactor: 1.1
-  shootSound: {fileID: 8300000, guid: cf73db8e4891a754791d586816040dff, type: 3}
   proj_obj: {fileID: 0}
   proj_origin: {fileID: 0}
+  shootSound: {fileID: 8300000, guid: cf73db8e4891a754791d586816040dff, type: 3}
+  upgradeFactor: 1.1
 --- !u!136 &136000012203421290
 CapsuleCollider:
   m_ObjectHideFlags: 1
@@ -1955,7 +1894,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 1000013916661712}
   m_Enabled: 1
   m_Radius: 1.2
-  m_Speed: 1
+  m_Speed: 10
   m_Acceleration: 1
   avoidancePriority: 50
   m_AngularSpeed: 1
