@@ -18,6 +18,9 @@ public class Unit : MonoBehaviour, CanReceiveDamage
     private UnitAnimation animScript;
 
     private NavMeshAgent agent;
+
+    public Texture normalTexture;
+    public Texture damagedTexture;
     // Receive damage by weapon
     public void ReceiveDamage(float damage)
     {

@@ -888,7 +888,7 @@ GameObject:
   - 137: {fileID: 137000010535062674}
   m_Layer: 0
   m_Name: Profesor_makehumanmhx2_Body
-  m_TagString: Untagged
+  m_TagString: UnitMeshMaterial
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1790,6 +1790,8 @@ MonoBehaviour:
   purchaseCost: 10
   rewardCoins: 10
   weapon: {fileID: 0}
+  normalTexture: {fileID: 2800000, guid: fdf4700aad817468784a06c1eb164e1c, type: 3}
+  damagedTexture: {fileID: 2800000, guid: 68f4de61fadff4cafba3f60a685b5ca0, type: 3}
 --- !u!114 &114000010403048296
 MonoBehaviour:
   m_ObjectHideFlags: 1

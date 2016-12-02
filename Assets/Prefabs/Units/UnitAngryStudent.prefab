@@ -841,7 +841,7 @@ GameObject:
   - 137: {fileID: 137000011520582928}
   m_Layer: 0
   m_Name: short01Mesh
-  m_TagString: Untagged
+  m_TagString: UnitMeshMaterial
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1746,6 +1746,8 @@ MonoBehaviour:
   purchaseCost: 6
   rewardCoins: 10
   weapon: {fileID: 0}
+  normalTexture: {fileID: 2800000, guid: 4be1c0cf7bd784a3cad58e51da5b7e8b, type: 3}
+  damagedTexture: {fileID: 2800000, guid: 690fe8ad5b6514d96ab19502ea5c9d13, type: 3}
 --- !u!114 &114000011314646622
 MonoBehaviour:
   m_ObjectHideFlags: 1

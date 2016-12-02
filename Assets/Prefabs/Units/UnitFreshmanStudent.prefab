@@ -382,7 +382,7 @@ GameObject:
   - 137: {fileID: 137000011257656134}
   m_Layer: 0
   m_Name: Freshman_Body
-  m_TagString: Untagged
+  m_TagString: UnitMeshMaterial
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1040,7 +1040,7 @@ Transform:
   m_GameObject: {fileID: 1000012871979134}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 3.5, y: 3.5, z: 3.5}
+  m_LocalScale: {x: 4, y: 4, z: 4}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 4000012969237750}
@@ -1723,6 +1723,8 @@ MonoBehaviour:
   purchaseCost: 6
   rewardCoins: 10
   weapon: {fileID: 0}
+  normalTexture: {fileID: 2800000, guid: deef1e467bb614b69a2b3af1db005f56, type: 3}
+  damagedTexture: {fileID: 2800000, guid: f20c7e9a94bcb4537b8a1e18547a5518, type: 3}
 --- !u!114 &114000011059578548
 MonoBehaviour:
   m_ObjectHideFlags: 1

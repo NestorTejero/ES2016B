@@ -478,7 +478,7 @@ GameObject:
   - 137: {fileID: 137000013303779256}
   m_Layer: 0
   m_Name: exchangestudentf3Mesh
-  m_TagString: Untagged
+  m_TagString: UnitMeshMaterial
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1765,6 +1765,8 @@ MonoBehaviour:
   purchaseCost: 7
   rewardCoins: 10
   weapon: {fileID: 0}
+  normalTexture: {fileID: 2800000, guid: bd9725feebe72475fa69d75181579cc0, type: 3}
+  damagedTexture: {fileID: 2800000, guid: 96b5fc4d589404418a5e357fd83bb834, type: 3}
 --- !u!136 &136000012821376914
 CapsuleCollider:
   m_ObjectHideFlags: 1

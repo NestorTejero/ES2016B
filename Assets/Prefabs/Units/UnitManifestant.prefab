@@ -208,7 +208,7 @@ GameObject:
   - 137: {fileID: 137000010822974484}
   m_Layer: 0
   m_Name: Manifestant_bo_Body
-  m_TagString: Untagged
+  m_TagString: UnitMeshMaterial
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1752,6 +1752,8 @@ MonoBehaviour:
   purchaseCost: 9
   rewardCoins: 10
   weapon: {fileID: 0}
+  normalTexture: {fileID: 2800000, guid: c7d6fc1b5be0f4d858f85e7e4738d3da, type: 3}
+  damagedTexture: {fileID: 2800000, guid: 207a3ed11f5864937a5b5b77798f26e2, type: 3}
 --- !u!114 &114000013576524668
 MonoBehaviour:
   m_ObjectHideFlags: 1
