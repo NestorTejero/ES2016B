@@ -21,7 +21,7 @@ public class Unit : MonoBehaviour, CanReceiveDamage
 
     public Texture normalTexture;
     public Texture damagedTexture;
-    private Transform textureModel;
+    private GameObject textureModel;
     private SkinnedMeshRenderer skin;
     // Receive damage by weapon
     public void ReceiveDamage(float damage)
@@ -70,11 +70,11 @@ public class Unit : MonoBehaviour, CanReceiveDamage
 
         //TEXTURE DATA
         //need to destroy material manualy when destroying object
-       /* textureModel = gameObject.transform.Find("UnitMesh").transform;
+        textureModel = model.transform.FindChild("UnitMesh").gameObject;
         Debug.Log(textureModel.name);
         skin = textureModel.GetComponent<SkinnedMeshRenderer>();
-        skin.material.SetTexture("Albedo", damagedTexture);
-        */
+        skin.material.SetTexture("_MainTex", normalTexture);
+        
             Debug.Log("UNIT CREATED");
     }
 
