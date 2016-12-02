@@ -96,8 +96,8 @@ GameObject:
   - 4: {fileID: 4000013558802204}
   - 137: {fileID: 137000012713128026}
   m_Layer: 0
-  m_Name: eyebrow
-  m_TagString: Untagged
+  m_Name: UnitMesh
+  m_TagString: UnitMeshMaterial
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -524,6 +524,7 @@ GameObject:
   - 4: {fileID: 4000010004646268}
   - 95: {fileID: 95000013873204816}
   - 136: {fileID: 136000011654396924}
+  - 114: {fileID: 114000011502329446}
   m_Layer: 0
   m_Name: Model
   m_TagString: Enemy
@@ -884,7 +885,7 @@ Transform:
   m_GameObject: {fileID: 1000012226338648}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 3.5, y: 3.5, z: 3.5}
+  m_LocalScale: {x: 4, y: 4, z: 4}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 4000013558802204}
@@ -1779,6 +1780,17 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &114000011502329446
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000012226338648}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f798caec2da5b74c8d81cdab3a9e80c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114000011651817712
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1797,6 +1809,8 @@ MonoBehaviour:
   purchaseCost: 8
   rewardCoins: 10
   weapon: {fileID: 0}
+  normalTexture: {fileID: 2800000, guid: 38049ffbfaea842a7a7bc5bfec71e917, type: 3}
+  damagedTexture: {fileID: 2800000, guid: 27069456774104c39bbe4e9206444b72, type: 3}
 --- !u!114 &114000012013163112
 MonoBehaviour:
   m_ObjectHideFlags: 1
