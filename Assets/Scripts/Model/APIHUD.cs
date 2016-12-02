@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Runtime.CompilerServices;
+using UnityEngine;
 using UnityEngine.UI;
 
 public class APIHUD : MonoBehaviour
@@ -155,5 +156,18 @@ public class APIHUD : MonoBehaviour
     public GameObject getGameObjectSelected()
     {
         return gameObjectSelected;
+    }
+
+    [MethodImpl(MethodImplOptions.Synchronized)]
+    public void notifyChange(HUDSubject subj, HUDInfo info)
+    {
+        if (gameObjectSelected.GetComponent<HUDSubject>() != subj)
+            return;
+
+        setHealth(info.CurrentHealth, info.TotalHealth);
+        setAttackSpeed(info.AttackSpeed);
+        setDamage(info.Damage);
+        setRange(info.Range);
+        setVisibleUpgradeButton(info.VisibleUpgradeButton);
     }
 }

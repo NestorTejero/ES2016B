@@ -1,17 +1,16 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
-public class Unit : MonoBehaviour, CanReceiveDamage
+public class Unit : MonoBehaviour, CanReceiveDamage, HUDSubject
 {
     public float baseHealth;
-    private float currentHealth;
-    // TODO This shouldn't be public
-    public float damage;
     public Transform goal;
+    public float damage;
+
+    private HealthComponent health;
     public float moveSpeed;
     public int purchaseCost;
     public int rewardCoins;
-
-    private float totalHealth;
     public Weapon weapon;
 
     private GameObject model;
@@ -26,17 +25,17 @@ public class Unit : MonoBehaviour, CanReceiveDamage
     // Receive damage by weapon
     public void ReceiveDamage(float damage)
     {
-        currentHealth -= damage;
-        Debug.Log("Unit " + name + " currentHealth: " + currentHealth);
-        //Debug.Log("UNIT DAMAGED by HP: " + proj.getDamage());
-
-        if (APIHUD.instance.getGameObjectSelected() == gameObject)
-            APIHUD.instance.setHealth(currentHealth, totalHealth);
-
-        if (currentHealth <= 0.0f)
-            this.Die();
-
-
+        try
+        {
+            health.LoseHealth(damage);
+            NotifyHUD();
+            Debug.Log("UNIT " + name + " CURRENT_HEALTH: " + health.GetCurrentHealth());
+        }
+        catch (Exception)
+        {
+            NotifyHUD();
+	    this.Die();
+        }
     }
 
     public GameObject getGameObject()
@@ -44,12 +43,24 @@ public class Unit : MonoBehaviour, CanReceiveDamage
         return gameObject;
     }
 
+    public void NotifyHUD()
+    {
+        var updateInfo = new HUDInfo
+        {
+            CurrentHealth = health.GetCurrentHealth(),
+            TotalHealth = health.GetTotalHealth(),
+            Damage = weapon.getCurrentDamage().ToString(),
+            Range = weapon.getCurrentRange().ToString(),
+            VisibleUpgradeButton = false
+        };
+
+        APIHUD.instance.notifyChange(this, updateInfo);
+    }
 
     // Use this for initialization
     private void Start()
     {
-        currentHealth = baseHealth;
-        totalHealth = baseHealth;
+        health = new HealthComponent(baseHealth);
 
         //NAVMESH DATA FOR PATHFINDING Unit movement towards the goal  
         agent = GetComponent<NavMeshAgent>();
@@ -96,14 +107,9 @@ public class Unit : MonoBehaviour, CanReceiveDamage
             weapon.removeTarget(col.gameObject.GetComponent<CanReceiveDamage>());
     }
 
-    public float getTotalHealth()
+    public float GetDamage()
     {
-        return totalHealth;
-    }
-
-    public float getCurrentHealth()
-    {
-        return currentHealth;
+        return damage;
     }
 
    /*
