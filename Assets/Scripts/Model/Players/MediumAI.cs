@@ -11,20 +11,20 @@ public class MediumAI : AI
         if (unitsWave < 70)
         {
             /* we buy the unit with less damage */
-            var availableUnits = shop.GetPurchasable(numCoins);
+            var availableUnits = shop.GetPurchasable(money.GetNumCoins());
             var unit = availableUnits[0];
-            if (shop.IsPurchasable(unit, numCoins))
+            if (shop.IsPurchasable(unit, money.GetNumCoins()))
             {
                 shop.Purchase(unit);
                 Debug.Log("NEW UNIT " + unit.name + " PURCHASED.");
                 unitsWave += 1;
-                numCoins -= unit.purchaseCost;
+                money.Spend(unit.purchaseCost);
             }
 
             /* we look for buy a second unit, this time is random */
-            availableUnits = shop.GetPurchasable(numCoins);
+            availableUnits = shop.GetPurchasable(money.GetNumCoins());
             unit = availableUnits[Random.Range(0, availableUnits.Count)];
-            if (shop.IsPurchasable(unit, numCoins))
+            if (shop.IsPurchasable(unit, money.GetNumCoins()))
             {
                 shop.Purchase(unit);
                 Debug.Log("NEW UNIT " + unit.name + " PURCHASED.");

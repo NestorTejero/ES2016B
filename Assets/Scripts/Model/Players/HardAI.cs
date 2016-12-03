@@ -13,22 +13,22 @@ public class HardAI : AI
         var shop = GameObject.FindGameObjectWithTag("Shop").GetComponent<UnitShop>();
         if (unitsWave < 200)
         {
-            var availableUnits = shop.GetPurchasable(numCoins);
+            var availableUnits = shop.GetPurchasable(money.GetNumCoins());
 
             /* AI methods */
-            aiSolver.infoCalc(availableUnits, numCoins);
+            aiSolver.infoCalc(availableUnits, money.GetNumCoins());
             var unitsToPurchase = aiSolver.Resolve();
 
             /* We buy the units */
             for (var i = 0; i < unitsToPurchase.Count; i++)
             {
                 var unit = unitsToPurchase[i];
-                if (shop.IsPurchasable(unit, numCoins))
+                if (shop.IsPurchasable(unit, money.GetNumCoins()))
                 {
                     shop.Purchase(unit);
                     Debug.Log("NEW UNIT " + unit.name + " PURCHASED.");
                     unitsWave += 1;
-                    numCoins -= unit.purchaseCost;
+                    money.Spend(unit.purchaseCost);
                 }
             }
         }
