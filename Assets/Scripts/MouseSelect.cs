@@ -62,11 +62,10 @@ public class MouseSelect : MonoBehaviour
     //Here we can edit tooltips
     public void OnMouseOver()
     {
-        if ((tag == "Tower") || (name == "TowerN") || (name == "TowerE") || (name == "TowerW") ||
-            (name == "TowerS") || (name == "EdificiUB"))
+        if (tag == "Building")
             TooltipText.text = "Protect this building!";
 
-        if ((tag == "Unit") || (name == "Freshman_Roba_freshman"))
+        if (tag == "Unit")
             TooltipText.text = "Kill them with fire!";
     }
 
