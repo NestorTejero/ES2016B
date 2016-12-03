@@ -23,8 +23,8 @@ public class Player : MonoBehaviour
 
     public void ChangeWave()
     {
-        money.Add(100);
+        money.Add(1000);
         APIHUD.instance.setMoney(money.GetNumCoins().ToString());
-        score.Add(100);
+        score.Add(1000);
     }
 }
