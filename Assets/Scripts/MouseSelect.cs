@@ -33,8 +33,6 @@ public class MouseSelect : MonoBehaviour
         isSelected = true;
         transformSelected = transform;
 
-        APIHUD.instance.setGameObjectSelected(gameObject);
-
         if (GameObject.Find("selectedObjectIndicator") != null)
             switch (tag)
             {
@@ -53,21 +51,21 @@ public class MouseSelect : MonoBehaviour
                 case "Tower":
                     GameObject.Find("selectedObjectIndicator")
                         .GetComponent<selectedObjectIndicator>()
-                        .setSelectedObject(gameObject, gameObject.transform.localScale.y*25);
+						.setSelectedObject(gameObject, gameObject.transform.localScale.y*25 + gameObject.transform.position.y);
                     break;
             }
 
+		APIHUD.instance.setGameObjectSelected(gameObject);
         gameObject.GetComponent<HUDSubject>().NotifyHUD();
     }
 
     //Here we can edit tooltips
     public void OnMouseOver()
     {
-        if ((tag == "Tower") || (name == "TowerN") || (name == "TowerE") || (name == "TowerW") ||
-            (name == "TowerS") || (name == "EdificiUB"))
+        if (tag == "Building")
             TooltipText.text = "Protect this building!";
 
-        if ((tag == "Unit") || (name == "Freshman_Roba_freshman"))
+        if (tag == "Unit")
             TooltipText.text = "Kill them with fire!";
     }
 
