@@ -33,8 +33,6 @@ public class MouseSelect : MonoBehaviour
         isSelected = true;
         transformSelected = transform;
 
-        APIHUD.instance.setGameObjectSelected(gameObject);
-
         if (GameObject.Find("selectedObjectIndicator") != null)
             switch (tag)
             {
@@ -53,10 +51,11 @@ public class MouseSelect : MonoBehaviour
                 case "Tower":
                     GameObject.Find("selectedObjectIndicator")
                         .GetComponent<selectedObjectIndicator>()
-                        .setSelectedObject(gameObject, gameObject.transform.localScale.y*25);
+						.setSelectedObject(gameObject, gameObject.transform.localScale.y*25 + gameObject.transform.position.y);
                     break;
             }
 
+		APIHUD.instance.setGameObjectSelected(gameObject);
         gameObject.GetComponent<HUDSubject>().NotifyHUD();
     }
 

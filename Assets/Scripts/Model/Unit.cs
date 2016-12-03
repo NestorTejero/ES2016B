@@ -51,7 +51,8 @@ public class Unit : MonoBehaviour, CanReceiveDamage, HUDSubject
             TotalHealth = health.GetTotalHealth(),
             Damage = weapon.getCurrentDamage().ToString(),
             Range = weapon.getCurrentRange().ToString(),
-            VisibleUpgradeButton = false
+            VisibleUpgradeButton = false,
+			VisibleRepairButton = false
         };
 
         APIHUD.instance.notifyChange(this, updateInfo);

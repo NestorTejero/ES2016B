@@ -25,8 +25,6 @@ GameObject:
   - 114: {fileID: 114000013154992960}
   - 65: {fileID: 65000012229569138}
   - 114: {fileID: 114000013401498404}
-  - 114: {fileID: 114000011096287438}
-  - 114: {fileID: 114000010461655158}
   m_Layer: 8
   m_Name: EdificiUB
   m_TagString: Building
@@ -141,30 +139,6 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
---- !u!114 &114000010461655158
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000011756980988}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2c560541b48665841ba3b5e1ea6450e5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  TooltipText: {fileID: 0}
---- !u!114 &114000011096287438
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000011756980988}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2c560541b48665841ba3b5e1ea6450e5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  TooltipText: {fileID: 0}
 --- !u!114 &114000013154992960
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -179,7 +153,7 @@ MonoBehaviour:
   baseHealth: 200
   repairCost: 10
   repairQuantity: 10
-  upgradeCost: 10
+  upgradeCost: 1100
   upgradeFactor: 1.1
 --- !u!114 &114000013401498404
 MonoBehaviour:

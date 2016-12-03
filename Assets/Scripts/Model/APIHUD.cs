@@ -134,11 +134,57 @@ public class APIHUD : MonoBehaviour
             .GetComponent<Text>()
             .text = money;
     }
+		
+	private void setOnClickFunctionUpgrade(){
+
+		if (gameObjectSelected != null && gameObjectSelected.tag == "Building") {
+			transform.FindChild ("buttons").FindChild ("container_buttons").FindChild ("btn_Upgrade").GetComponent<Button> ().onClick.AddListener (() => {
+				gameObjectSelected
+					.GetComponent<Building>()
+					.Upgrade();
+			});
+		}
+		else if (gameObjectSelected != null && gameObjectSelected.tag == "Tower") {
+			transform.FindChild ("buttons").FindChild ("container_buttons").FindChild ("btn_Upgrade").GetComponent<Button> ().onClick.AddListener (() => {
+				gameObjectSelected
+					.GetComponent<Tower>()
+					.Upgrade();
+			});
+		}
+	}
+
+	private void setOnClickFunctionRepair(){
+		if (gameObjectSelected != null && gameObjectSelected.tag == "Building") {
+			transform.FindChild ("buttons").FindChild ("container_buttons").FindChild ("btn_Upgrade").GetComponent<Button> ().onClick.AddListener (() => {
+				gameObjectSelected
+					.GetComponent<Building>()
+					.Repair();
+			});
+		}
+	}
+
+	[MethodImpl(MethodImplOptions.Synchronized)]
+	public void setGameObjectSelected(GameObject gameObject)
+	{
+		gameObjectSelected = gameObject;
+	}
+
+	public GameObject getGameObjectSelected()
+	{
+		return gameObjectSelected;
+	}
 
     public void setVisibleUpgradeButton(bool visible)
     {
-        transform.FindChild("buttons").FindChild("container_buttons").gameObject.active = visible;
-    }
+		transform.FindChild("buttons").FindChild("container_buttons").FindChild("btn_Upgrade").gameObject.active = visible;
+		setOnClickFunctionUpgrade ();
+	}
+
+	public void setVisibleRepairButton(bool visible)
+	{
+		transform.FindChild("buttons").FindChild("container_buttons").FindChild("btn_Repair").gameObject.active = visible;
+		setOnClickFunctionRepair ();
+	}
 
     private void setSelectedItemLabel()
     {
@@ -148,20 +194,10 @@ public class APIHUD : MonoBehaviour
         selectedItem = true;
     }
 
-    public void setGameObjectSelected(GameObject gameObject)
-    {
-        gameObjectSelected = gameObject;
-    }
-
-    public GameObject getGameObjectSelected()
-    {
-        return gameObjectSelected;
-    }
-
     [MethodImpl(MethodImplOptions.Synchronized)]
     public void notifyChange(HUDSubject subj, HUDInfo info)
     {
-        if (gameObjectSelected.GetComponent<HUDSubject>() != subj)
+        if (subj != null && gameObjectSelected.GetComponent<HUDSubject>() != subj)
             return;
 
         setHealth(info.CurrentHealth, info.TotalHealth);
@@ -169,5 +205,6 @@ public class APIHUD : MonoBehaviour
         setDamage(info.Damage);
         setRange(info.Range);
         setVisibleUpgradeButton(info.VisibleUpgradeButton);
+		setVisibleRepairButton(info.VisibleRepairButton);
     }
 }
