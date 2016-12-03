@@ -153,7 +153,7 @@ MonoBehaviour:
   baseHealth: 200
   repairCost: 10
   repairQuantity: 10
-  upgradeCost: 1100
+  upgradeCost: 10
   upgradeFactor: 1.1
 --- !u!114 &114000013401498404
 MonoBehaviour:
