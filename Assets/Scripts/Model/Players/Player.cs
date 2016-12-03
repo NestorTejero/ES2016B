@@ -27,4 +27,8 @@ public class Player : MonoBehaviour
         APIHUD.instance.setMoney(money.GetNumCoins().ToString());
         score.Add(1000);
     }
+
+	public int getMoney(){
+		return numCoins;
+	}
 }

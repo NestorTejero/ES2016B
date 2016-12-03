@@ -53,7 +53,8 @@ public class Building : MonoBehaviour, CanUpgrade, CanReceiveDamage, HUDSubject
         {
             CurrentHealth = health.GetCurrentHealth(),
             TotalHealth = health.GetTotalHealth(),
-            VisibleUpgradeButton = true
+			VisibleUpgradeButton = IsUpgradeable(GameObject.FindGameObjectWithTag("Human").GetComponent<Player>().getMoney()),
+			VisibleRepairButton = IsRepairable(GameObject.FindGameObjectWithTag("Human").GetComponent<Player>().getMoney())
         };
 
         APIHUD.instance.notifyChange(this, updateInfo);
@@ -69,7 +70,7 @@ public class Building : MonoBehaviour, CanUpgrade, CanReceiveDamage, HUDSubject
 
     public bool IsRepairable(int numCoins)
     {
-        return (repairCost <= numCoins) && health.IsHealthFull();
+        return (repairCost <= numCoins) && !health.IsHealthFull();
     }
 
     // Repair the building
