@@ -25,8 +25,7 @@ public class Tower : MonoBehaviour, CanUpgrade, HUDSubject
         {
             Damage = weapon.getCurrentDamage().ToString(),
             Range = weapon.getCurrentRange().ToString(),
-			VisibleUpgradeButton = IsUpgradeable(GameObject.FindGameObjectWithTag("Human").GetComponent<Player>().getMoney()),
-			VisibleRepairButton = false
+			VisibleUpgradeButton = IsUpgradeable(GameObject.FindGameObjectWithTag("Human").GetComponent<Player>().getMoney())
         };
 
         APIHUD.instance.notifyChange(this, updateInfo);

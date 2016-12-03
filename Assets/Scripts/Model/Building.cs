@@ -9,7 +9,7 @@ public class Building : MonoBehaviour, CanUpgrade, CanReceiveDamage, HUDSubject
     public HealthComponent health;
     public float repairCost;
     public float repairQuantity;
-    public float upgradeCost = 1100;
+    public float upgradeCost;
     public float upgradeFactor;
 
     // Receive damage by weapon
@@ -70,7 +70,7 @@ public class Building : MonoBehaviour, CanUpgrade, CanReceiveDamage, HUDSubject
 
     public bool IsRepairable(int numCoins)
     {
-        return (repairCost <= numCoins) && health.IsHealthFull() == false;
+        return (repairCost <= numCoins) && !health.IsHealthFull();
     }
 
     // Repair the building

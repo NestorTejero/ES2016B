@@ -135,22 +135,36 @@ public class APIHUD : MonoBehaviour
             .text = money;
     }
 		
-	private void setOnClickFunctionUpgrade(){
-
-		if (gameObjectSelected != null && gameObjectSelected.tag == "Building") {
-			transform.FindChild ("buttons").FindChild ("container_buttons").FindChild ("btn_Upgrade").GetComponent<Button> ().onClick.AddListener (() => {
-				gameObjectSelected
-					.GetComponent<Building>()
-					.Upgrade();
-			});
-		}
-		else if (gameObjectSelected != null && gameObjectSelected.tag == "Tower") {
-			transform.FindChild ("buttons").FindChild ("container_buttons").FindChild ("btn_Upgrade").GetComponent<Button> ().onClick.AddListener (() => {
-				gameObjectSelected
-					.GetComponent<Tower>()
-					.Upgrade();
-			});
-		}
+	private void setOnClickFunctionUpgrade()
+	{
+	    if (gameObjectSelected == null) return;
+	    switch (gameObjectSelected.tag)
+	    {
+	        case "Tower":
+	            transform.FindChild("buttons")
+	                .FindChild("container_buttons")
+	                .FindChild("btn_Upgrade")
+	                .GetComponent<Button>()
+	                .onClick.AddListener(() =>
+	                {
+	                    gameObjectSelected
+	                        .GetComponent<Tower>()
+	                        .Upgrade();
+	                });
+	            break;
+	        case "Building":
+	            transform.FindChild("buttons")
+	                .FindChild("container_buttons")
+	                .FindChild("btn_Upgrade")
+	                .GetComponent<Button>()
+	                .onClick.AddListener(() =>
+	                {
+	                    gameObjectSelected
+	                        .GetComponent<Building>()
+	                        .Upgrade();
+	                });
+	            break;
+	    }
 	}
 
 	private void setOnClickFunctionRepair(){
@@ -162,8 +176,7 @@ public class APIHUD : MonoBehaviour
 			});
 		}
 	}
-
-	[MethodImpl(MethodImplOptions.Synchronized)]
+    
 	public void setGameObjectSelected(GameObject gameObject)
 	{
 		gameObjectSelected = gameObject;
