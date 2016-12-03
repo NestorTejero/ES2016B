@@ -197,7 +197,7 @@ public class APIHUD : MonoBehaviour
     [MethodImpl(MethodImplOptions.Synchronized)]
     public void notifyChange(HUDSubject subj, HUDInfo info)
     {
-        if (gameObjectSelected == null && gameObjectSelected.GetComponent<HUDSubject>() != subj)
+        if (gameObjectSelected == null || gameObjectSelected.GetComponent<HUDSubject>() != subj)
             return;
 
         setHealth(info.CurrentHealth, info.TotalHealth);
