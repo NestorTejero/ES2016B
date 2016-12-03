@@ -238,6 +238,8 @@ MonoBehaviour:
     panSmooth: 7
     zoomSmoth: 5
     zoomStep: 5
+  scrollZone: 30
+  scrollSpeed: 200
 --- !u!114 &114000013528213974
 MonoBehaviour:
   m_ObjectHideFlags: 1
