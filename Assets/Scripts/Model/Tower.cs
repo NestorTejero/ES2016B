@@ -16,6 +16,7 @@ public class Tower : MonoBehaviour, CanUpgrade, HUDSubject
     {
         weapon.Upgrade();
         currentLevel++;
+        NotifyHUD();
         Debug.Log("TOWER UPGRADED, Power: " + weapon.getCurrentDamage());
     }
 
