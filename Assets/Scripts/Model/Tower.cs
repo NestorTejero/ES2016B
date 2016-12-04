@@ -11,6 +11,11 @@ public class Tower : MonoBehaviour, CanUpgrade, HUDSubject
         return upgradeCost <= numCoins;
     }
 
+    public int GetCurrentLevel()
+    {
+        return currentLevel;
+    }
+
     // To upgrade when there are enough coins
     public void Upgrade()
     {
