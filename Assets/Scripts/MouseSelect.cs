@@ -5,7 +5,7 @@ public class MouseSelect : MonoBehaviour
 {
     private static Transform transformSelected;
     private bool isSelected;
-	////private GameObject selectedObjectIndicator; 
+    ////private GameObject selectedObjectIndicator; 
 
     // Tooltip field
     public Text TooltipText;
@@ -33,51 +33,39 @@ public class MouseSelect : MonoBehaviour
         isSelected = true;
         transformSelected = transform;
 
-        APIHUD.instance.setGameObjectSelected(gameObject);
+        if (GameObject.Find("selectedObjectIndicator") != null)
+            switch (tag)
+            {
+                case "Building":
+                    GameObject.Find("selectedObjectIndicator")
+                        .GetComponent<selectedObjectIndicator>()
+                        .setSelectedObject(gameObject, gameObject.transform.localScale.y*2);
+                    break;
 
-        if (tag == "Building")
-        {
-			if(GameObject.Find ("selectedObjectIndicator") != null){
-				GameObject.Find ("selectedObjectIndicator").GetComponent<selectedObjectIndicator> ().setSelectedObject(gameObject, gameObject.transform.localScale.y * 2);
-			}
-				
-            APIHUD.instance.setHealth(GetComponent<Building>().getCurrentHealth(),
-                GetComponent<Building>().getTotalHealth());
-            APIHUD.instance.setAttackSpeed("-");
-            APIHUD.instance.setDamage("-");
-            APIHUD.instance.setRange("-");
-            APIHUD.instance.setVisibleUpgradeButton(true);
-        }
+                case "Unit":
+                    GameObject.Find("selectedObjectIndicator")
+                        .GetComponent<selectedObjectIndicator>()
+                        .setSelectedObject(gameObject, gameObject.transform.localScale.y*8);
+                    break;
 
-        if (tag == "Unit")
-        {
-			if(GameObject.Find ("selectedObjectIndicator") != null){
-				GameObject.Find ("selectedObjectIndicator").GetComponent<selectedObjectIndicator> ().setSelectedObject(gameObject, gameObject.transform.localScale.y * 8);
-			}
+                case "Tower":
+                    GameObject.Find("selectedObjectIndicator")
+                        .GetComponent<selectedObjectIndicator>()
+						.setSelectedObject(gameObject, gameObject.transform.localScale.y*25 + gameObject.transform.position.y);
+                    break;
+            }
 
-            APIHUD.instance.setHealth(GetComponent<Unit>().getCurrentHealth(),
-                GetComponent<Unit>().getTotalHealth());
-            APIHUD.instance.setAttackSpeed(GetComponent<Unit>().moveSpeed.ToString());
-            APIHUD.instance.setDamage(GetComponent<Weapon>().baseDamage.ToString());
-            APIHUD.instance.setRange(GetComponent<Weapon>().baseRange.ToString());
-            APIHUD.instance.setVisibleUpgradeButton(false);
-        }
-
-		if (tag == "Tower") {
-			if(GameObject.Find ("selectedObjectIndicator") != null){
-				GameObject.Find ("selectedObjectIndicator").GetComponent<selectedObjectIndicator> ().setSelectedObject(gameObject, gameObject.transform.localScale.y * 25);
-			}
-		}
+		APIHUD.instance.setGameObjectSelected(gameObject);
+        gameObject.GetComponent<HUDSubject>().NotifyHUD();
     }
 
     //Here we can edit tooltips
     public void OnMouseOver()
     {
-        if ((tag == "Tower") || (name == "TowerN") || (name == "TowerE") || (name == "TowerW") ||
-            (name == "TowerS") || (name == "EdificiUB"))
+        if (tag == "Building")
             TooltipText.text = "Protect this building!";
 
-        if ((tag == "Unit") || (name == "Freshman_Roba_freshman"))
+        if (tag == "Unit")
             TooltipText.text = "Kill them with fire!";
     }
 
