@@ -22,9 +22,6 @@ public class Unit : MonoBehaviour, CanReceiveDamage, HUDSubject
     public Texture damagedTexture;
     private GameObject textureModel;
     private SkinnedMeshRenderer skin;
-
-    private AudioClip[] death;
-    private AudioSource source_death;
     // Receive damage by weapon
     public void ReceiveDamage(float damage)
     {
@@ -87,17 +84,8 @@ public class Unit : MonoBehaviour, CanReceiveDamage, HUDSubject
         Debug.Log(textureModel.name);
         skin = textureModel.GetComponent<SkinnedMeshRenderer>();
         skin.material.SetTexture("_MainTex", normalTexture);
-
-        // Set sounds
-        death = new[]
-        {
-            (AudioClip) Resources.Load("Sound/Effects/Death 1"),
-            (AudioClip) Resources.Load("Sound/Effects/Death 2"),
-            (AudioClip) Resources.Load("Sound/Effects/Death 3")
-        };
-
-        source_death = GameObject.Find("Death Audio Source").GetComponent<AudioSource>();
-        Debug.Log("UNIT CREATED");
+        
+            Debug.Log("UNIT CREATED");
     }
 
     // If enemy enters the range of attack
@@ -136,20 +124,14 @@ public class Unit : MonoBehaviour, CanReceiveDamage, HUDSubject
         gameObject.GetComponent<CapsuleCollider>().enabled = false;
         model.GetComponent<CapsuleCollider>().enabled = false;
         GameController.instance.notifyDeath(this); // Tell controller I'm dead
-        //PLAY DIE SOUND
-        if (!source_death.isPlaying)
-            source_death.PlayOneShot(death[UnityEngine.Random.Range(0, death.Length)], 0.5f);
+        //PLAY DIE SOUND HERE
+
 
         animScript.Die();
 
         Destroy(gameObject, 1.5f);
 
     }
-    public void setSourceDeath(AudioSource death)
-    {
-        source_death = death;
-    }
-
     //TODO Make Damaged texture apear when unit has <50% HP
 
 }

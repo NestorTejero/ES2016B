@@ -135,7 +135,7 @@ public class TerrainGrid : MonoBehaviour
                         t.GetComponentInChildren<CapsuleCollider>().radius = 20;
                         t.GetComponentInChildren<CapsuleCollider>().height = 30;
 
-                        t.GetComponentInChildren<Unit>()
+                        t.GetComponentInChildren<Weapon>()
                             .setSourceDeath(GameObject.Find("Death Audio Source").GetComponent<AudioSource>());
                         t.GetComponentInChildren<Weapon>()
                             .setSourceShoot(GameObject.Find("Shoot Audio Source").GetComponent<AudioSource>());
