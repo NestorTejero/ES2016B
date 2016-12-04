@@ -11,10 +11,11 @@ public class Weapon : MonoBehaviour
     private float currentDamage;
     private float currentRange;
 
+    private AudioClip[] death;
     public GameObject proj_obj; // Projectile prefab
     public GameObject proj_origin; // Projectile origin
     public AudioClip shootSound;
-    private AudioSource source_shoot;
+    private AudioSource source_shoot, source_death;
     private List<CanReceiveDamage> targets;
     public float upgradeFactor;
 
@@ -36,8 +37,20 @@ public class Weapon : MonoBehaviour
         // Call Attack every 'cooldown' seconds
         InvokeRepeating("Attack", 0.0f, currentCooldown);
 
+        // Set sounds
+        death = new[]
+        {
+            (AudioClip) Resources.Load("Sound/Effects/Death 1"),
+            (AudioClip) Resources.Load("Sound/Effects/Death 2"),
+            (AudioClip) Resources.Load("Sound/Effects/Death 3")
+        };
+
+        source_death = GameObject.Find("Death Audio Source").GetComponent<AudioSource>();
         source_shoot = GameObject.Find("Shoot Audio Source").GetComponent<AudioSource>();
         Debug.Log("WEAPON CREATED");
+
+
+        
     }
 
     // Upgrade weapon features
@@ -68,6 +81,10 @@ public class Weapon : MonoBehaviour
     public void removeTarget(CanReceiveDamage target)
     {
         targets.Remove(target);
+        // TODO Careful! This is not the moment when the enemy dies (it is just removed from the target list)
+        // Play death sound
+        if (!source_death.isPlaying)
+            source_death.PlayOneShot(death[Random.Range(0, death.Length)], 0.5f);
         Debug.Log(gameObject.name + "-> Targets to attack :" + targets.Count);
     }
 
@@ -104,7 +121,6 @@ public class Weapon : MonoBehaviour
         if (target != null)
         {
             // Play shoot sound
-            int currentLevel = this.GetComponent<Tower>().GetCurrentLevel();
             if (!source_shoot.isPlaying)
                 source_shoot.PlayOneShot(shootSound);
             //Creates projectile with its properties and destroys it after 3 seconds
@@ -119,6 +135,11 @@ public class Weapon : MonoBehaviour
         {
             animScript.Attack();
         }
+    }
+
+    public void setSourceDeath(AudioSource death)
+    {
+        source_death = death;
     }
 
     public void setSourceShoot(AudioSource shoot)
