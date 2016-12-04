@@ -14,6 +14,7 @@ public class Weapon : MonoBehaviour
 	private float currentCooldown;
     private float currentDamage;
     private float currentRange;
+
     private AudioClip[] death;
 	private GameObject proj_obj; // Projectile object
     private AudioSource source_shoot, source_death;
@@ -65,6 +66,11 @@ public class Weapon : MonoBehaviour
     public float getCurrentDamage()
     {
         return currentDamage;
+    }
+
+    public float getCurrentRange()
+    {
+        return currentRange;
     }
 
     // Add target to list
@@ -120,19 +126,18 @@ public class Weapon : MonoBehaviour
             // Play shoot sound
             if (!source_shoot.isPlaying)
                 source_shoot.PlayOneShot(shootSound);
-			
             //Creates projectile with its properties and destroys it after 3 seconds
-            var proj_clone = (GameObject) Instantiate(proj_obj, proj_origin.transform.position, proj_origin.transform.rotation);
+            var proj_clone =
+                (GameObject)
+                Instantiate(proj_obj, proj_origin.transform.position, proj_origin.transform.rotation);
             proj_clone.GetComponent<Projectile>().Shoot(target, currentDamage);
-            Destroy(proj_clone, 10.0f);
-
-			//Animation data
-			if (this.gameObject.tag == "Unit")
-			{
-				animScript.Attack();
-			}
+            Destroy(proj_clone, 3.0f);
         }
-       
+        //Animation data
+        if (tag == "Unit")
+        {
+            animScript.Attack();
+        }
     }
 
     public void setSourceDeath(AudioSource death)
@@ -144,14 +149,8 @@ public class Weapon : MonoBehaviour
     {
         source_shoot = shoot;
     }
-    
-	public void setAnimScript(UnitAnimation ascript)
+    public void setAnimScript(UnitAnimation ascript)
     {
         this.animScript = ascript;
     }
-
-	public void setProjectile(int level)
-	{
-		this.proj_obj = projectiles [level];
-	}
 }

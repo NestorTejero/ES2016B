@@ -22,6 +22,7 @@ GameObject:
   - 33: {fileID: 33000013261260516}
   - 23: {fileID: 23000012569671148}
   - 95: {fileID: 95000012390861510}
+  - 64: {fileID: 64000014029813626}
   m_Layer: 8
   m_Name: TowerModel
   m_TagString: Tower
@@ -72,7 +73,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000011863964682}
   - 136: {fileID: 136000013266248522}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: FireRange
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -86,7 +87,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000011397538348}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 39.1, y: 9.4, z: -33.5}
+  m_LocalPosition: {x: 39.1, y: -0.35, z: -3.1}
   m_LocalScale: {x: 1, y: 1, z: 1.0000004}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
@@ -101,10 +102,10 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000012882011190}
-  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 75, y: 10, z: -95}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 4000011410470234}
   m_RootOrder: 1
@@ -186,6 +187,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!64 &64000014029813626
+MeshCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000010893995726}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Convex: 1
+  m_Mesh: {fileID: 4300000, guid: 791bdb27c1bbc6b46b97929351d80d32, type: 3}
 --- !u!95 &95000012390861510
 Animator:
   serializedVersion: 3
@@ -216,7 +229,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   baseCooldown: 1
   baseDamage: 10
-  baseRange: 15
+  baseRange: 50
   projectiles:
   - {fileID: 1000012011802270, guid: dd4ce48133aa3a64db2f85c879d52083, type: 2}
   - {fileID: 1000011754033404, guid: ad6c678cc9e0b4f448addc0e49a29d4b, type: 2}
@@ -257,7 +270,7 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
-  m_Radius: 100
+  m_Radius: 50
   m_Height: 30
   m_Direction: 2
-  m_Center: {x: 1, y: 0, z: 7}
+  m_Center: {x: 0, y: 0, z: 0}
