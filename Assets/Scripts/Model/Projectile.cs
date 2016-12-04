@@ -14,6 +14,7 @@ public class Projectile : MonoBehaviour
 	private float angle;
 	private float gravity;
 	private float elapse_time;
+    public AudioClip shootSound;
 
 
     private void Start()
