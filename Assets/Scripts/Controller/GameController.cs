@@ -64,7 +64,7 @@ public class GameController : MonoBehaviour
         else if (dead is Unit)
         {
             Debug.Log(((Unit) dead).name + " is dead.");
-            GameObject.FindGameObjectWithTag("Human").GetComponent<Player>().getMoney((Unit) dead);
+            GameObject.FindGameObjectWithTag("Human").GetComponent<Player>().GetMoney((Unit) dead);
         }
     }
 

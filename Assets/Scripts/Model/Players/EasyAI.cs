@@ -10,14 +10,14 @@ public class EasyAI : AI
         var shop = GameObject.FindGameObjectWithTag("Shop").GetComponent<UnitShop>();
         if (unitsWave < 20)
         {
-            var availableUnits = shop.GetPurchasable(money.GetNumCoins());
+            var availableUnits = shop.GetPurchasable(numCoins);
             var unit = availableUnits[0];
-            if (shop.IsPurchasable(unit, money.GetNumCoins()))
+            if (shop.IsPurchasable(unit, numCoins))
             {
                 shop.Purchase(unit);
                 Debug.Log("NEW UNIT " + unit.name + " PURCHASED.");
                 unitsWave += 1;
-                money.Spend(unit.purchaseCost);
+                numCoins -= unit.purchaseCost;
             }
         }
         else

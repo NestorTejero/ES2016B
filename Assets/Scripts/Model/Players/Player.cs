@@ -3,32 +3,41 @@
 public class Player : MonoBehaviour
 {
     public int initialCoins;
-    protected MoneyManager money;
+    protected int numCoins, unitsWave;
     private ScoreManager score;
 
     private void Start()
     {
-        money = new MoneyManager(initialCoins);
-        APIHUD.instance.setMoney(money.GetNumCoins().ToString());
+        numCoins = initialCoins;
+        APIHUD.instance.setMoney(numCoins.ToString());
         score = new ScoreManager();
     }
 
-    public void getMoney(Unit deadUnit)
+    public void AddCoins(int coins)
+    {
+        numCoins += coins;
+        APIHUD.instance.setMoney(numCoins.ToString());
+    }
+
+    public void SpendCoins(int coins)
+    {
+        AddCoins(-coins);
+    }
+
+    public void GetMoney(Unit deadUnit)
     {
         Debug.Log("Oh! I've received " + deadUnit.rewardCoins + " coins! :D yay");
-        money.AddDeadUnit(deadUnit);
-        APIHUD.instance.setMoney(money.GetNumCoins().ToString());
-        score.AddDeadUnit(deadUnit);
+        AddCoins(deadUnit.rewardCoins);
+        score.Add(deadUnit.rewardCoins);
     }
+
+	public int GetNumCoins(){
+		return numCoins;
+	}
 
     public void ChangeWave()
     {
-        money.Add(1000);
-        APIHUD.instance.setMoney(money.GetNumCoins().ToString());
         score.Add(1000);
+        AddCoins(1000);
     }
-
-	public int getMoney(){
-		return numCoins;
-	}
 }

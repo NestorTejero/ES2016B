@@ -2,12 +2,11 @@
 
 public abstract class AI : Player
 {
-    protected int unitsWave;
     public abstract void Play();
 
     protected void Start()
     {
-        money = new MoneyManager(initialCoins);
+        numCoins = initialCoins;
         unitsWave = 0;
         InvokeRepeating("Play", 15.0f, 2.0f);
         InvokeRepeating("AutoCoins", 0.0f, 1.0f);
@@ -28,6 +27,6 @@ public abstract class AI : Player
 
     protected void AutoCoins()
     {
-        money.Add(5);
+        numCoins += 5;
     }
 }
