@@ -31,6 +31,9 @@ public class Projectile : MonoBehaviour
     {
         Debug.Log("------------------------------->Shoot");
 
+		this.proj.transform.position = Vector3.Slerp (this.proj.transform.position, this.target_position, Time.deltaTime);
+
+		/*
 		// Calculate distance to target
 		float distance = Vector3.Distance(this.proj.transform.position, this.target_position);
 
@@ -47,6 +50,7 @@ public class Projectile : MonoBehaviour
 		this.proj.transform.Translate(0, (Vy - (gravity * elapse_time)) * Time.deltaTime, Vx * Time.deltaTime);
 
 		elapse_time += Time.deltaTime;
+		*/
 	}
 
     public void Shoot(CanReceiveDamage target, float damage)
