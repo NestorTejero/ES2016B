@@ -14,7 +14,7 @@ public abstract class AI : Player
 
     /* Give human player time to upgrade or repair */
 
-    public void timeToUpgrade()
+    public new void ChangeWave()
     {
         CancelInvoke("Play");
         CancelInvoke("AutoCoins");

@@ -14,6 +14,7 @@ public class Tower : MonoBehaviour, CanUpgrade, HUDSubject
     // To upgrade when there are enough coins
     public void Upgrade()
     {
+        GameObject.FindGameObjectWithTag("Human").GetComponent<Player>().SpendCoins((int)upgradeCost);
         weapon.Upgrade();
         currentLevel++;
         NotifyHUD();
@@ -26,7 +27,7 @@ public class Tower : MonoBehaviour, CanUpgrade, HUDSubject
         {
             Damage = weapon.getCurrentDamage().ToString(),
             Range = weapon.getCurrentRange().ToString(),
-			VisibleUpgradeButton = IsUpgradeable(GameObject.FindGameObjectWithTag("Human").GetComponent<Player>().getMoney())
+			VisibleUpgradeButton = IsUpgradeable(GameObject.FindGameObjectWithTag("Human").GetComponent<Player>().GetNumCoins())
         };
 
         APIHUD.instance.notifyChange(this, updateInfo);
