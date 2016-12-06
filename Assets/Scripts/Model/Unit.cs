@@ -119,7 +119,7 @@ public class Unit : MonoBehaviour, CanReceiveDamage, HUDSubject
     public void Die()
     {
 
-        //Stop VavMesh Agent From Moving Further
+        //Stop NavMesh Agent From Moving Further
         agent.enabled = false;
         
 		//Disable Collider to avoid colliding with projectiles when dead 

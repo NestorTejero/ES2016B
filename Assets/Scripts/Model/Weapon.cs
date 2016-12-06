@@ -105,7 +105,7 @@ public class Weapon : MonoBehaviour
             var target = targets[0];
 
             // Check if target is already dead
-            if (target.Equals(null))
+			if (target.Equals(null) || target == null)
             {
                 Debug.Log(gameObject.name + ": TARGET ALREADY DEAD");
                 removeTarget(target);
