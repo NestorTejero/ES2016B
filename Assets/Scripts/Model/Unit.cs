@@ -115,10 +115,9 @@ public class Unit : MonoBehaviour, CanReceiveDamage, HUDSubject
    /*
     * This funcion Kills Unit and Plays Necesary Sounds and Animations
     *
-    * */
+    */
     public void Die()
     {
-
         //Stop NavMesh Agent From Moving Further
         agent.enabled = false;
         
@@ -128,7 +127,6 @@ public class Unit : MonoBehaviour, CanReceiveDamage, HUDSubject
         GameController.instance.notifyDeath(this); // Tell controller I'm dead
 
 		//PLAY DIE SOUND HERE
-
 
         animScript.Die();
 
