@@ -31,10 +31,10 @@ public class Projectile : MonoBehaviour
     {
         Debug.Log("------------------------------->Shoot");
 
+		/*
 		// Calculate distance to target
 		float distance = Vector3.Distance(this.proj.transform.position, this.target_position);
 
-		/*
 		// Calculate the velocity needed to throw the object to the target at specified angle.
 		float velocity = distance / (Mathf.Sin(2 * angle * Mathf.Deg2Rad) / gravity);
 
