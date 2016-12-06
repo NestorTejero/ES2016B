@@ -63,26 +63,28 @@ public class Projectile : MonoBehaviour
     }
 
 	// If enemy enters the range of attack
-	private void OnTriggerEnter(Collider col)
+	private void OnCollisionEnter(Collision col)
 	{
-		string tag = this.target.getGameObject ().tag;
-		GameObject collider = col.gameObject;
+		if (!target.Equals (null)) {
+			string target_tag = this.target.getGameObject ().tag;
+			GameObject collider = col.collider.gameObject;
 
-		if (collider.GetComponentInParent<Unit>() && tag == "Enemy")
-		{
-			Debug.Log("--------------------------------------------------------------- Projectile collision with Unit");
-			this.target.ReceiveDamage(damage);
+			if (collider.tag == "Enemy" && target_tag == "Unit") {
+				Debug.Log ("--------------------------------------------------------------- Projectile collision with Unit");
+				this.target.ReceiveDamage (damage);
+			}
+
+			if (collider.tag == "Building" && target_tag == "Building") {
+				Debug.Log ("--------------------------------------------------------------- Projectile collision with Building");
+				this.target.ReceiveDamage (damage);
+			}	
+
 		}
-		if(collider.GetComponent<Building>() && tag == "Building")
-		{
-			Debug.Log("--------------------------------------------------------------- Projectile collision with Building");
-			this.target.ReceiveDamage(damage);
-		}	
 
+		Destroy (this, 1.0f);
 		/*		
-		if ((collider.GetComponentInParent<Unit>() && tag == "Enemy") || (collider.GetComponent<Building>() && tag == "Building"))
+		if ((collider.tag == "Enemy" && target_tag == "Unit") || (collider.tag = "Building" && target_tag == "Building"))
 		{
-			Debug.Log("------------------------------ Projectile collision with Target");
 			this.target.ReceiveDamage(damage);
 		}
 		*/

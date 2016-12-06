@@ -593,6 +593,7 @@ GameObject:
   - 95: {fileID: 95000013598499900}
   - 136: {fileID: 136000013006767752}
   - 114: {fileID: 114000011863687550}
+  - 54: {fileID: 54000013453037300}
   m_Layer: 0
   m_Name: Model
   m_TagString: Enemy
@@ -669,7 +670,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000012803177534}
   - 136: {fileID: 136000012314590818}
-  - 54: {fileID: 54000012028516140}
   - 195: {fileID: 195000011710181134}
   - 114: {fileID: 114000010340437874}
   - 114: {fileID: 114000011059578548}
@@ -1673,12 +1673,12 @@ Transform:
   m_Children: []
   m_Father: {fileID: 4000011808364834}
   m_RootOrder: 0
---- !u!54 &54000012028516140
+--- !u!54 &54000013453037300
 Rigidbody:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000013263705146}
+  m_GameObject: {fileID: 1000012871979134}
   serializedVersion: 2
   m_Mass: 1
   m_Drag: 0
@@ -1686,7 +1686,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 126
   m_CollisionDetection: 0
 --- !u!95 &95000013598499900
 Animator:
@@ -1737,7 +1737,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   baseCooldown: 1
-  baseDamage: 20
+  baseDamage: 2
   baseRange: 8
   upgradeFactor: 1.1
   projectiles:

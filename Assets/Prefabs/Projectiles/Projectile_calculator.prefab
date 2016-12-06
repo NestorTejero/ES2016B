@@ -222,7 +222,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4afcdf504eb034419143c4ba1751568, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 300
+  speed: 1
   shootSound: {fileID: 8300000, guid: 4e45ccabf6349f8468162e17337781e2, type: 3}
 --- !u!135 &135000013463912912
 SphereCollider:
@@ -231,7 +231,7 @@ SphereCollider:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000012771228736}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 2
