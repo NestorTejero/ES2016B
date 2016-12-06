@@ -25,8 +25,7 @@ GameObject:
   - 114: {fileID: 114000013154992960}
   - 65: {fileID: 65000012229569138}
   - 114: {fileID: 114000013401498404}
-  - 114: {fileID: 114000011096287438}
-  - 114: {fileID: 114000010461655158}
+  - 54: {fileID: 54000013837821220}
   m_Layer: 8
   m_Name: EdificiUB
   m_TagString: Building
@@ -112,6 +111,21 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000011756980988}
   m_Mesh: {fileID: 4300000, guid: 9f679d75d350f7e47accab1424c3379c, type: 3}
+--- !u!54 &54000013837821220
+Rigidbody:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011756980988}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 126
+  m_CollisionDetection: 0
 --- !u!65 &65000012229569138
 BoxCollider:
   m_ObjectHideFlags: 1

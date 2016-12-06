@@ -34,8 +34,14 @@ public class Projectile : MonoBehaviour
 		// Calculate distance to target
 		float distance = Vector3.Distance(this.proj.transform.position, this.target_position);
 
+		/*
 		// Calculate the velocity needed to throw the object to the target at specified angle.
-		//float velocity = distance / (Mathf.Sin(2 * angle * Mathf.Deg2Rad) / gravity);
+		float velocity = distance / (Mathf.Sin(2 * angle * Mathf.Deg2Rad) / gravity);
+
+		// Extract the X  Y componenent of the velocity
+		float Vx = Mathf.Sqrt(velocity) * Mathf.Cos(angle * Mathf.Deg2Rad);
+		float Vy = Mathf.Sqrt(velocity) * Mathf.Sin(angle * Mathf.Deg2Rad);
+		*/
 
 		// Extract the X  Y componenent of the velocity
 		float Vx = Mathf.Sqrt(this.speed) * Mathf.Cos(angle * Mathf.Deg2Rad);
@@ -59,16 +65,27 @@ public class Projectile : MonoBehaviour
 	// If enemy enters the range of attack
 	private void OnTriggerEnter(Collider col)
 	{
-		if (col.gameObject.GetComponentInParent<Unit>())
+		string tag = this.target.getGameObject ().tag;
+		GameObject collider = col.gameObject;
+
+		if (collider.GetComponentInParent<Unit>() && tag == "Enemy")
 		{
-			Debug.Log("----------------------------------------------------------------Projectile collision with Unit");
+			Debug.Log("--------------------------------------------------------------- Projectile collision with Unit");
 			this.target.ReceiveDamage(damage);
 		}
-		if(col.gameObject.GetComponent<Building>())
+		if(collider.GetComponent<Building>() && tag == "Building")
 		{
-			Debug.Log("----------------------------------------------------------------Projectile collision with Building");
+			Debug.Log("--------------------------------------------------------------- Projectile collision with Building");
 			this.target.ReceiveDamage(damage);
-		}				
+		}	
+
+		/*		
+		if ((collider.GetComponentInParent<Unit>() && tag == "Enemy") || (collider.GetComponent<Building>() && tag == "Building"))
+		{
+			Debug.Log("------------------------------ Projectile collision with Target");
+			this.target.ReceiveDamage(damage);
+		}
+		*/
 	}
 		
 }
