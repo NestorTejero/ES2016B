@@ -1803,8 +1803,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   baseHealth: 10
-  damage: 0
   goal: {fileID: 4000012602783024, guid: c839f3d5ec503fe429715f930afaf77d, type: 2}
+  damage: 0
   moveSpeed: 10
   purchaseCost: 8
   rewardCoins: 10
@@ -1836,12 +1836,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   baseCooldown: 1
   baseDamage: 20
-  baseRange: 1
+  baseRange: 4
+  upgradeFactor: 1.1
   projectiles:
   - {fileID: 1000012144391894, guid: ecf0109ef1d3ac6408373e89d3f53369, type: 2}
   proj_origin: {fileID: 1000011473136326}
   shootSound: {fileID: 8300000, guid: cf73db8e4891a754791d586816040dff, type: 3}
-  upgradeFactor: 1.1
 --- !u!136 &136000011654396924
 CapsuleCollider:
   m_ObjectHideFlags: 1
@@ -1852,9 +1852,9 @@ CapsuleCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.5
-  m_Height: 1
+  m_Height: 2
   m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: 0.8, z: 0}
 --- !u!136 &136000011783701340
 CapsuleCollider:
   m_ObjectHideFlags: 1
