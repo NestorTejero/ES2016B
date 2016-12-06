@@ -22,6 +22,7 @@ public class Unit : MonoBehaviour, CanReceiveDamage, HUDSubject
     public Texture damagedTexture;
     private GameObject textureModel;
     private SkinnedMeshRenderer skin;
+
     // Receive damage by weapon
     public void ReceiveDamage(float damage)
     {
@@ -34,7 +35,7 @@ public class Unit : MonoBehaviour, CanReceiveDamage, HUDSubject
         catch (Exception)
         {
             NotifyHUD();
-	    this.Die();
+	    	this.Die();
         }
     }
 

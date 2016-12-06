@@ -51,10 +51,7 @@ public class Weapon : MonoBehaviour
         source_death = GameObject.Find("Death Audio Source").GetComponent<AudioSource>();
         source_shoot = GameObject.Find("Shoot Audio Source").GetComponent<AudioSource>();
         Debug.Log("WEAPON CREATED");
-
-
-        
-    }
+	}
 
     // Upgrade weapon features
     public void Upgrade()
@@ -126,17 +123,17 @@ public class Weapon : MonoBehaviour
             // Play shoot sound
             if (!source_shoot.isPlaying)
                 source_shoot.PlayOneShot(shootSound);
+
+			//Animation data
+			if (tag == "Unit")
+			{
+				animScript.Attack();
+			}
+
             //Creates projectile with its properties and destroys it after 3 seconds
-            var proj_clone =
-                (GameObject)
-                Instantiate(proj_obj, proj_origin.transform.position, proj_origin.transform.rotation);
+            var proj_clone = (GameObject) Instantiate(proj_obj, proj_origin.transform.position, proj_origin.transform.rotation);
             proj_clone.GetComponent<Projectile>().Shoot(target, currentDamage);
             Destroy(proj_clone, 3.0f);
-        }
-        //Animation data
-        if (tag == "Unit")
-        {
-            animScript.Attack();
         }
     }
 
@@ -149,8 +146,13 @@ public class Weapon : MonoBehaviour
     {
         source_shoot = shoot;
     }
+
     public void setAnimScript(UnitAnimation ascript)
     {
         this.animScript = ascript;
     }
+
+	public void setProjectile(int level){
+		this.proj_obj =this.projectiles [level];
+	}
 }
