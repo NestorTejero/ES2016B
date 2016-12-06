@@ -252,6 +252,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 300
+  shootSound: {fileID: 8300000, guid: 9f762e7885c4301458ac0d9515da1d02, type: 3}
 --- !u!135 &135000010212945962
 SphereCollider:
   m_ObjectHideFlags: 1

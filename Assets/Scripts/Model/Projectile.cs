@@ -7,6 +7,7 @@
 public class Projectile : MonoBehaviour
 {
 	public float speed;
+	public AudioClip shootSound;
 	private CanReceiveDamage target;
 	private GameObject proj;
     private Vector3 target_position;
@@ -14,8 +15,6 @@ public class Projectile : MonoBehaviour
 	private float angle;
 	private float gravity;
 	private float elapse_time;
-    public AudioClip shootSound;
-
 
     private void Start()
     {
@@ -61,15 +60,15 @@ public class Projectile : MonoBehaviour
     }
 
 	// If enemy enters the range of attack
-	private void OnTriggerEnter(Collider col)
+	private void OnCollisionEnter(Collision col)
 	{
 		Debug.Log ("PROJECTILE ON ENTER ***************************************************************");
-		if (col.gameObject.GetComponent<Unit>())
+		if (col.collider.gameObject.GetComponent<Unit>())
 		{
 			Debug.Log("----------------------------------------------------------------Projectile collision with Unit");
 			//this.target.ReceiveDamage(damage);
 		}
-		if(col.gameObject.GetComponent<Building>())
+		if(col.collider.gameObject.GetComponent<Building>())
 		{
 			Debug.Log("----------------------------------------------------------------Projectile collision with Building");
 			//this.target.ReceiveDamage(damage);
