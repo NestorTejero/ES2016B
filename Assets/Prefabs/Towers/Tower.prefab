@@ -87,7 +87,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000011397538348}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 39.1, y: -0.35, z: -3.1}
+  m_LocalPosition: {x: 39.1, y: 9.4, z: -33.5}
   m_LocalScale: {x: 1, y: 1, z: 1.0000004}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
@@ -229,14 +229,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   baseCooldown: 1
   baseDamage: 10
-  baseRange: 50
+  baseRange: 35
+  upgradeFactor: 1.1
   projectiles:
   - {fileID: 1000012011802270, guid: dd4ce48133aa3a64db2f85c879d52083, type: 2}
   - {fileID: 1000011754033404, guid: ad6c678cc9e0b4f448addc0e49a29d4b, type: 2}
   - {fileID: 1000011736753480, guid: 39b4983788ab66c4dbe269117f4af8dc, type: 2}
   proj_origin: {fileID: 1000011089548668}
   shootSound: {fileID: 8300000, guid: 2a055584652ad8c4ab2ad9c3b19a043f, type: 3}
-  upgradeFactor: 1.1
 --- !u!114 &114000013366404552
 MonoBehaviour:
   m_ObjectHideFlags: 1
