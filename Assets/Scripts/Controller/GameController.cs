@@ -13,11 +13,16 @@ public class GameController : MonoBehaviour
 
     public int totalWaves;
 
+	public int spawnPoint1;
+	public int spawnPoint2;
+
     // Use this for initialization
 
     private void Start()
     {
         currentWave = 1;
+
+		generateSpawnPoint ();
 
         switch (PersistentValues.difficulty)
         {
@@ -77,8 +82,22 @@ public class GameController : MonoBehaviour
             SceneManager.LoadScene("MainMenu");
         ai.ChangeWave();
 
+		generateSpawnPoint ();
+
         APIHUD.instance.setWave(currentWave.ToString());
 
         GameObject.FindGameObjectWithTag("Human").GetComponent<Player>().ChangeWave();
     }
+
+	public void generateSpawnPoint()
+	{
+		spawnPoint1 =  Random.Range(0, 4);
+
+		spawnPoint2 =  Random.Range(0, 4);
+
+		while (spawnPoint2 == spawnPoint1) {
+			spawnPoint2 =  Random.Range(0, 4);
+		}
+	}
+		
 }
