@@ -22,7 +22,6 @@ public class Unit : MonoBehaviour, CanReceiveDamage, HUDSubject
     public Texture damagedTexture;
     private GameObject textureModel;
     private SkinnedMeshRenderer skin;
-
     // Receive damage by weapon
     public void ReceiveDamage(float damage)
     {
@@ -35,7 +34,7 @@ public class Unit : MonoBehaviour, CanReceiveDamage, HUDSubject
         catch (Exception)
         {
             NotifyHUD();
-	    	this.Die();
+	    this.Die();
         }
     }
 
@@ -115,18 +114,18 @@ public class Unit : MonoBehaviour, CanReceiveDamage, HUDSubject
    /*
     * This funcion Kills Unit and Plays Necesary Sounds and Animations
     *
-    */
+    * */
     public void Die()
     {
-        //Stop NavMesh Agent From Moving Further
+
+        //Stop VavMesh Agent From Moving Further
         agent.enabled = false;
-        
-		//Disable Collider to avoid colliding with projectiles when dead 
-		gameObject.GetComponent<CapsuleCollider>().enabled = false;
+        //Disable Colider to avoid colliding with projectiles when dead
+        gameObject.GetComponent<CapsuleCollider>().enabled = false;
         model.GetComponent<CapsuleCollider>().enabled = false;
         GameController.instance.notifyDeath(this); // Tell controller I'm dead
+        //PLAY DIE SOUND HERE
 
-		//PLAY DIE SOUND HERE
 
         animScript.Die();
 
