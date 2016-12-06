@@ -125,7 +125,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000012530387730}
   - 136: {fileID: 136000011944132906}
-  - 54: {fileID: 54000011525660794}
   - 195: {fileID: 195000013958135064}
   - 114: {fileID: 114000013163301426}
   - 114: {fileID: 114000011686930338}
@@ -554,6 +553,7 @@ GameObject:
   - 95: {fileID: 95000012362533046}
   - 136: {fileID: 136000013990508202}
   - 114: {fileID: 114000010197323066}
+  - 54: {fileID: 54000010577490724}
   m_Layer: 0
   m_Name: Model
   m_TagString: Enemy
@@ -1673,12 +1673,12 @@ Transform:
   m_Children: []
   m_Father: {fileID: 4000011756432538}
   m_RootOrder: 0
---- !u!54 &54000011525660794
+--- !u!54 &54000010577490724
 Rigidbody:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000010714520526}
+  m_GameObject: {fileID: 1000012526959332}
   serializedVersion: 2
   m_Mass: 1
   m_Drag: 0
@@ -1686,7 +1686,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 126
   m_CollisionDetection: 0
 --- !u!95 &95000012362533046
 Animator:
@@ -1729,11 +1729,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   baseCooldown: 1
   baseDamage: 20
-  baseRange: 1
-  proj_obj: {fileID: 0}
-  proj_origin: {fileID: 0}
-  shootSound: {fileID: 8300000, guid: cf73db8e4891a754791d586816040dff, type: 3}
+  baseRange: 8
   upgradeFactor: 1.1
+  projectiles:
+  - {fileID: 1000014186153920, guid: 2c6000bec675c9b4da5f643d44a915a8, type: 2}
+  proj_origin: {fileID: 1000010714520526}
+  shootSound: {fileID: 8300000, guid: cf73db8e4891a754791d586816040dff, type: 3}
 --- !u!114 &114000013163301426
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1746,8 +1747,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   baseHealth: 10
-  damage: 0
   goal: {fileID: 4000012602783024, guid: c839f3d5ec503fe429715f930afaf77d, type: 2}
+  damage: 0
   moveSpeed: 10
   purchaseCost: 9
   rewardCoins: 10
@@ -1788,10 +1789,10 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 1
+  m_Radius: 1
+  m_Height: 2
   m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: 0.8, z: 0}
 --- !u!137 &137000010822974484
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1
