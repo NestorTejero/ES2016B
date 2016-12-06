@@ -8,6 +8,7 @@ public class Projectile : MonoBehaviour
 {
 	public float speed;
 	public AudioClip shootSound;
+
 	private CanReceiveDamage target;
 	private GameObject proj;
     private Vector3 target_position;
@@ -30,9 +31,6 @@ public class Projectile : MonoBehaviour
     {
         Debug.Log("------------------------------->Shoot");
 
-		this.proj.transform.position = Vector3.Slerp (this.proj.transform.position, this.target_position, Time.deltaTime);
-
-		/*
 		// Calculate distance to target
 		float distance = Vector3.Distance(this.proj.transform.position, this.target_position);
 
@@ -49,7 +47,6 @@ public class Projectile : MonoBehaviour
 		this.proj.transform.Translate(0, (Vy - (gravity * elapse_time)) * Time.deltaTime, Vx * Time.deltaTime);
 
 		elapse_time += Time.deltaTime;
-		*/
 	}
 
     public void Shoot(CanReceiveDamage target, float damage)
@@ -60,33 +57,18 @@ public class Projectile : MonoBehaviour
     }
 
 	// If enemy enters the range of attack
-	private void OnCollisionEnter(Collision col)
+	private void OnTriggerEnter(Collider col)
 	{
-		Debug.Log ("PROJECTILE ON ENTER ***************************************************************");
-		if (col.collider.gameObject.GetComponent<Unit>())
+		if (col.gameObject.GetComponentInParent<Unit>())
 		{
 			Debug.Log("----------------------------------------------------------------Projectile collision with Unit");
-			//this.target.ReceiveDamage(damage);
+			this.target.ReceiveDamage(damage);
 		}
-		if(col.collider.gameObject.GetComponent<Building>())
+		if(col.gameObject.GetComponent<Building>())
 		{
 			Debug.Log("----------------------------------------------------------------Projectile collision with Building");
-			//this.target.ReceiveDamage(damage);
+			this.target.ReceiveDamage(damage);
 		}				
 	}
-
-
-	// If enemy enters the range of attack
-	private void OnTriggerExit(Collider col)
-	{
-		Debug.Log ("PROJECTILE ON EXIT ***************************************************************");
-		if (col.gameObject.GetComponent<Unit>())
-		{
-			Debug.Log("----------------------------------------------------------------Projectile exited Unit");
-		}
-		if (col.gameObject.GetComponent<Building>()) 
-		{
-			Debug.Log ("----------------------------------------------------------------Projectile exited Building");
-		}
-	}
+		
 }

@@ -9,14 +9,18 @@ public class Weapon : MonoBehaviour
 	public float upgradeFactor;
 	public List<GameObject> projectiles;
 	public GameObject proj_origin; // Projectile origin
+
+	// TODO this is already in Projectile
 	public AudioClip shootSound;
 
 	private float currentCooldown;
     private float currentDamage;
     private float currentRange;
-
     private AudioClip[] death;
 	private GameObject proj_obj; // Projectile object
+
+	// TODO source_shoot should go in Projectile
+	// TODO source_death should go in Unit
     private AudioSource source_shoot, source_death;
     private List<CanReceiveDamage> targets;
 	private UnitAnimation animScript;
@@ -48,6 +52,8 @@ public class Weapon : MonoBehaviour
             (AudioClip) Resources.Load("Sound/Effects/Death 3")
         };
 
+		// TODO source_shoot assignation should go in Projectile
+		// TODO source_death assignation should go in Unit
         source_death = GameObject.Find("Death Audio Source").GetComponent<AudioSource>();
         source_shoot = GameObject.Find("Shoot Audio Source").GetComponent<AudioSource>();
         Debug.Log("WEAPON CREATED");
@@ -81,6 +87,7 @@ public class Weapon : MonoBehaviour
     public void removeTarget(CanReceiveDamage target)
     {
         targets.Remove(target);
+
         // TODO Careful! This is not the moment when the enemy dies (it is just removed from the target list)
         // Play death sound
         if (!source_death.isPlaying)
@@ -120,6 +127,7 @@ public class Weapon : MonoBehaviour
 
         if (target != null)
         {
+			// TODO this should be in Projectile on Start()
             // Play shoot sound
             if (!source_shoot.isPlaying)
                 source_shoot.PlayOneShot(shootSound);
@@ -137,11 +145,13 @@ public class Weapon : MonoBehaviour
         }
     }
 
+	// TODO this should be in Unit
     public void setSourceDeath(AudioSource death)
     {
         source_death = death;
     }
 
+	// TODO this should be in Projectile
     public void setSourceShoot(AudioSource shoot)
     {
         source_shoot = shoot;

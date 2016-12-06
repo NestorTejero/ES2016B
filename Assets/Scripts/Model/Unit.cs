@@ -121,11 +121,13 @@ public class Unit : MonoBehaviour, CanReceiveDamage, HUDSubject
 
         //Stop VavMesh Agent From Moving Further
         agent.enabled = false;
-        //Disable Colider to avoid colliding with projectiles when dead
-        gameObject.GetComponent<CapsuleCollider>().enabled = false;
+        
+		//Disable Collider to avoid colliding with projectiles when dead 
+		gameObject.GetComponent<CapsuleCollider>().enabled = false;
         model.GetComponent<CapsuleCollider>().enabled = false;
         GameController.instance.notifyDeath(this); // Tell controller I'm dead
-        //PLAY DIE SOUND HERE
+
+		//PLAY DIE SOUND HERE
 
 
         animScript.Die();
