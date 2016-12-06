@@ -41,7 +41,7 @@ public class Projectile : MonoBehaviour
 			string target_tag = this.target.getGameObject ().tag;
 			string col_tag = col.collider.gameObject.tag;
 
-			if ((col_tag == "Enemy" && target_tag == "Unit") || (col_tag = "Building" && target_tag == "Building")) {
+			if ((col_tag == "Enemy" && target_tag == "Unit") || (col_tag == "Building" && target_tag == "Building")) {
 				this.target.ReceiveDamage (damage);
 			}
 		}
