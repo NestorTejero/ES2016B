@@ -6,10 +6,11 @@ public class Weapon : MonoBehaviour
     public float baseCooldown;
     public float baseDamage;
     public float baseRange;
-    private float currentCooldown;
 
+    private float currentCooldown;
     private float currentDamage;
     private float currentRange;
+
     private AudioClip[] death;
     public GameObject proj_obj; // Projectile prefab
     public GameObject proj_origin; // Projectile origin
@@ -18,6 +19,7 @@ public class Weapon : MonoBehaviour
     private List<CanReceiveDamage> targets;
     public float upgradeFactor;
 
+    private UnitAnimation animScript;
     // Use this for initialization
     private void Start()
     {
@@ -46,6 +48,9 @@ public class Weapon : MonoBehaviour
         source_death = GameObject.Find("Death Audio Source").GetComponent<AudioSource>();
         source_shoot = GameObject.Find("Shoot Audio Source").GetComponent<AudioSource>();
         Debug.Log("WEAPON CREATED");
+
+
+        
     }
 
     // Upgrade weapon features
@@ -58,6 +63,11 @@ public class Weapon : MonoBehaviour
     public float getCurrentDamage()
     {
         return currentDamage;
+    }
+
+    public float getCurrentRange()
+    {
+        return currentRange;
     }
 
     // Add target to list
@@ -120,6 +130,11 @@ public class Weapon : MonoBehaviour
             proj_clone.GetComponent<Projectile>().Shoot(target, currentDamage);
             Destroy(proj_clone, 3.0f);
         }
+        //Animation data
+        if (tag == "Unit")
+        {
+            animScript.Attack();
+        }
     }
 
     public void setSourceDeath(AudioSource death)
@@ -130,5 +145,9 @@ public class Weapon : MonoBehaviour
     public void setSourceShoot(AudioSource shoot)
     {
         source_shoot = shoot;
+    }
+    public void setAnimScript(UnitAnimation ascript)
+    {
+        this.animScript = ascript;
     }
 }

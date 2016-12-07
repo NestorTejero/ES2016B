@@ -8,7 +8,7 @@
         public DamageCostUnit(Unit unit)
         {
             this.unit = unit;
-            dmgCost = unit.damage/unit.purchaseCost;
+            dmgCost = unit.GetDamage()/unit.purchaseCost;
         }
     }
 }

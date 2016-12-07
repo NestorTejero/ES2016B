@@ -13,6 +13,7 @@ public class selectedObjectIndicator : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		
 		transform.Rotate (new Vector3(0, Time.deltaTime*50, 0));
 
 		if (gameObject != null) {
@@ -24,5 +25,9 @@ public class selectedObjectIndicator : MonoBehaviour {
 	public void setSelectedObject(GameObject gameObject, float heightObject){
 		this.gameObject = gameObject;
 		this.heightObject = heightObject;
+	}
+
+	public GameObject getSelectedObject(){
+		return this.gameObject;
 	}
 }

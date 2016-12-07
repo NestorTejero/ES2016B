@@ -23,4 +23,8 @@ public class Player : MonoBehaviour
 
         APIHUD.instance.setMoney(numCoins.ToString());
     }
+
+	public int getMoney(){
+		return numCoins;
+	}
 }
