@@ -158,7 +158,7 @@ public class TerrainGrid : MonoBehaviour
 
     public void toggleGrid()
     {
-		//GameObject.FindGameObjectWithTag ("MainCamera").GetComponent<RTSCamera> ().changecanMove ();
+		GameObject.FindGameObjectWithTag ("MainCamera").GetComponent<RTSCamera> ().changecanMove ();
 		UpdateCells();
 
         gridVisible = !gridVisible;
