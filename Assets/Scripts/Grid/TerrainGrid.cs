@@ -72,8 +72,6 @@ public class TerrainGrid : MonoBehaviour
     {
         boxPos = gridBox.transform.position;
 
-        UpdateCells();
-
         GetInputs();
 
         if (gridVisible)
@@ -158,8 +156,11 @@ public class TerrainGrid : MonoBehaviour
      * this function toggle on/off every cell of the grid
      */
 
-    private void toggleGrid()
+    public void toggleGrid()
     {
+		//GameObject.FindGameObjectWithTag ("MainCamera").GetComponent<RTSCamera> ().changecanMove ();
+		UpdateCells();
+
         gridVisible = !gridVisible;
         for (var i = 0; i < gridWidth; ++i)
             for (var j = 0; j < gridHeight; ++j)
@@ -190,7 +191,7 @@ public class TerrainGrid : MonoBehaviour
      * if needed
      */
 
-    private void UpdateCells()
+	public void UpdateCells()
     {
         for (var z = 0; z < gridHeight; z++)
             for (var x = 0; x < gridWidth; x++)

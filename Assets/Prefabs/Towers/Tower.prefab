@@ -249,7 +249,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   upgradeCost: 1
-  buildCost: 1100
+  buildCost: 25
 --- !u!114 &114000014177185980
 MonoBehaviour:
   m_ObjectHideFlags: 1
