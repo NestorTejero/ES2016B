@@ -1595,6 +1595,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 543724235}
+  - 122: {fileID: 543724236}
   m_Layer: 0
   m_Name: sp1
   m_TagString: SpawnP
@@ -1616,6 +1617,17 @@ Transform:
   m_Children: []
   m_Father: {fileID: 124289409}
   m_RootOrder: 0
+--- !u!122 &543724236
+Halo:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 543724234}
+  m_Enabled: 0
+  m_Color:
+    serializedVersion: 2
+    rgba: 4278190335
+  m_Size: 10
 --- !u!1001 &547759749
 Prefab:
   m_ObjectHideFlags: 0
@@ -2975,6 +2987,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 878300465}
+  - 122: {fileID: 878300466}
   m_Layer: 0
   m_Name: sp4
   m_TagString: SpawnP
@@ -2996,6 +3009,17 @@ Transform:
   m_Children: []
   m_Father: {fileID: 124289409}
   m_RootOrder: 3
+--- !u!122 &878300466
+Halo:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 878300464}
+  m_Enabled: 0
+  m_Color:
+    serializedVersion: 2
+    rgba: 4278190335
+  m_Size: 10
 --- !u!1001 &882493377
 Prefab:
   m_ObjectHideFlags: 0
@@ -6183,6 +6207,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 1527893148}
+  - 122: {fileID: 1527893149}
   m_Layer: 0
   m_Name: sp3
   m_TagString: SpawnP
@@ -6204,6 +6229,17 @@ Transform:
   m_Children: []
   m_Father: {fileID: 124289409}
   m_RootOrder: 2
+--- !u!122 &1527893149
+Halo:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1527893147}
+  m_Enabled: 0
+  m_Color:
+    serializedVersion: 2
+    rgba: 4278190335
+  m_Size: 10
 --- !u!1001 &1552169145
 Prefab:
   m_ObjectHideFlags: 0
@@ -6456,6 +6492,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 1666149283}
+  - 122: {fileID: 1666149284}
   m_Layer: 0
   m_Name: sp2
   m_TagString: SpawnP
@@ -6477,6 +6514,17 @@ Transform:
   m_Children: []
   m_Father: {fileID: 124289409}
   m_RootOrder: 1
+--- !u!122 &1666149284
+Halo:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1666149282}
+  m_Enabled: 0
+  m_Color:
+    serializedVersion: 2
+    rgba: 4278190335
+  m_Size: 10
 --- !u!1 &1675039108
 GameObject:
   m_ObjectHideFlags: 0
