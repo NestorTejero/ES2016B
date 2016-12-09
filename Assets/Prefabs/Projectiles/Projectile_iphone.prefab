@@ -20,8 +20,9 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000010080178632}
   - 114: {fileID: 114000011916913222}
+  - 135: {fileID: 135000013505197476}
   m_Layer: 0
-  m_Name: Projectile_unit
+  m_Name: Projectile_iphone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -236,9 +237,9 @@ Rigidbody:
   m_Drag: 0
   m_AngularDrag: 0
   m_UseGravity: 1
-  m_IsKinematic: 1
+  m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 14
   m_CollisionDetection: 0
 --- !u!114 &114000011916913222
 MonoBehaviour:
@@ -251,3 +252,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4afcdf504eb034419143c4ba1751568, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speed: 1.1
+  shootSound: {fileID: 8300000, guid: 2e21f20226401a848a6ed9168ebf28af, type: 3}
+--- !u!135 &135000013505197476
+SphereCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000010710961544}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 2
+  m_Center: {x: 0, y: 0, z: 0}

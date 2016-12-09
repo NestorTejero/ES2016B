@@ -17,7 +17,8 @@ public class Tower : MonoBehaviour, CanUpgrade, HUDSubject
         GameObject.FindGameObjectWithTag("Human").GetComponent<Player>().SpendCoins((int)upgradeCost);
         weapon.Upgrade();
         currentLevel++;
-        NotifyHUD();
+		weapon.setProjectile (currentLevel);
+		NotifyHUD();
         Debug.Log("TOWER UPGRADED, Power: " + weapon.getCurrentDamage());
     }
 
