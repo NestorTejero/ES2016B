@@ -82,6 +82,8 @@ public class GameController : MonoBehaviour
             SceneManager.LoadScene("MainMenu");
         ai.ChangeWave();
 
+		desactivateRespawnAbility ();
+
 		generateSpawnPoint ();
 
         APIHUD.instance.setWave(currentWave.ToString());
@@ -98,6 +100,20 @@ public class GameController : MonoBehaviour
 		while (spawnPoint2 == spawnPoint1) {
 			spawnPoint2 =  Random.Range(0, 4);
 		}
+	}
+
+	public void activateRespawnAbility()
+	{
+		var respawns = GameObject.FindGameObjectsWithTag ("SpawnP");
+		((Behaviour)respawns [spawnPoint1].GetComponent ("Halo")).enabled = true;
+		((Behaviour)respawns [spawnPoint2].GetComponent ("Halo")).enabled = true;
+	}
+
+	public void desactivateRespawnAbility()
+	{
+		var respawns = GameObject.FindGameObjectsWithTag ("SpawnP");
+		((Behaviour)respawns [spawnPoint1].GetComponent ("Halo")).enabled = false;
+		((Behaviour)respawns [spawnPoint2].GetComponent ("Halo")).enabled = false;
 	}
 		
 }
