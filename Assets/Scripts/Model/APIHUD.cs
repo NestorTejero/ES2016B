@@ -64,7 +64,7 @@ public class APIHUD : MonoBehaviour
     {
         transform.FindChild("containerStats")
             .FindChild("container_info")
-            .FindChild("lblAttackSpeed")
+			.FindChild("imgAttackSpeed")
             .FindChild("txtAttackSpeed")
             .GetComponent<Text>()
             .text = atackSpeed;
@@ -74,7 +74,7 @@ public class APIHUD : MonoBehaviour
     {
         transform.FindChild("containerStats")
             .FindChild("container_info")
-            .FindChild("lblDamage")
+            .FindChild("imgDamage")
             .FindChild("txtDamage")
             .GetComponent<Text>()
             .text = damage;
@@ -84,7 +84,7 @@ public class APIHUD : MonoBehaviour
     {
         transform.FindChild("containerStats")
             .FindChild("container_info")
-            .FindChild("lblRange")
+            .FindChild("imgRange")
             .FindChild("txtRange")
             .GetComponent<Text>()
             .text = damage;
@@ -93,7 +93,7 @@ public class APIHUD : MonoBehaviour
     public void setWave(string wave)
     {
         transform.FindChild("containerGameStats")
-            .FindChild("lblWave")
+            .FindChild("imgWave")
             .FindChild("txtWave")
             .GetComponent<Text>()
             .text = wave;
@@ -102,7 +102,7 @@ public class APIHUD : MonoBehaviour
     public void setTime(string time)
     {
         transform.FindChild("containerGameStats")
-            .FindChild("lblTime")
+			.FindChild("imgTime")
             .FindChild("txtTime")
             .GetComponent<Text>()
             .text = time;
@@ -120,7 +120,7 @@ public class APIHUD : MonoBehaviour
     public void setPoints(string points)
     {
         transform.FindChild("containerGameStats")
-            .FindChild("lblPoints")
+            .FindChild("imgPoints")
             .FindChild("txtPoints")
             .GetComponent<Text>()
             .text = points;
@@ -129,7 +129,7 @@ public class APIHUD : MonoBehaviour
     public void setMoney(string money)
     {
         transform.FindChild("containerGameStats")
-            .FindChild("lblMoney")
+            .FindChild("imgMoney")
             .FindChild("txtMoney")
             .GetComponent<Text>()
             .text = money;
@@ -204,6 +204,12 @@ public class APIHUD : MonoBehaviour
 	public void setVisibleRepairButton(bool visible)
 	{
 		transform.FindChild("buttons").FindChild("container_buttons").FindChild("btn_Repair").gameObject.active = visible;
+		setOnClickFunctionRepair ();
+	}
+
+	public void setVisibleBuyTowerButton(bool visible)
+	{
+		transform.FindChild("buttons").FindChild("container_buttons").FindChild("btn_AddTower").gameObject.active = visible;
 		setOnClickFunctionRepair ();
 	}
 
