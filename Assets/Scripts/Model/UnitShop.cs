@@ -10,6 +10,7 @@ public class UnitShop : MonoBehaviour
 {
     public Transform[] respawns;
     public List<GameObject> units;
+    public AudioSource source;
 
     // Must be queried since it could change
     public List<Unit> GetAvailable()
@@ -38,5 +39,9 @@ public class UnitShop : MonoBehaviour
         var unitToPut = units.Where(x => x.GetComponent<Unit>().Equals(toPurchase)).ToList()[0];
         var spawnIndex = Random.Range(0, respawns.Length);
         Instantiate(unitToPut, respawns[spawnIndex].transform.position, respawns[spawnIndex].transform.rotation);
+
+        //Sound
+        if (!source.isPlaying)
+            source.PlayOneShot(source.clip);
     }
 }
