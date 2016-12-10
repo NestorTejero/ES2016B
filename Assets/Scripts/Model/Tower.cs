@@ -5,6 +5,7 @@ public class Tower : MonoBehaviour, CanUpgrade, HUDSubject
     private int currentLevel;
     public int upgradeCost;
     private Weapon weapon;
+	public int buildCost;
 
     public bool IsUpgradeable(int numCoins)
     {
