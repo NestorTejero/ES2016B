@@ -31,9 +31,27 @@ public class RTSCamera : MonoBehaviour
 
 	private Vector3 desiredPosition;
 
+
+	private bool canMove;
+
+	public bool getcanMove(){
+		return canMove;
+	}
+
+	public void setcanMove(bool can_move){
+		canMove = can_move;
+	}
+
+	public void changecanMove(){
+		canMove = !canMove;
+	}
+
+
 	// Use this for initialization
 	private void Start()
 	{
+		Cursor.lockState = CursorLockMode.Confined;
+
 		//initializing inputs to 0
 		panInput = 0.0f;
 		orbitInput = 0.0f;
@@ -49,6 +67,8 @@ public class RTSCamera : MonoBehaviour
 		//Debug.Log (terrainSize);
 
 		desiredPosition = transform.position;
+
+		setcanMove (true);
 
 	}
 
@@ -73,19 +93,22 @@ public class RTSCamera : MonoBehaviour
 		//if (position.allowZoom && zoomInput != 0.0)            
 		//cameraZoom();
 		//calling orbit function
-		if (orbit.allowOrbit)
+		if (orbit.allowOrbit && getcanMove())
+		//if (orbit.allowOrbit)
 			Rotate();
 		//calling movement by dragging function
 		//PanWorld();
-		//MoveCamera ();
+		if (getcanMove ()) MoveCamera ();
 	}
 
 	void FixedUpdate(){
 		//calling a function that checks for the camera to stay at the same distance to the ground
 		//HandleCameraDistance ();
-		MoveCamera ();
-		if (position.allowZoom && zoomInput != 0.0)            
-			cameraZoom();
+		if (getcanMove ()) {
+			//MoveCamera ();
+			if (position.allowZoom && zoomInput != 0.0)
+				cameraZoom ();
+		}
 	}
 
 	private void MoveCamera(){
@@ -138,7 +161,7 @@ public class RTSCamera : MonoBehaviour
 	}
 
 	private void cameraZoom(){
-		Debug.Log (zoomInput);
+		//Debug.Log (zoomInput);
 
 		float y = 0.0f;
 
