@@ -41,11 +41,30 @@ public class Building : MonoBehaviour, CanUpgrade, CanReceiveDamage, HUDSubject
     // To upgrade when there are enough coins
     public void Upgrade()
     {
+        GameObject.FindGameObjectWithTag("Human").GetComponent<Player>().SpendCoins((int)upgradeCost);
         health.Upgrade(upgradeFactor);
         currentLevel++;
         NotifyHUD();
         Debug.Log("BUILDING UPGRADED, TOTAL HP: " + health.GetTotalHealth());
     }
+
+	//To check if have enough money to buy the tower
+	public bool canBuild(){
+		int currentMoney = GameObject.FindGameObjectWithTag ("Human").GetComponent<Player> ().GetNumCoins ();
+		int towerCost = GameObject.Find ("Towers").GetComponentInChildren<Tower> ().buildCost;
+		if (currentMoney >= towerCost) {
+			Debug.Log("You have money to build");
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	//To spend the money in order to pay for the tower
+	public void buyTower(){
+		int towerCost = GameObject.Find ("Towers").GetComponentInChildren<Tower> ().buildCost;
+		GameObject.FindGameObjectWithTag ("Human").GetComponent<Player> ().SpendCoins (towerCost);
+	}
 
     public void NotifyHUD()
     {
@@ -53,8 +72,8 @@ public class Building : MonoBehaviour, CanUpgrade, CanReceiveDamage, HUDSubject
         {
             CurrentHealth = health.GetCurrentHealth(),
             TotalHealth = health.GetTotalHealth(),
-			VisibleUpgradeButton = IsUpgradeable(GameObject.FindGameObjectWithTag("Human").GetComponent<Player>().getMoney()),
-			VisibleRepairButton = IsRepairable(GameObject.FindGameObjectWithTag("Human").GetComponent<Player>().getMoney())
+			VisibleUpgradeButton = IsUpgradeable(GameObject.FindGameObjectWithTag("Human").GetComponent<Player>().GetNumCoins()),
+			VisibleRepairButton = IsRepairable(GameObject.FindGameObjectWithTag("Human").GetComponent<Player>().GetNumCoins())
         };
 
         APIHUD.instance.notifyChange(this, updateInfo);
@@ -76,6 +95,7 @@ public class Building : MonoBehaviour, CanUpgrade, CanReceiveDamage, HUDSubject
     // Repair the building
     public void Repair()
     {
+        GameObject.FindGameObjectWithTag("Human").GetComponent<Player>().SpendCoins((int)repairCost);
         health.AddHealth(repairQuantity);
         NotifyHUD();
         Debug.Log("BUILDING REPAIRED, CURRENT HP: " + health.GetCurrentHealth());

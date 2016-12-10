@@ -6,28 +6,46 @@
 
 public class Projectile : MonoBehaviour
 {
-    private Rigidbody proj;
+	public float speed;
+	public AudioClip shootSound;
+
+	private CanReceiveDamage target;
+	private GameObject proj;
     private Vector3 target_position;
+	private float damage;
 
     private void Start()
     {
-        proj = gameObject.GetComponentInChildren<Rigidbody>();
+		this.proj = this.gameObject;
+		// Rotate projectile to face the target.
+		this.proj.transform.rotation = Quaternion.LookRotation(this.target_position - this.proj.transform.position);
     }
 
     // Update is called once per frame
     private void Update()
     {
-        Debug.Log("------------------------------->Shoot");
-        var velocity = Vector3.zero;
-        proj.transform.position = Vector3.SmoothDamp(proj.transform.position, target_position, ref velocity,
-            Time.deltaTime);
-        //proj.transform.position = Vector3.Slerp(proj.transform.position, target_position, Time.deltaTime*2.0f);
-    }
+		this.proj.transform.position = Vector3.Slerp (this.proj.transform.position, this.target_position, Time.deltaTime*this.speed);
+	}
 
     public void Shoot(CanReceiveDamage target, float damage)
     {
-        target_position = target.getGameObject().transform.position;
-        target.ReceiveDamage(damage);
-        Debug.Log("DAMAGE ENEMY");
+		this.target = target;
+		this.target_position = target.getGameObject().transform.position;
+		this.damage = damage;
     }
+
+	// If enemy enters the range of attack
+	private void OnCollisionEnter(Collision col)
+	{
+		if (!target.Equals (null)) {
+			string target_tag = this.target.getGameObject ().tag;
+			string col_tag = col.collider.gameObject.tag;
+
+			if ((col_tag == "Enemy" && target_tag == "Unit") || (col_tag == "Building" && target_tag == "Building")) {
+				this.target.ReceiveDamage (damage);
+			}
+		}
+		
+	}
+		
 }
