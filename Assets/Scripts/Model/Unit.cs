@@ -147,11 +147,6 @@ public class Unit : MonoBehaviour, CanReceiveDamage, HUDSubject
         Destroy(gameObject, 1.5f);
 
     }
-
-    public void setSourceDeath(AudioSource death)
-    {
-        source_death = death;
-    }
     //TODO Make Damaged texture apear when unit has <50% HP
 
 }
