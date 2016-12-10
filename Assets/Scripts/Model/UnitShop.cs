@@ -11,7 +11,8 @@ public class UnitShop : MonoBehaviour
     public Transform[] respawns;
     public List<GameObject> units;
 
-	private bool flag = false;
+	// bool to  exchange the two respawn points
+	private bool respawnExchange = false;
 
     // Must be queried since it could change
     public List<Unit> GetAvailable()
@@ -39,13 +40,13 @@ public class UnitShop : MonoBehaviour
         // TODO do with tags
         var unitToPut = units.Where(x => x.GetComponent<Unit>().Equals(toPurchase)).ToList()[0];
 
-		//bool flag helps to distribute enemies in the two spawn points
-		if (flag) {
+		//bool respawnExchange helps to distribute enemies in the two spawn points
+		if (respawnExchange) {
 			Instantiate (unitToPut, respawns [GameController.instance.spawnPoint2].transform.position, respawns [GameController.instance.spawnPoint2].transform.rotation);
-			flag = false;
+			respawnExchange = false;
 		} else {
 			Instantiate(unitToPut, respawns[GameController.instance.spawnPoint1].transform.position, respawns[GameController.instance.spawnPoint1].transform.rotation);
-			flag = true;
+			respawnExchange = true;
 		}
 			
     }
