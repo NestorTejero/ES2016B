@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class Tower : MonoBehaviour, CanUpgrade
+public class Tower : MonoBehaviour, CanUpgrade, HUDSubject
 {
     private int currentLevel;
     public int upgradeCost;
@@ -14,9 +14,24 @@ public class Tower : MonoBehaviour, CanUpgrade
     // To upgrade when there are enough coins
     public void Upgrade()
     {
+        GameObject.FindGameObjectWithTag("Human").GetComponent<Player>().SpendCoins((int)upgradeCost);
         weapon.Upgrade();
         currentLevel++;
+		weapon.setProjectile (currentLevel);
+		NotifyHUD();
         Debug.Log("TOWER UPGRADED, Power: " + weapon.getCurrentDamage());
+    }
+
+    public void NotifyHUD()
+    {
+        var updateInfo = new HUDInfo
+        {
+            Damage = weapon.getCurrentDamage().ToString(),
+            Range = weapon.getCurrentRange().ToString(),
+			VisibleUpgradeButton = IsUpgradeable(GameObject.FindGameObjectWithTag("Human").GetComponent<Player>().GetNumCoins())
+        };
+
+        APIHUD.instance.notifyChange(this, updateInfo);
     }
 
     // Use this for initialization
