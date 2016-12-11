@@ -10,6 +10,7 @@ public class Tower : MonoBehaviour, CanUpgrade, HUDSubject
     private Weapon weapon;
 	public int buildCost;
 
+    private GameObject model;
     public bool IsUpgradeable(int numCoins)
     {
         return (upgradeCost <= numCoins ) & (currentLevel < maxLevel);
@@ -24,6 +25,18 @@ public class Tower : MonoBehaviour, CanUpgrade, HUDSubject
 		weapon.setProjectile (currentLevel);
 		NotifyHUD();
         Debug.Log("TOWER UPGRADED, Power: " + weapon.getCurrentDamage());
+        switch (currentLevel) {
+            case 1:
+                model.transform.localScale = new Vector3(model.transform.localScale.x, model.transform.localScale.y, 0.5f);
+                break;
+            case 2:
+                model.transform.localScale = new Vector3(model.transform.localScale.x, model.transform.localScale.y, 0.8f);
+                break;
+            case 3:
+                model.transform.localScale = new Vector3(model.transform.localScale.x, model.transform.localScale.y, 1.0f);
+                break;
+            default: break;
+        }
     }
 
     public void NotifyHUD()
@@ -45,7 +58,8 @@ public class Tower : MonoBehaviour, CanUpgrade, HUDSubject
         maxLevel = 3;
         currentLevel = minLevel;
         weapon = gameObject.GetComponent<Weapon>();
-        
+        model = transform.FindChild("TowerModel").gameObject;
+        model.transform.localScale = new Vector3(model.transform.localScale.x, model.transform.localScale.y, 0.5f);
         Debug.Log("TOWER CREATED");
     }
 
