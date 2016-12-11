@@ -124,6 +124,7 @@ public class Building : MonoBehaviour, CanUpgrade, CanReceiveDamage, HUDSubject
         GameObject.FindGameObjectWithTag("Human").GetComponent<Player>().SpendCoins((int)repairCost);
         health.AddHealth(repairQuantity);
         NotifyHUD();
+        ApplyMainTexture();
         Debug.Log("BUILDING REPAIRED, CURRENT HP: " + health.GetCurrentHealth());
     }
 

@@ -24,19 +24,9 @@ public class Tower : MonoBehaviour, CanUpgrade, HUDSubject
         currentLevel++;
 		weapon.setProjectile (currentLevel);
 		NotifyHUD();
+        ApplyMainModelScale();
         Debug.Log("TOWER UPGRADED, Power: " + weapon.getCurrentDamage());
-        switch (currentLevel) {
-            case 1:
-                model.transform.localScale = new Vector3(model.transform.localScale.x, model.transform.localScale.y, 0.5f);
-                break;
-            case 2:
-                model.transform.localScale = new Vector3(model.transform.localScale.x, model.transform.localScale.y, 0.8f);
-                break;
-            case 3:
-                model.transform.localScale = new Vector3(model.transform.localScale.x, model.transform.localScale.y, 1.0f);
-                break;
-            default: break;
-        }
+
     }
 
     public void NotifyHUD()
@@ -58,6 +48,7 @@ public class Tower : MonoBehaviour, CanUpgrade, HUDSubject
         maxLevel = 3;
         currentLevel = minLevel;
         weapon = gameObject.GetComponent<Weapon>();
+        //Put towermodel on scale of 0.5 for first level
         model = transform.FindChild("TowerModel").gameObject;
         model.transform.localScale = new Vector3(model.transform.localScale.x, model.transform.localScale.y, 0.5f);
         Debug.Log("TOWER CREATED");
@@ -80,5 +71,22 @@ public class Tower : MonoBehaviour, CanUpgrade, HUDSubject
     {
         if (col.gameObject.tag == "Enemy")
             weapon.removeTarget(col.gameObject.GetComponentInParent<CanReceiveDamage>());
+    }
+
+    private void ApplyMainModelScale()
+    {
+        switch (currentLevel)
+        {
+            case 1:
+                model.transform.localScale = new Vector3(model.transform.localScale.x, model.transform.localScale.y, 0.5f);
+                break;
+            case 2:
+                model.transform.localScale = new Vector3(model.transform.localScale.x, model.transform.localScale.y, 0.8f);
+                break;
+            case 3:
+                model.transform.localScale = new Vector3(model.transform.localScale.x, model.transform.localScale.y, 1.0f);
+                break;
+            default: break;
+        }
     }
 }
