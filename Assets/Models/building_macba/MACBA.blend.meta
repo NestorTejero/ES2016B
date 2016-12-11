@@ -40,6 +40,7 @@ ModelImporter:
     2300016: Cube_008
     2300018: Cylinder
     2300020: Cylinder_002
+    2300022: //RootNode
     3300000: Cube
     3300002: Cube_001
     3300004: Cube_002
@@ -51,6 +52,7 @@ ModelImporter:
     3300016: Cube_008
     3300018: Cylinder
     3300020: Cylinder_002
+    3300022: //RootNode
     4300000: Cube_008
     4300002: Cube_007
     4300004: Cube_006
@@ -62,6 +64,7 @@ ModelImporter:
     4300016: Cylinder
     4300018: Cube_001
     4300020: Cube
+    4300022: macba
     7400000: Default Take
     9500000: //RootNode
   materials:
