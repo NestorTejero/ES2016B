@@ -168,20 +168,16 @@ public class Building : MonoBehaviour, CanUpgrade, CanReceiveDamage, HUDSubject
     private void ApplySmokeEffect()
     {
         var hp = health.GetCurrentHealthPercentage();
-        if (hp > (float)HPThreshold.Medium)
+        if (hp >= (float)HPThreshold.Medium)
         {
             smokeEffect.SetActive(false);
 
         }
-        else if (hp > (float)HPThreshold.Low && hp < (float)HPThreshold.Medium)
+        else //if (hp >= (float)HPThreshold.Low && hp < (float)HPThreshold.Medium)
         {
             smokeEffect.SetActive(true);
-            smoke.startSize = 20.0f;
+            //smoke.startSize = 20.0f;
         }
-        else
-        {
-            smokeEffect.SetActive(true);
-            smoke.startSize = 40.0f;
-        }
+
     }
 }
