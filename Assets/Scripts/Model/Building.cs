@@ -36,7 +36,6 @@ public class Building : MonoBehaviour, CanUpgrade, CanReceiveDamage, HUDSubject
         {
             health.LoseHealth(damage);
             NotifyHUD();
-            Debug.Log("BUILDING RECEIVED DAMAGE: " + damage + " - CURRENT_HEALTH: " + health.GetCurrentHealth());
             ApplyMainTexture();
             ApplySmokeEffect();
         }
@@ -76,10 +75,11 @@ public class Building : MonoBehaviour, CanUpgrade, CanReceiveDamage, HUDSubject
 		int currentMoney = GameObject.FindGameObjectWithTag ("Human").GetComponent<Player> ().GetNumCoins ();
 		int towerCost = GameObject.Find ("Towers").GetComponentInChildren<Tower> ().buildCost;
 		if (currentMoney >= towerCost) {
-			Debug.Log("You have money to build");
 			return true;
-		} else {
-			return false;
+		} else
+        {
+            Debug.Log("Not enough money to build");
+            return false;
 		}
 	}
 
@@ -136,7 +136,6 @@ public class Building : MonoBehaviour, CanUpgrade, CanReceiveDamage, HUDSubject
         NotifyHUD();
         ApplyMainTexture();
         ApplySmokeEffect();
-        Debug.Log("BUILDING REPAIRED, CURRENT HP: " + health.GetCurrentHealth());
     }
 
     /*

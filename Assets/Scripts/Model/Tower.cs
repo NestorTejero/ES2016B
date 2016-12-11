@@ -67,8 +67,6 @@ public class Tower : MonoBehaviour, CanUpgrade, HUDSubject
     {
         if (col.gameObject.tag == "Enemy")
         {
-            Debug.Log("Tower " + name + " Collision with Unit");
-
             // Adds enemy to attack to the queue
             weapon.addTarget(col.gameObject.GetComponentInParent<CanReceiveDamage>());
         }

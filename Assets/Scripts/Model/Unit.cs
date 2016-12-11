@@ -33,7 +33,6 @@ public class Unit : MonoBehaviour, CanReceiveDamage, HUDSubject
         {
             health.LoseHealth(damage);
             NotifyHUD();
-            Debug.Log("UNIT " + name + " CURRENT_HEALTH: " + health.GetCurrentHealth());
             //change texture if hp is bellow 50%
             if (health.GetCurrentHealthPercentage() < damageThreshold)
             {
@@ -90,7 +89,6 @@ public class Unit : MonoBehaviour, CanReceiveDamage, HUDSubject
         //TEXTURE DATA
         //need to destroy material manualy when destroying object
         textureModel = model.transform.FindChild("UnitMesh").gameObject;
-        Debug.Log(textureModel.name);
         skin = textureModel.GetComponent<SkinnedMeshRenderer>();
         skin.material.mainTexture = normalTexture;
         damageThreshold = 50.0f;
@@ -104,7 +102,7 @@ public class Unit : MonoBehaviour, CanReceiveDamage, HUDSubject
 
         source_death = GameObject.Find("Death Audio Source").GetComponent<AudioSource>();
 
-        Debug.Log("UNIT CREATED");    }
+        Debug.Log("UNIT " + name + " CREATED");    }
 
     // If enemy enters the range of attack
     private void OnTriggerEnter(Collider col)

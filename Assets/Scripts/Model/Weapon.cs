@@ -45,7 +45,6 @@ public class Weapon : MonoBehaviour
 
 		// TODO source_shoot assignation should go in Projectile
         source_shoot = GameObject.Find("Shoot Audio Source").GetComponent<AudioSource>();
-        Debug.Log("WEAPON CREATED");
 	}
 
     // Upgrade weapon features
@@ -77,16 +76,13 @@ public class Weapon : MonoBehaviour
     public void addTarget(CanReceiveDamage target)
     {
         targets.Add(target);
-        Debug.Log(gameObject.name + "-> Targets to attack :" + targets.Count);
     }
 
     // Remove target from list
     public void removeTarget(CanReceiveDamage target)
     {
         targets.Remove(target);
-
         // TODO Careful! This is not the moment when the enemy dies (it is just removed from the target list)
-        Debug.Log(gameObject.name + "-> Targets to attack :" + targets.Count);
     }
 
     // Get the available target to attack from the targets list
@@ -101,16 +97,13 @@ public class Weapon : MonoBehaviour
             // Check if target is already dead
 			if (target.Equals(null))
             {
-                Debug.Log(gameObject.name + ": TARGET ALREADY DEAD");
                 removeTarget(target);
             }
             else
             {
-                Debug.Log(gameObject.name + ": TARGET AVAILABLE TO SHOOT");
                 return target;
             }
         }
-        Debug.Log(gameObject.name + ": NO TARGETS ON QUEUE");
         return null;
     }
 
