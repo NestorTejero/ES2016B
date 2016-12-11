@@ -47,4 +47,10 @@ public class HealthComponent
         totalHealth *= upgradeFactor;
         currentHealth *= upgradeFactor;
     }
+
+    public float GetCurrentHealthPercentage()
+    {
+        return (currentHealth * 100.0f) / totalHealth;
+
+    }
 }
