@@ -107,6 +107,7 @@ public class GameController : MonoBehaviour
 		var respawns = GameObject.FindGameObjectsWithTag ("SpawnP");
 		((Behaviour)respawns [spawnPoint1].GetComponent ("Halo")).enabled = true;
 		((Behaviour)respawns [spawnPoint2].GetComponent ("Halo")).enabled = true;
+		Debug.Log (respawns [spawnPoint1].name);
 	}
 
 	public void desactivateRespawnAbility()

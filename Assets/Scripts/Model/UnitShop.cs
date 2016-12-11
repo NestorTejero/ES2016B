@@ -40,6 +40,9 @@ public class UnitShop : MonoBehaviour
         // TODO do with tags
         var unitToPut = units.Where(x => x.GetComponent<Unit>().Equals(toPurchase)).ToList()[0];
 
+		//we take the respawn points at the same order than gamecontroller
+		var respawns = GameObject.FindGameObjectsWithTag ("SpawnP");
+
 		//bool respawnExchange helps to distribute enemies in the two spawn points
 		if (respawnExchange) {
 			Instantiate (unitToPut, respawns [GameController.instance.spawnPoint2].transform.position, respawns [GameController.instance.spawnPoint2].transform.rotation);
