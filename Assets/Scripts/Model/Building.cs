@@ -6,6 +6,7 @@ using UnityEngine;
 public class Building : MonoBehaviour, CanUpgrade, CanReceiveDamage, HUDSubject
 {
     enum UBTexture {Level1FullHp,Level1MediumHp,Level1LowHp, Level2FullHp, Level2MediumHp, Level2LowHp, Level3FullHp, Level3MediumHp, Level3LowHp }
+    enum HPThreshold  { Full = 100,Medium = 50,Low = 25} 
     public float baseHealth;
 
     public HealthComponent health;
@@ -14,6 +15,7 @@ public class Building : MonoBehaviour, CanUpgrade, CanReceiveDamage, HUDSubject
     public float upgradeCost;
     public float upgradeFactor;
 
+    //level values min = 1, max = 3
     private int minLevel;
     private int currentLevel;
     private int maxLevel;
@@ -21,7 +23,7 @@ public class Building : MonoBehaviour, CanUpgrade, CanReceiveDamage, HUDSubject
 
     private GameObject textureModel;
     private MeshRenderer skin;
-
+    //textures to apply on each level
     public List<Texture> textures;
 
     // Receive damage by weapon
@@ -32,7 +34,7 @@ public class Building : MonoBehaviour, CanUpgrade, CanReceiveDamage, HUDSubject
             health.LoseHealth(damage);
             NotifyHUD();
             Debug.Log("BUILDING RECEIVED DAMAGE: " + damage + " - CURRENT_HEALTH: " + health.GetCurrentHealth());
-
+            ApplyMainTexture();
         }
         catch (Exception)
         {
@@ -48,7 +50,9 @@ public class Building : MonoBehaviour, CanUpgrade, CanReceiveDamage, HUDSubject
 
     public bool IsUpgradeable(int numCoins)
     {
-        return upgradeCost <= numCoins;
+        
+        return (upgradeCost <= numCoins) & (currentLevel < maxLevel);
+
     }
 
     // To upgrade when there are enough coins
@@ -58,6 +62,7 @@ public class Building : MonoBehaviour, CanUpgrade, CanReceiveDamage, HUDSubject
         health.Upgrade(upgradeFactor);
         currentLevel++;
         NotifyHUD();
+        ApplyMainTexture();
         Debug.Log("BUILDING UPGRADED, TOTAL HP: " + health.GetTotalHealth());
     }
 
@@ -120,5 +125,67 @@ public class Building : MonoBehaviour, CanUpgrade, CanReceiveDamage, HUDSubject
         health.AddHealth(repairQuantity);
         NotifyHUD();
         Debug.Log("BUILDING REPAIRED, CURRENT HP: " + health.GetCurrentHealth());
+    }
+
+    /*
+     * Applies texture to ub depending on its Health and Level
+     * 
+     */
+    public void ApplyMainTexture()
+    {
+        var hp = health.GetCurrentHealthPercentage();
+        var text = textures[0]; // to avoid null values
+        switch (currentLevel)
+        {
+            case 1:
+                if (hp > (float)HPThreshold.Medium)
+                {
+                    text = textures[(int)UBTexture.Level1FullHp];
+                }
+                else if(hp > (float)HPThreshold.Low && hp < (float)HPThreshold.Medium)
+                {
+                    text = textures[(int)UBTexture.Level1MediumHp];
+                }
+                else
+                {
+                    text = textures[(int)UBTexture.Level1LowHp];
+                }
+                    
+                break;
+
+            case 2:
+                if (hp > (float)HPThreshold.Medium)
+                {
+                    text = textures[(int)UBTexture.Level2FullHp];
+                }
+                else if (hp > (float)HPThreshold.Low && hp < (float)HPThreshold.Medium)
+                {
+                    text = textures[(int)UBTexture.Level2MediumHp];
+                }
+                else
+                {
+                    text = textures[(int)UBTexture.Level2LowHp];
+                }
+                break;
+            case 3:
+                if (hp > (float)HPThreshold.Medium)
+                {
+                    text = textures[(int)UBTexture.Level3FullHp];
+                }
+                else if (hp > (float)HPThreshold.Low && hp < (float)HPThreshold.Medium)
+                {
+                    text = textures[(int)UBTexture.Level3MediumHp];
+                }
+                else
+                {
+                    text = textures[(int)UBTexture.Level3LowHp];
+                }
+                break;
+
+            default: break;
+
+        }
+        skin.material.mainTexture = text;
+
     }
 }
