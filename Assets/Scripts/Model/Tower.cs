@@ -22,14 +22,9 @@ public class Tower : MonoBehaviour, CanUpgrade, HUDSubject
     // To upgrade when there are enough coins
     public void Upgrade()
     {
-        try
-        {
-            GameObject.FindGameObjectWithTag("Human").GetComponent<Player>().SpendCoins((int)upgradeCost);
-        }
-        catch (Exception)
-        {
+        if (!IsUpgradeable(GameObject.FindGameObjectWithTag("Human").GetComponent<Player>().GetNumCoins()))
             return;
-        }
+        GameObject.FindGameObjectWithTag("Human").GetComponent<Player>().SpendCoins((int)upgradeCost);
         weapon.Upgrade();
         currentLevel++;
 		weapon.setProjectile (currentLevel);

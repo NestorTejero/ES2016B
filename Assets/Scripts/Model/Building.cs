@@ -61,14 +61,9 @@ public class Building : MonoBehaviour, CanUpgrade, CanReceiveDamage, HUDSubject
     // To upgrade when there are enough coins
     public void Upgrade()
     {
-        try
-        {
-            GameObject.FindGameObjectWithTag("Human").GetComponent<Player>().SpendCoins((int) upgradeCost);
-        }
-        catch (Exception)
-        {
+        if (!IsUpgradeable(GameObject.FindGameObjectWithTag("Human").GetComponent<Player>().GetNumCoins()))
             return;
-        }
+        GameObject.FindGameObjectWithTag("Human").GetComponent<Player>().SpendCoins((int) upgradeCost);
         health.Upgrade(upgradeFactor);
         currentLevel++;
         NotifyHUD();
@@ -138,14 +133,9 @@ public class Building : MonoBehaviour, CanUpgrade, CanReceiveDamage, HUDSubject
     // Repair the building
     public void Repair()
     {
-        try
-        {
-            GameObject.FindGameObjectWithTag("Human").GetComponent<Player>().SpendCoins((int)repairCost);
-        }
-        catch (Exception)
-        {
+        if (!IsRepairable(GameObject.FindGameObjectWithTag("Human").GetComponent<Player>().GetNumCoins()))
             return;
-        }
+        GameObject.FindGameObjectWithTag("Human").GetComponent<Player>().SpendCoins((int)repairCost);
         health.AddHealth(repairQuantity);
         NotifyHUD();
         ApplyMainTexture();

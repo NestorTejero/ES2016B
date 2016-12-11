@@ -22,9 +22,9 @@ public class Player : MonoBehaviour
 
     public void SpendCoins(int coins)
     {
-        if (numCoins < coins)
-            throw new Exception();
         numCoins -= coins;
+        if (numCoins < 0)
+            numCoins = 0;
         APIHUD.instance.setMoney(numCoins.ToString());
     }
 
