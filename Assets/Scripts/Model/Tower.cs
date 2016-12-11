@@ -9,6 +9,8 @@ public class Tower : MonoBehaviour, CanUpgrade, HUDSubject
     public int upgradeCost;
     private Weapon weapon;
 	public int buildCost;
+    public AudioSource source;
+    public AudioClip buy, upgrade;
 
     private GameObject model;
     public bool IsUpgradeable(int numCoins)
@@ -25,8 +27,11 @@ public class Tower : MonoBehaviour, CanUpgrade, HUDSubject
 		weapon.setProjectile (currentLevel);
 		NotifyHUD();
         ApplyMainModelScale();
-        Debug.Log("TOWER UPGRADED, Power: " + weapon.getCurrentDamage());
+        //Sound
+        if (!source.isPlaying)
+            source.PlayOneShot(upgrade);
 
+        Debug.Log("TOWER UPGRADED, Power: " + weapon.getCurrentDamage());
     }
 
     public void NotifyHUD()
@@ -50,9 +55,11 @@ public class Tower : MonoBehaviour, CanUpgrade, HUDSubject
         weapon = gameObject.GetComponent<Weapon>();
         //Put towermodel on scale of 0.5 for first level
         model = transform.FindChild("TowerModel").gameObject;
-        model.transform.localScale = new Vector3(model.transform.localScale.x, model.transform.localScale.y, 0.5f);
+        model.transform.localScale = new Vector3(model.transform.localScale.x, model.transform.localScale.y, 0.5f);	
+        //Sound
+        if (!source.isPlaying)
+            source.PlayOneShot(buy);
         Debug.Log("TOWER CREATED");
-       
     }
 
     // If enemy enters the range of attack
