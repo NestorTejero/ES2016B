@@ -26,6 +26,8 @@ public class Building : MonoBehaviour, CanUpgrade, CanReceiveDamage, HUDSubject
     //textures to apply on each level
     public List<Texture> textures;
 
+    private GameObject smokeEffect;
+    private ParticleSystem smoke;
     // Receive damage by weapon
     public void ReceiveDamage(float damage)
     {
@@ -35,6 +37,7 @@ public class Building : MonoBehaviour, CanUpgrade, CanReceiveDamage, HUDSubject
             NotifyHUD();
             Debug.Log("BUILDING RECEIVED DAMAGE: " + damage + " - CURRENT_HEALTH: " + health.GetCurrentHealth());
             ApplyMainTexture();
+            ApplySmokeEffect();
         }
         catch (Exception)
         {
@@ -63,6 +66,7 @@ public class Building : MonoBehaviour, CanUpgrade, CanReceiveDamage, HUDSubject
         currentLevel++;
         NotifyHUD();
         ApplyMainTexture();
+        ApplySmokeEffect();
         Debug.Log("BUILDING UPGRADED, TOTAL HP: " + health.GetTotalHealth());
     }
 
@@ -111,6 +115,11 @@ public class Building : MonoBehaviour, CanUpgrade, CanReceiveDamage, HUDSubject
         textureModel = this.transform.FindChild("Model").gameObject;
         skin = textureModel.GetComponent<MeshRenderer>();
         skin.material.mainTexture = textures[(int)UBTexture.Level1FullHp];
+
+        //particle data
+        smokeEffect = transform.FindChild("WhiteSmoke").gameObject;
+        smoke = transform.GetComponent<ParticleSystem>();
+        smokeEffect.SetActive(false);
     }
 
     public bool IsRepairable(int numCoins)
@@ -125,6 +134,7 @@ public class Building : MonoBehaviour, CanUpgrade, CanReceiveDamage, HUDSubject
         health.AddHealth(repairQuantity);
         NotifyHUD();
         ApplyMainTexture();
+        ApplySmokeEffect();
         Debug.Log("BUILDING REPAIRED, CURRENT HP: " + health.GetCurrentHealth());
     }
 
@@ -142,6 +152,7 @@ public class Building : MonoBehaviour, CanUpgrade, CanReceiveDamage, HUDSubject
                 if (hp > (float)HPThreshold.Medium)
                 {
                     text = textures[(int)UBTexture.Level1FullHp];
+                    
                 }
                 else if(hp > (float)HPThreshold.Low && hp < (float)HPThreshold.Medium)
                 {
@@ -188,5 +199,22 @@ public class Building : MonoBehaviour, CanUpgrade, CanReceiveDamage, HUDSubject
         }
         skin.material.mainTexture = text;
 
+    }
+    private void ApplySmokeEffect()
+    {
+        if(health.GetCurrentHealthPercentage() > 50.0f)
+        {
+            smokeEffect.SetActive(false);
+
+        }
+        else if (health.GetCurrentHealthPercentage() > 25.0f && health.GetCurrentHealthPercentage() < 50.0f)
+        {
+            smokeEffect.SetActive(true);
+            smoke.startSize = 20.0f;
+        }else
+        {
+            smokeEffect.SetActive(true);
+            smoke.startSize = 40.0f;
+        }
     }
 }
