@@ -48,6 +48,24 @@ public class Building : MonoBehaviour, CanUpgrade, CanReceiveDamage, HUDSubject
         Debug.Log("BUILDING UPGRADED, TOTAL HP: " + health.GetTotalHealth());
     }
 
+	//To check if have enough money to buy the tower
+	public bool canBuild(){
+		int currentMoney = GameObject.FindGameObjectWithTag ("Human").GetComponent<Player> ().GetNumCoins ();
+		int towerCost = GameObject.Find ("Towers").GetComponentInChildren<Tower> ().buildCost;
+		if (currentMoney >= towerCost) {
+			Debug.Log("You have money to build");
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	//To spend the money in order to pay for the tower
+	public void buyTower(){
+		int towerCost = GameObject.Find ("Towers").GetComponentInChildren<Tower> ().buildCost;
+		GameObject.FindGameObjectWithTag ("Human").GetComponent<Player> ().SpendCoins (towerCost);
+	}
+
     public void NotifyHUD()
     {
         var updateInfo = new HUDInfo
