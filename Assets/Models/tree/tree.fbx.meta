@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 92083ac505295414b93fedabe159d3c0
-timeCreated: 1481478894
+timeCreated: 1481484279
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
@@ -8,9 +8,13 @@ ModelImporter:
     100000: //RootNode
     100002: U3DMesh
     100004: U3DRoot
+    100006: Camera
+    100008: Lamp
     400000: //RootNode
     400002: U3DMesh
     400004: U3DRoot
+    400006: Camera
+    400008: Lamp
     2300000: U3DMesh
     3300000: U3DMesh
     4300000: U3DMesh
