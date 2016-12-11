@@ -19,8 +19,6 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 4000012602783024}
-  - 33: {fileID: 33000010262893958}
-  - 23: {fileID: 23000010479735522}
   - 95: {fileID: 95000012103147354}
   - 114: {fileID: 114000013154992960}
   - 65: {fileID: 65000012229569138}
@@ -48,6 +46,37 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1000014092826658
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 4000010158931106}
+  - 33: {fileID: 33000012058604360}
+  - 23: {fileID: 23000013957676350}
+  - 95: {fileID: 95000013833142248}
+  m_Layer: 0
+  m_Name: Model
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4000010158931106
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000014092826658}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.4, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 4000012602783024}
+  m_RootOrder: 1
 --- !u!4 &4000012602783024
 Transform:
   m_ObjectHideFlags: 1
@@ -60,6 +89,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
   m_Children:
   - {fileID: 4000012953025264}
+  - {fileID: 4000010158931106}
   m_Father: {fileID: 0}
   m_RootOrder: 0
 --- !u!4 &4000012953025264
@@ -75,12 +105,12 @@ Transform:
   m_Children: []
   m_Father: {fileID: 4000012602783024}
   m_RootOrder: 0
---- !u!23 &23000010479735522
+--- !u!23 &23000013957676350
 MeshRenderer:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000011756980988}
+  m_GameObject: {fileID: 1000014092826658}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -88,7 +118,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 1e10c3c7ca8638e4ea5e50844d254ba4, type: 2}
+  - {fileID: 2100000, guid: 08e26951f57c0d74693a324f23ce9dda, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_ProbeAnchor: {fileID: 0}
@@ -104,13 +134,13 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
---- !u!33 &33000010262893958
+--- !u!33 &33000012058604360
 MeshFilter:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000011756980988}
-  m_Mesh: {fileID: 4300000, guid: 9f679d75d350f7e47accab1424c3379c, type: 3}
+  m_GameObject: {fileID: 1000014092826658}
+  m_Mesh: {fileID: 4300000, guid: 3c655097818966c4fbf92fad282b8db4, type: 3}
 --- !u!54 &54000013837821220
 Rigidbody:
   m_ObjectHideFlags: 1
@@ -136,7 +166,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 13.6307335, y: 3.2115169, z: 5.8000994}
+  m_Size: {x: 13.6307335, y: 3.2115169, z: 5}
   m_Center: {x: 0.010111578, y: -0.6209148, z: 1.7179781}
 --- !u!95 &95000012103147354
 Animator:
@@ -145,8 +175,25 @@ Animator:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000011756980988}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Avatar: {fileID: 9000000, guid: 9f679d75d350f7e47accab1424c3379c, type: 3}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+--- !u!95 &95000013833142248
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000014092826658}
+  m_Enabled: 1
+  m_Avatar: {fileID: 9000000, guid: 3c655097818966c4fbf92fad282b8db4, type: 3}
   m_Controller: {fileID: 0}
   m_CullingMode: 0
   m_UpdateMode: 0
