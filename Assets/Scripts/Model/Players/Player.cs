@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public class Player : MonoBehaviour
 {
@@ -21,7 +22,10 @@ public class Player : MonoBehaviour
 
     public void SpendCoins(int coins)
     {
-        AddCoins(-coins);
+        if (numCoins < coins)
+            throw new Exception();
+        numCoins -= coins;
+        APIHUD.instance.setMoney(numCoins.ToString());
     }
 
     public void GetMoney(Unit deadUnit)

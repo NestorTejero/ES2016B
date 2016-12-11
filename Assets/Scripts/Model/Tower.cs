@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public class Tower : MonoBehaviour, CanUpgrade, HUDSubject
 {
@@ -21,7 +22,14 @@ public class Tower : MonoBehaviour, CanUpgrade, HUDSubject
     // To upgrade when there are enough coins
     public void Upgrade()
     {
-        GameObject.FindGameObjectWithTag("Human").GetComponent<Player>().SpendCoins((int)upgradeCost);
+        try
+        {
+            GameObject.FindGameObjectWithTag("Human").GetComponent<Player>().SpendCoins((int)upgradeCost);
+        }
+        catch (Exception)
+        {
+            return;
+        }
         weapon.Upgrade();
         currentLevel++;
 		weapon.setProjectile (currentLevel);
