@@ -30,6 +30,11 @@ public class Unit : MonoBehaviour, CanReceiveDamage, HUDSubject
             health.LoseHealth(damage);
             NotifyHUD();
             Debug.Log("UNIT " + name + " CURRENT_HEALTH: " + health.GetCurrentHealth());
+            //change texture if hp is bellow 50%
+            if (health.GetCurrentHealthPercentage() < 50.0f)
+            {
+                skin.material.mainTexture = damagedTexture;
+            }
         }
         catch (Exception)
         {
@@ -83,9 +88,9 @@ public class Unit : MonoBehaviour, CanReceiveDamage, HUDSubject
         textureModel = model.transform.FindChild("UnitMesh").gameObject;
         Debug.Log(textureModel.name);
         skin = textureModel.GetComponent<SkinnedMeshRenderer>();
-        skin.material.SetTexture("_MainTex", normalTexture);
-        
-            Debug.Log("UNIT CREATED");
+        skin.material.mainTexture = normalTexture;
+
+        Debug.Log("UNIT CREATED");
     }
 
     // If enemy enters the range of attack
