@@ -13,7 +13,7 @@ public class Tower : MonoBehaviour, CanUpgrade, HUDSubject
     private GameObject model;
     public bool IsUpgradeable(int numCoins)
     {
-        return (upgradeCost <= numCoins ) & (currentLevel < maxLevel);
+        return (upgradeCost <= numCoins ) && (currentLevel < maxLevel);
     }
 
     // To upgrade when there are enough coins

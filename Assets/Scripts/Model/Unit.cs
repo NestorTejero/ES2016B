@@ -22,6 +22,7 @@ public class Unit : MonoBehaviour, CanReceiveDamage, HUDSubject
     public Texture damagedTexture;
     private GameObject textureModel;
     private SkinnedMeshRenderer skin;
+    private float damageThreshold;
     // Receive damage by weapon
     public void ReceiveDamage(float damage)
     {
@@ -31,7 +32,7 @@ public class Unit : MonoBehaviour, CanReceiveDamage, HUDSubject
             NotifyHUD();
             Debug.Log("UNIT " + name + " CURRENT_HEALTH: " + health.GetCurrentHealth());
             //change texture if hp is bellow 50%
-            if (health.GetCurrentHealthPercentage() < 50.0f)
+            if (health.GetCurrentHealthPercentage() < damageThreshold)
             {
                 skin.material.mainTexture = damagedTexture;
             }
@@ -89,8 +90,8 @@ public class Unit : MonoBehaviour, CanReceiveDamage, HUDSubject
         Debug.Log(textureModel.name);
         skin = textureModel.GetComponent<SkinnedMeshRenderer>();
         skin.material.mainTexture = normalTexture;
-
-        Debug.Log("UNIT CREATED");
+        damageThreshold = 50.0f;
+    Debug.Log("UNIT CREATED");
     }
 
     // If enemy enters the range of attack

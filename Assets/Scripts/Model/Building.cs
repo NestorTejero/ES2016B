@@ -55,7 +55,7 @@ public class Building : MonoBehaviour, CanUpgrade, CanReceiveDamage, HUDSubject
     public bool IsUpgradeable(int numCoins)
     {
         
-        return (upgradeCost <= numCoins) & (currentLevel < maxLevel);
+        return (upgradeCost <= numCoins) && (currentLevel < maxLevel);
 
     }
 
