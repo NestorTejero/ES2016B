@@ -19,7 +19,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 4000010520308504}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Lamp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -34,7 +34,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 4000012109236364}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Camera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -51,7 +51,7 @@ GameObject:
   - 4: {fileID: 4000010435380616}
   - 114: {fileID: 114000013144584612}
   - 135: {fileID: 135000013463912912}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Projectile_calculator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -68,7 +68,7 @@ GameObject:
   - 4: {fileID: 4000012100890340}
   - 33: {fileID: 33000011180730586}
   - 23: {fileID: 23000014246123442}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -84,7 +84,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000011533847632}
   - 54: {fileID: 54000011477675904}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: calculadora
   m_TagString: Untagged
   m_Icon: {fileID: 0}

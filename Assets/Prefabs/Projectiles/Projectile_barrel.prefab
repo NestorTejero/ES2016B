@@ -21,7 +21,7 @@ GameObject:
   - 4: {fileID: 4000012428786158}
   - 95: {fileID: 95000013820304462}
   - 54: {fileID: 54000010736105966}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: barrelF
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -38,7 +38,7 @@ GameObject:
   - 4: {fileID: 4000013591494908}
   - 114: {fileID: 114000012387540994}
   - 135: {fileID: 135000013972960198}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Projectile_barrel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -55,7 +55,7 @@ GameObject:
   - 4: {fileID: 4000012356891832}
   - 33: {fileID: 33000011493116906}
   - 23: {fileID: 23000012344302050}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Cylinder_005
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -72,7 +72,7 @@ GameObject:
   - 4: {fileID: 4000013784349248}
   - 33: {fileID: 33000013769412196}
   - 23: {fileID: 23000013141803096}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Cylinder_002
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -89,7 +89,7 @@ GameObject:
   - 4: {fileID: 4000010743688432}
   - 33: {fileID: 33000013807915686}
   - 23: {fileID: 23000013112101206}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Cylinder_003
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -106,7 +106,7 @@ GameObject:
   - 4: {fileID: 4000010863021982}
   - 33: {fileID: 33000011462032414}
   - 23: {fileID: 23000010479050154}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Cylinder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -123,7 +123,7 @@ GameObject:
   - 4: {fileID: 4000012427385646}
   - 33: {fileID: 33000014137187032}
   - 23: {fileID: 23000013017921348}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Cylinder_001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -140,7 +140,7 @@ GameObject:
   - 4: {fileID: 4000010239751310}
   - 33: {fileID: 33000010322429056}
   - 23: {fileID: 23000012309941596}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Cylinder_004
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -21,7 +21,7 @@ GameObject:
   - 4: {fileID: 4000010895797312}
   - 114: {fileID: 114000011580391418}
   - 135: {fileID: 135000011833348054}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Projectile_bullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -40,7 +40,7 @@ GameObject:
   - 23: {fileID: 23000010718114252}
   - 95: {fileID: 95000014122664370}
   - 54: {fileID: 54000010832131832}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: bala
   m_TagString: Untagged
   m_Icon: {fileID: 0}

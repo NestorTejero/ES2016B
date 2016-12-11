@@ -21,7 +21,7 @@ GameObject:
   - 4: {fileID: 4000013019902718}
   - 114: {fileID: 114000010419107660}
   - 135: {fileID: 135000013327809370}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Projectile_broom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -40,7 +40,7 @@ GameObject:
   - 23: {fileID: 23000013016756406}
   - 95: {fileID: 95000011891571896}
   - 54: {fileID: 54000014031015046}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Janitor_damaged
   m_TagString: Untagged
   m_Icon: {fileID: 0}
