@@ -1,16 +1,28 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Building : MonoBehaviour, CanUpgrade, CanReceiveDamage, HUDSubject
 {
+    enum UBTexture {Level1FullHp,Level1MediumHp,Level1LowHp, Level2FullHp, Level2MediumHp, Level2LowHp, Level3FullHp, Level3MediumHp, Level3LowHp }
     public float baseHealth;
-    private float currentLevel;
 
     public HealthComponent health;
     public float repairCost;
     public float repairQuantity;
     public float upgradeCost;
     public float upgradeFactor;
+
+    private int minLevel;
+    private int currentLevel;
+    private int maxLevel;
+
+
+    private GameObject textureModel;
+    private MeshRenderer skin;
+
+    public List<Texture> textures;
 
     // Receive damage by weapon
     public void ReceiveDamage(float damage)
@@ -20,6 +32,7 @@ public class Building : MonoBehaviour, CanUpgrade, CanReceiveDamage, HUDSubject
             health.LoseHealth(damage);
             NotifyHUD();
             Debug.Log("BUILDING RECEIVED DAMAGE: " + damage + " - CURRENT_HEALTH: " + health.GetCurrentHealth());
+
         }
         catch (Exception)
         {
@@ -82,9 +95,17 @@ public class Building : MonoBehaviour, CanUpgrade, CanReceiveDamage, HUDSubject
     // Use this for initialization
     private void Start()
     {
-        currentLevel = 0;
+        minLevel = 1;
+        maxLevel = 3;
+        currentLevel = minLevel;
+
         health = new HealthComponent(baseHealth);
         Debug.Log("BUILDING CREATED with HP: " + baseHealth);
+
+
+        textureModel = this.transform.FindChild("Model").gameObject;
+        skin = textureModel.GetComponent<MeshRenderer>();
+        skin.material.mainTexture = textures[(int)UBTexture.Level1FullHp];
     }
 
     public bool IsRepairable(int numCoins)

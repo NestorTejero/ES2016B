@@ -200,6 +200,16 @@ MonoBehaviour:
   repairQuantity: 10
   upgradeCost: 10
   upgradeFactor: 1.1
+  textures:
+  - {fileID: 2800000, guid: 4bfcc759f7575ac4e9c0d941fef836cb, type: 3}
+  - {fileID: 2800000, guid: 4dcb6f2a29884b4468c9c3aba27214f6, type: 3}
+  - {fileID: 2800000, guid: 36c328a76c293d0429baf863fe6a43dc, type: 3}
+  - {fileID: 2800000, guid: ef8ddd23e409f174eb7c5c97cf4e9f8c, type: 3}
+  - {fileID: 2800000, guid: c20223fbac9b9354cbd76d7547c57df7, type: 3}
+  - {fileID: 2800000, guid: 69ffed11bf0929d4f9ce5e4c248df19c, type: 3}
+  - {fileID: 2800000, guid: 600938ff05531ca4e963911f91e023ef, type: 3}
+  - {fileID: 2800000, guid: 14c28aace90da1444bc8ef4db43af288, type: 3}
+  - {fileID: 2800000, guid: a3111f247fd419546963772df52028a0, type: 3}
 --- !u!114 &114000013401498404
 MonoBehaviour:
   m_ObjectHideFlags: 1
