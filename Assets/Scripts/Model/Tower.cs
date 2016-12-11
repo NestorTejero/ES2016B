@@ -2,14 +2,17 @@
 
 public class Tower : MonoBehaviour, CanUpgrade, HUDSubject
 {
+    private int minLevel;
     private int currentLevel;
+    private int maxLevel;
+
     public int upgradeCost;
     private Weapon weapon;
 	public int buildCost;
 
     public bool IsUpgradeable(int numCoins)
     {
-        return upgradeCost <= numCoins;
+        return (upgradeCost <= numCoins ) & (currentLevel < maxLevel);
     }
 
     // To upgrade when there are enough coins
@@ -38,8 +41,11 @@ public class Tower : MonoBehaviour, CanUpgrade, HUDSubject
     // Use this for initialization
     private void Start()
     {
+        minLevel = 1;
+        maxLevel = 3;
+        currentLevel = minLevel;
         weapon = gameObject.GetComponent<Weapon>();
-        currentLevel = 0;
+        
         Debug.Log("TOWER CREATED");
     }
 
