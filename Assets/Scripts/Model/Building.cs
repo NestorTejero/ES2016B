@@ -5,8 +5,9 @@ using UnityEngine;
 
 public class Building : MonoBehaviour, CanUpgrade, CanReceiveDamage, HUDSubject
 {
-    enum UBTexture {Level1FullHp,Level1MediumHp,Level1LowHp, Level2FullHp, Level2MediumHp, Level2LowHp, Level3FullHp, Level3MediumHp, Level3LowHp }
-    enum HPThreshold  { Full = 100,Medium = 50,Low = 25} 
+
+    enum UBTextureHPIndex { Full, Medium, Low}
+    enum HPThreshold  { Full = 100, Medium = 50, Low = 25} 
     public float baseHealth;
 
     public HealthComponent health;
@@ -25,7 +26,7 @@ public class Building : MonoBehaviour, CanUpgrade, CanReceiveDamage, HUDSubject
     private MeshRenderer skin;
     //textures to apply on each level
     public List<Texture> textures;
-
+    public Texture[][] tx;
     private GameObject smokeEffect;
     private ParticleSystem smoke;
     // Receive damage by weapon
@@ -114,7 +115,7 @@ public class Building : MonoBehaviour, CanUpgrade, CanReceiveDamage, HUDSubject
 
         textureModel = this.transform.FindChild("Model").gameObject;
         skin = textureModel.GetComponent<MeshRenderer>();
-        skin.material.mainTexture = textures[(int)UBTexture.Level1FullHp];
+        skin.material.mainTexture = textures[(int)UBTextureHPIndex.Full];
 
         //particle data
         smokeEffect = transform.FindChild("WhiteSmoke").gameObject;
@@ -145,58 +146,22 @@ public class Building : MonoBehaviour, CanUpgrade, CanReceiveDamage, HUDSubject
     public void ApplyMainTexture()
     {
         var hp = health.GetCurrentHealthPercentage();
-        var text = textures[0]; // to avoid null values
-        switch (currentLevel)
+        var text = skin.material.mainTexture; // to avoid null values
+
+        if (hp > (float)HPThreshold.Medium)
         {
-            case 1:
-                if (hp > (float)HPThreshold.Medium)
-                {
-                    text = textures[(int)UBTexture.Level1FullHp];
+            text = textures[3 * (currentLevel - 1) + (int)UBTextureHPIndex.Full];
                     
-                }
-                else if(hp > (float)HPThreshold.Low && hp < (float)HPThreshold.Medium)
-                {
-                    text = textures[(int)UBTexture.Level1MediumHp];
-                }
-                else
-                {
-                    text = textures[(int)UBTexture.Level1LowHp];
-                }
-                    
-                break;
-
-            case 2:
-                if (hp > (float)HPThreshold.Medium)
-                {
-                    text = textures[(int)UBTexture.Level2FullHp];
-                }
-                else if (hp > (float)HPThreshold.Low && hp < (float)HPThreshold.Medium)
-                {
-                    text = textures[(int)UBTexture.Level2MediumHp];
-                }
-                else
-                {
-                    text = textures[(int)UBTexture.Level2LowHp];
-                }
-                break;
-            case 3:
-                if (hp > (float)HPThreshold.Medium)
-                {
-                    text = textures[(int)UBTexture.Level3FullHp];
-                }
-                else if (hp > (float)HPThreshold.Low && hp < (float)HPThreshold.Medium)
-                {
-                    text = textures[(int)UBTexture.Level3MediumHp];
-                }
-                else
-                {
-                    text = textures[(int)UBTexture.Level3LowHp];
-                }
-                break;
-
-            default: break;
-
         }
+        else if(hp > (float)HPThreshold.Low && hp < (float)HPThreshold.Medium)
+        {
+            text = textures[3 * (currentLevel - 1) + (int)UBTextureHPIndex.Medium];
+        }
+        else
+        {
+            text = textures[3 * (currentLevel - 1) + (int)UBTextureHPIndex.Low];
+        }
+                    
         skin.material.mainTexture = text;
 
     }
