@@ -6,6 +6,8 @@ public class Tower : MonoBehaviour, CanUpgrade, HUDSubject
     public int upgradeCost;
     private Weapon weapon;
 	public int buildCost;
+    public AudioSource source;
+    public AudioClip buy, upgrade;
 
     public bool IsUpgradeable(int numCoins)
     {
@@ -20,6 +22,10 @@ public class Tower : MonoBehaviour, CanUpgrade, HUDSubject
         currentLevel++;
 		weapon.setProjectile (currentLevel);
 		NotifyHUD();
+        //Sound
+        if (!source.isPlaying)
+            source.PlayOneShot(upgrade);
+
         Debug.Log("TOWER UPGRADED, Power: " + weapon.getCurrentDamage());
     }
 
@@ -40,6 +46,9 @@ public class Tower : MonoBehaviour, CanUpgrade, HUDSubject
     {
         weapon = gameObject.GetComponent<Weapon>();
         currentLevel = 0;
+        //Sound
+        if (!source.isPlaying)
+            source.PlayOneShot(buy);
         Debug.Log("TOWER CREATED");
     }
 

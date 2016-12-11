@@ -16,12 +16,11 @@ public class Weapon : MonoBehaviour
 	private float currentCooldown;
     private float currentDamage;
     private float currentRange;
-    private AudioClip[] death;
 	private GameObject proj_obj; // Projectile object
 
 	// TODO source_shoot should go in Projectile
 	// TODO source_death should go in Unit
-    private AudioSource source_shoot, source_death;
+    private AudioSource source_shoot;
     private List<CanReceiveDamage> targets;
 	private UnitAnimation animScript;
     
@@ -44,17 +43,7 @@ public class Weapon : MonoBehaviour
         // Call Attack every 'cooldown' seconds
         InvokeRepeating("Attack", 0.0f, currentCooldown);
 
-        // Set sounds
-        death = new[]
-        {
-            (AudioClip) Resources.Load("Sound/Effects/Death 1"),
-            (AudioClip) Resources.Load("Sound/Effects/Death 2"),
-            (AudioClip) Resources.Load("Sound/Effects/Death 3")
-        };
-
 		// TODO source_shoot assignation should go in Projectile
-		// TODO source_death assignation should go in Unit
-        source_death = GameObject.Find("Death Audio Source").GetComponent<AudioSource>();
         source_shoot = GameObject.Find("Shoot Audio Source").GetComponent<AudioSource>();
         Debug.Log("WEAPON CREATED");
 	}
@@ -89,9 +78,6 @@ public class Weapon : MonoBehaviour
         targets.Remove(target);
 
         // TODO Careful! This is not the moment when the enemy dies (it is just removed from the target list)
-        // Play death sound
-        if (!source_death.isPlaying)
-            source_death.PlayOneShot(death[Random.Range(0, death.Length)], 0.5f);
         Debug.Log(gameObject.name + "-> Targets to attack :" + targets.Count);
     }
 
@@ -143,12 +129,6 @@ public class Weapon : MonoBehaviour
             proj_clone.GetComponent<Projectile>().Shoot(target, currentDamage);
 			Destroy(proj_clone, 3.0f);
         }
-    }
-
-	// TODO this should be in Unit
-    public void setSourceDeath(AudioSource death)
-    {
-        source_death = death;
     }
 
 	// TODO this should be in Projectile
