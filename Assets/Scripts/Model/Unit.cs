@@ -22,6 +22,10 @@ public class Unit : MonoBehaviour, CanReceiveDamage, HUDSubject
     public Texture damagedTexture;
     private GameObject textureModel;
     private SkinnedMeshRenderer skin;
+    private float damageThreshold;
+    private AudioClip[] death;
+    private AudioSource source_death;
+
     // Receive damage by weapon
     public void ReceiveDamage(float damage)
     {
@@ -30,6 +34,11 @@ public class Unit : MonoBehaviour, CanReceiveDamage, HUDSubject
             health.LoseHealth(damage);
             NotifyHUD();
             Debug.Log("UNIT " + name + " CURRENT_HEALTH: " + health.GetCurrentHealth());
+            //change texture if hp is bellow 50%
+            if (health.GetCurrentHealthPercentage() < damageThreshold)
+            {
+                skin.material.mainTexture = damagedTexture;
+            }
         }
         catch (Exception)
         {
@@ -83,10 +92,19 @@ public class Unit : MonoBehaviour, CanReceiveDamage, HUDSubject
         textureModel = model.transform.FindChild("UnitMesh").gameObject;
         Debug.Log(textureModel.name);
         skin = textureModel.GetComponent<SkinnedMeshRenderer>();
-        skin.material.SetTexture("_MainTex", normalTexture);
-        
-            Debug.Log("UNIT CREATED");
-    }
+        skin.material.mainTexture = normalTexture;
+        damageThreshold = 50.0f;
+	// Set sounds
+        death = new[]
+        {
+            (AudioClip) Resources.Load("Sound/Effects/Death 1"),
+            (AudioClip) Resources.Load("Sound/Effects/Death 2"),
+            (AudioClip) Resources.Load("Sound/Effects/Death 3")
+        };
+
+        source_death = GameObject.Find("Death Audio Source").GetComponent<AudioSource>();
+
+        Debug.Log("UNIT CREATED");    }
 
     // If enemy enters the range of attack
     private void OnTriggerEnter(Collider col)
@@ -124,8 +142,9 @@ public class Unit : MonoBehaviour, CanReceiveDamage, HUDSubject
         gameObject.GetComponent<CapsuleCollider>().enabled = false;
         model.GetComponent<CapsuleCollider>().enabled = false;
         GameController.instance.notifyDeath(this); // Tell controller I'm dead
-        //PLAY DIE SOUND HERE
-
+        //PLAY DIE SOUND
+        if (!source_death.isPlaying)
+            source_death.PlayOneShot(death[UnityEngine.Random.Range(0, death.Length)], 0.5f);
 
         animScript.Die();
 
