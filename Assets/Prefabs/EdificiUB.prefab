@@ -56,6 +56,7 @@ GameObject:
   - 33: {fileID: 33000012058604360}
   - 23: {fileID: 23000013957676350}
   - 95: {fileID: 95000013833142248}
+  - 64: {fileID: 64000013785566190}
   m_Layer: 0
   m_Name: Model
   m_TagString: Untagged
@@ -70,7 +71,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000014092826658}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.4, z: 0}
+  m_LocalPosition: {x: 0, y: -0.4, z: 0.65}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
@@ -155,6 +156,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 0
+--- !u!64 &64000013785566190
+MeshCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000014092826658}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 0
+  serializedVersion: 2
+  m_Convex: 0
+  m_Mesh: {fileID: 4300000, guid: 3c655097818966c4fbf92fad282b8db4, type: 3}
 --- !u!65 &65000012229569138
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -165,8 +178,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 13.6307335, y: 3.2115169, z: 5}
-  m_Center: {x: 0.010111578, y: -0.6209148, z: 1.7179781}
+  m_Size: {x: 13.6307335, y: 3.2115169, z: 3.22}
+  m_Center: {x: 0, y: -0.6, z: 1.3}
 --- !u!95 &95000013833142248
 Animator:
   serializedVersion: 3
