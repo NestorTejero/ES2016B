@@ -52,6 +52,8 @@ public class Weapon : MonoBehaviour
     public void Upgrade()
     {
         currentDamage *= upgradeFactor;
+        currentRange *= 2.0f;
+        gameObject.GetComponentInChildren<CapsuleCollider>().radius = currentRange;
     }
 
     // Get weapon's current damage
@@ -63,6 +65,12 @@ public class Weapon : MonoBehaviour
     public float getCurrentRange()
     {
         return currentRange;
+    }
+
+    public void setCurrentRange(float range)
+    {
+        currentRange = range;
+        gameObject.GetComponentInChildren<CapsuleCollider>().radius = currentRange;
     }
 
     // Add target to list
@@ -143,6 +151,8 @@ public class Weapon : MonoBehaviour
     }
 
 	public void setProjectile(int level){
-		this.proj_obj =this.projectiles [level];
-	}
+        //TODO uncoment this when have all weapon prefab
+        //this.proj_obj =this.projectiles [level];
+        this.proj_obj = this.projectiles[0];
+    }
 }
