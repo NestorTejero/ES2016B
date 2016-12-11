@@ -52,6 +52,7 @@ public class Tower : MonoBehaviour, CanUpgrade, HUDSubject
         model = transform.FindChild("TowerModel").gameObject;
         model.transform.localScale = new Vector3(model.transform.localScale.x, model.transform.localScale.y, 0.5f);
         Debug.Log("TOWER CREATED");
+       
     }
 
     // If enemy enters the range of attack
