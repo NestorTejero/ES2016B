@@ -1,21 +1,47 @@
-﻿using System.Collections.Generic;
+﻿using System;
 using UnityEngine;
 
 public class Player : MonoBehaviour
 {
     public int initialCoins;
     protected int numCoins, unitsWave;
+    private ScoreManager score;
 
-    public void addCoins(int coins)
+    private void Start()
     {
-        numCoins += coins;
+        numCoins = initialCoins;
+        APIHUD.instance.setMoney(numCoins.ToString());
+        score = new ScoreManager();
     }
 
-    public void getMoney(Unit deadUnit)
+    public void AddCoins(int coins)
+    {
+        numCoins += coins;
+        APIHUD.instance.setMoney(numCoins.ToString());
+    }
+
+    public void SpendCoins(int coins)
+    {
+        numCoins -= coins;
+        if (numCoins < 0)
+            numCoins = 0;
+        APIHUD.instance.setMoney(numCoins.ToString());
+    }
+
+    public void GetMoney(Unit deadUnit)
     {
         Debug.Log("Oh! I've received " + deadUnit.rewardCoins + " coins! :D yay");
-        addCoins(deadUnit.rewardCoins);
+        AddCoins(deadUnit.rewardCoins);
+        score.Add(deadUnit.rewardCoins);
+    }
 
-		APIHUD.instance.setMoney (numCoins.ToString());
+	public int GetNumCoins(){
+		return numCoins;
+	}
+
+    public void ChangeWave()
+    {
+        score.Add(1000);
+        AddCoins(1000);
     }
 }

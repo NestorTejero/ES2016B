@@ -122,6 +122,9 @@ ModelImporter:
     7400002: AttackAction
     7400004: DieAction
     7400006: WalkAction
+    7400008: attackAction
+    7400010: dieAction
+    7400012: walkAction
     9500000: //RootNode
     13700000: exchangestudentf3Mesh
   materials:

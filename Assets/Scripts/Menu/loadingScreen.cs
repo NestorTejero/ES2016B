@@ -1,50 +1,41 @@
 ﻿using UnityEngine;
-using System.Collections;
-using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
-public class loadingScreen : MonoBehaviour {
-	public float time;
-	public Text percent;
-	public Image bar;
+public class loadingScreen : MonoBehaviour
+{
+    public Image bar;
+    public Text percent;
+    public float time;
 
-	void Start () {
-
-		//loadingBar.fillAmount = 0;
-
-	}
-
-
-	void Update () {
-
-		if (time == 100)
-		{
-		    SceneManager.UnloadScene(1);
-			SceneManager.LoadScene(1); 
-		}
+    private void Start()
+    {
+        //loadingBar.fillAmount = 0;
+    }
 
 
-		if (time < 100) {
+    private void Update()
+    {
+        if (time == 100)
+        {
+            SceneManager.UnloadScene(1);
+            SceneManager.LoadScene(1);
+        }
 
-			time += Time.deltaTime * 7;
+        if (time < 100)
+            time += Time.deltaTime*7;
 
-		}
+        if (time >= 100)
+            time = 100;
 
-		if (time >= 100) {
-			time = 100;
-		}
+        percent.text = "" + (int) time + "%";
+        bar.transform.localScale = new Vector3(time/100, 1, 1);
+    }
 
-		percent.text=""+(int)time+"%";
-		bar.transform.localScale = new Vector3 (time/100, 1, 1);
-
-
-	}
-
-	// Skip the Loading Screen
-	public void Skip(){
-		SceneManager.UnloadScene(1);
-		SceneManager.LoadScene(1); 
-	}
-
+    // Skip the Loading Screen
+    public void Skip()
+    {
+        SceneManager.UnloadScene(1);
+        SceneManager.LoadScene(1);
+    }
 }
-	
