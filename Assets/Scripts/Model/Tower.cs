@@ -1,5 +1,7 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
+using System;
+using System.Collections;
+using System.Collections.Generic;
 
 public class Tower : MonoBehaviour, CanUpgrade, HUDSubject
 {
@@ -14,6 +16,9 @@ public class Tower : MonoBehaviour, CanUpgrade, HUDSubject
     public AudioClip buy, upgrade;
 
     private GameObject model;
+    private MeshRenderer skin;
+    public List<Texture> textures;
+
     public bool IsUpgradeable(int numCoins)
     {
         return (upgradeCost <= numCoins ) && (currentLevel < maxLevel);
@@ -30,6 +35,7 @@ public class Tower : MonoBehaviour, CanUpgrade, HUDSubject
 		weapon.setProjectile (currentLevel);
 		NotifyHUD();
         ApplyMainModelScale();
+        ApplyMainTexture();
         //Sound
         if (!source.isPlaying)
             source.PlayOneShot(upgrade);
@@ -58,7 +64,10 @@ public class Tower : MonoBehaviour, CanUpgrade, HUDSubject
         weapon = gameObject.GetComponent<Weapon>();
         //Put towermodel on scale of 0.5 for first level
         model = transform.FindChild("TowerModel").gameObject;
-        model.transform.localScale = new Vector3(model.transform.localScale.x, model.transform.localScale.y, 0.5f);	
+        model.transform.localScale = new Vector3(model.transform.localScale.x, model.transform.localScale.y, 0.5f);
+        //texture data
+        skin = model.GetComponent<MeshRenderer>();
+        skin.material.mainTexture = textures[currentLevel - 1];
         //Sound
         if (!source.isPlaying)
             source.PlayOneShot(buy);
@@ -97,5 +106,10 @@ public class Tower : MonoBehaviour, CanUpgrade, HUDSubject
                 break;
             default: break;
         }
+    }
+
+    public void ApplyMainTexture()
+    {
+        skin.material.mainTexture = textures[currentLevel - 1];
     }
 }
