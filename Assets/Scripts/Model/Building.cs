@@ -26,7 +26,6 @@ public class Building : MonoBehaviour, CanUpgrade, CanReceiveDamage, HUDSubject
     private MeshRenderer skin;
     //textures to apply on each level
     public List<Texture> textures;
-    public Texture[][] tx;
     private GameObject smokeEffect;
     private ParticleSystem smoke;
     // Receive damage by weapon
