@@ -27,6 +27,8 @@ public class Tower : MonoBehaviour, CanUpgrade, HUDSubject
     // To upgrade when there are enough coins
     public void Upgrade()
     {
+        if (!IsUpgradeable(GameObject.FindGameObjectWithTag("Human").GetComponent<Player>().GetNumCoins()))
+            return;
         GameObject.FindGameObjectWithTag("Human").GetComponent<Player>().SpendCoins((int)upgradeCost);
         weapon.Upgrade();
         currentLevel++;
@@ -77,8 +79,6 @@ public class Tower : MonoBehaviour, CanUpgrade, HUDSubject
     {
         if (col.gameObject.tag == "Enemy")
         {
-            Debug.Log("Tower " + name + " Collision with Unit");
-
             // Adds enemy to attack to the queue
             weapon.addTarget(col.gameObject.GetComponentInParent<CanReceiveDamage>());
         }

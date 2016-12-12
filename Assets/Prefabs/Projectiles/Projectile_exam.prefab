@@ -21,7 +21,7 @@ GameObject:
   - 4: {fileID: 4000013313077026}
   - 95: {fileID: 95000010902223796}
   - 54: {fileID: 54000014036852882}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: examenprofessor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -38,7 +38,7 @@ GameObject:
   - 4: {fileID: 4000011909438656}
   - 33: {fileID: 33000012838517286}
   - 23: {fileID: 23000010127455902}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: WGT-root
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -55,7 +55,7 @@ GameObject:
   - 4: {fileID: 4000011886695968}
   - 33: {fileID: 33000010174191860}
   - 23: {fileID: 23000012415562756}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Plane
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -72,7 +72,7 @@ GameObject:
   - 4: {fileID: 4000011664481396}
   - 114: {fileID: 114000013649991476}
   - 135: {fileID: 135000010212945962}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Projectile_exam
   m_TagString: Untagged
   m_Icon: {fileID: 0}

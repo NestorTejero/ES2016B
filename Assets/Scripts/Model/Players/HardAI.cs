@@ -26,7 +26,6 @@ public class HardAI : AI
                 if (shop.IsPurchasable(unit, numCoins))
                 {
                     shop.Purchase(unit);
-                    Debug.Log("NEW UNIT " + unit.name + " PURCHASED.");
                     unitsWave += 1;
                     numCoins -= unit.purchaseCost;
                 }

@@ -21,7 +21,7 @@ GameObject:
   - 4: {fileID: 4000013596121706}
   - 114: {fileID: 114000014184441446}
   - 135: {fileID: 135000013715520402}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Projectile_laser
   m_TagString: Untagged
   m_Icon: {fileID: 0}

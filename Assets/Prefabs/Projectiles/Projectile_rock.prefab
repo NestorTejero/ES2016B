@@ -21,7 +21,7 @@ GameObject:
   - 4: {fileID: 4000011121997564}
   - 114: {fileID: 114000012759804252}
   - 135: {fileID: 135000011071677148}
-  m_Layer: 8
+  m_Layer: 12
   m_Name: Projectile_rock
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -40,7 +40,7 @@ GameObject:
   - 23: {fileID: 23000011807366558}
   - 95: {fileID: 95000012361482716}
   - 54: {fileID: 54000010170111420}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: rock
   m_TagString: Untagged
   m_Icon: {fileID: 0}

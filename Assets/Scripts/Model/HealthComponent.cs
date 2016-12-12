@@ -27,7 +27,10 @@ public class HealthComponent
     {
         currentHealth -= damage;
         if (currentHealth <= 0.0f)
+        {
+            currentHealth = 0.0f;
             throw new Exception();
+        }
     }
 
     public void AddHealth(float healthQuantity)
