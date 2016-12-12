@@ -65,6 +65,12 @@ public class UIManager : MonoBehaviour
                 hidePaused();
             }
         }
+
+		//when press J button use the ability for see the respawn points
+		if (Input.GetKeyDown (KeyCode.J)) 
+		{
+			GameController.instance.activateRespawnAbility ();
+		}
     }
 
     // This function mutes or unmuted the effects volume, according to the current value
