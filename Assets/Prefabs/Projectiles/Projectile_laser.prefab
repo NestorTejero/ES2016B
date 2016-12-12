@@ -97,8 +97,8 @@ Light:
   m_Enabled: 1
   serializedVersion: 7
   m_Type: 2
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
-  m_Intensity: 5
+  m_Color: {r: 0.63235295, g: 0.013948975, b: 0.013948975, a: 1}
+  m_Intensity: 4
   m_Range: 10
   m_SpotAngle: 30
   m_CookieSize: 10
@@ -117,9 +117,9 @@ Light:
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_Lightmapping: 4
+  m_Lightmapping: 2
   m_AreaSize: {x: 1, y: 1}
-  m_BounceIntensity: 1
+  m_BounceIntensity: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
 --- !u!114 &114000014184441446
@@ -133,7 +133,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4afcdf504eb034419143c4ba1751568, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 1.7
+  speed: 4
   shootSound: {fileID: 8300000, guid: 11c2db37829eb1e41b0bacd0e93851cf, type: 3}
 --- !u!120 &120000012246350462
 LineRenderer:

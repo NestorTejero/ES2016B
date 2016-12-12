@@ -145,7 +145,7 @@ public class Weapon : MonoBehaviour
 
 	public void setProjectile(int level){
         //TODO uncoment this when have all weapon prefab
-        this.proj_obj =this.projectiles [level];
+        this.proj_obj = this.projectiles [level];
         //this.proj_obj = this.projectiles[0];
     }
 }
