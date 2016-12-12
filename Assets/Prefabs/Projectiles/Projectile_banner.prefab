@@ -24,7 +24,7 @@ GameObject:
   - 95: {fileID: 95000012278275834}
   - 54: {fileID: 54000010912465454}
   - 135: {fileID: 135000012164450148}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: pancarta
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -41,7 +41,7 @@ GameObject:
   - 4: {fileID: 4000012906238998}
   - 114: {fileID: 114000013432761704}
   - 135: {fileID: 135000011101580628}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Projectile_banner
   m_TagString: Untagged
   m_Icon: {fileID: 0}

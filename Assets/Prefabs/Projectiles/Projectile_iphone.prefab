@@ -21,7 +21,7 @@ GameObject:
   - 4: {fileID: 4000010080178632}
   - 114: {fileID: 114000011916913222}
   - 135: {fileID: 135000013505197476}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Projectile_iphone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -36,7 +36,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 4000012767440038}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Lamp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -51,7 +51,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 4000010021067730}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Camera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -68,7 +68,7 @@ GameObject:
   - 4: {fileID: 4000011061740834}
   - 54: {fileID: 54000010358160776}
   - 23: {fileID: 23000013206698482}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: iphone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -85,7 +85,7 @@ GameObject:
   - 4: {fileID: 4000011983247030}
   - 33: {fileID: 33000011618957826}
   - 23: {fileID: 23000012225561702}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
