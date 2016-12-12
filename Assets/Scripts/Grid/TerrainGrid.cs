@@ -124,7 +124,6 @@ public class TerrainGrid : MonoBehaviour
                     aux.z = (int) hit.point.z;
 
                     var valid = IsCellValid((int) aux.x, (int) aux.z);
-                    Debug.Log(valid);
 
                     if (gridVisible && valid)
                     {
