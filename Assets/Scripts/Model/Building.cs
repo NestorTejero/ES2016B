@@ -67,6 +67,7 @@ public class Building : MonoBehaviour, CanUpgrade, CanReceiveDamage, HUDSubject
         GameObject.FindGameObjectWithTag("Human").GetComponent<Player>().SpendCoins((int) upgradeCost);
         health.Upgrade(upgradeFactor);
         weapon.Upgrade();
+        weapon.setProjectile(currentLevel - 1);
         currentLevel++;
         NotifyHUD();
         ApplyMainTexture();
