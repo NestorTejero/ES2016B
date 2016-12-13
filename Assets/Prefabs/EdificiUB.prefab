@@ -240,9 +240,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   baseHealth: 200
-  repairCost: 10
+  repairCost: 300
   repairQuantity: 10
-  upgradeCost: 10
+  upgradeCost: 1000
   upgradeFactor: 1.1
   textures:
   - {fileID: 2800000, guid: 4bfcc759f7575ac4e9c0d941fef836cb, type: 3}

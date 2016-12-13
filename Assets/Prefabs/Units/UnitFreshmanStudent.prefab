@@ -1784,12 +1784,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa348ffcf3bb1ac4abac940741f6f3f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseHealth: 18
+  baseHealth: 40
   goal: {fileID: 4000012602783024, guid: c839f3d5ec503fe429715f930afaf77d, type: 2}
-  damage: 2
-  moveSpeed: 10
-  purchaseCost: 6
-  rewardCoins: 10
+  damage: 15
+  moveSpeed: 5
+  purchaseCost: 35
+  rewardCoins: 2
   weapon: {fileID: 0}
   normalTexture: {fileID: 2800000, guid: deef1e467bb614b69a2b3af1db005f56, type: 3}
   damagedTexture: {fileID: 2800000, guid: f20c7e9a94bcb4537b8a1e18547a5518, type: 3}
@@ -1804,9 +1804,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ec943e3d8fc87f4d8786ea1ea07361d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseCooldown: 1
-  baseDamage: 2
-  baseRange: 8
+  baseCooldown: 3
+  baseDamage: 15
+  baseRange: 10
   upgradeFactor: 1.1
   projectiles:
   - {fileID: 1000012771228736, guid: 78e74f26811827c46af3d33b1688f0a8, type: 2}

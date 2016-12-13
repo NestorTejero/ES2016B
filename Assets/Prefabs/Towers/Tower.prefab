@@ -324,8 +324,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e97336b7d4616584e97bd98322705b9b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  upgradeCost: 1
-  buildCost: 25
+  upgradeCost: 200
+  buildCost: 100
   source: {fileID: 82000012240276802}
   buy: {fileID: 8300000, guid: 04a82c36a813afe44ab7c0cfb6501fd2, type: 3}
   upgrade: {fileID: 8300000, guid: f9b40b600feb9d84daadfd39dda46999, type: 3}
