@@ -26,9 +26,9 @@ TagManager:
   - Buildings
   - Terrain
   - Grid
-  - 
-  - 
-  - 
+  - Minimap
+  - Projectile
+  - Unit
   - 
   - 
   - 

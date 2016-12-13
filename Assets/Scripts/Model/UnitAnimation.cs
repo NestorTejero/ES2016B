@@ -25,19 +25,15 @@ public class UnitAnimation : MonoBehaviour
     public void Attack()
     {
         animController.SetTrigger(attackHash);
-        Debug.Log("Animation Attack");
     }
 
     public void Die()
     {
         animController.SetTrigger(dieHash);
-        Debug.Log("Animation Die");
-
     }
     public void Walk()
     {
         animController.SetBool(walkHash, true);
-        Debug.Log("Animation Walk");
     }
     public void setAnimationSpeed(float speed)
     {

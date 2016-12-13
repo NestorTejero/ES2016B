@@ -72,8 +72,6 @@ public class TerrainGrid : MonoBehaviour
     {
         boxPos = gridBox.transform.position;
 
-        UpdateCells();
-
         GetInputs();
 
         if (gridVisible)
@@ -116,7 +114,7 @@ public class TerrainGrid : MonoBehaviour
         {
             RaycastHit hit;
             var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            if (Physics.Raycast(ray, out hit))
+            if (Physics.Raycast(ray, out hit, 200.0f))
                 if ((hit.transform != null) && (hit.transform.gameObject.layer == LayerMask.NameToLayer("Grid")))
                 {
                     //Debug.Log (hit.transform.gameObject.layer);
@@ -126,7 +124,6 @@ public class TerrainGrid : MonoBehaviour
                     aux.z = (int) hit.point.z;
 
                     var valid = IsCellValid((int) aux.x, (int) aux.z);
-                    Debug.Log(valid);
 
                     if (gridVisible && valid)
                     {
@@ -135,26 +132,34 @@ public class TerrainGrid : MonoBehaviour
                         t.GetComponentInChildren<CapsuleCollider>().radius = 20;
                         t.GetComponentInChildren<CapsuleCollider>().height = 30;
 
-                        t.GetComponentInChildren<Weapon>()
-                            .setSourceDeath(GameObject.Find("Death Audio Source").GetComponent<AudioSource>());
+                        //t.GetComponentInChildren<Unit>()
+                        //    .setSourceDeath(GameObject.Find("Death Audio Source").GetComponent<AudioSource>());
                         t.GetComponentInChildren<Weapon>()
                             .setSourceShoot(GameObject.Find("Shoot Audio Source").GetComponent<AudioSource>());
 
+						GameObject.Find ("EdificiUB").GetComponent<Building> ().buyTower ();
                         toggleGrid();
                     }
                 }
         }
 
-        if (Input.GetKeyDown(KeyCode.A))
-            toggleGrid();
+		if (Input.GetKeyDown (KeyCode.A)) {
+			if (GameObject.Find ("EdificiUB").GetComponent<Building> ().canBuild ())
+				toggleGrid ();
+			else
+				Debug.Log ("Dont have enough money");
+		}        
     }
 
     /*
      * this function toggle on/off every cell of the grid
      */
 
-    private void toggleGrid()
+    public void toggleGrid()
     {
+		GameObject.FindGameObjectWithTag ("MainCamera").GetComponent<RTSCamera> ().changecanMove ();
+		UpdateCells();
+
         gridVisible = !gridVisible;
         for (var i = 0; i < gridWidth; ++i)
             for (var j = 0; j < gridHeight; ++j)
@@ -185,7 +190,7 @@ public class TerrainGrid : MonoBehaviour
      * if needed
      */
 
-    private void UpdateCells()
+	public void UpdateCells()
     {
         for (var z = 0; z < gridHeight; z++)
             for (var x = 0; x < gridWidth; x++)

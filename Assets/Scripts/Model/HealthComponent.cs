@@ -27,7 +27,10 @@ public class HealthComponent
     {
         currentHealth -= damage;
         if (currentHealth <= 0.0f)
+        {
+            currentHealth = 0.0f;
             throw new Exception();
+        }
     }
 
     public void AddHealth(float healthQuantity)
@@ -46,5 +49,11 @@ public class HealthComponent
     {
         totalHealth *= upgradeFactor;
         currentHealth *= upgradeFactor;
+    }
+
+    public float GetCurrentHealthPercentage()
+    {
+        return (currentHealth * 100.0f) / totalHealth;
+
     }
 }
