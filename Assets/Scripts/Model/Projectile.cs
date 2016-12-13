@@ -34,10 +34,17 @@ public class Projectile : MonoBehaviour
 		this.damage = damage;
     }
 
-	// If enemy enters the range of attack
-	private void OnCollisionEnter(Collision col)
+    // For empty shot without colliding with anyone
+    public void Shoot(Vector3 targetPosition)
+    {
+        this.target = null;
+        this.target_position = targetPosition;
+    }
+
+    // If enemy enters the range of attack
+    private void OnCollisionEnter(Collision col)
 	{
-		if (!target.Equals (null)) {
+		if (target != null && !target.Equals (null)) {
 			string target_tag = this.target.getGameObject ().tag;
 			string col_tag = col.collider.gameObject.tag;
 

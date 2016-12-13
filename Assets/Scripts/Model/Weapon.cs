@@ -13,16 +13,16 @@ public class Weapon : MonoBehaviour
 	// TODO this is already in Projectile
 	public AudioClip shootSound;
 
-	private float currentCooldown;
-    private float currentDamage;
-    private float currentRange;
-	private GameObject proj_obj; // Projectile object
+	protected float currentCooldown;
+    protected float currentDamage;
+    protected float currentRange;
+    protected GameObject proj_obj; // Projectile object
 
-	// TODO source_shoot should go in Projectile
-	// TODO source_death should go in Unit
-    private AudioSource source_shoot;
-    private List<CanReceiveDamage> targets;
-	private UnitAnimation animScript;
+    // TODO source_shoot should go in Projectile
+    // TODO source_death should go in Unit
+    protected AudioSource source_shoot;
+    protected List<CanReceiveDamage> targets;
+    protected UnitAnimation animScript;
     
 	// Use this for initialization
     private void Start()

@@ -20,6 +20,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000012602783024}
   - 114: {fileID: 114000013154992960}
+  - 114: {fileID: 114000012133138162}
   - 65: {fileID: 65000012229569138}
   - 114: {fileID: 114000013401498404}
   - 54: {fileID: 54000013837821220}
@@ -228,6 +229,27 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &114000012133138162
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011756980988}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e175ce40b9694f544b8cc89ea6ce4aa6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  baseCooldown: 0
+  baseDamage: 1
+  baseRange: 0
+  upgradeFactor: 1
+  projectiles:
+  - {fileID: 1000012011802270, guid: dd4ce48133aa3a64db2f85c879d52083, type: 2}
+  - {fileID: 1000011754033404, guid: ad6c678cc9e0b4f448addc0e49a29d4b, type: 2}
+  - {fileID: 1000011736753480, guid: 39b4983788ab66c4dbe269117f4af8dc, type: 2}
+  proj_origin: {fileID: 1000012730123916}
+  shootSound: {fileID: 0}
 --- !u!114 &114000013154992960
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -239,7 +261,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b896dc487ce42994d8caf855021c3deb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseHealth: 200
+  baseHealth: 1000
   repairCost: 10
   repairQuantity: 10
   upgradeCost: 10
