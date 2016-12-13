@@ -37,9 +37,9 @@ public class Tower : MonoBehaviour, CanUpgrade, HUDSubject
         ApplyMainModelScale();
         ApplyMainTexture();
         //Sound
-        if (!source.isPlaying)
+        /*if (!source.isPlaying)
             source.PlayOneShot(upgrade);
-
+        */
         Debug.Log("TOWER UPGRADED, Power: " + weapon.getCurrentDamage());
     }
 
