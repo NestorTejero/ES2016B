@@ -64,7 +64,8 @@ public class GameController : MonoBehaviour
         if (dead is Building)
         {
             Debug.Log("GAME OVER Mate.");
-            SceneManager.LoadScene("MainMenu");
+			PersistentValues.victory = 0;
+			SceneManager.LoadScene("FinalSceneLose");
         }
         else if (dead is Unit)
         {
@@ -78,8 +79,10 @@ public class GameController : MonoBehaviour
     {
         currentWave += 1;
         Debug.Log("Wave CLEAR!");
-        if (currentWave > totalWaves)
-            SceneManager.LoadScene("MainMenu");
+		if (currentWave > totalWaves){
+			PersistentValues.victory = 1;
+			SceneManager.LoadScene ("FinalSceneLose");
+		}
         ai.ChangeWave();
 
 		desactivateRespawnAbility ();
