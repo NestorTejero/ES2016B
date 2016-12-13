@@ -326,7 +326,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   upgradeCost: 1
   buildCost: 25
-  source: {fileID: 82000012240276802}
+  source: {fileID: 82000013875813682, guid: 1c4c5e94a708e8c41804c081e21f523a, type: 2}
   buy: {fileID: 8300000, guid: 04a82c36a813afe44ab7c0cfb6501fd2, type: 3}
   upgrade: {fileID: 8300000, guid: f9b40b600feb9d84daadfd39dda46999, type: 3}
   textures:

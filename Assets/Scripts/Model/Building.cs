@@ -21,13 +21,15 @@ public class Building : MonoBehaviour, CanUpgrade, CanReceiveDamage, HUDSubject
     private int currentLevel;
     private int maxLevel;
 
-
     private GameObject textureModel;
     private MeshRenderer skin;
     //textures to apply on each level
     public List<Texture> textures;
     private GameObject smokeEffect;
     private ParticleSystem smoke;
+
+    private BuildingWeapon weapon;
+
     // Receive damage by weapon
     public void ReceiveDamage(float damage)
     {
@@ -64,6 +66,7 @@ public class Building : MonoBehaviour, CanUpgrade, CanReceiveDamage, HUDSubject
             return;
         GameObject.FindGameObjectWithTag("Human").GetComponent<Player>().SpendCoins((int) upgradeCost);
         health.Upgrade(upgradeFactor);
+        weapon.Upgrade();
         currentLevel++;
         NotifyHUD();
         ApplyMainTexture();
@@ -113,7 +116,6 @@ public class Building : MonoBehaviour, CanUpgrade, CanReceiveDamage, HUDSubject
         health = new HealthComponent(baseHealth);
         Debug.Log("BUILDING CREATED with HP: " + baseHealth);
 
-
         textureModel = this.transform.FindChild("Model").gameObject;
         skin = textureModel.GetComponent<MeshRenderer>();
         skin.material.mainTexture = textures[(int)UBTextureHPIndex.Full];
@@ -122,6 +124,31 @@ public class Building : MonoBehaviour, CanUpgrade, CanReceiveDamage, HUDSubject
         smokeEffect = transform.FindChild("WhiteSmoke").gameObject;
         smoke = transform.GetComponent<ParticleSystem>();
         smokeEffect.SetActive(false);
+
+        weapon = gameObject.GetComponent<BuildingWeapon>();
+    }
+
+    private void Update()
+    {
+        // Shot on mouseclick
+        if (Input.GetMouseButtonDown(1))
+        {
+            var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit;
+
+            if (Physics.Raycast(ray, out hit, 100))
+            {
+                GameObject target = hit.transform.gameObject;
+                if (target.tag == "Unit")
+                {
+                    var unit = target.GetComponent<CanReceiveDamage>();
+                    Debug.Log(target.name);
+                    weapon.addTarget(unit);
+                    weapon.Attack();
+                    weapon.removeTarget(unit);
+                }
+            }
+        }
     }
 
     public bool IsRepairable(int numCoins)
