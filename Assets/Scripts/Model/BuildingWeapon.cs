@@ -25,4 +25,15 @@ public class BuildingWeapon : Weapon {
         currentDamage *= upgradeFactor;
         currentRange *= 2.0f;
     }
+
+    public void ShootAt(Vector3 position)
+    {
+        if (!source_shoot.isPlaying)
+            source_shoot.PlayOneShot(shootSound);
+
+        //Creates projectile with its properties and destroys it after 3 seconds
+        var proj_clone = (GameObject)Instantiate(proj_obj, proj_origin.transform.position, proj_origin.transform.rotation);
+        proj_clone.GetComponent<Projectile>().Shoot(position);
+        Destroy(proj_clone, 3.0f);
+    }
 }

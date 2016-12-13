@@ -137,15 +137,19 @@ public class Building : MonoBehaviour, CanUpgrade, CanReceiveDamage, HUDSubject
             var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
 
-            if (Physics.Raycast(ray, out hit, 200))
+            if (Physics.Raycast(ray, out hit, 100))
             {
-                GameObject target = hit.transform.gameObject;
+                var target = hit.transform.gameObject;
                 if (target.tag == "Unit")
                 {
                     var unit = target.GetComponent<CanReceiveDamage>();
                     weapon.addTarget(unit);
                     weapon.Attack();
                     weapon.removeTarget(unit);
+                }
+                else
+                {
+                    weapon.ShootAt(hit.transform.position);
                 }
             }
         }
