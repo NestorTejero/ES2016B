@@ -143,7 +143,6 @@ public class Building : MonoBehaviour, CanUpgrade, CanReceiveDamage, HUDSubject
                 if (target.tag == "Unit")
                 {
                     var unit = target.GetComponent<CanReceiveDamage>();
-                    Debug.Log(target.name);
                     weapon.addTarget(unit);
                     weapon.Attack();
                     weapon.removeTarget(unit);
