@@ -439,8 +439,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 537b90ba1a86049b9a6a0b958e4008f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movieLose: {fileID: 15200000, guid: fc0601c5ef53740b58b41b0e5cf06f98, type: 3}
-  movieWin: {fileID: 15200000, guid: 17422843b03a34e9c86eaeae72d733c9, type: 3}
+  movieLose: {fileID: 15200000, guid: b12caa0e63bba4b2198b15d268fa83d0, type: 3}
+  movieWin: {fileID: 15200000, guid: 99ed4a8db1ba34467b6e016b066e5675, type: 3}
 --- !u!82 &421978854
 AudioSource:
   m_ObjectHideFlags: 0
