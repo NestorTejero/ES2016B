@@ -35,9 +35,10 @@ public class Player : MonoBehaviour
         score.Add(deadUnit.rewardCoins);
     }
 
-	public int GetNumCoins(){
-		return numCoins;
-	}
+    public int GetNumCoins()
+    {
+        return numCoins;
+    }
 
     public void ChangeWave()
     {

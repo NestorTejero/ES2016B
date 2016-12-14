@@ -6,25 +6,25 @@ public class SubMenu : MonoBehaviour
 {
     public AudioSource audioSource;
 
-	public GameObject menu;
+    public GameObject menu;
 
     // Use this for initialization
-    void Start () {
-		float width = Screen.width;
-		float height = Screen.height;
+    void Start()
+    {
+        float width = Screen.width;
+        float height = Screen.height;
 
-		float aux1, aux2;
-		aux1 = width / 2.0f;
-		aux2 = height / 2.0f;
+        float aux1, aux2;
+        aux1 = width/2.0f;
+        aux2 = height/2.0f;
 
-		menu.transform.position = new Vector3 (aux1,aux2,1);
+        menu.transform.position = new Vector3(aux1, aux2, 1);
+    }
 
-	}
-
-	// Update is called once per frame
-	void Update () {
-
-	}
+    // Update is called once per frame
+    void Update()
+    {
+    }
 
     public bool isEasyButton = false;
     public bool isHardButton = false;

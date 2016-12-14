@@ -42,7 +42,7 @@ public class Unit : MonoBehaviour, CanReceiveDamage, HUDSubject
         catch (Exception)
         {
             NotifyHUD();
-	    this.Die();
+            this.Die();
         }
     }
 
@@ -92,7 +92,7 @@ public class Unit : MonoBehaviour, CanReceiveDamage, HUDSubject
         skin = textureModel.GetComponent<SkinnedMeshRenderer>();
         skin.material.mainTexture = normalTexture;
         damageThreshold = 50.0f;
-	// Set sounds
+        // Set sounds
         death = new[]
         {
             (AudioClip) Resources.Load("Sound/Effects/Death 1"),
@@ -102,7 +102,8 @@ public class Unit : MonoBehaviour, CanReceiveDamage, HUDSubject
 
         source_death = GameObject.Find("Death Audio Source").GetComponent<AudioSource>();
 
-        Debug.Log("UNIT " + name + " CREATED");    }
+        Debug.Log("UNIT " + name + " CREATED");
+    }
 
     // If enemy enters the range of attack
     private void OnTriggerEnter(Collider col)
@@ -127,13 +128,13 @@ public class Unit : MonoBehaviour, CanReceiveDamage, HUDSubject
         return damage;
     }
 
-   /*
-    * This funcion Kills Unit and Plays Necesary Sounds and Animations
-    *
-    * */
+    /*
+     * This funcion Kills Unit and Plays Necesary Sounds and Animations
+     *
+     * */
+
     public void Die()
     {
-
         //Stop VavMesh Agent From Moving Further
         agent.enabled = false;
         //Disable Colider to avoid colliding with projectiles when dead
@@ -147,8 +148,7 @@ public class Unit : MonoBehaviour, CanReceiveDamage, HUDSubject
         animScript.Die();
 
         Destroy(gameObject, 1.5f);
-
     }
-    //TODO Make Damaged texture apear when unit has <50% HP
 
+    //TODO Make Damaged texture apear when unit has <50% HP
 }

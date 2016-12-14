@@ -2,7 +2,8 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class BuildingWeapon : Weapon {
+public class BuildingWeapon : Weapon
+{
     private void Start()
     {
         currentDamage = baseDamage;
@@ -32,7 +33,8 @@ public class BuildingWeapon : Weapon {
             source_shoot.PlayOneShot(shootSound);
 
         //Creates projectile with its properties and destroys it after 3 seconds
-        var proj_clone = (GameObject)Instantiate(proj_obj, proj_origin.transform.position, proj_origin.transform.rotation);
+        var proj_clone =
+            (GameObject) Instantiate(proj_obj, proj_origin.transform.position, proj_origin.transform.rotation);
         proj_clone.GetComponent<Projectile>().Shoot(position);
         Destroy(proj_clone, 3.0f);
     }

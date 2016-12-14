@@ -11,7 +11,7 @@ public class Tower : MonoBehaviour, CanUpgrade, HUDSubject
 
     public int upgradeCost;
     private Weapon weapon;
-	public int buildCost;
+    public int buildCost;
     public AudioSource source;
     public AudioClip buy, upgrade;
 
@@ -21,7 +21,7 @@ public class Tower : MonoBehaviour, CanUpgrade, HUDSubject
 
     public bool IsUpgradeable(int numCoins)
     {
-        return (upgradeCost <= numCoins ) && (currentLevel < maxLevel);
+        return (upgradeCost <= numCoins) && (currentLevel < maxLevel);
     }
 
     // To upgrade when there are enough coins
@@ -29,11 +29,11 @@ public class Tower : MonoBehaviour, CanUpgrade, HUDSubject
     {
         if (!IsUpgradeable(GameObject.FindGameObjectWithTag("Human").GetComponent<Player>().GetNumCoins()))
             return;
-        GameObject.FindGameObjectWithTag("Human").GetComponent<Player>().SpendCoins((int)upgradeCost);
+        GameObject.FindGameObjectWithTag("Human").GetComponent<Player>().SpendCoins((int) upgradeCost);
         weapon.Upgrade();
         currentLevel++;
-		weapon.setProjectile (currentLevel - 1);
-		NotifyHUD();
+        weapon.setProjectile(currentLevel - 1);
+        NotifyHUD();
         ApplyMainModelScale();
         ApplyMainTexture();
         //Sound
@@ -49,7 +49,8 @@ public class Tower : MonoBehaviour, CanUpgrade, HUDSubject
         {
             Damage = weapon.getCurrentDamage().ToString(),
             Range = weapon.getCurrentRange().ToString(),
-			VisibleUpgradeButton = IsUpgradeable(GameObject.FindGameObjectWithTag("Human").GetComponent<Player>().GetNumCoins())
+            VisibleUpgradeButton =
+                IsUpgradeable(GameObject.FindGameObjectWithTag("Human").GetComponent<Player>().GetNumCoins())
         };
 
         APIHUD.instance.notifyChange(this, updateInfo);
@@ -96,15 +97,19 @@ public class Tower : MonoBehaviour, CanUpgrade, HUDSubject
         switch (currentLevel)
         {
             case 1:
-                model.transform.localScale = new Vector3(model.transform.localScale.x, model.transform.localScale.y, 0.5f);
+                model.transform.localScale = new Vector3(model.transform.localScale.x, model.transform.localScale.y,
+                    0.5f);
                 break;
             case 2:
-                model.transform.localScale = new Vector3(model.transform.localScale.x, model.transform.localScale.y, 0.8f);
+                model.transform.localScale = new Vector3(model.transform.localScale.x, model.transform.localScale.y,
+                    0.8f);
                 break;
             case 3:
-                model.transform.localScale = new Vector3(model.transform.localScale.x, model.transform.localScale.y, 1.0f);
+                model.transform.localScale = new Vector3(model.transform.localScale.x, model.transform.localScale.y,
+                    1.0f);
                 break;
-            default: break;
+            default:
+                break;
         }
     }
 
