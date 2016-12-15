@@ -13,6 +13,7 @@ TagManager:
   - Shop
   - ShowOnPause
   - Enemy
+  - UnitMeshMaterial
   layers:
   - Default
   - TransparentFX
@@ -25,9 +26,9 @@ TagManager:
   - Buildings
   - Terrain
   - Grid
-  - 
-  - 
-  - 
+  - Minimap
+  - Projectile
+  - Unit
   - 
   - 
   - 

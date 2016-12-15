@@ -1,84 +1,154 @@
-﻿using UnityEngine;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System;
+using UnityEngine;
 
-public class Unit : MonoBehaviour, CanReceiveDamage
+public class Unit : MonoBehaviour, CanReceiveDamage, HUDSubject
 {
     public float baseHealth;
+    public Transform goal;
+    public float damage;
+
+    private HealthComponent health;
     public float moveSpeed;
     public int purchaseCost;
     public int rewardCoins;
-    public Transform goal;
     public Weapon weapon;
-	// TODO This shouldn't be public
-	public float damage;
 
-    private float totalHealth;
-	private float currentHealth;
-    
+    private GameObject model;
+    private UnitAnimation animScript;
 
-	// Use this for initialization
-	void Start ()
-	{
-		this.currentHealth = this.baseHealth;
-        this.totalHealth = this.baseHealth;
+    private NavMeshAgent agent;
 
-		// Unit movement towards the goal
-        NavMeshAgent agent = GetComponent<NavMeshAgent>();
-		agent.destination = this.goal.position;
+    public Texture normalTexture;
+    public Texture damagedTexture;
+    private GameObject textureModel;
+    private SkinnedMeshRenderer skin;
+    private float damageThreshold;
+    private AudioClip[] death;
+    private AudioSource source_death;
 
-	    this.weapon = this.gameObject.GetComponent<Weapon>();
+    // Receive damage by weapon
+    public void ReceiveDamage(float damage)
+    {
+        try
+        {
+            health.LoseHealth(damage);
+            NotifyHUD();
+            //change texture if hp is bellow 50%
+            if (health.GetCurrentHealthPercentage() < damageThreshold)
+            {
+                skin.material.mainTexture = damagedTexture;
+            }
+        }
+        catch (Exception)
+        {
+            NotifyHUD();
+	    this.Die();
+        }
+    }
 
-		this.damage = weapon.baseDamage;
+    public GameObject getGameObject()
+    {
+        return gameObject;
+    }
 
-        Debug.Log ("UNIT CREATED");
-	}
+    public void NotifyHUD()
+    {
+        var updateInfo = new HUDInfo
+        {
+            CurrentHealth = health.GetCurrentHealth(),
+            TotalHealth = health.GetTotalHealth(),
+            Damage = weapon.getCurrentDamage().ToString(),
+            Range = weapon.getCurrentRange().ToString()
+        };
 
-	// Receive damage by weapon
-	public void ReceiveDamage (float damage)
-	{
-		this.currentHealth -= damage;
-		Debug.Log ("Unit " + this.name + " currentHealth: " + this.currentHealth);
-		//Debug.Log("UNIT DAMAGED by HP: " + proj.getDamage());
+        APIHUD.instance.notifyChange(this, updateInfo);
+    }
 
-		if (APIHUD.instance.getGameObjectSelected () == this.gameObject) {
-			APIHUD.instance.setHealth (this.currentHealth, this.totalHealth);
-		}
+    // Use this for initialization
+    private void Start()
+    {
+        health = new HealthComponent(baseHealth);
 
-		if (this.currentHealth <= 0.0f) {
-			GameController.instance.notifyDeath (this); // Tell controller I'm dead
-			Destroy (this.gameObject, 0.5f);
-		} 
-	}
+        //NAVMESH DATA FOR PATHFINDING Unit movement towards the goal  
+        agent = GetComponent<NavMeshAgent>();
+        agent.destination = goal.position;
+        agent.speed = moveSpeed;
+        agent.acceleration = moveSpeed;
+        agent.angularSpeed = 200f;
 
-	// If enemy enters the range of attack
-	void OnTriggerEnter (Collider col)
-	{
-		if (col.gameObject.GetComponent<Building> ()) {
-			Debug.Log ("Unit " + this.name + " Collision with Building");
-			// Adds enemy to attack to the queue
-			this.weapon.addTarget (col.gameObject.GetComponent<CanReceiveDamage> ());
-		}
-	}
+        //ANIMATION DATA(We search parent object for Model SubObject and use animation script for animating everything)
+        model = this.transform.FindChild("Model").gameObject;
+        //Debug.Log(gameObject.name  +gameObject.GetHashCode() + model.name + "FOUND");
+        animScript = model.GetComponent<UnitAnimation>();
 
-	// If enemy exits the range of attack
-	void OnTriggerExit (Collider col)
-	{
-		if (col.gameObject.GetComponent<Building> ()) {
-			// Removes enemy to attack from the queue
-			this.weapon.removeTarget (col.gameObject.GetComponent<CanReceiveDamage> ());
-		}
-	}
-		
-	public GameObject getGameObject(){
-		return this.gameObject;
-	}
+        //WEAPON SCRIPT DATA
+        weapon = gameObject.GetComponent<Weapon>();
+        damage = weapon.baseDamage;
+        weapon.setAnimScript(animScript);
 
-	public float getTotalHealth(){
-		return this.totalHealth;
-	}
+        //TEXTURE DATA
+        //need to destroy material manualy when destroying object
+        textureModel = model.transform.FindChild("UnitMesh").gameObject;
+        skin = textureModel.GetComponent<SkinnedMeshRenderer>();
+        skin.material.mainTexture = normalTexture;
+        damageThreshold = 50.0f;
+	// Set sounds
+        death = new[]
+        {
+            (AudioClip) Resources.Load("Sound/Effects/Death 1"),
+            (AudioClip) Resources.Load("Sound/Effects/Death 2"),
+            (AudioClip) Resources.Load("Sound/Effects/Death 3")
+        };
 
-	public float getCurrentHealth(){
-		return this.currentHealth;
-	}
+        source_death = GameObject.Find("Death Audio Source").GetComponent<AudioSource>();
+
+        Debug.Log("UNIT " + name + " CREATED");    }
+
+    // If enemy enters the range of attack
+    private void OnTriggerEnter(Collider col)
+    {
+        if (col.gameObject.GetComponent<Building>())
+        {
+            Debug.Log("Unit " + name + " Collision with Building");
+            // Adds enemy to attack to the queue
+            weapon.addTarget(col.gameObject.GetComponent<CanReceiveDamage>());
+        }
+    }
+
+    // If enemy exits the range of attack
+    private void OnTriggerExit(Collider col)
+    {
+        if (col.gameObject.GetComponent<Building>())
+            weapon.removeTarget(col.gameObject.GetComponent<CanReceiveDamage>());
+    }
+
+    public float GetDamage()
+    {
+        return damage;
+    }
+
+   /*
+    * This funcion Kills Unit and Plays Necesary Sounds and Animations
+    *
+    * */
+    public void Die()
+    {
+
+        //Stop VavMesh Agent From Moving Further
+        agent.enabled = false;
+        //Disable Colider to avoid colliding with projectiles when dead
+        gameObject.GetComponent<CapsuleCollider>().enabled = false;
+        model.GetComponent<CapsuleCollider>().enabled = false;
+        GameController.instance.notifyDeath(this); // Tell controller I'm dead
+        //PLAY DIE SOUND
+        if (!source_death.isPlaying)
+            source_death.PlayOneShot(death[UnityEngine.Random.Range(0, death.Length)], 0.5f);
+
+        animScript.Die();
+
+        Destroy(gameObject, 1.5f);
+
+    }
+    //TODO Make Damaged texture apear when unit has <50% HP
+
 }

@@ -1,15 +1,16 @@
 ﻿using UnityEngine;
-using System.Collections;
 
-public class MusicManager : MonoBehaviour {
+public class MusicManager : MonoBehaviour
+{
     private static MusicManager _instance;
+
     public static MusicManager instance
     {
         get
         {
             if (_instance == null)
             {
-                _instance = GameObject.FindObjectOfType<MusicManager>();
+                _instance = FindObjectOfType<MusicManager>();
 
                 //Tell unity not to destroy this object when loading a new scene!
                 DontDestroyOnLoad(_instance.gameObject);
@@ -19,7 +20,7 @@ public class MusicManager : MonoBehaviour {
         }
     }
 
-    void Awake()
+    private void Awake()
     {
         if (_instance == null)
         {
@@ -32,7 +33,7 @@ public class MusicManager : MonoBehaviour {
             //If a Singleton already exists and you find
             //another reference in scene, destroy it!
             if (this != _instance)
-                Destroy(this.gameObject);
+                Destroy(gameObject);
         }
     }
 
@@ -41,11 +42,9 @@ public class MusicManager : MonoBehaviour {
         //Play some audio!
     }
 
-    void Update()
+    private void Update()
     {
         if (Application.loadedLevelName == "LightCameraTest")
-        {
-            Destroy(this.gameObject);
-        }
+            Destroy(gameObject);
     }
 }

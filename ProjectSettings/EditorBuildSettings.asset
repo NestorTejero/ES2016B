@@ -17,3 +17,5 @@ EditorBuildSettings:
     path: Assets/Scenes/MainMenu/HelpMenu.unity
   - enabled: 1
     path: Assets/Scenes/MainMenu/LoadingScreen.unity
+  - enabled: 1
+    path: Assets/Scenes/FinalSceneLose.unity
