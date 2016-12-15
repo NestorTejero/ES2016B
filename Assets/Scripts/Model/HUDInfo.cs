@@ -6,5 +6,5 @@
     public string Range = "-";
     public float TotalHealth = 0.1f;
     public bool VisibleUpgradeButton = false;
-	public bool VisibleRepairButton = false;
+    public bool VisibleRepairButton = false;
 }

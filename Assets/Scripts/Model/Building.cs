@@ -5,9 +5,20 @@ using UnityEngine;
 
 public class Building : MonoBehaviour, CanUpgrade, CanReceiveDamage, HUDSubject
 {
+    enum UBTextureHPIndex
+    {
+        Full,
+        Medium,
+        Low
+    }
 
-    enum UBTextureHPIndex { Full, Medium, Low}
-    enum HPThreshold  { Full = 100, Medium = 50, Low = 25} 
+    enum HPThreshold
+    {
+        Full = 100,
+        Medium = 50,
+        Low = 25
+    }
+
     public float baseHealth;
 
     public HealthComponent health;
@@ -54,9 +65,7 @@ public class Building : MonoBehaviour, CanUpgrade, CanReceiveDamage, HUDSubject
 
     public bool IsUpgradeable(int numCoins)
     {
-        
         return (upgradeCost <= numCoins) && (currentLevel < maxLevel);
-
     }
 
     // To upgrade when there are enough coins
@@ -75,24 +84,28 @@ public class Building : MonoBehaviour, CanUpgrade, CanReceiveDamage, HUDSubject
         Debug.Log("BUILDING UPGRADED, TOTAL HP: " + health.GetTotalHealth());
     }
 
-	//To check if have enough money to buy the tower
-	public bool canBuild(){
-		int currentMoney = GameObject.FindGameObjectWithTag ("Human").GetComponent<Player> ().GetNumCoins ();
-		int towerCost = GameObject.Find ("Towers").GetComponentInChildren<Tower> ().buildCost;
-		if (currentMoney >= towerCost) {
-			return true;
-		} else
+    //To check if have enough money to buy the tower
+    public bool canBuild()
+    {
+        int currentMoney = GameObject.FindGameObjectWithTag("Human").GetComponent<Player>().GetNumCoins();
+        int towerCost = GameObject.Find("Towers").GetComponentInChildren<Tower>().buildCost;
+        if (currentMoney >= towerCost)
+        {
+            return true;
+        }
+        else
         {
             Debug.Log("Not enough money to build");
             return false;
-		}
-	}
+        }
+    }
 
-	//To spend the money in order to pay for the tower
-	public void buyTower(){
-		int towerCost = GameObject.Find ("Towers").GetComponentInChildren<Tower> ().buildCost;
-		GameObject.FindGameObjectWithTag ("Human").GetComponent<Player> ().SpendCoins (towerCost);
-	}
+    //To spend the money in order to pay for the tower
+    public void buyTower()
+    {
+        int towerCost = GameObject.Find("Towers").GetComponentInChildren<Tower>().buildCost;
+        GameObject.FindGameObjectWithTag("Human").GetComponent<Player>().SpendCoins(towerCost);
+    }
 
     public void NotifyHUD()
     {
@@ -100,8 +113,10 @@ public class Building : MonoBehaviour, CanUpgrade, CanReceiveDamage, HUDSubject
         {
             CurrentHealth = health.GetCurrentHealth(),
             TotalHealth = health.GetTotalHealth(),
-			VisibleUpgradeButton = IsUpgradeable(GameObject.FindGameObjectWithTag("Human").GetComponent<Player>().GetNumCoins()),
-			VisibleRepairButton = IsRepairable(GameObject.FindGameObjectWithTag("Human").GetComponent<Player>().GetNumCoins())
+            VisibleUpgradeButton =
+                IsUpgradeable(GameObject.FindGameObjectWithTag("Human").GetComponent<Player>().GetNumCoins()),
+            VisibleRepairButton =
+                IsRepairable(GameObject.FindGameObjectWithTag("Human").GetComponent<Player>().GetNumCoins())
         };
 
         APIHUD.instance.notifyChange(this, updateInfo);
@@ -119,7 +134,7 @@ public class Building : MonoBehaviour, CanUpgrade, CanReceiveDamage, HUDSubject
 
         textureModel = this.transform.FindChild("Model").gameObject;
         skin = textureModel.GetComponent<MeshRenderer>();
-        skin.material.mainTexture = textures[(int)UBTextureHPIndex.Full];
+        skin.material.mainTexture = textures[(int) UBTextureHPIndex.Full];
 
         //particle data
         smokeEffect = transform.FindChild("WhiteSmoke").gameObject;
@@ -165,7 +180,7 @@ public class Building : MonoBehaviour, CanUpgrade, CanReceiveDamage, HUDSubject
     {
         if (!IsRepairable(GameObject.FindGameObjectWithTag("Human").GetComponent<Player>().GetNumCoins()))
             return;
-        GameObject.FindGameObjectWithTag("Human").GetComponent<Player>().SpendCoins((int)repairCost);
+        GameObject.FindGameObjectWithTag("Human").GetComponent<Player>().SpendCoins((int) repairCost);
         health.AddHealth(repairQuantity);
         NotifyHUD();
         ApplyMainTexture();
@@ -176,41 +191,39 @@ public class Building : MonoBehaviour, CanUpgrade, CanReceiveDamage, HUDSubject
      * Applies texture to ub depending on its Health and Level
      * 
      */
+
     public void ApplyMainTexture()
     {
         var hp = health.GetCurrentHealthPercentage();
         var text = skin.material.mainTexture; // to avoid null values
 
-        if (hp > (float)HPThreshold.Medium)
+        if (hp > (float) HPThreshold.Medium)
         {
-            text = textures[3 * (currentLevel - 1) + (int)UBTextureHPIndex.Full];
-                    
+            text = textures[3*(currentLevel - 1) + (int) UBTextureHPIndex.Full];
         }
-        else if(hp > (float)HPThreshold.Low && hp < (float)HPThreshold.Medium)
+        else if (hp > (float) HPThreshold.Low && hp < (float) HPThreshold.Medium)
         {
-            text = textures[3 * (currentLevel - 1) + (int)UBTextureHPIndex.Medium];
+            text = textures[3*(currentLevel - 1) + (int) UBTextureHPIndex.Medium];
         }
         else
         {
-            text = textures[3 * (currentLevel - 1) + (int)UBTextureHPIndex.Low];
+            text = textures[3*(currentLevel - 1) + (int) UBTextureHPIndex.Low];
         }
-                    
-        skin.material.mainTexture = text;
 
+        skin.material.mainTexture = text;
     }
+
     private void ApplySmokeEffect()
     {
         var hp = health.GetCurrentHealthPercentage();
-        if (hp >= (float)HPThreshold.Medium)
+        if (hp >= (float) HPThreshold.Medium)
         {
             smokeEffect.SetActive(false);
-
         }
         else //if (hp >= (float)HPThreshold.Low && hp < (float)HPThreshold.Medium)
         {
             smokeEffect.SetActive(true);
             //smoke.startSize = 20.0f;
         }
-
     }
 }

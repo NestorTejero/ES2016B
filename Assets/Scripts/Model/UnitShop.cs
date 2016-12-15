@@ -11,8 +11,8 @@ public class UnitShop : MonoBehaviour
     public Transform[] respawns;
     public List<GameObject> units;
 
-	// bool to  exchange the two respawn points
-	private bool respawnExchange = false;
+    // bool to  exchange the two respawn points
+    private bool respawnExchange = false;
 
     // Must be queried since it could change
     public List<Unit> GetAvailable()
@@ -40,17 +40,21 @@ public class UnitShop : MonoBehaviour
         // TODO do with tags
         var unitToPut = units.Where(x => x.GetComponent<Unit>().Equals(toPurchase)).ToList()[0];
 
-		//we take the respawn points at the same order than gamecontroller
-		var respawns = GameObject.FindGameObjectsWithTag ("SpawnP");
+        //we take the respawn points at the same order than gamecontroller
+        var respawns = GameObject.FindGameObjectsWithTag("SpawnP");
 
-		//bool respawnExchange helps to distribute enemies in the two spawn points
-		if (respawnExchange) {
-			Instantiate (unitToPut, respawns [GameController.instance.spawnPoint2].transform.position, respawns [GameController.instance.spawnPoint2].transform.rotation);
-			respawnExchange = false;
-		} else {
-			Instantiate(unitToPut, respawns[GameController.instance.spawnPoint1].transform.position, respawns[GameController.instance.spawnPoint1].transform.rotation);
-			respawnExchange = true;
-		}
-			
+        //bool respawnExchange helps to distribute enemies in the two spawn points
+        if (respawnExchange)
+        {
+            Instantiate(unitToPut, respawns[GameController.instance.spawnPoint2].transform.position,
+                respawns[GameController.instance.spawnPoint2].transform.rotation);
+            respawnExchange = false;
+        }
+        else
+        {
+            Instantiate(unitToPut, respawns[GameController.instance.spawnPoint1].transform.position,
+                respawns[GameController.instance.spawnPoint1].transform.rotation);
+            respawnExchange = true;
+        }
     }
 }
