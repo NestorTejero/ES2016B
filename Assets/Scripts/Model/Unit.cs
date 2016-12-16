@@ -1,30 +1,30 @@
 ﻿using System;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class Unit : MonoBehaviour, CanReceiveDamage, HUDSubject
 {
-    public float baseHealth;
-    public Transform goal;
-    public float damage;
-
-    private HealthComponent health;
-    public float moveSpeed;
-    public int purchaseCost;
-    public int rewardCoins;
-    public Weapon weapon;
-
-    private GameObject model;
-    private UnitAnimation animScript;
-
     private NavMeshAgent agent;
-
-    public Texture normalTexture;
+    private UnitAnimation animScript;
+    public float baseHealth;
+    public float damage;
     public Texture damagedTexture;
-    private GameObject textureModel;
-    private SkinnedMeshRenderer skin;
     private float damageThreshold;
     private AudioClip[] death;
+    public Transform goal;
+
+    private HealthComponent health;
+
+    private GameObject model;
+    public float moveSpeed;
+
+    public Texture normalTexture;
+    public int purchaseCost;
+    public int rewardCoins;
+    private SkinnedMeshRenderer skin;
     private AudioSource source_death;
+    private GameObject textureModel;
+    public Weapon weapon;
 
     // Receive damage by weapon
     public void ReceiveDamage(float damage)
@@ -35,14 +35,12 @@ public class Unit : MonoBehaviour, CanReceiveDamage, HUDSubject
             NotifyHUD();
             //change texture if hp is bellow 50%
             if (health.GetCurrentHealthPercentage() < damageThreshold)
-            {
                 skin.material.mainTexture = damagedTexture;
-            }
         }
         catch (Exception)
         {
             NotifyHUD();
-            this.Die();
+            Die();
         }
     }
 
@@ -77,7 +75,7 @@ public class Unit : MonoBehaviour, CanReceiveDamage, HUDSubject
         agent.angularSpeed = 200f;
 
         //ANIMATION DATA(We search parent object for Model SubObject and use animation script for animating everything)
-        model = this.transform.FindChild("Model").gameObject;
+        model = transform.FindChild("Model").gameObject;
         //Debug.Log(gameObject.name  +gameObject.GetHashCode() + model.name + "FOUND");
         animScript = model.GetComponent<UnitAnimation>();
 
@@ -143,7 +141,7 @@ public class Unit : MonoBehaviour, CanReceiveDamage, HUDSubject
         GameController.instance.notifyDeath(this); // Tell controller I'm dead
         //PLAY DIE SOUND
         if (!source_death.isPlaying)
-            source_death.PlayOneShot(death[UnityEngine.Random.Range(0, death.Length)], 0.5f);
+            source_death.PlayOneShot(death[Random.Range(0, death.Length)], 0.5f);
 
         animScript.Die();
 

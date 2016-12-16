@@ -137,7 +137,7 @@ public class APIHUD : MonoBehaviour
 
     private void setOnClickFunctionUpgrade()
     {
-        if (this.gameObjectSelected == null) return;
+        if (gameObjectSelected == null) return;
 
         transform.FindChild("buttons")
             .FindChild("container_buttons")
@@ -145,7 +145,7 @@ public class APIHUD : MonoBehaviour
             .GetComponent<Button>()
             .onClick.RemoveAllListeners();
 
-        switch (this.gameObjectSelected.tag)
+        switch (gameObjectSelected.tag)
         {
             case "Tower":
                 transform.FindChild("buttons")
@@ -154,7 +154,7 @@ public class APIHUD : MonoBehaviour
                     .GetComponent<Button>()
                     .onClick.AddListener(() =>
                     {
-                        this.gameObjectSelected
+                        gameObjectSelected
                             .GetComponent<Tower>()
                             .Upgrade();
                     });
@@ -166,7 +166,7 @@ public class APIHUD : MonoBehaviour
                     .GetComponent<Button>()
                     .onClick.AddListener(() =>
                     {
-                        this.gameObjectSelected
+                        gameObjectSelected
                             .GetComponent<Building>()
                             .Upgrade();
                     });
@@ -176,8 +176,7 @@ public class APIHUD : MonoBehaviour
 
     private void setOnClickFunctionRepair()
     {
-        if (gameObjectSelected != null && gameObjectSelected.tag == "Building")
-        {
+        if ((gameObjectSelected != null) && (gameObjectSelected.tag == "Building"))
             transform.FindChild("buttons")
                 .FindChild("container_buttons")
                 .FindChild("btn_Repair")
@@ -188,7 +187,6 @@ public class APIHUD : MonoBehaviour
                         .GetComponent<Building>()
                         .Repair();
                 });
-        }
     }
 
     public void setGameObjectSelected(GameObject gameObject)
@@ -233,7 +231,7 @@ public class APIHUD : MonoBehaviour
     [MethodImpl(MethodImplOptions.Synchronized)]
     public void notifyChange(HUDSubject subj, HUDInfo info)
     {
-        if (gameObjectSelected == null || gameObjectSelected.GetComponent<HUDSubject>() != subj)
+        if ((gameObjectSelected == null) || (gameObjectSelected.GetComponent<HUDSubject>() != subj))
             return;
 
         setHealth(info.CurrentHealth, info.TotalHealth);

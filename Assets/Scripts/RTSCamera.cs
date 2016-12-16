@@ -4,7 +4,12 @@ using UnityEngine;
 public class RTSCamera : MonoBehaviour
 {
     private Vector3 camVel = Vector3.zero;
+
+
+    private bool canMove;
     private Vector3 currentMousePos = Vector3.zero;
+
+    private Vector3 desiredPosition;
 
     //vectors used while moving the camera around
     private Vector3 destination = Vector3.zero;
@@ -21,18 +26,13 @@ public class RTSCamera : MonoBehaviour
     //initializing the new classes
     public PositionSettings position = new PositionSettings();
     private Vector3 previousMousePos = Vector3.zero;
+    public float scrollSpeed = 2;
+
+    public float scrollZone = 30;
 
     //floats to get the size of the field to avoid going further
     private float terrainHeight;
     private float terrainWidth;
-
-    public float scrollZone = 30;
-    public float scrollSpeed = 2;
-
-    private Vector3 desiredPosition;
-
-
-    private bool canMove;
 
     public bool getcanMove()
     {
@@ -103,16 +103,13 @@ public class RTSCamera : MonoBehaviour
         if (getcanMove()) MoveCamera();
     }
 
-    void FixedUpdate()
+    private void FixedUpdate()
     {
         //calling a function that checks for the camera to stay at the same distance to the ground
         //HandleCameraDistance ();
         if (getcanMove())
-        {
-            //MoveCamera ();
-            if (position.allowZoom && zoomInput != 0.0)
+            if (position.allowZoom && (zoomInput != 0.0))
                 cameraZoom();
-        }
     }
 
     private void MoveCamera()
@@ -124,12 +121,12 @@ public class RTSCamera : MonoBehaviour
 
         //Vector3 horizontal = transform.right;
         //Vector3 vertical = Vector3.Cross (transform.right, Vector3.up);
-        Vector3 horizontal = Vector3.zero;
-        Vector3 vertical = Vector3.zero;
+        var horizontal = Vector3.zero;
+        var vertical = Vector3.zero;
 
-        float speed = scrollSpeed*Time.deltaTime;
+        var speed = scrollSpeed*Time.deltaTime;
 
-        bool movement = false;
+        var movement = false;
 
         if (Input.mousePosition.x < scrollZone)
         {
@@ -162,7 +159,7 @@ public class RTSCamera : MonoBehaviour
 
         if (movement)
         {
-            Vector3 move = vertical + horizontal + transform.position;
+            var move = vertical + horizontal + transform.position;
             move.x = Mathf.Clamp(move.x, -280, 340);
             //move.y = Mathf.Clamp (move.y, 40, 100);
             move.z = Mathf.Clamp(move.z, -220, 240);
@@ -175,18 +172,14 @@ public class RTSCamera : MonoBehaviour
     {
         //Debug.Log (zoomInput);
 
-        float y = 0.0f;
+        var y = 0.0f;
 
         if (zoomInput > 0.0f)
-        {
             y += position.zoomStep*-(zoomInput*10);
-        }
         else
-        {
             y += position.zoomStep*-(zoomInput*10);
-        }
 
-        Vector3 zoom = transform.position;
+        var zoom = transform.position;
         zoom.y += y;
         zoom.y = Mathf.Clamp(zoom.y, 40, 80);
         desiredPosition = zoom;

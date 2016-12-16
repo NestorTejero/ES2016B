@@ -11,10 +11,10 @@ public class GameController : MonoBehaviour
     public static GameController instance;
     private int currentWave;
 
-    public int totalWaves;
-
     public int spawnPoint1;
     public int spawnPoint2;
+
+    public int totalWaves;
 
     // Use this for initialization
 
@@ -102,9 +102,7 @@ public class GameController : MonoBehaviour
         spawnPoint2 = Random.Range(0, 4);
 
         while (spawnPoint2 == spawnPoint1)
-        {
             spawnPoint2 = Random.Range(0, 4);
-        }
     }
 
     public void activateRespawnAbility()

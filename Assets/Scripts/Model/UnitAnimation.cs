@@ -1,16 +1,15 @@
 ﻿using UnityEngine;
-using System.Collections;
 
 public class UnitAnimation : MonoBehaviour
 {
     private Animator animController;
+    private int attackHash;
+    private int dieHash;
     //We will use hash values for greatly increasing performance
     private int walkHash;
-    private int dieHash;
-    private int attackHash;
 
 
-    void Start()
+    private void Start()
     {
         animController = GetComponent<Animator>();
         walkHash = Animator.StringToHash("Walk");

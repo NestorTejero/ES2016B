@@ -1,6 +1,5 @@
-﻿using UnityEngine;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 public class BuildingWeapon : Weapon
 {
@@ -14,7 +13,7 @@ public class BuildingWeapon : Weapon
         targets = new List<CanReceiveDamage>();
 
         // Get first projectile (or only one in Units case)
-        this.proj_obj = projectiles[0];
+        proj_obj = projectiles[0];
 
         // TODO source_shoot assignation should go in Projectile
         source_shoot = GameObject.Find("Shoot Audio Source").GetComponent<AudioSource>();

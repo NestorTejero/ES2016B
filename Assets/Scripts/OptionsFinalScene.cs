@@ -1,17 +1,15 @@
 ﻿using UnityEngine;
-using System.Collections;
-using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class OptionsFinalScene : MonoBehaviour
 {
     // Use this for initialization
-    void Start()
+    private void Start()
     {
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
     }
 

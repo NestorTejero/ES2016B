@@ -1,23 +1,21 @@
-﻿using UnityEngine;
-using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 public class Tower : MonoBehaviour, CanUpgrade, HUDSubject
 {
-    private int minLevel;
+    public int buildCost;
+    public AudioClip buy, upgrade;
     private int currentLevel;
     private int maxLevel;
-
-    public int upgradeCost;
-    private Weapon weapon;
-    public int buildCost;
-    public AudioSource source;
-    public AudioClip buy, upgrade;
+    private int minLevel;
 
     private GameObject model;
     private MeshRenderer skin;
+    public AudioSource source;
     public List<Texture> textures;
+
+    public int upgradeCost;
+    private Weapon weapon;
 
     public bool IsUpgradeable(int numCoins)
     {
@@ -29,7 +27,7 @@ public class Tower : MonoBehaviour, CanUpgrade, HUDSubject
     {
         if (!IsUpgradeable(GameObject.FindGameObjectWithTag("Human").GetComponent<Player>().GetNumCoins()))
             return;
-        GameObject.FindGameObjectWithTag("Human").GetComponent<Player>().SpendCoins((int) upgradeCost);
+        GameObject.FindGameObjectWithTag("Human").GetComponent<Player>().SpendCoins(upgradeCost);
         weapon.Upgrade();
         currentLevel++;
         weapon.setProjectile(currentLevel - 1);
@@ -79,10 +77,7 @@ public class Tower : MonoBehaviour, CanUpgrade, HUDSubject
     private void OnTriggerEnter(Collider col)
     {
         if (col.gameObject.tag == "Enemy")
-        {
-            // Adds enemy to attack to the queue
             weapon.addTarget(col.gameObject.GetComponentInParent<CanReceiveDamage>());
-        }
     }
 
     // If enemy exits the range of attack
