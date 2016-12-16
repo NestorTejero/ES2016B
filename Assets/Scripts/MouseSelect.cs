@@ -64,7 +64,7 @@ public class MouseSelect : MonoBehaviour
     public void OnMouseOver()
     {
         if (tag == "Building")
-            TooltipText.text = "You msut protect this building!";
+            TooltipText.text = "You must protect this building!";
 
         if (tag == "Unit")
             TooltipText.text = "Kill them all!";
