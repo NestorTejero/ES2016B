@@ -16,7 +16,7 @@ public class MouseSelect : MonoBehaviour
         transformSelected = null;
         isSelected = false;
 
-        TooltipText = GameObject.Find("TooltipText").GetComponent<Text>();
+        TooltipText = GameObject.Find("FeedbackText").GetComponent<Text>();
     }
 
     // Update is called once per frame
@@ -64,10 +64,10 @@ public class MouseSelect : MonoBehaviour
     public void OnMouseOver()
     {
         if (tag == "Building")
-            TooltipText.text = "Protect this building!";
+            TooltipText.text = "You mut protect this building!";
 
         if (tag == "Unit")
-            TooltipText.text = "Kill them with fire!";
+            TooltipText.text = "Kill them all!";
     }
 
     public void OnMouseExit()
