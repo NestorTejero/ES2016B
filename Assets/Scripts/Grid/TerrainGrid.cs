@@ -144,12 +144,10 @@ public class TerrainGrid : MonoBehaviour
         }
 
         if (Input.GetKeyDown(KeyCode.A))
-        {
             if (GameObject.Find("EdificiUB").GetComponent<Building>().canBuild())
                 toggleGrid();
             else
                 Debug.Log("Dont have enough money");
-        }
     }
 
     /*

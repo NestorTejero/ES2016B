@@ -3,26 +3,26 @@ using UnityEngine;
 
 public class Weapon : MonoBehaviour
 {
+    protected UnitAnimation animScript;
     public float baseCooldown;
     public float baseDamage;
     public float baseRange;
-    public float upgradeFactor;
-    public List<GameObject> projectiles;
-    public GameObject proj_origin; // Projectile origin
-
-    // TODO this is already in Projectile
-    public AudioClip shootSound;
 
     protected float currentCooldown;
     protected float currentDamage;
     protected float currentRange;
     protected GameObject proj_obj; // Projectile object
+    public GameObject proj_origin; // Projectile origin
+    public List<GameObject> projectiles;
+
+    // TODO this is already in Projectile
+    public AudioClip shootSound;
 
     // TODO source_shoot should go in Projectile
     // TODO source_death should go in Unit
     protected AudioSource source_shoot;
     protected List<CanReceiveDamage> targets;
-    protected UnitAnimation animScript;
+    public float upgradeFactor;
 
     // Use this for initialization
     private void Start()
@@ -38,7 +38,7 @@ public class Weapon : MonoBehaviour
         targets = new List<CanReceiveDamage>();
 
         // Get first projectile (or only one in Units case)
-        this.proj_obj = projectiles[0];
+        proj_obj = projectiles[0];
 
         // Call Attack every 'cooldown' seconds
         InvokeRepeating("Attack", 0.0f, currentCooldown);
@@ -96,13 +96,9 @@ public class Weapon : MonoBehaviour
 
             // Check if target is already dead
             if (target.Equals(null))
-            {
                 removeTarget(target);
-            }
             else
-            {
                 return target;
-            }
         }
         return null;
     }
@@ -121,9 +117,7 @@ public class Weapon : MonoBehaviour
 
             //Animation data
             if (tag == "Unit")
-            {
                 animScript.Attack();
-            }
 
             //Creates projectile with its properties and destroys it after 3 seconds
             var proj_clone =
@@ -141,13 +135,13 @@ public class Weapon : MonoBehaviour
 
     public void setAnimScript(UnitAnimation ascript)
     {
-        this.animScript = ascript;
+        animScript = ascript;
     }
 
     public void setProjectile(int level)
     {
         //TODO uncoment this when have all weapon prefab
-        this.proj_obj = this.projectiles[level];
+        proj_obj = projectiles[level];
         //this.proj_obj = this.projectiles[0];
     }
 }

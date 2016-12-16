@@ -6,10 +6,15 @@ public class SubMenu : MonoBehaviour
 {
     public AudioSource audioSource;
 
+    public bool isEasyButton = false;
+    public bool isHardButton = false;
+    public bool isMediumButton = false;
+    public bool isReturnButton = false;
+
     public GameObject menu;
 
     // Use this for initialization
-    void Start()
+    private void Start()
     {
         float width = Screen.width;
         float height = Screen.height;
@@ -22,14 +27,9 @@ public class SubMenu : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
     }
-
-    public bool isEasyButton = false;
-    public bool isHardButton = false;
-    public bool isMediumButton = false;
-    public bool isReturnButton = false;
 
     public void OnMouseEnter()
     {

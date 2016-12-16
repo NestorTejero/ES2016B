@@ -53,6 +53,6 @@ public class HealthComponent
 
     public float GetCurrentHealthPercentage()
     {
-        return (currentHealth*100.0f)/totalHealth;
+        return currentHealth*100.0f/totalHealth;
     }
 }
