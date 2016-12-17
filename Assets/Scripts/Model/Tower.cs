@@ -1,27 +1,25 @@
-﻿using UnityEngine;
-using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 public class Tower : MonoBehaviour, CanUpgrade, HUDSubject
 {
-    private int minLevel;
+    public int buildCost;
+    public AudioClip buy, upgrade;
     private int currentLevel;
     private int maxLevel;
-
-    public int upgradeCost;
-    private Weapon weapon;
-	public int buildCost;
-    public AudioSource source;
-    public AudioClip buy, upgrade;
+    private int minLevel;
 
     private GameObject model;
     private MeshRenderer skin;
+    public AudioSource source;
     public List<Texture> textures;
+
+    public int upgradeCost;
+    private Weapon weapon;
 
     public bool IsUpgradeable(int numCoins)
     {
-        return (upgradeCost <= numCoins ) && (currentLevel < maxLevel);
+        return (upgradeCost <= numCoins) && (currentLevel < maxLevel);
     }
 
     // To upgrade when there are enough coins
@@ -29,17 +27,17 @@ public class Tower : MonoBehaviour, CanUpgrade, HUDSubject
     {
         if (!IsUpgradeable(GameObject.FindGameObjectWithTag("Human").GetComponent<Player>().GetNumCoins()))
             return;
-        GameObject.FindGameObjectWithTag("Human").GetComponent<Player>().SpendCoins((int)upgradeCost);
+        GameObject.FindGameObjectWithTag("Human").GetComponent<Player>().SpendCoins(upgradeCost);
         weapon.Upgrade();
         currentLevel++;
-		weapon.setProjectile (currentLevel - 1);
-		NotifyHUD();
+        weapon.setProjectile(currentLevel - 1);
+        NotifyHUD();
         ApplyMainModelScale();
         ApplyMainTexture();
         //Sound
-        if (!source.isPlaying)
+        /*if (!source.isPlaying)
             source.PlayOneShot(upgrade);
-
+        */
         Debug.Log("TOWER UPGRADED, Power: " + weapon.getCurrentDamage());
     }
 
@@ -49,7 +47,8 @@ public class Tower : MonoBehaviour, CanUpgrade, HUDSubject
         {
             Damage = weapon.getCurrentDamage().ToString(),
             Range = weapon.getCurrentRange().ToString(),
-			VisibleUpgradeButton = IsUpgradeable(GameObject.FindGameObjectWithTag("Human").GetComponent<Player>().GetNumCoins())
+            VisibleUpgradeButton =
+                IsUpgradeable(GameObject.FindGameObjectWithTag("Human").GetComponent<Player>().GetNumCoins())
         };
 
         APIHUD.instance.notifyChange(this, updateInfo);
@@ -78,10 +77,7 @@ public class Tower : MonoBehaviour, CanUpgrade, HUDSubject
     private void OnTriggerEnter(Collider col)
     {
         if (col.gameObject.tag == "Enemy")
-        {
-            // Adds enemy to attack to the queue
             weapon.addTarget(col.gameObject.GetComponentInParent<CanReceiveDamage>());
-        }
     }
 
     // If enemy exits the range of attack
@@ -96,15 +92,19 @@ public class Tower : MonoBehaviour, CanUpgrade, HUDSubject
         switch (currentLevel)
         {
             case 1:
-                model.transform.localScale = new Vector3(model.transform.localScale.x, model.transform.localScale.y, 0.5f);
+                model.transform.localScale = new Vector3(model.transform.localScale.x, model.transform.localScale.y,
+                    0.5f);
                 break;
             case 2:
-                model.transform.localScale = new Vector3(model.transform.localScale.x, model.transform.localScale.y, 0.8f);
+                model.transform.localScale = new Vector3(model.transform.localScale.x, model.transform.localScale.y,
+                    0.8f);
                 break;
             case 3:
-                model.transform.localScale = new Vector3(model.transform.localScale.x, model.transform.localScale.y, 1.0f);
+                model.transform.localScale = new Vector3(model.transform.localScale.x, model.transform.localScale.y,
+                    1.0f);
                 break;
-            default: break;
+            default:
+                break;
         }
     }
 

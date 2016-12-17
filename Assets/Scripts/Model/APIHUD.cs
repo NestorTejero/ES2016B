@@ -64,7 +64,7 @@ public class APIHUD : MonoBehaviour
     {
         transform.FindChild("containerStats")
             .FindChild("container_info")
-			.FindChild("imgAttackSpeed")
+            .FindChild("imgAttackSpeed")
             .FindChild("txtAttackSpeed")
             .GetComponent<Text>()
             .text = atackSpeed;
@@ -102,7 +102,7 @@ public class APIHUD : MonoBehaviour
     public void setTime(string time)
     {
         transform.FindChild("containerGameStats")
-			.FindChild("imgTime")
+            .FindChild("imgTime")
             .FindChild("txtTime")
             .GetComponent<Text>()
             .text = time;
@@ -134,84 +134,91 @@ public class APIHUD : MonoBehaviour
             .GetComponent<Text>()
             .text = money;
     }
-		
-	private void setOnClickFunctionUpgrade()
-	{
 
-	    if (this.gameObjectSelected == null) return;
+    private void setOnClickFunctionUpgrade()
+    {
+        if (gameObjectSelected == null) return;
 
-		transform.FindChild ("buttons")
-			.FindChild ("container_buttons")
-			.FindChild ("btn_Upgrade")
-			.GetComponent<Button> ()
-			.onClick.RemoveAllListeners ();
+        transform.FindChild("buttons")
+            .FindChild("container_buttons")
+            .FindChild("btn_Upgrade")
+            .GetComponent<Button>()
+            .onClick.RemoveAllListeners();
 
-	    switch (this.gameObjectSelected.tag)
-	    {
-	        case "Tower":
-	            transform.FindChild("buttons")
-	                .FindChild("container_buttons")
-	                .FindChild("btn_Upgrade")
-	                .GetComponent<Button>()
-	                .onClick.AddListener(() =>
-	                {
-						this.gameObjectSelected
-	                        .GetComponent<Tower>()
-	                        .Upgrade();
-	                });
-	            break;
-		case "Building":
-	            transform.FindChild("buttons")
-	                .FindChild("container_buttons")
-	                .FindChild("btn_Upgrade")
-	                .GetComponent<Button>()
-	                .onClick.AddListener(() =>
-	                {
-						this.gameObjectSelected
-	                        .GetComponent<Building>()
-	                        .Upgrade();
-	                });
-	            break;
-	    }
-	}
+        switch (gameObjectSelected.tag)
+        {
+            case "Tower":
+                transform.FindChild("buttons")
+                    .FindChild("container_buttons")
+                    .FindChild("btn_Upgrade")
+                    .GetComponent<Button>()
+                    .onClick.AddListener(() =>
+                    {
+                        gameObjectSelected
+                            .GetComponent<Tower>()
+                            .Upgrade();
+                    });
+                break;
+            case "Building":
+                transform.FindChild("buttons")
+                    .FindChild("container_buttons")
+                    .FindChild("btn_Upgrade")
+                    .GetComponent<Button>()
+                    .onClick.AddListener(() =>
+                    {
+                        gameObjectSelected
+                            .GetComponent<Building>()
+                            .Upgrade();
+                    });
+                break;
+        }
+    }
 
-	private void setOnClickFunctionRepair(){
-		if (gameObjectSelected != null && gameObjectSelected.tag == "Building") {
-			transform.FindChild ("buttons").FindChild ("container_buttons").FindChild ("btn_Repair").GetComponent<Button> ().onClick.AddListener (() => {
-				gameObjectSelected
-					.GetComponent<Building>()
-					.Repair();
-			});
-		}
-	}
-    
-	public void setGameObjectSelected(GameObject gameObject)
-	{
-		gameObjectSelected = gameObject;
-	}
+    private void setOnClickFunctionRepair()
+    {
+        if ((gameObjectSelected != null) && (gameObjectSelected.tag == "Building"))
+            transform.FindChild("buttons")
+                .FindChild("container_buttons")
+                .FindChild("btn_Repair")
+                .GetComponent<Button>()
+                .onClick.AddListener(() =>
+                {
+                    gameObjectSelected
+                        .GetComponent<Building>()
+                        .Repair();
+                });
+    }
 
-	public GameObject getGameObjectSelected()
-	{
-		return gameObjectSelected;
-	}
+    public void setGameObjectSelected(GameObject gameObject)
+    {
+        gameObjectSelected = gameObject;
+    }
+
+    public GameObject getGameObjectSelected()
+    {
+        return gameObjectSelected;
+    }
 
     public void setVisibleUpgradeButton(bool visible)
     {
-		transform.FindChild("buttons").FindChild("container_buttons").FindChild("btn_Upgrade").gameObject.active = visible;
-		setOnClickFunctionUpgrade ();
-	}
+        transform.FindChild("buttons").FindChild("container_buttons").FindChild("btn_Upgrade").gameObject.active =
+            visible;
+        setOnClickFunctionUpgrade();
+    }
 
-	public void setVisibleRepairButton(bool visible)
-	{
-		transform.FindChild("buttons").FindChild("container_buttons").FindChild("btn_Repair").gameObject.active = visible;
-		setOnClickFunctionRepair ();
-	}
+    public void setVisibleRepairButton(bool visible)
+    {
+        transform.FindChild("buttons").FindChild("container_buttons").FindChild("btn_Repair").gameObject.active =
+            visible;
+        setOnClickFunctionRepair();
+    }
 
-	public void setVisibleBuyTowerButton(bool visible)
-	{
-		transform.FindChild("buttons").FindChild("container_buttons").FindChild("btn_AddTower").gameObject.active = visible;
-		setOnClickFunctionRepair ();
-	}
+    public void setVisibleBuyTowerButton(bool visible)
+    {
+        transform.FindChild("buttons").FindChild("container_buttons").FindChild("btn_AddTower").gameObject.active =
+            visible;
+        setOnClickFunctionRepair();
+    }
 
     private void setSelectedItemLabel()
     {
@@ -224,7 +231,7 @@ public class APIHUD : MonoBehaviour
     [MethodImpl(MethodImplOptions.Synchronized)]
     public void notifyChange(HUDSubject subj, HUDInfo info)
     {
-        if (gameObjectSelected == null || gameObjectSelected.GetComponent<HUDSubject>() != subj)
+        if ((gameObjectSelected == null) || (gameObjectSelected.GetComponent<HUDSubject>() != subj))
             return;
 
         setHealth(info.CurrentHealth, info.TotalHealth);
@@ -232,6 +239,6 @@ public class APIHUD : MonoBehaviour
         setDamage(info.Damage);
         setRange(info.Range);
         setVisibleUpgradeButton(info.VisibleUpgradeButton);
-		setVisibleRepairButton(info.VisibleRepairButton);
+        setVisibleRepairButton(info.VisibleRepairButton);
     }
 }

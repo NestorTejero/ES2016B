@@ -11,10 +11,10 @@ public class GameController : MonoBehaviour
     public static GameController instance;
     private int currentWave;
 
-    public int totalWaves;
+    public int spawnPoint1;
+    public int spawnPoint2;
 
-	public int spawnPoint1;
-	public int spawnPoint2;
+    public int totalWaves;
 
     // Use this for initialization
 
@@ -22,7 +22,7 @@ public class GameController : MonoBehaviour
     {
         currentWave = 1;
 
-		generateSpawnPoint ();
+        generateSpawnPoint();
 
         switch (PersistentValues.difficulty)
         {
@@ -64,7 +64,8 @@ public class GameController : MonoBehaviour
         if (dead is Building)
         {
             Debug.Log("GAME OVER Mate.");
-            SceneManager.LoadScene("MainMenu");
+            PersistentValues.victory = 0;
+            SceneManager.LoadScene("FinalSceneLose");
         }
         else if (dead is Unit)
         {
@@ -79,42 +80,43 @@ public class GameController : MonoBehaviour
         currentWave += 1;
         Debug.Log("Wave CLEAR!");
         if (currentWave > totalWaves)
-            SceneManager.LoadScene("MainMenu");
+        {
+            PersistentValues.victory = 1;
+            SceneManager.LoadScene("FinalSceneLose");
+        }
         ai.ChangeWave();
 
-		desactivateRespawnAbility ();
+        desactivateRespawnAbility();
 
-		generateSpawnPoint ();
+        generateSpawnPoint();
 
         APIHUD.instance.setWave(currentWave.ToString());
 
         GameObject.FindGameObjectWithTag("Human").GetComponent<Player>().ChangeWave();
     }
 
-	public void generateSpawnPoint()
-	{
-		spawnPoint1 =  Random.Range(0, 4);
+    public void generateSpawnPoint()
+    {
+        spawnPoint1 = Random.Range(0, 4);
 
-		spawnPoint2 =  Random.Range(0, 4);
+        spawnPoint2 = Random.Range(0, 4);
 
-		while (spawnPoint2 == spawnPoint1) {
-			spawnPoint2 =  Random.Range(0, 4);
-		}
-	}
+        while (spawnPoint2 == spawnPoint1)
+            spawnPoint2 = Random.Range(0, 4);
+    }
 
-	public void activateRespawnAbility()
-	{
-		var respawns = GameObject.FindGameObjectsWithTag ("SpawnP");
-		((Behaviour)respawns [spawnPoint1].GetComponent ("Halo")).enabled = true;
-		((Behaviour)respawns [spawnPoint2].GetComponent ("Halo")).enabled = true;
-		Debug.Log (respawns [spawnPoint1].name);
-	}
+    public void activateRespawnAbility()
+    {
+        var respawns = GameObject.FindGameObjectsWithTag("SpawnP");
+        ((Behaviour) respawns[spawnPoint1].GetComponent("Halo")).enabled = true;
+        ((Behaviour) respawns[spawnPoint2].GetComponent("Halo")).enabled = true;
+        Debug.Log(respawns[spawnPoint1].name);
+    }
 
-	public void desactivateRespawnAbility()
-	{
-		var respawns = GameObject.FindGameObjectsWithTag ("SpawnP");
-		((Behaviour)respawns [spawnPoint1].GetComponent ("Halo")).enabled = false;
-		((Behaviour)respawns [spawnPoint2].GetComponent ("Halo")).enabled = false;
-	}
-		
+    public void desactivateRespawnAbility()
+    {
+        var respawns = GameObject.FindGameObjectsWithTag("SpawnP");
+        ((Behaviour) respawns[spawnPoint1].GetComponent("Halo")).enabled = false;
+        ((Behaviour) respawns[spawnPoint2].GetComponent("Halo")).enabled = false;
+    }
 }
