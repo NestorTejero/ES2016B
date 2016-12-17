@@ -2,8 +2,8 @@
 
 public class ScoreManager
 {
-    private int score;
     private readonly int difficulty;
+    private int score;
 
     public ScoreManager()
     {

@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using System.Collections;
 
 public class MusicController : MonoBehaviour
 {
@@ -13,9 +12,9 @@ public class MusicController : MonoBehaviour
     {
     }
 
-    void Awake()
+    private void Awake()
     {
-        AudioSource music = GetComponent<AudioSource>();
+        var music = GetComponent<AudioSource>();
         music.ignoreListenerVolume = true; // We make the audio source ignore the audio listener
         music.volume = 0.5f;
     }

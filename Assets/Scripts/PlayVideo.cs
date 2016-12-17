@@ -1,23 +1,22 @@
 ﻿using UnityEngine;
-using System.Collections;
-using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 [RequireComponent(typeof(AudioSource))]
 public class PlayVideo : MonoBehaviour
 {
+    private AudioSource audio;
     public MovieTexture movieLose;
     public MovieTexture movieWin;
-    private AudioSource audio;
 
     // Use this for initialization
-    void Start()
+    private void Start()
     {
         switch (PersistentValues.victory)
         {
             case 0:
                 Debug.Log("GameOver");
-                GetComponent<RawImage>().texture = movieLose as MovieTexture;
+                GetComponent<RawImage>().texture = movieLose;
                 audio = GetComponent<AudioSource>();
                 audio.clip = movieLose.audioClip;
                 movieLose.Play();
@@ -25,7 +24,7 @@ public class PlayVideo : MonoBehaviour
                 break;
             case 1:
                 Debug.Log("Win");
-                GetComponent<RawImage>().texture = movieWin as MovieTexture;
+                GetComponent<RawImage>().texture = movieWin;
                 audio = GetComponent<AudioSource>();
                 audio.clip = movieWin.audioClip;
                 movieWin.Play();
@@ -35,7 +34,7 @@ public class PlayVideo : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
         /*if(Input.GetKeyDown(KeyCode.Space) && movie.isPlaying){
             movie.Pause();

@@ -8,11 +8,10 @@ using UnityEngine;
 
 public class UnitShop : MonoBehaviour
 {
+    // bool to  exchange the two respawn points
+    private bool respawnExchange;
     public Transform[] respawns;
     public List<GameObject> units;
-
-    // bool to  exchange the two respawn points
-    private bool respawnExchange = false;
 
     // Must be queried since it could change
     public List<Unit> GetAvailable()
