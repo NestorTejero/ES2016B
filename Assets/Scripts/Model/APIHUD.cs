@@ -92,6 +92,9 @@ public class APIHUD : MonoBehaviour
 
     public void setWave(string wave)
     {
+
+		PersistentValues.waves = (int.Parse(wave)-1).ToString();
+
         transform.FindChild("containerGameStats")
             .FindChild("imgWave")
             .FindChild("txtWave")
@@ -101,6 +104,8 @@ public class APIHUD : MonoBehaviour
 
     public void setTime(string time)
     {
+		PersistentValues.time = time;
+
         transform.FindChild("containerGameStats")
             .FindChild("imgTime")
             .FindChild("txtTime")
@@ -119,6 +124,8 @@ public class APIHUD : MonoBehaviour
 
     public void setPoints(string points)
     {
+		PersistentValues.points = points;
+
         transform.FindChild("containerGameStats")
             .FindChild("imgPoints")
             .FindChild("txtPoints")
