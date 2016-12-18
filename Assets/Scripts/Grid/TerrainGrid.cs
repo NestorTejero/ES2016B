@@ -148,6 +148,7 @@ public class TerrainGrid : MonoBehaviour
                 toggleGrid();
             else
                 Debug.Log("Dont have enough money");
+
     }
 
     /*
