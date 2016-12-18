@@ -25,6 +25,7 @@ public class Player : MonoBehaviour
         if (numCoins < 0)
             numCoins = 0;
         APIHUD.instance.setMoney(numCoins.ToString());
+		MoneyTextManager.Instance.CreateText (GameObject.Find("Grid+Camera").transform.FindChild("Grid").transform.position,coins.ToString(),false);
     }
 
     public void GetMoney(Unit deadUnit)
@@ -32,6 +33,7 @@ public class Player : MonoBehaviour
         Debug.Log("Oh! I've received " + deadUnit.rewardCoins + " coins! :D yay");
         AddCoins(deadUnit.rewardCoins);
         score.Add(deadUnit.rewardCoins);
+		MoneyTextManager.Instance.CreateText (GameObject.Find("Grid+Camera").transform.FindChild("Grid").transform.position,deadUnit.rewardCoins.ToString(),true);
     }
 
     public int GetNumCoins()
