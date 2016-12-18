@@ -9,6 +9,10 @@ public class PersistentValues : MonoBehaviour
     public static float effectsLastVolume = 1;
 
 
+	public static string points = "0";
+	public static string time = "0";
+	public static string waves = "0";
+
     // Victory o Game Over
     public static int victory = 0;
 
