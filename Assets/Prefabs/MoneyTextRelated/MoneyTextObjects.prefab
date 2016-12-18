@@ -9,17 +9,17 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1000011968032416}
+  m_RootGameObject: {fileID: 1000012719551282}
   m_IsPrefabParent: 1
---- !u!1 &1000011024171944
+--- !u!1 &1000010116920748
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 4
   m_Component:
-  - 4: {fileID: 4000010091653030}
-  - 114: {fileID: 114000013833868952}
+  - 4: {fileID: 4000014066412504}
+  - 114: {fileID: 114000013571734510}
   m_Layer: 0
   m_Name: MoneyTextManager
   m_TagString: Untagged
@@ -27,32 +27,17 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!1 &1000011968032416
+--- !u!1 &1000010318390062
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 4
   m_Component:
-  - 4: {fileID: 4000010761158562}
-  m_Layer: 0
-  m_Name: MoneyTextObjects
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!1 &1000013191983296
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 4
-  m_Component:
-  - 224: {fileID: 224000012483517064}
-  - 223: {fileID: 223000011649020224}
-  - 114: {fileID: 114000011015129496}
-  - 114: {fileID: 114000011953309828}
+  - 224: {fileID: 224000011761801296}
+  - 223: {fileID: 223000010376196924}
+  - 114: {fileID: 114000010152446034}
+  - 114: {fileID: 114000013235971436}
   m_Layer: 5
   m_Name: MoneyCanvas
   m_TagString: Untagged
@@ -60,40 +45,55 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4000010091653030
+--- !u!1 &1000012719551282
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 4000014120556482}
+  m_Layer: 0
+  m_Name: MoneyTextObjects
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4000014066412504
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000011024171944}
+  m_GameObject: {fileID: 1000010116920748}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 65.6659, y: 5, z: 223.87915}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
-  m_Father: {fileID: 4000010761158562}
+  m_Father: {fileID: 4000014120556482}
   m_RootOrder: 0
---- !u!4 &4000010761158562
+--- !u!4 &4000014120556482
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000011968032416}
+  m_GameObject: {fileID: 1000012719551282}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
-  - {fileID: 4000010091653030}
-  - {fileID: 224000012483517064}
+  - {fileID: 4000014066412504}
+  - {fileID: 224000011761801296}
   m_Father: {fileID: 0}
   m_RootOrder: 0
---- !u!114 &114000011015129496
+--- !u!114 &114000010152446034
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000013191983296}
+  m_GameObject: {fileID: 1000010318390062}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 1980459831, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
@@ -109,12 +109,12 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
---- !u!114 &114000011953309828
+--- !u!114 &114000013235971436
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000013191983296}
+  m_GameObject: {fileID: 1000010318390062}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 1301386320, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
@@ -125,28 +125,28 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &114000013833868952
+--- !u!114 &114000013571734510
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000011024171944}
+  m_GameObject: {fileID: 1000010116920748}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d3a4fdaea7aad90488ab0028ecdf4e4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   textPrefab: {fileID: 1000011554565634, guid: a81607cb9b7087f4caa819b4cbd3cfd3, type: 2}
-  canvasTransform: {fileID: 224000012483517064}
+  canvasTransform: {fileID: 224000011761801296}
   direction: {x: 0, y: 1, z: 0}
   speed: 5
   fadeTime: 2
---- !u!223 &223000011649020224
+--- !u!223 &223000010376196924
 Canvas:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000013191983296}
+  m_GameObject: {fileID: 1000010318390062}
   m_Enabled: 1
   serializedVersion: 2
   m_RenderMode: 1
@@ -160,18 +160,18 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
---- !u!224 &224000012483517064
+--- !u!224 &224000011761801296
 RectTransform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000013191983296}
+  m_GameObject: {fileID: 1000010318390062}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
-  m_Father: {fileID: 4000010761158562}
+  m_Father: {fileID: 4000014120556482}
   m_RootOrder: 1
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
