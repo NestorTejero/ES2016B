@@ -10,6 +10,7 @@ public class APIHUD : MonoBehaviour
 	private bool visibleTooltipWave = false;
 	private float initTimeTooltipWave = 0.0f;
 	private int totalWaves = 0;
+	float timeNextWave = 5.0f;
 
     private void Awake()
     {
@@ -112,8 +113,6 @@ public class APIHUD : MonoBehaviour
 			.GetComponent<GameController> ().totalWaves;*/
 
 		totalWaves = GameController.instance.getTotalWave();
-
-		Debug.Log ("TOTAL WAVES: " + totalWaves);
 
 		if (((int.Parse (wave) - 1) > 0) && ((int.Parse (wave) - 1) < totalWaves)) {
 			setVisibleTooltipWave (true);
@@ -258,7 +257,13 @@ public class APIHUD : MonoBehaviour
 		float temp = timer.instance.getTimeFloat ();
 		float timeShowingTooltipWave = temp - initTimeTooltipWave;
 
-		if (timeShowingTooltipWave > 5.0f) {
+		transform.FindChild("containerTootips")
+			.FindChild("tooltipWave")
+			.FindChild("timerNextWave")
+			.GetComponent<Text>()
+			.text = ((int)(timeNextWave - timeShowingTooltipWave)).ToString();
+
+		if (timeShowingTooltipWave > timeNextWave) {
 			visibleTooltipWave = false;
 			setVisibleTooltipWave (false);
 		}
