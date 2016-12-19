@@ -1820,6 +1820,7 @@ MonoBehaviour:
   soundLow: {fileID: 21300000, guid: 4410bc3d092483d4286562365a1d12c1, type: 3}
   soundMedium: {fileID: 21300000, guid: e0aa23d3740e7ee40a40fad3c1995587, type: 3}
   soundMuted: {fileID: 21300000, guid: 22844fa233958aa478460489cf91089f, type: 3}
+  tooltipToggle: {fileID: 114000013797344278}
   volumeSlider: {fileID: 114000012409637798}
 --- !u!114 &114000014218798140
 MonoBehaviour:
