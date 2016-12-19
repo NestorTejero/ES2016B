@@ -118,4 +118,8 @@ public class GameController : MonoBehaviour
 		((Behaviour) respawns[spawnPoint1].GetComponent("Light")).enabled = false;
 		((Behaviour) respawns[spawnPoint2].GetComponent("Light")).enabled = false;
     }
+
+	public int getTotalWave(){
+		return totalWaves;
+	}
 }
