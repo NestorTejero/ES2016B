@@ -7,6 +7,8 @@ public class APIHUD : MonoBehaviour
     public static APIHUD instance;
     private GameObject gameObjectSelected;
     private bool selectedItem;
+	private bool visibleTooltipWave = false;
+	private float initTimeTooltipWave = 0.0f;
 
     private void Awake()
     {
@@ -18,6 +20,10 @@ public class APIHUD : MonoBehaviour
     private void Update()
     {
         setTime(timer.instance.getTime());
+
+		if (visibleTooltipWave == true) {
+			showingTooltipWave ();
+		}
     }
 
     public void setHealth(float currentHealth, float totalHealth)
@@ -100,6 +106,8 @@ public class APIHUD : MonoBehaviour
             .FindChild("txtWave")
             .GetComponent<Text>()
             .text = wave;
+
+		setVisibleTooltipWave (true);
     }
 
     public void setTime(string time)
@@ -226,6 +234,29 @@ public class APIHUD : MonoBehaviour
             visible;
         setOnClickFunctionRepair();
     }
+
+	public void setVisibleTooltipWave(bool visible)
+	{
+		transform.FindChild("containerTootips").FindChild("tooltipWave").gameObject.active =
+			visible;
+
+		visibleTooltipWave = true;
+		initTimeTooltipWave = timer.instance.getTimeFloat ();
+		Debug.Log ("VALOR DE LA VARIABLE initTimeTooltipWave: " + initTimeTooltipWave);
+	}
+
+	private void showingTooltipWave(){
+		float temp = timer.instance.getTimeFloat ();
+		float timeShowingTooltipWave = temp - initTimeTooltipWave;
+
+		Debug.Log ("MOSTRANDO TIEMPO DEL TIMER : " + temp);
+		Debug.Log ("TIEMPO MOSTRANDO TOOLTIP: " + timeShowingTooltipWave);
+
+		if (timeShowingTooltipWave > 5.0f) {
+			visibleTooltipWave = false;
+			setVisibleTooltipWave (false);
+		}
+	}
 
     private void setSelectedItemLabel()
     {
