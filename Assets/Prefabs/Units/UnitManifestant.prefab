@@ -1795,14 +1795,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ec943e3d8fc87f4d8786ea1ea07361d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseCooldown: 1
+  baseCooldown: 2
   baseDamage: 20
-  baseRange: 8
-  upgradeFactor: 1.1
+  baseRange: 1
+  proj_origin: {fileID: 1000010714520526}
   projectiles:
   - {fileID: 1000014186153920, guid: 2c6000bec675c9b4da5f643d44a915a8, type: 2}
-  proj_origin: {fileID: 1000010714520526}
   shootSound: {fileID: 8300000, guid: cf73db8e4891a754791d586816040dff, type: 3}
+  upgradeFactor: 1.1
 --- !u!114 &114000013163301426
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1814,15 +1814,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa348ffcf3bb1ac4abac940741f6f3f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseHealth: 10
-  goal: {fileID: 4000012602783024, guid: c839f3d5ec503fe429715f930afaf77d, type: 2}
-  damage: 0
-  moveSpeed: 10
-  purchaseCost: 9
-  rewardCoins: 10
-  weapon: {fileID: 0}
-  normalTexture: {fileID: 2800000, guid: c7d6fc1b5be0f4d858f85e7e4738d3da, type: 3}
+  baseHealth: 15
+  damage: 20
   damagedTexture: {fileID: 2800000, guid: 207a3ed11f5864937a5b5b77798f26e2, type: 3}
+  goal: {fileID: 4000012602783024, guid: c839f3d5ec503fe429715f930afaf77d, type: 2}
+  moveSpeed: 8
+  normalTexture: {fileID: 2800000, guid: c7d6fc1b5be0f4d858f85e7e4738d3da, type: 3}
+  purchaseCost: 20
+  rewardCoins: 5
+  weapon: {fileID: 0}
 --- !u!114 &114000013576524668
 MonoBehaviour:
   m_ObjectHideFlags: 1

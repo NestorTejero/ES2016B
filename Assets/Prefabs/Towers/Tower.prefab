@@ -306,13 +306,13 @@ MonoBehaviour:
   baseCooldown: 1
   baseDamage: 10
   baseRange: 35
-  upgradeFactor: 1.1
+  proj_origin: {fileID: 1000011089548668}
   projectiles:
   - {fileID: 1000012011802270, guid: dd4ce48133aa3a64db2f85c879d52083, type: 2}
   - {fileID: 1000011754033404, guid: ad6c678cc9e0b4f448addc0e49a29d4b, type: 2}
   - {fileID: 1000011736753480, guid: 39b4983788ab66c4dbe269117f4af8dc, type: 2}
-  proj_origin: {fileID: 1000011089548668}
   shootSound: {fileID: 8300000, guid: 2a055584652ad8c4ab2ad9c3b19a043f, type: 3}
+  upgradeFactor: 1.1
 --- !u!114 &114000013366404552
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -324,15 +324,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e97336b7d4616584e97bd98322705b9b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  upgradeCost: 1
-  buildCost: 25
-  source: {fileID: 82000012240276802}
+  buildCost: 200
   buy: {fileID: 8300000, guid: 04a82c36a813afe44ab7c0cfb6501fd2, type: 3}
   upgrade: {fileID: 8300000, guid: f9b40b600feb9d84daadfd39dda46999, type: 3}
+  source: {fileID: 82000012240276802}
   textures:
   - {fileID: 2800000, guid: f5f8ff9c7d05a4583bd371c812373b86, type: 3}
   - {fileID: 2800000, guid: 4d3fac93c6ed74ccda09ffa16c7cbbdf, type: 3}
   - {fileID: 2800000, guid: 0b116123907e946a6828c591647618c0, type: 3}
+  upgradeCost: 500
 --- !u!114 &114000014177185980
 MonoBehaviour:
   m_ObjectHideFlags: 1

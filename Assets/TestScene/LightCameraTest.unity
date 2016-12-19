@@ -4774,6 +4774,16 @@ Prefab:
       propertyPath: m_Radius
       value: 50
       objectReference: {fileID: 0}
+    - target: {fileID: 114000013366404552, guid: 68a97d8f079caa14fb7838b4a02d5867,
+        type: 2}
+      propertyPath: buildCost
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000013366404552, guid: 68a97d8f079caa14fb7838b4a02d5867,
+        type: 2}
+      propertyPath: upgradeCost
+      value: 500
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 68a97d8f079caa14fb7838b4a02d5867, type: 2}
   m_IsPrefabParent: 0
@@ -14184,13 +14194,13 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
-  - {fileID: 557984904}
-  - {fileID: 440666326}
   - {fileID: 1491383106}
-  - {fileID: 1530441154}
+  - {fileID: 557984904}
   - {fileID: 2003409537}
+  - {fileID: 440666326}
   - {fileID: 1190171211}
   - {fileID: 1917727294}
+  - {fileID: 1530441154}
   - {fileID: 1370219883}
   m_Father: {fileID: 423572303}
   m_RootOrder: 1
@@ -19131,6 +19141,16 @@ Prefab:
     - target: {fileID: 114000013154992960, guid: c839f3d5ec503fe429715f930afaf77d,
         type: 2}
       propertyPath: baseHealth
+      value: 1000
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000013154992960, guid: c839f3d5ec503fe429715f930afaf77d,
+        type: 2}
+      propertyPath: repairCost
+      value: 400
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000013154992960, guid: c839f3d5ec503fe429715f930afaf77d,
+        type: 2}
+      propertyPath: upgradeCost
       value: 1000
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -29492,6 +29512,18 @@ Prefab:
       propertyPath: source
       value: 
       objectReference: {fileID: 359187056}
+    - target: {fileID: 114000010288231944, guid: 4537ec399d51e244290ba3589cdd2a58,
+        type: 2}
+      propertyPath: units.Array.data[1]
+      value: 
+      objectReference: {fileID: 1000011433983142, guid: c769837888a7de342b1e7569b205ef6d,
+        type: 2}
+    - target: {fileID: 114000010288231944, guid: 4537ec399d51e244290ba3589cdd2a58,
+        type: 2}
+      propertyPath: units.Array.data[2]
+      value: 
+      objectReference: {fileID: 1000013263705146, guid: 4de060bdaa5ff1d4b899dcd9cf4757b0,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4537ec399d51e244290ba3589cdd2a58, type: 2}
   m_IsPrefabParent: 0
