@@ -4,7 +4,7 @@ using UnityEngine;
 public class Tower : MonoBehaviour, CanUpgrade, HUDSubject
 {
     public int buildCost;
-    public AudioClip buy, upgrade;
+    public AudioClip upgrade;
     private int currentLevel;
     private int maxLevel;
     private int minLevel;
@@ -35,9 +35,9 @@ public class Tower : MonoBehaviour, CanUpgrade, HUDSubject
         ApplyMainModelScale();
         ApplyMainTexture();
         //Sound
-        /*if (!source.isPlaying)
+        if (!source.isPlaying)
             source.PlayOneShot(upgrade);
-        */
+
         Debug.Log("TOWER UPGRADED, Power: " + weapon.getCurrentDamage());
     }
 
@@ -67,9 +67,6 @@ public class Tower : MonoBehaviour, CanUpgrade, HUDSubject
         //texture data
         skin = model.GetComponent<MeshRenderer>();
         skin.material.mainTexture = textures[currentLevel - 1];
-        //Sound
-        if (!source.isPlaying)
-            source.PlayOneShot(buy);
         Debug.Log("TOWER CREATED");
     }
 

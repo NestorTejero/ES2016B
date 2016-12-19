@@ -5,6 +5,7 @@ public class Player : MonoBehaviour
     public int initialCoins;
     protected int numCoins, unitsWave;
     private ScoreManager score;
+    public AudioSource source;
 
     private void Start()
     {
@@ -17,6 +18,8 @@ public class Player : MonoBehaviour
     {
         numCoins += coins;
         APIHUD.instance.setMoney(numCoins.ToString());
+        if (!source.isPlaying)
+            source.PlayOneShot(source.clip);
     }
 
     public void SpendCoins(int coins)
@@ -25,7 +28,9 @@ public class Player : MonoBehaviour
         if (numCoins < 0)
             numCoins = 0;
         APIHUD.instance.setMoney(numCoins.ToString());
-		MoneyTextManager.Instance.CreateText (GameObject.Find("Grid+Camera").transform.FindChild("Grid").transform.position,coins.ToString(),false);
+        if (!source.isPlaying)
+            source.PlayOneShot(source.clip);
+        MoneyTextManager.Instance.CreateText (GameObject.Find("Grid+Camera").transform.FindChild("Grid").transform.position,coins.ToString(),false);
     }
 
     public void GetMoney(Unit deadUnit)
