@@ -23,6 +23,7 @@ public class Building : MonoBehaviour, CanUpgrade, CanReceiveDamage, HUDSubject
     public List<Texture> textures;
     public float upgradeCost;
     public float upgradeFactor;
+    public AudioSource upgrade,repair;
 
     private BuildingWeapon weapon;
 
@@ -66,6 +67,8 @@ public class Building : MonoBehaviour, CanUpgrade, CanReceiveDamage, HUDSubject
         NotifyHUD();
         ApplyMainTexture();
         ApplySmokeEffect();
+        if (!upgrade.isPlaying)
+            upgrade.PlayOneShot(upgrade.clip);
         Debug.Log("BUILDING UPGRADED, TOTAL HP: " + health.GetTotalHealth());
     }
 
@@ -165,6 +168,8 @@ public class Building : MonoBehaviour, CanUpgrade, CanReceiveDamage, HUDSubject
         NotifyHUD();
         ApplyMainTexture();
         ApplySmokeEffect();
+        if (!repair.isPlaying)
+            repair.PlayOneShot(repair.clip);
     }
 
     /*
