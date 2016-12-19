@@ -25,6 +25,8 @@ public class UIManager : MonoBehaviour
 
     // Text field that will show the tooltip:
     private Text TooltipText;
+	private GameObject tooltipTextObject;
+	public Toggle tooltipToggle;
 
     // Control of volume:
     public Slider volumeSlider;
@@ -46,6 +48,8 @@ public class UIManager : MonoBehaviour
         lastEVolume = PersistentValues.effectsLastVolume;
 		
 		TooltipText = GameObject.Find("FeedbackText").GetComponent<Text>();
+		tooltipTextObject = GameObject.Find("FeedbackText");
+		tooltipToggle.onValueChanged.AddListener(delegate { toggleChangeCheck(); });
     }
 
     // Update is called once per frame
@@ -72,6 +76,10 @@ public class UIManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.J))
             GameController.instance.activateRespawnAbility();
     }
+	
+	public void toggleChangeCheck(){
+		tooltipTextObject.SetActive(tooltipToggle.isOn);
+	}
 
     // This function mutes or unmuted the effects volume, according to the current value
     public void effectsIconClick()
