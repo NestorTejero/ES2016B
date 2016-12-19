@@ -2026,7 +2026,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Enemies' spawn has been revealed!
+  m_Text: Enemy SpawnPoints have been marked on the map !
 --- !u!114 &114000012803427732
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3203,7 +3203,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 340, y: 34}
+  m_SizeDelta: {x: 500, y: 34}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224000011203030910
 RectTransform:
