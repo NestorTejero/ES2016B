@@ -1,6 +1,8 @@
 ﻿using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+using System.Collections;
 
 /**
  * Singleton GameController class
@@ -16,6 +18,9 @@ public class GameController : MonoBehaviour
 
     public int totalWaves;
 
+	private GameObject powerTooltip;
+	private bool powerOn;
+	private float powerTime;
     // Use this for initialization
 
     private void Start()
@@ -38,7 +43,20 @@ public class GameController : MonoBehaviour
         }
 
         APIHUD.instance.setWave(currentWave.ToString());
+		powerTooltip = GameObject.Find("powerTooltip");
+		powerTooltip.SetActive(false);
+		powerOn = false;
+		powerTime = 0F;
     }
+	
+	public void Update(){
+		if(powerOn){
+			powerTime -= Time.deltaTime;
+			if(powerTime < 0){
+				disableAbilityTooltip();
+			}
+		}
+	}
 
     private void Awake()
     {
@@ -110,6 +128,9 @@ public class GameController : MonoBehaviour
         var respawns = GameObject.FindGameObjectsWithTag("SpawnP");
         ((Behaviour) respawns[spawnPoint1].GetComponent("Light")).enabled = true;
 		((Behaviour) respawns[spawnPoint2].GetComponent("Light")).enabled = true;
+		if(powerTooltip != null){
+			activateAbilityTooltip();
+		}
     }
 
     public void desactivateRespawnAbility()
@@ -121,5 +142,18 @@ public class GameController : MonoBehaviour
 
 	public int getTotalWave(){
 		return totalWaves;
+	}
+	
+	private void activateAbilityTooltip()
+	{
+		powerTooltip.SetActive(true);
+		powerOn = true;
+		powerTime = 3.0F;
+	}
+	
+	private void disableAbilityTooltip()
+	{
+		powerTooltip.SetActive(false);
+		powerOn = false;
 	}
 }

@@ -12,6 +12,7 @@ public class PlayVideo : MonoBehaviour
     // Use this for initialization
     private void Start()
     {
+
         switch (PersistentValues.victory)
         {
             case 0:
