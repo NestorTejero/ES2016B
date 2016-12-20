@@ -51,5 +51,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd4e647ec7a53fe41b22727a201074e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialCoins: 20
+  initialCoins: 10
   source: {fileID: 0}

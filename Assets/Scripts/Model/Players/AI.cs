@@ -10,6 +10,7 @@ public abstract class AI : Player
         unitsWave = 0;
         InvokeRepeating("Play", 15.0f, 2.0f);
         InvokeRepeating("AutoCoins", 0.0f, 1.0f);
+		InvokeRepeating ("ExtraCoins", 60.0f, 1.0f);
     }
 
     /* Give human player time to upgrade or repair */
@@ -29,4 +30,9 @@ public abstract class AI : Player
     {
         numCoins += 5;
     }
+
+	protected void ExtraCoins()
+	{
+		numCoins += 15;
+	}
 }
