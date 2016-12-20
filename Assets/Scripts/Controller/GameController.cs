@@ -108,15 +108,18 @@ public class GameController : MonoBehaviour
     public void activateRespawnAbility()
     {
         var respawns = GameObject.FindGameObjectsWithTag("SpawnP");
-        ((Behaviour) respawns[spawnPoint1].GetComponent("Halo")).enabled = true;
-        ((Behaviour) respawns[spawnPoint2].GetComponent("Halo")).enabled = true;
-        Debug.Log(respawns[spawnPoint1].name);
+        ((Behaviour) respawns[spawnPoint1].GetComponent("Light")).enabled = true;
+		((Behaviour) respawns[spawnPoint2].GetComponent("Light")).enabled = true;
     }
 
     public void desactivateRespawnAbility()
     {
         var respawns = GameObject.FindGameObjectsWithTag("SpawnP");
-        ((Behaviour) respawns[spawnPoint1].GetComponent("Halo")).enabled = false;
-        ((Behaviour) respawns[spawnPoint2].GetComponent("Halo")).enabled = false;
+		((Behaviour) respawns[spawnPoint1].GetComponent("Light")).enabled = false;
+		((Behaviour) respawns[spawnPoint2].GetComponent("Light")).enabled = false;
     }
+
+	public int getTotalWave(){
+		return totalWaves;
+	}
 }

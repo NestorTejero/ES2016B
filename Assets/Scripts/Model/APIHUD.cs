@@ -7,6 +7,10 @@ public class APIHUD : MonoBehaviour
     public static APIHUD instance;
     private GameObject gameObjectSelected;
     private bool selectedItem;
+	private bool visibleTooltipWave = false;
+	private float initTimeTooltipWave = 0.0f;
+	private int totalWaves = 0;
+	float timeNextWave = 5.0f;
 
     private void Awake()
     {
@@ -18,6 +22,10 @@ public class APIHUD : MonoBehaviour
     private void Update()
     {
         setTime(timer.instance.getTime());
+
+		if (visibleTooltipWave == true) {
+			showingTooltipWave ();
+		}
     }
 
     public void setHealth(float currentHealth, float totalHealth)
@@ -92,15 +100,29 @@ public class APIHUD : MonoBehaviour
 
     public void setWave(string wave)
     {
+
+		PersistentValues.waves = (int.Parse(wave)-1).ToString();
+
         transform.FindChild("containerGameStats")
             .FindChild("imgWave")
             .FindChild("txtWave")
             .GetComponent<Text>()
             .text = wave;
+
+		/*totalWaves = transform.FindChild ("GameController(Clone)")
+			.GetComponent<GameController> ().totalWaves;*/
+
+		totalWaves = GameController.instance.getTotalWave();
+
+		if (((int.Parse (wave) - 1) > 0) && ((int.Parse (wave) - 1) < totalWaves)) {
+			setVisibleTooltipWave (true);
+		}
     }
 
     public void setTime(string time)
     {
+		PersistentValues.time = time;
+
         transform.FindChild("containerGameStats")
             .FindChild("imgTime")
             .FindChild("txtTime")
@@ -119,6 +141,8 @@ public class APIHUD : MonoBehaviour
 
     public void setPoints(string points)
     {
+		PersistentValues.points = points;
+
         transform.FindChild("containerGameStats")
             .FindChild("imgPoints")
             .FindChild("txtPoints")
@@ -219,6 +243,31 @@ public class APIHUD : MonoBehaviour
             visible;
         setOnClickFunctionRepair();
     }
+
+	public void setVisibleTooltipWave(bool visible)
+	{
+		transform.FindChild("containerTootips").FindChild("tooltipWave").gameObject.active =
+			visible;
+
+		visibleTooltipWave = true;
+		initTimeTooltipWave = timer.instance.getTimeFloat ();
+	}
+
+	private void showingTooltipWave(){
+		float temp = timer.instance.getTimeFloat ();
+		float timeShowingTooltipWave = temp - initTimeTooltipWave;
+
+		transform.FindChild("containerTootips")
+			.FindChild("tooltipWave")
+			.FindChild("timerNextWave")
+			.GetComponent<Text>()
+			.text = ((int)(timeNextWave - timeShowingTooltipWave)).ToString();
+
+		if (timeShowingTooltipWave > timeNextWave) {
+			visibleTooltipWave = false;
+			setVisibleTooltipWave (false);
+		}
+	}
 
     private void setSelectedItemLabel()
     {

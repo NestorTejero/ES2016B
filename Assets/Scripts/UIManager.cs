@@ -24,7 +24,7 @@ public class UIManager : MonoBehaviour
     public Sprite soundMuted;
 
     // Text field that will show the tooltip:
-    public Text TooltipText;
+    private Text TooltipText;
 
     // Control of volume:
     public Slider volumeSlider;
@@ -44,6 +44,8 @@ public class UIManager : MonoBehaviour
         musicSlider.value = PersistentValues.musicVolume;
         lastMVolume = PersistentValues.musicLastVolume;
         lastEVolume = PersistentValues.effectsLastVolume;
+		
+		TooltipText = GameObject.Find("FeedbackText").GetComponent<Text>();
     }
 
     // Update is called once per frame

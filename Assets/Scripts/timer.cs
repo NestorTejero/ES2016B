@@ -26,4 +26,8 @@ public class timer : MonoBehaviour
 
         return horas + ":" + minutes + ":" + seconds;
     }
+
+	public float getTimeFloat(){
+		return Time.time;
+	}
 }
