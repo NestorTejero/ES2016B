@@ -1790,7 +1790,7 @@ MonoBehaviour:
   goal: {fileID: 4000012602783024, guid: c839f3d5ec503fe429715f930afaf77d, type: 2}
   moveSpeed: 5
   normalTexture: {fileID: 2800000, guid: deef1e467bb614b69a2b3af1db005f56, type: 3}
-  purchaseCost: 15
+  purchaseCost: 5
   rewardCoins: 1
   weapon: {fileID: 0}
 --- !u!114 &114000011059578548

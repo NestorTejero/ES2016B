@@ -1820,7 +1820,7 @@ MonoBehaviour:
   goal: {fileID: 4000012602783024, guid: c839f3d5ec503fe429715f930afaf77d, type: 2}
   moveSpeed: 8
   normalTexture: {fileID: 2800000, guid: c7d6fc1b5be0f4d858f85e7e4738d3da, type: 3}
-  purchaseCost: 10
+  purchaseCost: 5
   rewardCoins: 1
   weapon: {fileID: 0}
 --- !u!114 &114000013576524668

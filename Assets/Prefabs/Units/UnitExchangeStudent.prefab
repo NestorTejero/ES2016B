@@ -1833,8 +1833,8 @@ MonoBehaviour:
   goal: {fileID: 4000012602783024, guid: c839f3d5ec503fe429715f930afaf77d, type: 2}
   moveSpeed: 9
   normalTexture: {fileID: 2800000, guid: bd9725feebe72475fa69d75181579cc0, type: 3}
-  purchaseCost: 10
-  rewardCoins: 1
+  purchaseCost: 5
+  rewardCoins: 2
   weapon: {fileID: 0}
 --- !u!135 &135000012402957608
 SphereCollider:
