@@ -19052,7 +19052,7 @@ Prefab:
     - target: {fileID: 114000013154992960, guid: c839f3d5ec503fe429715f930afaf77d,
         type: 2}
       propertyPath: baseHealth
-      value: 1000
+      value: 2000
       objectReference: {fileID: 0}
     - target: {fileID: 114000013154992960, guid: c839f3d5ec503fe429715f930afaf77d,
         type: 2}
@@ -19064,6 +19064,11 @@ Prefab:
       propertyPath: repair
       value: 
       objectReference: {fileID: 2054974548}
+    - target: {fileID: 114000013154992960, guid: c839f3d5ec503fe429715f930afaf77d,
+        type: 2}
+      propertyPath: repairQuantity
+      value: 2000
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c839f3d5ec503fe429715f930afaf77d, type: 2}
   m_IsPrefabParent: 0
