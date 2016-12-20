@@ -27,6 +27,6 @@ public abstract class AI : Player
 
     protected void AutoCoins()
     {
-        numCoins += 5;
+        numCoins += 3;
     }
 }
