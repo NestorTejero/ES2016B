@@ -24,14 +24,17 @@ public class Projectile : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        proj.transform.position = Vector3.Slerp(proj.transform.position, target_position,
-            Time.deltaTime*speed);
+		if (this.gameObject.tag == "Laser") {
+			proj.transform.position = Vector3.Lerp (proj.transform.position, this.target_position, Time.deltaTime * this.speed);
+		} else {
+			proj.transform.position = Vector3.Slerp (proj.transform.position, this.target_position, Time.deltaTime * this.speed);
+		}
     }
 
     public void Shoot(CanReceiveDamage target, float damage)
     {
         this.target = target;
-        target_position = target.getGameObject().transform.position;
+        this.target_position = target.getGameObject().transform.position;
         this.damage = damage;
     }
 
@@ -50,9 +53,9 @@ public class Projectile : MonoBehaviour
             var target_tag = target.getGameObject().tag;
             var col_tag = col.collider.gameObject.tag;
 
-            if (((col_tag == "Enemy") && (target_tag == "Unit")) ||
-                ((col_tag == "Building") && (target_tag == "Building")))
-                target.ReceiveDamage(damage);
+			if (((col_tag == "Enemy") && (target_tag == "Unit")) || ((col_tag == "Building") && (target_tag == "Building"))) {
+				target.ReceiveDamage (damage);
+			}
         }
     }
 }
