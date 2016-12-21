@@ -10,14 +10,14 @@ public class Player : MonoBehaviour
     private void Start()
     {
         numCoins = initialCoins;
-        APIHUD.instance.setMoney(numCoins.ToString());
+        APIHUD.instance.notifyMoney(numCoins);
         score = new ScoreManager();
     }
 
     public void AddCoins(int coins)
     {
         numCoins += coins;
-        APIHUD.instance.setMoney(numCoins.ToString());
+        APIHUD.instance.notifyMoney(numCoins);
         if (!source.isPlaying)
             source.PlayOneShot(source.clip);
     }
@@ -27,7 +27,7 @@ public class Player : MonoBehaviour
         numCoins -= coins;
         if (numCoins < 0)
             numCoins = 0;
-        APIHUD.instance.setMoney(numCoins.ToString());
+        APIHUD.instance.notifyMoney(numCoins);
         if (!source.isPlaying)
             source.PlayOneShot(source.clip);
         MoneyTextManager.Instance.CreateText (GameObject.Find("Grid+Camera").transform.FindChild("Grid").transform.position,coins.ToString(),false);
