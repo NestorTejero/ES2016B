@@ -12,19 +12,19 @@ public class MediumAI : AI
         {
             /* we buy the unit with less damage */
             var availableUnits = shop.GetPurchasable(numCoins);
-			if (availableUnits.Count > 0)
-			{
-				var unit = availableUnits[0];
-	            if (shop.IsPurchasable(unit, numCoins))
-	            {
-	                shop.Purchase(unit);
-	                unitsWave += 1;
-	                numCoins -= unit.purchaseCost;
-	            }
-
+			if (availableUnits.Count > 0) {
+				var unit = availableUnits [0];
+				if (shop.IsPurchasable (unit, numCoins)) {
+					shop.Purchase (unit);
+					unitsWave += 1;
+					numCoins -= unit.purchaseCost;
+				}
+			}
+				if (availableUnits.Count > 0)
+				{
 	            /* we look for buy a second unit, this time is random */
 	            availableUnits = shop.GetPurchasable(numCoins);
-	            unit = availableUnits[Random.Range(0, availableUnits.Count)];
+	            var unit = availableUnits[Random.Range(0, availableUnits.Count)];
 	            if (shop.IsPurchasable(unit, numCoins))
 	            {
 	                shop.Purchase(unit);
