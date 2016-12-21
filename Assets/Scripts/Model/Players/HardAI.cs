@@ -40,4 +40,9 @@ public class HardAI : AI
             }
         }
     }
+
+    protected new void AutoCoins()
+    {
+        numCoins += 3;
+    }
 }
