@@ -290,4 +290,10 @@ public class APIHUD : MonoBehaviour
         setVisibleUpgradeButton(info.VisibleUpgradeButton);
         setVisibleRepairButton(info.VisibleRepairButton);
     }
+
+    public void notifyMoney(int money)
+    {
+        setMoney(money.ToString());
+        setVisibleBuyTowerButton(GameObject.Find("EdificiUB").GetComponent<Building>().canBuild());
+    }
 }
