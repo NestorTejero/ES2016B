@@ -19089,11 +19089,6 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 114000013154992960, guid: c839f3d5ec503fe429715f930afaf77d,
         type: 2}
-      propertyPath: baseHealth
-      value: 1000
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000013154992960, guid: c839f3d5ec503fe429715f930afaf77d,
-        type: 2}
       propertyPath: upgrade
       value: 
       objectReference: {fileID: 1936545543}
