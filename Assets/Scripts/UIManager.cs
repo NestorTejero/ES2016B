@@ -24,7 +24,9 @@ public class UIManager : MonoBehaviour
     public Sprite soundMuted;
 
     // Text field that will show the tooltip:
-    public Text TooltipText;
+    private Text TooltipText;
+	private GameObject tooltipTextObject;
+	public Toggle tooltipToggle;
 
     // Control of volume:
     public Slider volumeSlider;
@@ -44,6 +46,10 @@ public class UIManager : MonoBehaviour
         musicSlider.value = PersistentValues.musicVolume;
         lastMVolume = PersistentValues.musicLastVolume;
         lastEVolume = PersistentValues.effectsLastVolume;
+		
+		TooltipText = GameObject.Find("FeedbackText").GetComponent<Text>();
+		tooltipTextObject = GameObject.Find("FeedbackText");
+		tooltipToggle.onValueChanged.AddListener(delegate { toggleChangeCheck(); });
     }
 
     // Update is called once per frame
@@ -66,12 +72,14 @@ public class UIManager : MonoBehaviour
             }
         }
 
-		//when press J button use the ability for see the respawn points
-		if (Input.GetKeyDown (KeyCode.J)) 
-		{
-			GameController.instance.activateRespawnAbility ();
-		}
+        //when press J button use the ability for see the respawn points
+        if (Input.GetKeyDown(KeyCode.J))
+            GameController.instance.activateRespawnAbility();
     }
+	
+	public void toggleChangeCheck(){
+		tooltipTextObject.SetActive(tooltipToggle.isOn);
+	}
 
     // This function mutes or unmuted the effects volume, according to the current value
     public void effectsIconClick()

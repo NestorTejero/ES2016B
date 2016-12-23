@@ -5,6 +5,6 @@
     public string Damage = "-";
     public string Range = "-";
     public float TotalHealth = 0.1f;
+    public bool VisibleRepairButton = false;
     public bool VisibleUpgradeButton = false;
-	public bool VisibleRepairButton = false;
 }

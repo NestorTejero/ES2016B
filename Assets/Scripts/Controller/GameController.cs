@@ -1,6 +1,8 @@
 ﻿using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+using System.Collections;
 
 /**
  * Singleton GameController class
@@ -11,18 +13,21 @@ public class GameController : MonoBehaviour
     public static GameController instance;
     private int currentWave;
 
+    public int spawnPoint1;
+    public int spawnPoint2;
+
     public int totalWaves;
 
-	public int spawnPoint1;
-	public int spawnPoint2;
-
+	private GameObject powerTooltip;
+	private bool powerOn;
+	private float powerTime;
     // Use this for initialization
 
     private void Start()
     {
         currentWave = 1;
 
-		generateSpawnPoint ();
+        generateSpawnPoint();
 
         switch (PersistentValues.difficulty)
         {
@@ -38,7 +43,20 @@ public class GameController : MonoBehaviour
         }
 
         APIHUD.instance.setWave(currentWave.ToString());
+		powerTooltip = GameObject.Find("powerTooltip");
+		powerTooltip.SetActive(false);
+		powerOn = false;
+		powerTime = 0F;
     }
+	
+	public void Update(){
+		if(powerOn){
+			powerTime -= Time.deltaTime;
+			if(powerTime < 0){
+				disableAbilityTooltip();
+			}
+		}
+	}
 
     private void Awake()
     {
@@ -64,8 +82,8 @@ public class GameController : MonoBehaviour
         if (dead is Building)
         {
             Debug.Log("GAME OVER Mate.");
-			PersistentValues.victory = 0;
-			SceneManager.LoadScene("FinalSceneLose");
+            PersistentValues.victory = 0;
+            SceneManager.LoadScene("FinalSceneLose");
         }
         else if (dead is Unit)
         {
@@ -79,45 +97,63 @@ public class GameController : MonoBehaviour
     {
         currentWave += 1;
         Debug.Log("Wave CLEAR!");
-		if (currentWave > totalWaves){
-			PersistentValues.victory = 1;
-			SceneManager.LoadScene ("FinalSceneLose");
-		}
+        if (currentWave > totalWaves)
+        {
+            PersistentValues.victory = 1;
+            SceneManager.LoadScene("FinalSceneLose");
+        }
         ai.ChangeWave();
 
-		desactivateRespawnAbility ();
+        desactivateRespawnAbility();
 
-		generateSpawnPoint ();
+        generateSpawnPoint();
 
         APIHUD.instance.setWave(currentWave.ToString());
 
         GameObject.FindGameObjectWithTag("Human").GetComponent<Player>().ChangeWave();
     }
 
-	public void generateSpawnPoint()
-	{
-		spawnPoint1 =  Random.Range(0, 4);
+    public void generateSpawnPoint()
+    {
+        spawnPoint1 = Random.Range(0, 4);
 
-		spawnPoint2 =  Random.Range(0, 4);
+        spawnPoint2 = Random.Range(0, 4);
 
-		while (spawnPoint2 == spawnPoint1) {
-			spawnPoint2 =  Random.Range(0, 4);
+        while (spawnPoint2 == spawnPoint1)
+            spawnPoint2 = Random.Range(0, 4);
+    }
+
+    public void activateRespawnAbility()
+    {
+        var respawns = GameObject.FindGameObjectsWithTag("SpawnP");
+        ((Behaviour) respawns[spawnPoint1].GetComponent("Light")).enabled = true;
+		((Behaviour) respawns[spawnPoint2].GetComponent("Light")).enabled = true;
+		if(powerTooltip != null){
+			activateAbilityTooltip();
 		}
-	}
+    }
 
-	public void activateRespawnAbility()
-	{
-		var respawns = GameObject.FindGameObjectsWithTag ("SpawnP");
-		((Behaviour)respawns [spawnPoint1].GetComponent ("Halo")).enabled = true;
-		((Behaviour)respawns [spawnPoint2].GetComponent ("Halo")).enabled = true;
-		Debug.Log (respawns [spawnPoint1].name);
-	}
+    public void desactivateRespawnAbility()
+    {
+        var respawns = GameObject.FindGameObjectsWithTag("SpawnP");
+		((Behaviour) respawns[spawnPoint1].GetComponent("Light")).enabled = false;
+		((Behaviour) respawns[spawnPoint2].GetComponent("Light")).enabled = false;
+    }
 
-	public void desactivateRespawnAbility()
-	{
-		var respawns = GameObject.FindGameObjectsWithTag ("SpawnP");
-		((Behaviour)respawns [spawnPoint1].GetComponent ("Halo")).enabled = false;
-		((Behaviour)respawns [spawnPoint2].GetComponent ("Halo")).enabled = false;
+	public int getTotalWave(){
+		return totalWaves;
 	}
-		
+	
+	private void activateAbilityTooltip()
+	{
+		powerTooltip.SetActive(true);
+		powerOn = true;
+		powerTime = 3.0F;
+	}
+	
+	private void disableAbilityTooltip()
+	{
+		powerTooltip.SetActive(false);
+		powerOn = false;
+	}
 }

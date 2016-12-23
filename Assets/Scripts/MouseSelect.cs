@@ -16,7 +16,7 @@ public class MouseSelect : MonoBehaviour
         transformSelected = null;
         isSelected = false;
 
-        TooltipText = GameObject.Find("TooltipText").GetComponent<Text>();
+        TooltipText = GameObject.Find("FeedbackText").GetComponent<Text>();
     }
 
     // Update is called once per frame
@@ -51,11 +51,12 @@ public class MouseSelect : MonoBehaviour
                 case "Tower":
                     GameObject.Find("selectedObjectIndicator")
                         .GetComponent<selectedObjectIndicator>()
-						.setSelectedObject(gameObject, gameObject.transform.localScale.y*25 + gameObject.transform.position.y);
+                        .setSelectedObject(gameObject,
+                            gameObject.transform.localScale.y*25 + gameObject.transform.position.y);
                     break;
             }
 
-		APIHUD.instance.setGameObjectSelected(gameObject);
+        APIHUD.instance.setGameObjectSelected(gameObject);
         gameObject.GetComponent<HUDSubject>().NotifyHUD();
     }
 
@@ -63,10 +64,10 @@ public class MouseSelect : MonoBehaviour
     public void OnMouseOver()
     {
         if (tag == "Building")
-            TooltipText.text = "Protect this building!";
+            TooltipText.text = "You must protect this building!";
 
         if (tag == "Unit")
-            TooltipText.text = "Kill them with fire!";
+            TooltipText.text = "Kill them all!";
     }
 
     public void OnMouseExit()

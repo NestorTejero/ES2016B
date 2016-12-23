@@ -1,30 +1,41 @@
 ﻿using UnityEngine;
-using System.Collections;
-using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using System.Collections;
 
-public class OptionsFinalScene : MonoBehaviour {
+public class OptionsFinalScene : MonoBehaviour
+{
+    public AudioSource audioSource;
+    // Use this for initialization
+    private void Start()
+    {
+    }
 
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+    // Update is called once per frame
+    private void Update()
+    {
+    }
 
-	public void loadMainMenu()
-	{
-		SceneManager.LoadScene("MainMenu");
-	}
-	public void Reload()
-	{
-		SceneManager.LoadScene("LightCameraTest");
-	}
-	public void exit()
-	{
-		Application.Quit();
-	}
+    public void loadMainMenu()
+    {
+        StartCoroutine(playAndLoad("MainMenu"));
+        //SceneManager.LoadScene("MainMenu");
+    }
+
+    public void Reload()
+    {
+        StartCoroutine(playAndLoad("LightCameraTest"));
+        //SceneManager.LoadScene();
+    }
+
+    public void exit()
+    {
+        Application.Quit();
+    }
+
+    public IEnumerator playAndLoad(string scene)
+    {
+        audioSource.Play();
+        yield return new WaitForSeconds(audioSource.clip.length);
+        SceneManager.LoadScene(scene); //Load the game (next scene)  
+    }
 }

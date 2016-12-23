@@ -7,6 +7,10 @@ public class APIHUD : MonoBehaviour
     public static APIHUD instance;
     private GameObject gameObjectSelected;
     private bool selectedItem;
+	private bool visibleTooltipWave = false;
+	private float initTimeTooltipWave = 0.0f;
+	private int totalWaves = 0;
+	float timeNextWave = 5.0f;
 
     private void Awake()
     {
@@ -18,6 +22,10 @@ public class APIHUD : MonoBehaviour
     private void Update()
     {
         setTime(timer.instance.getTime());
+
+		if (visibleTooltipWave == true) {
+			showingTooltipWave ();
+		}
     }
 
     public void setHealth(float currentHealth, float totalHealth)
@@ -64,7 +72,7 @@ public class APIHUD : MonoBehaviour
     {
         transform.FindChild("containerStats")
             .FindChild("container_info")
-			.FindChild("imgAttackSpeed")
+            .FindChild("imgAttackSpeed")
             .FindChild("txtAttackSpeed")
             .GetComponent<Text>()
             .text = atackSpeed;
@@ -92,17 +100,31 @@ public class APIHUD : MonoBehaviour
 
     public void setWave(string wave)
     {
+
+		PersistentValues.waves = (int.Parse(wave)-1).ToString();
+
         transform.FindChild("containerGameStats")
             .FindChild("imgWave")
             .FindChild("txtWave")
             .GetComponent<Text>()
             .text = wave;
+
+		/*totalWaves = transform.FindChild ("GameController(Clone)")
+			.GetComponent<GameController> ().totalWaves;*/
+
+		totalWaves = GameController.instance.getTotalWave();
+
+		if (((int.Parse (wave) - 1) > 0) && ((int.Parse (wave) - 1) < totalWaves)) {
+			setVisibleTooltipWave (true);
+		}
     }
 
     public void setTime(string time)
     {
+		PersistentValues.time = time;
+
         transform.FindChild("containerGameStats")
-			.FindChild("imgTime")
+            .FindChild("imgTime")
             .FindChild("txtTime")
             .GetComponent<Text>()
             .text = time;
@@ -119,6 +141,8 @@ public class APIHUD : MonoBehaviour
 
     public void setPoints(string points)
     {
+		PersistentValues.points = points;
+
         transform.FindChild("containerGameStats")
             .FindChild("imgPoints")
             .FindChild("txtPoints")
@@ -134,83 +158,115 @@ public class APIHUD : MonoBehaviour
             .GetComponent<Text>()
             .text = money;
     }
-		
-	private void setOnClickFunctionUpgrade()
-	{
 
-	    if (this.gameObjectSelected == null) return;
+    private void setOnClickFunctionUpgrade()
+    {
+        if (gameObjectSelected == null) return;
 
-		transform.FindChild ("buttons")
-			.FindChild ("container_buttons")
-			.FindChild ("btn_Upgrade")
-			.GetComponent<Button> ()
-			.onClick.RemoveAllListeners ();
+        transform.FindChild("buttons")
+            .FindChild("container_buttons")
+            .FindChild("btn_Upgrade")
+            .GetComponent<Button>()
+            .onClick.RemoveAllListeners();
 
-	    switch (this.gameObjectSelected.tag)
-	    {
-	        case "Tower":
-	            transform.FindChild("buttons")
-	                .FindChild("container_buttons")
-	                .FindChild("btn_Upgrade")
-	                .GetComponent<Button>()
-	                .onClick.AddListener(() =>
-	                {
-						this.gameObjectSelected
-	                        .GetComponent<Tower>()
-	                        .Upgrade();
-	                });
-	            break;
-		case "Building":
-	            transform.FindChild("buttons")
-	                .FindChild("container_buttons")
-	                .FindChild("btn_Upgrade")
-	                .GetComponent<Button>()
-	                .onClick.AddListener(() =>
-	                {
-						this.gameObjectSelected
-	                        .GetComponent<Building>()
-	                        .Upgrade();
-	                });
-	            break;
-	    }
-	}
+        switch (gameObjectSelected.tag)
+        {
+            case "Tower":
+                transform.FindChild("buttons")
+                    .FindChild("container_buttons")
+                    .FindChild("btn_Upgrade")
+                    .GetComponent<Button>()
+                    .onClick.AddListener(() =>
+                    {
+                        gameObjectSelected
+                            .GetComponent<Tower>()
+                            .Upgrade();
+                    });
+                break;
+            case "Building":
+                transform.FindChild("buttons")
+                    .FindChild("container_buttons")
+                    .FindChild("btn_Upgrade")
+                    .GetComponent<Button>()
+                    .onClick.AddListener(() =>
+                    {
+                        gameObjectSelected
+                            .GetComponent<Building>()
+                            .Upgrade();
+                    });
+                break;
+        }
+    }
 
-	private void setOnClickFunctionRepair(){
-		if (gameObjectSelected != null && gameObjectSelected.tag == "Building") {
-			transform.FindChild ("buttons").FindChild ("container_buttons").FindChild ("btn_Repair").GetComponent<Button> ().onClick.AddListener (() => {
-				gameObjectSelected
-					.GetComponent<Building>()
-					.Repair();
-			});
-		}
-	}
-    
-	public void setGameObjectSelected(GameObject gameObject)
-	{
-		gameObjectSelected = gameObject;
-	}
+    private void setOnClickFunctionRepair()
+    {
+        if ((gameObjectSelected != null) && (gameObjectSelected.tag == "Building"))
+            transform.FindChild("buttons")
+                .FindChild("container_buttons")
+                .FindChild("btn_Repair")
+                .GetComponent<Button>()
+                .onClick.AddListener(() =>
+                {
+                    gameObjectSelected
+                        .GetComponent<Building>()
+                        .Repair();
+                });
+    }
 
-	public GameObject getGameObjectSelected()
-	{
-		return gameObjectSelected;
-	}
+    public void setGameObjectSelected(GameObject gameObject)
+    {
+        gameObjectSelected = gameObject;
+    }
+
+    public GameObject getGameObjectSelected()
+    {
+        return gameObjectSelected;
+    }
 
     public void setVisibleUpgradeButton(bool visible)
     {
-		transform.FindChild("buttons").FindChild("container_buttons").FindChild("btn_Upgrade").gameObject.active = visible;
-		setOnClickFunctionUpgrade ();
+        transform.FindChild("buttons").FindChild("container_buttons").FindChild("btn_Upgrade").gameObject.active =
+            visible;
+        setOnClickFunctionUpgrade();
+    }
+
+    public void setVisibleRepairButton(bool visible)
+    {
+        transform.FindChild("buttons").FindChild("container_buttons").FindChild("btn_Repair").gameObject.active =
+            visible;
+        setOnClickFunctionRepair();
+    }
+
+    public void setVisibleBuyTowerButton(bool visible)
+    {
+        transform.FindChild("buttons").FindChild("container_buttons").FindChild("btn_AddTower").gameObject.active =
+            visible;
+        setOnClickFunctionRepair();
+    }
+
+	public void setVisibleTooltipWave(bool visible)
+	{
+		transform.FindChild("containerTootips").FindChild("tooltipWave").gameObject.active =
+			visible;
+
+		visibleTooltipWave = true;
+		initTimeTooltipWave = timer.instance.getTimeFloat ();
 	}
 
-	public void setVisibleRepairButton(bool visible)
-	{
-		transform.FindChild("buttons").FindChild("container_buttons").FindChild("btn_Repair").gameObject.active = visible;
-		setOnClickFunctionRepair ();
-	}
+	private void showingTooltipWave(){
+		float temp = timer.instance.getTimeFloat ();
+		float timeShowingTooltipWave = temp - initTimeTooltipWave;
 
-	public void setVisibleBuyTowerButton(bool visible)
-	{
-		transform.FindChild("buttons").FindChild("container_buttons").FindChild("btn_AddTower").gameObject.active = visible;
-		setOnClickFunctionRepair ();
+		transform.FindChild("containerTootips")
+			.FindChild("tooltipWave")
+			.FindChild("timerNextWave")
+			.GetComponent<Text>()
+			.text = ((int)(timeNextWave - timeShowingTooltipWave)).ToString();
+
+		if (timeShowingTooltipWave > timeNextWave) {
+			visibleTooltipWave = false;
+			setVisibleTooltipWave (false);
+		}
 	}
 
     private void setSelectedItemLabel()
@@ -224,7 +280,7 @@ public class APIHUD : MonoBehaviour
     [MethodImpl(MethodImplOptions.Synchronized)]
     public void notifyChange(HUDSubject subj, HUDInfo info)
     {
-        if (gameObjectSelected == null || gameObjectSelected.GetComponent<HUDSubject>() != subj)
+        if ((gameObjectSelected == null) || (gameObjectSelected.GetComponent<HUDSubject>() != subj))
             return;
 
         setHealth(info.CurrentHealth, info.TotalHealth);
@@ -232,6 +288,12 @@ public class APIHUD : MonoBehaviour
         setDamage(info.Damage);
         setRange(info.Range);
         setVisibleUpgradeButton(info.VisibleUpgradeButton);
-		setVisibleRepairButton(info.VisibleRepairButton);
+        setVisibleRepairButton(info.VisibleRepairButton);
+    }
+
+    public void notifyMoney(int money)
+    {
+        setMoney(money.ToString());
+        setVisibleBuyTowerButton(GameObject.Find("EdificiUB").GetComponent<Building>().canBuild());
     }
 }

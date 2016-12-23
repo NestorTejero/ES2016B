@@ -137,18 +137,18 @@ public class TerrainGrid : MonoBehaviour
                         t.GetComponentInChildren<Weapon>()
                             .setSourceShoot(GameObject.Find("Shoot Audio Source").GetComponent<AudioSource>());
 
-						GameObject.Find ("EdificiUB").GetComponent<Building> ().buyTower ();
+                        GameObject.Find("EdificiUB").GetComponent<Building>().buyTower();
                         toggleGrid();
                     }
                 }
         }
 
-		if (Input.GetKeyDown (KeyCode.A)) {
-			if (GameObject.Find ("EdificiUB").GetComponent<Building> ().canBuild ())
-				toggleGrid ();
-			else
-				Debug.Log ("Dont have enough money");
-		}        
+        /*if (Input.GetKeyDown(KeyCode.A))
+            if (GameObject.Find("EdificiUB").GetComponent<Building>().canBuild())
+                toggleGrid();
+            else
+                Debug.Log("Dont have enough money");
+       */
     }
 
     /*
@@ -157,8 +157,8 @@ public class TerrainGrid : MonoBehaviour
 
     public void toggleGrid()
     {
-		GameObject.FindGameObjectWithTag ("MainCamera").GetComponent<RTSCamera> ().changecanMove ();
-		UpdateCells();
+        GameObject.FindGameObjectWithTag("MainCamera").GetComponent<RTSCamera>().changecanMove();
+        UpdateCells();
 
         gridVisible = !gridVisible;
         for (var i = 0; i < gridWidth; ++i)
@@ -190,7 +190,7 @@ public class TerrainGrid : MonoBehaviour
      * if needed
      */
 
-	public void UpdateCells()
+    public void UpdateCells()
     {
         for (var z = 0; z < gridHeight; z++)
             for (var x = 0; x < gridWidth; x++)

@@ -45,6 +45,9 @@ public class MusicManager : MonoBehaviour
     private void Update()
     {
         if (Application.loadedLevelName == "LightCameraTest")
+        {
+            _instance = null;
             Destroy(gameObject);
+        }
     }
 }

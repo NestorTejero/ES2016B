@@ -323,7 +323,7 @@ GameObject:
   - 82: {fileID: 170734974}
   - 114: {fileID: 170734975}
   m_Layer: 0
-  m_Name: Music
+  m_Name: Music Audio Source
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -983,7 +983,7 @@ GameObject:
   - 4: {fileID: 631114532}
   - 82: {fileID: 631114531}
   m_Layer: 0
-  m_Name: Button sound
+  m_Name: Button Audio Source
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
